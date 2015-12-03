@@ -9,5 +9,5 @@ angular.module('siApp')
             link: function (scope, element, attr){
 
             }
-        }
+        };
     }]);

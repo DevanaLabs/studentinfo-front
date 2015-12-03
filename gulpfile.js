@@ -11,7 +11,7 @@ var Q = require('q');
 
 var paths = {
     scripts: ['src/**/*.js', '!src/bower_components/**/*.js'],
-    styles: ['./src/**/*.css', './src/**/*.scss'],
+    styles: ['src/styles/**/*.*'],
     images: './images/**/*',
     index: './src/index.html',
     partials: ['src/**/*.html', '!src/index.html'],
