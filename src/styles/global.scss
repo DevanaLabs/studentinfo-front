@@ -34,6 +34,7 @@ body {
 }
 
 #mainWrapper {
+	position: relative;
 	height: 100%;
 	background: white
 }
@@ -125,4 +126,24 @@ body {
 	text-align: center;
 	line-height: 80px;
 	font-size: 20px;
+}
+
+
+// ------------------------------------------------ 
+
+.tableWrapper{
+	position: absolute;
+	background: red;
+	z-index: 1000;
+	height: 30px;
+	width: 30px;
+	overflow: hidden;
+}
+
+.tableWrapper.displayed {
+	transition: all .5s;
+	top: 0px !important;
+	left: 0px !important;
+	height: 100vh;
+	width: 100%;
 }
