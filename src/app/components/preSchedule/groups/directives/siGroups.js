@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('siApp')
-    .directive('siCalendar', [function(){
+    .directive('siGrouppicker', [function(){
         return {
             scope: '',
             replace: true,
-            templateUrl: 'app/components/calendar/views/calendar.html',
+            templateUrl: 'app/components/preSchedule/groups/views/groupPicker.html',
             link: function (scope, element, attr){
 
             }

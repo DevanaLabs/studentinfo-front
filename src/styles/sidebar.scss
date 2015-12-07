@@ -1,0 +1,87 @@
+#mainSidebarWrapper {
+	position: relative;
+	height: 100%;
+	/*background: black;*/
+	* {
+		height: 100%;
+		color: white;
+	}
+	#bgBlurWrapper {
+		position: absolute;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
+	}
+	#bgBlur {
+		top: -20px;
+		left: -20px;
+		height: 150%;
+		width: 100%;
+		background: url(images/bg.jpg);
+		background-size: 1920px;
+		-webkit-filter: blur(20px);
+		filter: blur(20px);
+		overflow: hidden;
+	}
+
+
+	#sidebarWrapper {
+		z-index: 1;
+		position: relative;
+		background: rgba(0,0,0,.7);
+		#logoWrapper {
+			background: rgba(0,0,0,.2);
+			height: 60px;
+			font-weight: 300;
+			font-size: 48px;
+			line-height: 59px;
+			padding: 40px 0;
+			border-bottom: 1px solid rgba(255, 255, 255, .2);
+
+		}
+		.sidebarItemWrapper {
+			display: block;
+			height: 120px;
+			padding: 0 50px;
+			text-decoration: none;
+			.sidebarItem {
+				line-height: 120px;
+				font-size: 24px;
+				margin-left: 30px;
+				vertical-align: middle;
+			}
+			.sidebarItemIcon {
+				width: 50px; 
+				height: 38px; 
+				vertical-align: middle;
+			}
+		}
+		hr {
+			border: 0;
+			border-top: 1px solid rgba(255, 255, 255, .2);
+			margin: 0 30px;
+			height: 0;
+		}
+		#bottomWrapper {
+			position: absolute;
+			bottom: 0px;
+			height: 140px;
+			width: 100%;
+			background: rgba(0, 0, 0, .2);
+			border-top: 1px solid rgba(255, 255, 255, .2);
+			#bottomFaksLogoWrapper {
+				margin-top: 40px;
+			}
+			#bottomFaksLogo {
+				height: 36px;
+				margin-right: 14px;
+				vertical-align: middle;
+			}
+			#bottomFaksSpan {
+				font-size: 24px;
+				vertical-align: middle;
+			}
+		}
+	}
+}

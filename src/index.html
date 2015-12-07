@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
+  <title>Мој Енгјулар-Џеј-Ес Епп</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,8 +20,13 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
   <div class="section group">
-    <div class="col span_1_of_4">asdf</div>
-    <div class="col span_3_of_4">asdf</div>
+    <div class="col span_1_of_4" style="width: 23%">
+      <si-sidebar> </si-sidebar>
+    </div>
+    <div class="col span_3_of_4" style="width: 77%">
+      <img id="bgLogo" src="images/imgBgLogoFaks.svg">
+      <div ui-view style="height: 100%"></div>
+    </div>
   </div>
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
