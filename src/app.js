@@ -30,7 +30,7 @@ angular.module('siApp', ['ngCachedResource', 'ui.router'])
 		});
 
 })
-.controller('ClassroomCtrl', ['$scope', 'ClassroomService', 'ProfessorService', 'GroupService' , 'GroupYearService', function ClassroomCtrl($scope, ClassroomService, ProfessorService, GroupService, GroupYearService) {
+.controller('ClassroomCtrl', ['$scope', 'ClassroomService', 'ProfessorService', 'GroupService', function ClassroomCtrl($scope, ClassroomService, ProfessorService, GroupService) {
 	ClassroomService.get().$promise.then(function (data) {
 		console.log(data.success.data);
 		$scope.classrooms = data.success['data'];
@@ -42,11 +42,13 @@ angular.module('siApp', ['ngCachedResource', 'ui.router'])
 	});
 
 	GroupService.get().$promise.then(function (data) {
-		console.log(data.success);
-		$scope.groupYears = data.success;
-	});
-	GroupYearService.get().$promise.then(function (data) {
-		console.log(data.success);
-		$scope.groups = data.success;
+		console.log(data.success.data);
+		$scope.groups = data.success['data'];
+		var filterSets = [];
+		for(var i=0; i<data.success.data.length; i++)
+			if(filterSets.indexOf(data.success.data[i].year) == -1) filterSets.push(data.success.data[i].year);
+		console.log(filterSets);
+		GroupService.filterSets = filterSets;
+		console.log(GroupService.filterSets)
 	});
 }]);
