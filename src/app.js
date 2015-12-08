@@ -30,25 +30,34 @@ angular.module('siApp', ['ngCachedResource', 'ui.router'])
 		});
 
 })
-.controller('ClassroomCtrl', ['$scope', 'ClassroomService', 'ProfessorService', 'GroupService', function ClassroomCtrl($scope, ClassroomService, ProfessorService, GroupService) {
-	ClassroomService.get().$promise.then(function (data) {
+.controller('ClassroomCtrl', ['$scope', 'ClassroomService', 'ProfessorService', 'GroupService', 'FetchDataService', function ClassroomCtrl($scope, ClassroomService, ProfessorService, GroupService, FetchDataService) {
+	FetchDataService.get().$promise.then(function (data) {
+		$scope.data = data.success['data'];
+		console.log(data.success.data);
+		var years = [];
+		for(var i=0; i<data.success.data.groups.length; i++){
+			if(years.indexOf(data.success.data.groups[i].year) == -1) years.push(data.success.data.groups[i].year);
+		}
+		FetchDataService.years = years;
+		var floors = [];
+		for(var i=0; i<data.success.data.classrooms.length; i++){
+			if(floors.indexOf(data.success.data.classrooms[i].floor) == -1) floors.push(data.success.data.classrooms[i].floor);
+		}
+		FetchDataService.years = years;
+	});
+
+	ClassroomService.get({id:1}).$promise.then( function (data) {
 		console.log(data.success.data);
 		$scope.classrooms = data.success['data'];
 	});
 
-	ProfessorService.get().$promise.then(function (data) {
+	ProfessorService.get({id:1}).$promise.then(function (data) {
 		console.log(data.success.data);
 		$scope.professors = data.success['data'];
 	});
 
-	GroupService.get().$promise.then(function (data) {
+	GroupService.get({id:1}).$promise.then(function (data) {
 		console.log(data.success.data);
 		$scope.groups = data.success['data'];
-		var filterSets = [];
-		for(var i=0; i<data.success.data.length; i++)
-			if(filterSets.indexOf(data.success.data[i].year) == -1) filterSets.push(data.success.data[i].year);
-		console.log(filterSets);
-		GroupService.filterSets = filterSets;
-		console.log(GroupService.filterSets)
 	});
 }]);
