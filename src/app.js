@@ -9,19 +9,23 @@ angular.module('siApp', ['ngCachedResource', 'ui.router'])
 	$stateProvider
 		.state("preSchedule", {
 			url: "/preSchedule", 
-			templateUrl: '/src/app/components/preSchedule/base/views/preSchedule-base.html'
+			templateUrl: '/src/app/components/preSchedule/base/views/preSchedule-base.html',
+			controller: 'PreScheduleCtrl'
 		})
-		.state("preSchedule.groups", {
+		.state("groups", {
 			url: "/groups", 
-			templateUrl: '/src/app/components/preSchedule/groups/views/groups.html'
+			templateUrl: '/src/app/components/preSchedule/groups/views/groups.html',
+			controller: 'GroupCtrl'
 		})
-		.state("preSchedule.classrooms", {
+		.state("classrooms", {
 			url: "/classrooms", 
-			templateUrl: '/src/app/components/preSchedule/classrooms/views/classrooms.html'
+			templateUrl: '/src/app/components/preSchedule/classrooms/views/classrooms.html',
+			controller: 'ClassroomCtrl'
 		})
-		.state("preSchedule.teachers", {
+		.state("teachers", {
 			url: "/teachers", 
-			templateUrl: '/src/app/components/preSchedule/teachers/views/teachers.html'
+			templateUrl: '/src/app/components/preSchedule/teachers/views/teachers.html',
+			controller: 'ProfessorCtrl'
 		})
 		.state("test", {
 			url: "/test",
@@ -30,9 +34,9 @@ angular.module('siApp', ['ngCachedResource', 'ui.router'])
 		});
 
 })
-.controller('ClassroomCtrl', ['$scope', 'ClassroomService', 'ProfessorService', 'GroupService', 'FetchDataService', function ClassroomCtrl($scope, ClassroomService, ProfessorService, GroupService, FetchDataService) {
-	FetchDataService.get().$promise.then(function (data) {
-		$scope.data = data.success['data'];
+.controller('PreScheduleCtrl', ['$scope', 'FetchDataService', function PreScheduleCtrl($scope, FetchDataService) {
+	FetchDataService.get().$promise.then(function (data) 
+		{$scope.data = data.success['data'];
 		console.log(data.success.data);
 		var years = [];
 		for(var i=0; i<data.success.data.groups.length; i++){
@@ -45,19 +49,22 @@ angular.module('siApp', ['ngCachedResource', 'ui.router'])
 		}
 		FetchDataService.years = years;
 	});
-
-	ClassroomService.get({id:1}).$promise.then( function (data) {
+}])
+.controller('GroupCtrl', ['$scope', 'GroupService', function GroupCtrl($scope, GroupService) {
+	GroupService.get({id:1}).$promise.then(function (data) {
 		console.log(data.success.data);
-		$scope.classrooms = data.success['data'];
+		$scope.groups = data.success['data'];
 	});
-
+}])
+.controller('ProfessorCtrl', ['$scope', 'ProfessorService', function ProfessorCtrl($scope, ProfessorService) {
 	ProfessorService.get({id:1}).$promise.then(function (data) {
 		console.log(data.success.data);
 		$scope.professors = data.success['data'];
 	});
-
-	GroupService.get({id:1}).$promise.then(function (data) {
+}])
+.controller('ClassroomCtrl', ['$scope', 'ClassroomService', function ClassroomCtrl($scope, ClassroomService) {
+	ClassroomService.get({id:1}).$promise.then( function (data) {
 		console.log(data.success.data);
-		$scope.groups = data.success['data'];
+		$scope.classroom = data.success['data'];
 	});
 }]);

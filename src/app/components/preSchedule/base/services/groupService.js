@@ -2,5 +2,5 @@
 
 angular.module('siApp')
 .factory('GroupService', function ($cachedResource) {
-    return $cachedResource('groups', 'http://localhost:2200/group/:id', { id: "@id" });
+    return $cachedResource('group', 'http://localhost:2200/group/:id', { id: "@id" });
 });
