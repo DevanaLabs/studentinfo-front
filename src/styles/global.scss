@@ -45,6 +45,7 @@ body {
 	display: flex;
 	justify-content: space-around;
 	width: 100%;
+	min-height: 100px;
 	background: white;
 	color: #555;
 	.topFilterWrapper {
@@ -65,6 +66,13 @@ body {
 		border-left: 1px solid rgba(0, 0, 0, .2);
 		margin: 20px 0;
 		width: 0;
+	}
+	.fatCaption {
+		float: right;
+		font-size: 72px;
+		font-weight: 700;
+		color: #4d4d4d;
+		padding: 10px 60px;
 	}
 }
 .titlebar.blue {
@@ -88,7 +96,9 @@ body {
 		border-color: $blue;
 	}
 }
-
+.titlebar.noflex {
+	display: block;
+}
 
 .shadow {
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
@@ -131,19 +141,93 @@ body {
 
 // ------------------------------------------------ 
 
-.tableWrapper{
+.scheduleWrapper{
 	position: absolute;
-	background: red;
-	z-index: 1000;
-	height: 30px;
-	width: 30px;
+	height: 0px;
+	width: 0px;
 	overflow: hidden;
+	z-index: 1000;
+	background: white;
+	opacity: 0;
+	#tableWrapper {
+		margin: 20px 50px;
+		height: calc(100% - 160px);
+		background: transparent;
+		table {
+			height: 100%;
+			width: 100%;
+			tr {
+				height: 8%;
+			}
+			td {
+				border: solid 1px #E6E6E6;
+				background: white;
+				height: 8%;
+				vertical-align: top;
+			}
+			.timeCol {
+				width: 45px;
+				background: transparent;
+				border: 0;
+			}
+			.adjustmentRow {
+				height: 0;
+				overflow: hidden;
+				opacity: 0;
+				* {
+					height: 0;
+					line-height: 0;
+					border: 0;
+				}
+			}
+			.dayRow {
+				height: 4%;
+				td{
+					height: 4%;
+				}
+			}
+			.dayCell {
+				border: 0;
+				text-align: center;
+				//vertical-align: middle;
+				font-size: 18px;
+				color: #666666;
+			}
+			.lectureWrapper {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				padding: 10px;
+				background: $blue;
+				border-left: 5px solid rgba(0,0,0,.2);
+				box-sizing: border-box;
+				color: white;
+				.lectureCaption{
+					font-size: 24px;
+					font-weight: 600;
+				}
+				.lectureSubCaption{
+					font-size: 21px;
+				}
+			}
+			.lectureWrapper.orange {
+				background: $orange;
+			}
+		}
+	}
+	.timeSpan{ 
+		color: #666666;
+		display: block;
+		margin-top: -9px;
+	}	
 }
 
-.tableWrapper.displayed {
+.scheduleWrapper.displayed {
 	transition: all .5s;
 	top: 0px !important;
 	left: 0px !important;
 	height: 100vh;
 	width: 100%;
+	opacity: 1;
 }
+

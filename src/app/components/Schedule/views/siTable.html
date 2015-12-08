@@ -1,3 +1,40 @@
-<div class="tableWrapper">
-	asdftest
+<div class="scheduleWrapper">
+	<div class="titlebar noflex shadow">
+		<span class="fatCaption">302</span>
+	</div>
+	<div id="tableWrapper">
+		<table>
+			<tr class="adjustmentRow"> <td class="timeCol"> <span class="timeSpan">   </span> </td>   <td>000000000000000</td> <td>000000000000000</td> <td>000000000000000</td> <td>000000000000000</td> <td>000000000000000</td>   </tr>
+			<tr class="dayRow"> <td class="timeCol"> <span class="timeSpan">   </span> </td>   <td class="dayCell">Понељак</td> <td class="dayCell">Уторак</td> <td class="dayCell">Среда</td> <td class="dayCell">Четвртак</td> <td class="dayCell">Петак</td>   </tr>
+			<tr ng-controller="scheduleCtrl as ctrl"> 
+				<td class="timeCol"> <span class="timeSpan">09h</span> </td>   
+				<td>
+					<!-- PONEDELJAK -->
+					<div style="position: relative; height: 100%">
+						<div class="lectureWrapper" ng-repeat="lecture in ctrl.stuff.lectures" 
+							ng-class="{'orange' : lecture.type != 'Predavanje' }"
+							style="top: calc({{((lecture.startsAt | limitTo : 2 : 11) - 9)*100}}% + {{((lecture.startsAt | limitTo : 2 : 11) - 9)*1}}px);
+									height: calc({{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) *100 }}% + {{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) - 1}}px)"
+						>
+							<span class="lectureCaption">{{lecture.course.name}}</span> <br>
+							<span class="lectureSubCaption">{{lecture.classroom.name}}</span>
+						</div>
+					</div>
+				</td> <td></td> <td></td> <td></td> <td></td>  
+			</tr>
+			<tr> <td class="timeCol"> <span class="timeSpan">10h</span> </td>   <td></td> <td></td> <td></td> <td></td> <td></td>   </tr>
+			<tr> <td class="timeCol"> <span class="timeSpan">11h</span> </td>   <td></td> <td></td> <td></td> <td></td> <td></td>   </tr>
+			<tr> <td class="timeCol"> <span class="timeSpan">12h</span> </td>   <td></td> <td></td> <td></td> <td></td> <td></td>   </tr>
+			<tr> <td class="timeCol"> <span class="timeSpan">13h</span> </td>   <td></td> <td></td> <td></td> <td></td> <td></td>   </tr>
+			<tr> <td class="timeCol"> <span class="timeSpan">14h</span> </td>   <td></td> <td></td> <td></td> <td></td> <td></td>   </tr>
+			<tr> <td class="timeCol"> <span class="timeSpan">15h</span> </td>   <td></td> <td></td> <td></td> <td></td> <td></td>   </tr>
+			<tr> <td class="timeCol"> <span class="timeSpan">16h</span> </td>   <td></td> <td></td> <td></td> <td></td> <td></td>   </tr>
+			<tr> <td class="timeCol"> <span class="timeSpan">17h</span> </td>   <td></td> <td></td> <td></td> <td></td> <td></td>   </tr>
+			<tr> <td class="timeCol"> <span class="timeSpan">18h</span> </td>   <td></td> <td></td> <td></td> <td></td> <td></td>   </tr>
+			<tr> <td class="timeCol"> <span class="timeSpan">19h</span> </td>   <td></td> <td></td> <td></td> <td></td> <td></td>   </tr>
+			<tr> <td class="timeCol"> <span class="timeSpan">20h</span> </td>   <td></td> <td></td> <td></td> <td></td> <td></td>   </tr>
+			<!-- <tr> <td class="timeCol">21h</td>   <td></td> <td></td> <td></td> <td></td> <td></td>   </tr> -->
+		</table>
+		<span class="timeSpan">21h</span>
+	</div>
 </div>
