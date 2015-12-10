@@ -67,12 +67,22 @@ body {
 		margin: 20px 0;
 		width: 0;
 	}
+	.horBreak:last-child {
+		display: none;
+	}
 	.fatCaption {
-		float: right;
+		float: left;
 		font-size: 72px;
 		font-weight: 700;
 		color: #4d4d4d;
-		padding: 10px 60px;
+		padding: 10px 50px;
+	}
+	.closeBut {
+		float: right;
+		display: inline-block;
+		height: 42px;
+		width: 42px;
+		padding: 28px 50px;
 	}
 }
 .titlebar.blue {
@@ -149,6 +159,7 @@ body {
 	z-index: 1000;
 	background: white;
 	opacity: 0;
+	transition: all .5s ease;
 	#tableWrapper {
 		margin: 20px 50px;
 		height: calc(100% - 160px);
@@ -223,11 +234,9 @@ body {
 }
 
 .scheduleWrapper.displayed {
-	transition: all .5s;
 	top: 0px !important;
 	left: 0px !important;
 	height: 100vh;
 	width: 100%;
 	opacity: 1;
 }
-

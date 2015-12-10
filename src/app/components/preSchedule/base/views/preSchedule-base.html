@@ -1,20 +1,22 @@
-<div id="mainWrapper">
+<div id="mainWrapper"  ng-controller="PreScheduleCtrl as ctrl">
 	<div id="titlebarWrapper" class="shadow">
 		<div class="titlebar blue">
-			<div class="topFilterWrapper active" ui-sref="preSchedule.groups">Одељење</div>
+			<div class="topFilterWrapper" ng-class="{ 'active' : displayedFilter == 'years' }" ui-sref="preSchedule.groups" ng-click="switchFilter('years')">Одељење</div>
 			<div class="horBreak"> </div>
-			<div class="topFilterWrapper" ui-sref="preSchedule.classrooms">Учионица</div>
+			<div class="topFilterWrapper" ng-class="{ 'active' : displayedFilter == 'floors' }" ui-sref="preSchedule.classrooms" ng-click="switchFilter('floors')">Учионица</div>
 			<div class="horBreak"> </div>
-			<div class="topFilterWrapper" ui-sref="preSchedule.teachers">Предавач</div>
+			<div class="topFilterWrapper" ng-class="{ 'active' : displayedFilter == 'abc' }" ui-sref="preSchedule.teachers" ng-click="switchFilter('abc')">Предавач</div>
 		</div>
 		<div class="titlebar gray">
-			<div class="topFilterWrapper">Прва година</div>
+			<!-- <div class="topFilterWrapper">Прва година</div>
 			<div class="horBreak"> </div>
 			<div class="topFilterWrapper active">Друга година</div>
 			<div class="horBreak"> </div>
 			<div class="topFilterWrapper">Трећа година</div>
 			<div class="horBreak"> </div>
-			<div class="topFilterWrapper">Четврта година</div>
+			<div class="topFilterWrapper">Четврта година</div> -->
+			<div class="topFilterWrapper" ng-repeat-start="thing in filterData[displayedFilter]">{{ thing }}</div>
+			<div class="horBreak" ng-repeat-end> </div>
 		</div>
 	</div>
 	<div id="pickersWrapper" ui-view>
