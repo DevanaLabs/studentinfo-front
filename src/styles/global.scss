@@ -10,9 +10,14 @@ body {
 	background: url("images/bg.jpg") !important;
 	background-size: 1920px !important;
 	overflow: hidden;
+	// dev-comment cursor: none;
 }
 * {
 	font-family: "Open Sans", sans-serif;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 .text-center {
 	text-align: center;
@@ -56,9 +61,11 @@ body {
 		text-transform: uppercase;
 		font-size: 18px;
 		font-weight: 700;
+		opacity: .7;
 	}
 	.topFilterWrapper.active {
 		color: $blue;
+		opacity: 1;
 		border-bottom: 6px solid $blue;
 	}
 	.horBreak {
@@ -133,6 +140,8 @@ body {
 	text-align: center;
 	line-height: 120px;
 	font-size: 36px;
+    box-shadow: none;
+    border-bottom: 4px solid #1069A5;
 }
 
 .thinPicker {
@@ -216,9 +225,14 @@ body {
 				.lectureCaption{
 					font-size: 24px;
 					font-weight: 600;
+					display: inline-block;
+					line-height: 26px;
 				}
 				.lectureSubCaption{
 					font-size: 21px;
+					margin-top: 5px;
+					display: inline-block;
+					line-height: 24px;
 				}
 			}
 			.lectureWrapper.orange {

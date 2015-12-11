@@ -1,15 +1,20 @@
 'use strict';
 
 angular.module('siApp')
-    .directive('siClassroompicker', function($compile, $timeout){
+    .directive('siClassroompicker', function($compile, $timeout, dataExchangeService){
         return {
             scope: '',
             replace: true,
             templateUrl: 'app/components/preSchedule/classrooms/views/classroomPicker.html',
             link: function ($scope, $element, $attr){
                 $scope.text = $attr.details;
+                $scope.gpid = $attr.asdf;
+                $scope.name = $attr.nm;
                 $scope.add = function (e) {
-                    console.log(e);
+                    //console.log(e);
+                    dataExchangeService.id = $scope.gpid;
+                    dataExchangeService.type = 'classroom';
+                    dataExchangeService.name = $scope.text;
                     var el = $compile( "<si-table id='scheduleWrapper' style='top: " +  e.pageY + "px; left: calc(" +  e.pageX + "px - 23vw);'></si-table>" )( $scope );
                     $element.parent().append( el );
                     $timeout(function() {
