@@ -1,0 +1,31 @@
+#pickersWrapper {
+	padding: 30px 30px 0;
+}
+
+.fatPicker {
+	display: inline-block;
+	width: 240px;
+	height: 120px;
+	background: $blue;
+	border-radius: 10px;
+	margin: 16px;
+	color: white;
+	text-align: center;
+	line-height: 120px;
+	font-size: 36px;
+    box-shadow: none;
+    border-bottom: 4px solid #1069A5;
+}
+
+.thinPicker {
+	display: inline-block;
+	width: 330px;
+	height: 80px;
+	background: $blue;
+	border-radius: 10px;
+	margin: 10px;
+	color: white;
+	text-align: center;
+	line-height: 80px;
+	font-size: 20px;
+}

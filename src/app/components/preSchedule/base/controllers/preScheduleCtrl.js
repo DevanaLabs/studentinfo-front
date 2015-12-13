@@ -12,7 +12,7 @@ angular.module('siApp')
 	$scope.displayedSubFilter = 1;
 	
 	FetchDataService.get().$promise.then(function (data) {
-		$scope.data = data.success['data'];
+		$scope.data = data.success.data;
 		//console.log("Full request data: ", data.success.data);
 
 		// put years in array
@@ -24,21 +24,21 @@ angular.module('siApp')
 		years.sort(function(a,b){return a-b;});
 		$scope.untranslatedData.years = years;
 		var yearsTr = [];
-		for(var i = 0; i<years.length; i++)
+		for(i = 0; i<years.length; i++)
 			yearsTr[i] = yearsTranslate[years[i]];
 		$scope.filterData.years = yearsTr;
 
 
 		// put floors in array 
 		var floors = [];
-		for(var i=0; i<data.success.data.classrooms.length; i++){
+		for(i=0; i<data.success.data.classrooms.length; i++){
 			if(floors.indexOf(data.success.data.classrooms[i].floor) == -1) floors.push(data.success.data.classrooms[i].floor);
 		}
 		// sort and translate
 		floors.sort(function(a,b){return a-b;});
 		$scope.untranslatedData.floors = floors;
 		var floorsTr = [];
-		for(var i = 0; i<floors.length; i++)
+		for(i = 0; i<floors.length; i++)
 			floorsTr[i] = floorsTranslate[floors[i]];
 		$scope.filterData.floors = floorsTr;
 		
@@ -51,8 +51,8 @@ angular.module('siApp')
 	$scope.switchFilter = function(targetF) {
 		$scope.displayedFilter = targetF;
 		$scope.displayedSubFilter = $scope.untranslatedData[targetF][0];
-	}
+	};
 	$scope.switchSubFilter = function(targetSF) {
 		$scope.displayedSubFilter = targetSF;
-	}
-}])
+	};
+}]);

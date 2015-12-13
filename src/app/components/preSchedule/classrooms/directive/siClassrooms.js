@@ -18,7 +18,7 @@ angular.module('siApp')
                     var el = $compile( "<si-table id='scheduleWrapper' style='top: " +  e.pageY + "px; left: calc(" +  e.pageX + "px - 23vw);'></si-table>" )( $scope );
                     $element.parent().append( el );
                     $timeout(function() {
-                        angular.element("#scheduleWrapper").addClass("displayed")
+                        angular.element("#scheduleWrapper").addClass("displayed");
                     }, 100);
                 };
                 $scope.closeTable = function () {
@@ -26,7 +26,7 @@ angular.module('siApp')
                     $timeout(function() {
                         angular.element("#scheduleWrapper").remove();
                     }, 600);
-                }
+                };
             }
         };
     });

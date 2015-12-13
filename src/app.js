@@ -18,17 +18,17 @@ angular.module('siApp', ['ngCachedResource', 'ui.router'])
 		.state("preSchedule.groups", {
 			url: "/groups", 
 			templateUrl: '/src/app/components/preSchedule/groups/views/groups.html',
-			controller: 'GroupCtrl'
+			controller: 'GroupsCtrl'
 		})
 		.state("preSchedule.classrooms", {
 			url: "/classrooms", 
 			templateUrl: '/src/app/components/preSchedule/classrooms/views/classrooms.html',
-			controller: 'ClassroomCtrl'
+			controller: 'ClassroomsCtrl'
 		})
 		.state("preSchedule.teachers", {
 			url: "/teachers", 
 			templateUrl: '/src/app/components/preSchedule/teachers/views/teachers.html',
-			controller: 'ProfessorCtrl'
+			controller: 'TeachersCtrl'
 		})
 		.state("test", {
 			url: "/test",
@@ -37,21 +37,4 @@ angular.module('siApp', ['ngCachedResource', 'ui.router'])
 		});
 
 })
-.controller('GroupCtrl', ['$scope', 'FetchDataService', 'GroupService', function GroupCtrl($scope, GroupService, FetchDataService) {
-	GroupService.get({id:1}).$promise.then(function (data) {
-		//console.log(data.success.data);
-		$scope.groups = data.success['data'];
-	});
-}])
-.controller('ProfessorCtrl', ['$scope', 'FetchDataService', 'ProfessorService', function ProfessorCtrl($scope, ProfessorService, FetchDataService) {
-	ProfessorService.get({id:1}).$promise.then(function (data) {
-		//console.log(data.success.data);
-		$scope.professors = data.success['data'];
-	});
-}])
-.controller('ClassroomCtrl', ['$scope', 'FetchDataService', 'ClassroomService', function ClassroomCtrl($scope, ClassroomService, FetchDataService) {
-	ClassroomService.get({id:1}).$promise.then( function (data) {
-		//console.log(data.success.data);
-		$scope.classroom = data.success['data'];
-	});
-}]);
+;
