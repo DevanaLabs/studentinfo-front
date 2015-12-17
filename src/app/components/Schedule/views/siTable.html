@@ -3,7 +3,7 @@
 		<a href="" class="closeBut" ng-click="closeTable()"><img src="images/iconExit42x42g.svg" alt=""></a>
 		<span class="fatCaption">{{name}}</span>
 	</div>
-	<div id="tableWrapper">
+	<div id="tableWrapper" ng-class="{'notifsDisplayed' : notifs > 0}">
 		<table>
 			<tr class="adjustmentRow"> <td class="timeCol"> <span class="timeSpan">   </span> </td>   <td>000000000000000</td> <td>000000000000000</td> <td>000000000000000</td> <td>000000000000000</td> <td>000000000000000</td>   </tr>
 			<tr class="dayRow"> <td class="timeCol"> <span class="timeSpan">   </span> </td>   <td class="dayCell">Понељак</td> <td class="dayCell">Уторак</td> <td class="dayCell">Среда</td> <td class="dayCell">Четвртак</td> <td class="dayCell">Петак</td>   </tr>
@@ -12,13 +12,15 @@
 				<td>
 					<!-- PONEDELJAK -->
 					<div style="position: relative; height: 100%">
-						<div class="lectureWrapper" ng-repeat="lecture in dailyStuff[1]" 
-							ng-class="{'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавање' }"
+						<div class="lectureWrapper" ng-click="openModal('lecture', lecture.id)" ng-repeat="lecture in dailyStuff[1]" 
+							ng-class="{'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања', 'hasNotif' : lecture.notifications.length > 0 }"
 							style="top: calc({{((lecture.startsAt | limitTo : 2 : 11) - 9)*100}}% + {{((lecture.startsAt | limitTo : 2 : 11) - 9)*1}}px);
 									height: calc({{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) *100 }}% + {{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) - 1}}px)"
 						>
 							<span class="lectureCaption">{{lecture.course.name}}</span> <br>
-							<span class="lectureSubCaption">{{lecture.classroom.name}}</span>
+							<span class="lectureSubCaption" ng-if="type=='group' && (lecture.type == 'Predavanje' || lecture.type == 'Предавања')">{{lecture.classroom.name}}</span>
+							<span class="lectureSubCaption" ng-if="type=='group' && lecture.type != 'Predavanje' && lecture.type != 'Предавања'">{{lecture.classroom.name}} ({{lecture.type}})</span>
+							<span class="lectureSubCaption" ng-if="type=='classroom'">profesor</span>
 						</div>
 					</div>
 				</td> 
@@ -26,13 +28,15 @@
 				<td>
 					<!-- UTORAK -->
 					<div style="position: relative; height: 100%">
-						<div class="lectureWrapper" ng-repeat="lecture in dailyStuff[2]" 
-							ng-class="{'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавање' }"
+						<div class="lectureWrapper" ng-click="openModal('lecture', lecture.id)" ng-repeat="lecture in dailyStuff[2]" 
+							ng-class="{'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања', 'hasNotif' : lecture.notifications.length > 0 }"
 							style="top: calc({{((lecture.startsAt | limitTo : 2 : 11) - 9)*100}}% + {{((lecture.startsAt | limitTo : 2 : 11) - 9)*1}}px);
 									height: calc({{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) *100 }}% + {{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) - 1}}px)"
 						>
 							<span class="lectureCaption">{{lecture.course.name}}</span> <br>
-							<span class="lectureSubCaption">{{lecture.classroom.name}}</span>
+							<span class="lectureSubCaption" ng-if="type=='group' && (lecture.type == 'Predavanje' || lecture.type == 'Предавања')">{{lecture.classroom.name}}</span>
+							<span class="lectureSubCaption" ng-if="type=='group' && lecture.type != 'Predavanje' && lecture.type != 'Предавања'">{{lecture.classroom.name}} ({{lecture.type}})</span>
+							<span class="lectureSubCaption" ng-if="type=='classroom'">profesor</span>
 						</div>
 					</div>
 				</td> 
@@ -40,13 +44,15 @@
 				<td>
 					<!-- SREDA -->
 					<div style="position: relative; height: 100%">
-						<div class="lectureWrapper" ng-repeat="lecture in dailyStuff[3]" 
-							ng-class="{'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавање' }"
+						<div class="lectureWrapper" ng-click="openModal('lecture', lecture.id)" ng-repeat="lecture in dailyStuff[3]" 
+							ng-class="{'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања', 'hasNotif' : lecture.notifications.length > 0 }"
 							style="top: calc({{((lecture.startsAt | limitTo : 2 : 11) - 9)*100}}% + {{((lecture.startsAt | limitTo : 2 : 11) - 9)*1}}px);
 									height: calc({{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) *100 }}% + {{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) - 1}}px)"
 						>
 							<span class="lectureCaption">{{lecture.course.name}}</span> <br>
-							<span class="lectureSubCaption">{{lecture.classroom.name}}</span>
+							<span class="lectureSubCaption" ng-if="type=='group' && (lecture.type == 'Predavanje' || lecture.type == 'Предавања')">{{lecture.classroom.name}}</span>
+							<span class="lectureSubCaption" ng-if="type=='group' && lecture.type != 'Predavanje' && lecture.type != 'Предавања'">{{lecture.classroom.name}} ({{lecture.type}})</span>
+							<span class="lectureSubCaption" ng-if="type=='classroom'">profesor</span>
 						</div>
 					</div>
 				</td> 
@@ -54,13 +60,15 @@
 				<td>
 					<!-- CETVRTAK -->
 					<div style="position: relative; height: 100%">
-						<div class="lectureWrapper" ng-repeat="lecture in dailyStuff[4]" 
-							ng-class="{'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавање' }"
+						<div class="lectureWrapper" ng-click="openModal('lecture', lecture.id)" ng-repeat="lecture in dailyStuff[4]" 
+							ng-class="{'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања', 'hasNotif' : lecture.notifications.length > 0 }"
 							style="top: calc({{((lecture.startsAt | limitTo : 2 : 11) - 9)*100}}% + {{((lecture.startsAt | limitTo : 2 : 11) - 9)*1}}px);
 									height: calc({{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) *100 }}% + {{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) - 1}}px)"
 						>
 							<span class="lectureCaption">{{lecture.course.name}}</span> <br>
-							<span class="lectureSubCaption">{{lecture.classroom.name}}</span>
+							<span class="lectureSubCaption" ng-if="type=='group' && (lecture.type == 'Predavanje' || lecture.type == 'Предавања')">{{lecture.classroom.name}}</span>
+							<span class="lectureSubCaption" ng-if="type=='group' && lecture.type != 'Predavanje' && lecture.type != 'Предавања'">{{lecture.classroom.name}} ({{lecture.type}})</span>
+							<span class="lectureSubCaption" ng-if="type=='classroom'">profesor</span>
 						</div>
 					</div>
 				</td> 
@@ -68,13 +76,15 @@
 				<td>
 					<!-- PETAK -->
 					<div style="position: relative; height: 100%">
-						<div class="lectureWrapper" ng-repeat="lecture in dailyStuff[5]" 
-							ng-class="{'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавање' }"
+						<div class="lectureWrapper" ng-click="openModal('lecture', lecture.id)" ng-repeat="lecture in dailyStuff[5]" 
+							ng-class="{'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања', 'hasNotif' : lecture.notifications.length > 0 }"
 							style="top: calc({{((lecture.startsAt | limitTo : 2 : 11) - 9)*100}}% + {{((lecture.startsAt | limitTo : 2 : 11) - 9)*1}}px);
 									height: calc({{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) *100 }}% + {{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) - 1}}px)"
 						>
 							<span class="lectureCaption">{{lecture.course.name}}</span> <br>
-							<span class="lectureSubCaption">{{lecture.classroom.name}}</span>
+							<span class="lectureSubCaption" ng-if="type=='group' && (lecture.type == 'Predavanje' || lecture.type == 'Предавања')">{{lecture.classroom.name}}</span>
+							<span class="lectureSubCaption" ng-if="type=='group' && lecture.type != 'Predavanje' && lecture.type != 'Предавања'">{{lecture.classroom.name}} ({{lecture.type}})</span>
+							<span class="lectureSubCaption" ng-if="type=='classroom'">profesor</span>
 						</div>
 					</div>
 				</td>  
@@ -93,5 +103,9 @@
 			<!-- <tr> <td class="timeCol">21h</td>   <td></td> <td></td> <td></td> <td></td> <td></td>   </tr> -->
 		</table>
 		<span class="timeSpan">21h</span>
+	</div>
+	<div class="titlebar" ng-if="notifs >= 0" ng-click="openModal('group', displayedId)">
+		<span ng-if="notifs == 1">{{notifs}} Obaveštenje</span>
+		<span ng-if="notifs > 1">{{notifs}} Obaveštenja</span>
 	</div>
 </div>

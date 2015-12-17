@@ -1,0 +1,17 @@
+<div class="modalWrapper">
+	<div class="modalBack"></div>
+	<div class="modalMain" id="displayedModalMain">
+		<div class="titlebar shadow noflex blue" ng-class="{'orange' : data.type != 'Предавања'}">
+			<a href="" class="closeBut" ng-click="closeModal()"><img src="images/iconExit42x42.svg" alt=""></a>
+			<span class="normalCaption">{{title}}</span>
+		</div>
+		<div class="modalContWrapper">
+			<!-- <h2>Display data for {{modalType}} with ID: {{id}}</h2> -->
+			<div ng-if="modalType=='lecture'">
+				<span class="modalHead">{{data.teacher.firstName}} {{data.teacher.lastName}}<span ng-if="data.type != 'Предавања'">, {{data.type}}</span></span><br>
+				<span class="modalHead">{{day}}, {{data.startsAt | limitTo : 5 : 11}}-{{data.endsAt | limitTo : 5 : 11}}h ({{(data.endsAt | limitTo : 2 : 11) - (data.startsAt | limitTo : 2 : 11)}}h)</span><br>
+				<span class="modalHead">{{data.classroom.name}}</span>
+			</div>
+		</div>
+	</div>
+</div>

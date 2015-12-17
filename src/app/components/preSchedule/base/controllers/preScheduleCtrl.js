@@ -1,17 +1,18 @@
 'use strict';
 
 angular.module('siApp')
-.controller('PreScheduleCtrl', ['$scope', 'FetchDataService', function($scope, FetchDataService) {
+.controller('PreScheduleCtrl', ['$scope', 'dataService', function($scope, dataService) {
 	$scope.filterData = {};
 	$scope.untranslatedData = {};
-	var yearsTranslate = ["Нулта година(?)", "Прва година", "Друга година", "Трећа година", "Четврта година"];
+	var yearsTranslate = ["Остало", "Прва година", "Друга година", "Трећа година", "Четврта година"];
 	$scope.yearsTranslate = yearsTranslate;
 	var floorsTranslate = ["Приземље", "Први спрат", "Други спрат", "Трећи спрат", "Четврти спрат", "Пети спрат", "Шести спрат", "Седми спрат", "Осми спрат", "Девети спрат", "Десети спрат", "Једанаести спрат", "Дванаести спрат"];
 	$scope.floorsTranslate = floorsTranslate;
 	$scope.displayedFilter = "years";
 	$scope.displayedSubFilter = 1;
 	
-	FetchDataService.get().$promise.then(function (data) {
+	dataService.filterData().get().$promise.then(function (data) {
+		console.log(data);
 		$scope.data = data.success.data;
 		//console.log("Full request data: ", data.success.data);
 
@@ -43,8 +44,26 @@ angular.module('siApp')
 		$scope.filterData.floors = floorsTr;
 		
 
+		// put teachers in array 
+		var teachers = [];
+		for(i=0; i<data.success.data.teachers.length; i++){
+			teachers.push(data.success.data.teachers[i].firstName + " " + data.success.data.teachers[i].lastName);
+		}
+		teachers.sort();
+		var abc = ["А", "Б", "В", "Г", "Д", "Ђ", "Е", "Ж", "З", "И", "Ј", "К", "Л", "Љ", "М", "Н", "Њ", "О", "П", "Р", "С", "Т", "Ћ", "У", "Ф", "Х", "Ц", "Ч", "Џ", "Ш"];
+		$scope.filterData.abc = abc;
+		$scope.untranslatedData.abc = abc;
+
+		$scope.data.teachers.sort(function(a,b){
+			if(abc.indexOf(a.lastName.substr(0,1)) < abc.indexOf(b.lastName.substr(0,1))) return -1;
+    		if(abc.indexOf(a.lastName.substr(0,1)) > abc.indexOf(b.lastName.substr(0,1))) return 1;
+    		return 0;
+    	});
+
+
 		//console.log("Floors filter array: ", floors);
 		//console.log("Years filter array: ", years);
+		//console.log("Teachers array: ", teachers);
 
 		//console.log("Current filter data", $scope.filterData[$scope.displayedFilter]);
 	});

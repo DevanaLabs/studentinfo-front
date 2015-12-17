@@ -78,6 +78,9 @@
 			}
 		}
 	}
+	#tableWrapper.notifsDisplayed {
+		height: calc(100% - 260px);
+	}
 	.timeSpan{ 
 		color: #666666;
 		display: block;

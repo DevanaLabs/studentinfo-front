@@ -7,7 +7,7 @@
 			<div class="horBreak"> </div>
 			<div class="topFilterWrapper" ng-class="{ 'active' : displayedFilter == 'abc' }" ui-sref="preSchedule.teachers" ng-click="switchFilter('abc')">Предавач</div>
 		</div>
-		<div class="titlebar gray">
+		<div class="titlebar gray smaller" ng-if="filterData[displayedFilter].length > 1">
 			<div class="topFilterWrapper" ng-repeat-start="thing in filterData[displayedFilter]"
 				ng-click="switchSubFilter(untranslatedData[displayedFilter][filterData[displayedFilter].indexOf(thing)])"
 				ng-class="{active: ( displayedSubFilter == untranslatedData[displayedFilter][filterData[displayedFilter].indexOf(thing)] ) }"

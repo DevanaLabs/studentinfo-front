@@ -1,0 +1,45 @@
+.monthWrapper{ 
+	height: 100%; 
+	width: 100%; 
+	.fatCaption {
+		padding-left: 110px;
+	}
+	.monthTableWrapper {
+		padding: 20px 110px;
+		height: calc(100% - 180px);
+		table { 
+			margin: auto; 
+			height: 100%;
+			width: 100%;
+			color: #4D4D4D;
+			td {
+			    padding: 10px 14px;
+			    text-align: right;
+			    vertical-align: bottom;
+			    border: 1px solid #E6E6E6;
+			    font-size: 21px;
+			    font-weight: 600;
+			}
+			.prevMonDay, .nextMonDay { 
+				opacity: .3;
+				background: #BBBBBB;
+				font-weight: normal;
+			} 
+			th {
+				height: 50px;
+				font-weight: normal;
+				font-size: 18px;
+			}
+			.adjustmentRow {
+				height: 0;
+				overflow: hidden;
+				opacity: 0;
+				* {
+					height: 0;
+					line-height: 0;
+					border: 0;
+				}
+			}
+		}
+	}
+} 

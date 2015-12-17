@@ -39,10 +39,46 @@ body {
 	opacity: .5;
 }
 
+#UIcont {
+
+}
+
+
+#UIcont.ng-enter, #UIcont.ng-leave {
+	position: absolute;
+	left: 0;
+	right: 0;
+	transition:all .5s ease-in-out;
+}
+
+#UIcont.ng-enter {
+	opacity: 0;
+	transform:translate3d(100%, 0, 0);
+}
+
+#UIcont.ng-enter-active {
+  opacity: 1;
+  transform:translate3d(0, 0, 0);
+}
+
+#UIcont.ng-leave {
+  opacity: 1;
+  transform:translate3d(0, 0, 0);
+}
+
+#UIcont.ng-leave-active {
+  opacity: 0;
+  transform:translate3d(100%, 0, 0);
+}
+
 #mainWrapper {
 	position: relative;
 	height: 100%;
 	background: white
+}
+
+.fullHeight {
+	height: 100%;
 }
 
 .titlebar {
@@ -78,12 +114,31 @@ body {
 	.horBreak:last-child {
 		display: none;
 	}
+	.normalCaption {
+		float: left;
+		font-size: 36px;
+		font-weight: 600;
+		color: white;
+		padding: 13px 100px;
+		line-height: 70px;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		padding-right: 0;
+		width: calc(100% - 300px);
+	}
 	.fatCaption {
 		float: left;
 		font-size: 72px;
 		font-weight: 700;
 		color: #4d4d4d;
-		padding: 10px 50px;
+		padding: 13px 50px;
+		line-height: 1em;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		padding-right: 0;
+		width: calc(100% - 200px);
 	}
 	.closeBut {
 		float: right;
@@ -95,6 +150,18 @@ body {
 }
 .titlebar.blue {
 	background: $blue;
+	.topFilterWrapper {
+		color: white !important; 
+	}
+	.topFilterWrapper.active {
+		border-color: white;
+	}
+	.horBreak {
+		border-left: 1px solid rgba(255, 255, 255, .5);
+	}
+}
+.titlebar.orange {
+	background: $orange;
 	.topFilterWrapper {
 		color: white !important; 
 	}
@@ -117,7 +184,57 @@ body {
 .titlebar.noflex {
 	display: block;
 }
+.titlebar.smaller{
+	min-height: 80px;
+	.topFilterWrapper {
+		line-height: 80px;
+	}
+}
 
 .shadow {
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+
+.modalWrapper {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1001;
+	.modalMain{
+		margin-top: 100%;
+		position: relative;
+		height: 100%;
+		z-index: 1003;
+		background: white;
+		transition: all .3s ease;
+		.modalHead {
+			font-size: 26px;
+    		line-height: 42px;
+    		color: #4d4d4d;
+		}
+	}
+	.modalBack {
+		position: fixed;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		background: black;
+		opacity: 0;
+		transition: all .3s ease;
+	}
+}
+
+.modalWrapper.displayedModal {
+	.modalMain {
+		margin-top: 0;
+		.modalContWrapper {
+			padding: 30px 100px;
+		}
+	}
+	.modalBack {
+		opacity: .3
+	}
 }
