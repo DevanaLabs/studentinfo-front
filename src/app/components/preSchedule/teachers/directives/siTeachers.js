@@ -27,6 +27,18 @@ angular.module('siApp')
                         angular.element("#scheduleWrapper").remove();
                     }, 600);
                 };
+                document.getElementById("pickersWrapper").onscroll = function() {
+                    var letters = document.getElementsByClassName("teacherLetter");
+                    var pos = document.getElementById("pickersWrapper").scrollTop;
+                    for(var i=0; i<letters.length; i++) {
+                        if(letters[i].offsetTop -200 >= pos) {
+                            console.log(letters[i].id);
+                            $(".topFilterWrapper.sub.active").removeClass('active');
+                            document.getElementById("topsub"+letters[i].id).className += ' active';
+                            break; 
+                        }
+                    }
+                }
             }
         };
     });

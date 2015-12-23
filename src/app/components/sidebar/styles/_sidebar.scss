@@ -72,6 +72,7 @@
 			border-top: 1px solid rgba(255, 255, 255, .2);
 			#bottomFaksLogoWrapper {
 				margin-top: 40px;
+				height: 64px;
 			}
 			#bottomFaksLogo {
 				height: 36px;
@@ -81,6 +82,9 @@
 			#bottomFaksSpan {
 				font-size: 24px;
 				vertical-align: middle;
+			}
+			#bottomTimeWrapper {
+				font-size: 18px;
 			}
 		}
 	}

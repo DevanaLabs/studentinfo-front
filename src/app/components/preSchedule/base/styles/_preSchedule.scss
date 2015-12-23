@@ -17,6 +17,7 @@
 	font-size: 36px;
     box-shadow: none;
     border-bottom: 4px solid #1069A5;
+    text-transform: capitalize;
 }
 
 .thinPicker {
@@ -36,4 +37,16 @@
 	padding: 0 10px;
 	position: relative;
 	box-sizing: border-box;
+}
+
+.noLectures {
+	opacity: .5;
+}
+
+.teacherLetter {
+	display: block;
+	font-size: 32px;
+	font-weight: 700;
+	color: $textgray;
+    margin: 0 1%;
 }

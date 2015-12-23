@@ -1,9 +1,13 @@
 'use strict';
 
 angular.module('siApp')
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 	$urlRouterProvider.otherwise("/");
 
+	//$httpProvider.defaults.withCredentials = true;
+	//$httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
+	//$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+	
 	$stateProvider
 		.state("root", {
 			url: "/", 
@@ -37,17 +41,25 @@ angular.module('siApp')
 		.state("calendar.month", {
 			url: "/month", 
 			templateUrl: 'app/components/calendar/month/views/monthly-base.html',
-			onEnter: function($location) {
-				var d = new Date();
-				var a = (d.getYear() == 115) ? (d.getMonth() + 1) : (d.getMonth() + 13 );
-				console.log(a);
-				$location.path($location.path() + "/" + a);
+			onEnter: function($location, $timeout) {
+				var date = new Date();
+				var currentMonth = (date.getYear() == 115) ? (date.getMonth() + 1) : (date.getMonth() + 13 );
+				//console.log(a);
+				//console.log("next: " + ($location.path().substr(17)*1+1));
+				currentMonth = "/calendar/months/" + currentMonth + ""
+				$timeout(function(){$location.path(currentMonth)}, 10);
+
+				// $state.go('months({monNumber: a})')
 			}
 		})
-		.state("calendar.month.test", {
-			url: "/:monNumber", 
+		.state("calendar.months", {
+			url: "/months/:monNumber", 
 			templateUrl: function($stateParams) { return 'app/components/calendar/month/views/months/'+ $stateParams.monNumber +'.html' }/*,
 			controller: 'PreScheduleCtrl'*/
+		})
+		.state("calendar.yearly", {
+			url: "/yearly", 
+			templateUrl: 'app/components/calendar/yearly/views/yearly.html'
 		})
 		;
 });

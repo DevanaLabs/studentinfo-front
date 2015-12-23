@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Мој Енгјулар-Џеј-Ес Епп</title>
+  <title>Student Info</title>
   <meta name="description" content="">
   <meta
   name="viewport"
@@ -14,15 +14,21 @@
 
   <!-- inject:css -->
   <!-- endinject -->
-  <link rel="stylesheet" href="bower_components/fullcalendar.css"/>
 
 </head>
 <body>
 
+  <script>
+    var globalSettings = {
+      apiBaseUrl: "http://10.0.21.242:2200/",
+      screensaverTime: "2" // time before screensaver kicks in (in minutes)
+    };
+  </script>
+
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
-  <div class="section group">
+  <div class="section group" ng-controller="baseCtrl" ng-click="baseClick()">
     <div class="col " style="width: 23%; float: left;">
       <si-sidebar> </si-sidebar>
     </div>
@@ -39,5 +45,7 @@
   <!-- endinject -->
   <!-- inject:js -->
   <!-- endinject -->
+  <script src="bower_components/jquery.mobile.custom.min.js"></script>
+
 </body>
 </html>

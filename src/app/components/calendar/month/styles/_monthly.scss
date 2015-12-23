@@ -1,24 +1,143 @@
 .monthWrapper{ 
 	height: 100%; 
 	width: 100%; 
+	overflow: hidden;
 	.fatCaption {
 		padding-left: 110px;
+		width: calc(100% - 390px);
+	}
+	.yearlyBut {
+		display: inline-block;
+		color: $blue;
+		text-decoration: none;
+		text-align: center;
+		width: 160px;
+		height: 80px;
+		margin: 16px 0 0;
+		font-weight: 600;
+		font-size: 18px;
+		img {
+			height: 38px;
+			display: block;
+			margin: 0 auto;
+			margin-bottom: 8px;
+		}
+	}
+	.leftArrow {
+		height: 100%;
+		width: 100px;
+		float: left;
+		background: url("images/iconArrowBack30x50.svg");
+		background-repeat: no-repeat;
+		background-position: 30px;
+		background-size: 40px;
+	}
+	.rightArrow {
+		height: 100%;
+		width: 100px;
+		float: right;
+		background: url("images/iconArrowFwd30x50.svg");
+		background-repeat: no-repeat;
+		background-position: 30px;
+		background-size: 40px;
 	}
 	.monthTableWrapper {
-		padding: 20px 110px;
+		padding: 20px 10px;
 		height: calc(100% - 180px);
+		float: left;
+		width: calc(100% - 220px);
 		table { 
 			margin: auto; 
 			height: 100%;
 			width: 100%;
-			color: #4D4D4D;
+			color: $textgray;
 			td {
-			    padding: 10px 14px;
-			    text-align: right;
-			    vertical-align: bottom;
+			    padding: 0px;
+			    //text-align: left;
+			    //vertical-align: top;
 			    border: 1px solid #E6E6E6;
 			    font-size: 21px;
 			    font-weight: 600;
+			    width: 1000px;
+			    vertical-align: top;
+			    .bottomDate {
+			        position: relative;
+			        text-align: right;
+			        float: right;
+			        margin: calc(100% - 54px) 10px 10px 0;
+			    }
+			    .eventNotifCont {
+			    	width: calc(100% - 44px);
+			    	display: inline-block;
+			    	.eventNotif {
+			    		width: calc(100% + 34px);
+			    		display: inline-block;
+			    		padding: 3px 0 3px 10px;
+			    		background: $blue;
+			    		color: white;
+			    	}
+			    	.eventNotif.blue {
+						background: $blue;
+			    	}
+			    	.eventNotif.orange {
+						background: $orange;
+			    	}
+			    	.eventNotif.gray {
+						background: $gray;
+			    	}
+			    	.eventNotif.green {
+						background: $green;
+			    	}
+			    	.eventNotif.yellow {
+						background: $yellow;
+						color: $textgray;
+			    	}
+			    }
+			}
+			.today {
+				.bottomDate {
+					background: red;
+					border-radius: 50%;
+					height: 34px;
+					width: 34px;
+					text-align: center;
+					color: white;
+					line-height: 34px;
+				}
+			}
+			.DayTd.multi {
+				background: #999999 !important;
+				.bottomDate {
+					color: white;
+				}
+			}
+			.DayTd.blue {
+				background: $blue;
+				.bottomDate {
+					color: white;
+				}
+			}
+			.DayTd.orange {
+				background: $orange;
+				.bottomDate {
+					color: white;
+				}
+			}
+			.DayTd.gray {
+				background: $gray;
+				.bottomDate {
+					color: white;
+				}
+			}
+			.DayTd.green {
+				background: $green;
+				.bottomDate {
+					color: white;
+				}
+			}
+			.DayTd.yellow {
+				background: $yellow;
+				color: $textgray;
 			}
 			.prevMonDay, .nextMonDay { 
 				opacity: .3;
@@ -43,3 +162,64 @@
 		}
 	}
 } 
+
+.sixRow {
+	.monthTableWrapper {
+		.monthTable{
+			td{
+				.bottomDate{
+					margin: calc(100% - 75px) 10px 10px 0;
+				}
+			}
+		}
+	}
+}
+
+
+.goLeft.ng-enter, .goLeft.ng-leave {
+	position: absolute;
+	left: 0;
+	right: 0;
+	transition:all .3s ease-out;
+}
+
+.goLeft.ng-enter {
+	transform:translate3d(100%, 0, 0);
+}
+
+.goLeft.ng-enter-active {
+  transform:translate3d(0, 0, 0);
+}
+
+.goLeft.ng-leave {
+  transform:translate3d(0, 0, 0);
+}
+
+.goLeft.ng-leave-active {
+  transform:translate3d(-100%, 0, 0);
+}
+
+
+
+.goRight.ng-enter, .goRight.ng-leave {
+	position: absolute;
+	left: 0;
+	right: 0;
+	transition:all .3s ease-out;
+}
+
+.goRight.ng-enter {
+	transform:translate3d(100%, 0, 0);
+}
+
+.goRight.ng-enter-active {
+  transform:translate3d(0, 0, 0);
+}
+
+.goRight.ng-leave {
+  transform:translate3d(0, 0, 0);
+}
+
+.goRight.ng-leave-active {
+  transform:translate3d(-100%, 0, 0);
+}

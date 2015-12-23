@@ -1,6 +1,10 @@
 $blue: #1080CC;
 $orange: #F07D52;
-// Should define grays etc.
+
+$textgray: #4D4D4D;
+$yellow: #FFE082;
+$green: #66BB6A;
+$gray: #808080;
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=cyrillic-ext,latin-ext);
 html, body, .section.group, .col {
@@ -105,6 +109,11 @@ body {
 		opacity: 1;
 		border-bottom: 6px solid $blue;
 	}
+	.topFilterWrapper.disabled {
+		background: #CCC;
+		border-bottom: 6px solid #CCC;
+		opacity: .2;
+	}
 	.horBreak {
 		border: 0;
 		border-left: 1px solid rgba(0, 0, 0, .2);
@@ -131,7 +140,7 @@ body {
 		float: left;
 		font-size: 72px;
 		font-weight: 700;
-		color: #4d4d4d;
+		color: $textgray;
 		padding: 13px 50px;
 		line-height: 1em;
 		white-space: nowrap;
@@ -190,6 +199,18 @@ body {
 		line-height: 80px;
 	}
 }
+.titlebar.bottom.shadow {
+	box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.2);
+	text-align: center;
+	bottom: 0;
+	position: absolute;
+	.bottomCaption {
+		line-height: 100px;
+		font-size: 21px;
+		font-weight: 600;
+		color: $blue;
+	}
+}
 
 .shadow {
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
@@ -203,17 +224,29 @@ body {
 	top: 0;
 	left: 0;
 	z-index: 1001;
+	pointer-events: none;
 	.modalMain{
 		margin-top: 100%;
 		position: relative;
 		height: 100%;
 		z-index: 1003;
 		background: white;
+		pointer-events: all;
 		transition: all .3s ease;
 		.modalHead {
-			font-size: 26px;
-    		line-height: 42px;
-    		color: #4d4d4d;
+			font-size: 28px;
+    		line-height: 44px;
+    		color: $textgray;
+    		display: block;
+		}
+		.modalCaption {
+			font-size: 36px;
+			font-weight: 600;
+			margin-bottom: 0;
+			color: $blue;
+		}
+		.modalCaption.orange {
+			color: $orange;
 		}
 	}
 	.modalBack {
@@ -224,6 +257,7 @@ body {
 		background: black;
 		opacity: 0;
 		transition: all .3s ease;
+		pointer-events: none;
 	}
 }
 

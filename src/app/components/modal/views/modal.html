@@ -1,17 +1,32 @@
-<div class="modalWrapper">
+<div class="modalWrapper" >
 	<div class="modalBack"></div>
 	<div class="modalMain" id="displayedModalMain">
-		<div class="titlebar shadow noflex blue" ng-class="{'orange' : data.type != 'Предавања'}">
+		<div class="titlebar shadow noflex blue" ng-class="{'orange' : modalType=='lecture' && lecture.type != 'Предавања'}">
 			<a href="" class="closeBut" ng-click="closeModal()"><img src="images/iconExit42x42.svg" alt=""></a>
 			<span class="normalCaption">{{title}}</span>
 		</div>
 		<div class="modalContWrapper">
 			<!-- <h2>Display data for {{modalType}} with ID: {{id}}</h2> -->
 			<div ng-if="modalType=='lecture'">
-				<span class="modalHead">{{data.teacher.firstName}} {{data.teacher.lastName}}<span ng-if="data.type != 'Предавања'">, {{data.type}}</span></span><br>
-				<span class="modalHead">{{day}}, {{data.startsAt | limitTo : 5 : 11}}-{{data.endsAt | limitTo : 5 : 11}}h ({{(data.endsAt | limitTo : 2 : 11) - (data.startsAt | limitTo : 2 : 11)}}h)</span><br>
-				<span class="modalHead">{{data.classroom.name}}</span>
+				<span class="modalHead">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
+				<span class="modalHead">{{lecture.type}}</span>
+				<span class="modalHead">{{day}}, {{lecture.startsAt | limitTo : 5 : 11}}-{{lecture.endsAt | limitTo : 5 : 11}}h ({{(lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)}}h)</span>
+				<span class="modalHead">{{lecture.classroom.name}}</span>
+				<!-- 
+				<span class="modalHead" ng-if="lecture.groups.length == 1">Група: <span>{{lecture.groups[0].name}}</span></span>
+				<span class="modalHead" ng-if="lecture.groups.length > 1">Групе: <span>{{lecture.groups[1].name}}</span><span ng-repeat="group in lecture.groups">, {{group.name}}</span></span>
+				 -->
+				<div ng-if="lecture.notifications.length > 0">
+					<h1 class="modalCaption" ng-class="{'orange' : modalType=='lecture' && lecture.type != 'Предавања'}">Обавештења</h1>
+					<span class="modalHead"  ng-repeat="notif in lecture.notifications" ng-class="{'orange' : modalData.type != 'Предавања'}">- {{notif.description}}</span>
+				</div>
 			</div>
+
+			<div ng-if="modalType=='group'">
+				<h1 class="modalCaption">Обавештења</h1>
+				<span class="modalHead"  ng-repeat="notif in modalNotifs">- {{notif.description}}</span>
+			</div>
+
 		</div>
 	</div>
 </div>
