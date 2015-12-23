@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('siApp')
-.controller('PreScheduleCtrl', ['$scope', 'dataService', 'filterDataService', '$timeout', 'Dashboard', function($scope, dataService, filterDataService, $timeout, Dashboard) {
-	
+.controller('PreScheduleCtrl', ['$scope', '$timeout', 'Dashboard', function($scope, $timeout, Dashboard) {
+	console.log(Dashboard.getAll());
 	$scope.elementExists = function (id) {
 		var element = angular.element("#" + id);
 		return element.length;

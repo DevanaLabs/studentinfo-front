@@ -181,7 +181,58 @@ body {
 		border-left: 1px solid rgba(255, 255, 255, .5);
 	}
 }
+.titlebar.yellow {
+	background: $yellow;
+	* {
+		color: $textgray;
+	}
+	.topFilterWrapper {
+		color: white !important; 
+	}
+	.topFilterWrapper.active {
+		border-color: white;
+	}
+	.horBreak {
+		border-left: 1px solid rgba(255, 255, 255, .5);
+	}
+}
+.titlebar.green {
+	background: $green;
+	.topFilterWrapper {
+		color: white !important; 
+	}
+	.topFilterWrapper.active {
+		border-color: white;
+	}
+	.horBreak {
+		border-left: 1px solid rgba(255, 255, 255, .5);
+	}
+}
 .titlebar.gray {
+	background: #808080;
+	.topFilterWrapper {
+		color: white !important; 
+	}
+	.topFilterWrapper.active {
+		border-color: white;
+	}
+	.horBreak {
+		border-left: 1px solid rgba(255, 255, 255, .5);
+	}
+}
+.titlebar.multi {
+	background: #999999;
+	.topFilterWrapper {
+		color: white !important; 
+	}
+	.topFilterWrapper.active {
+		border-color: white;
+	}
+	.horBreak {
+		border-left: 1px solid rgba(255, 255, 255, .5);
+	}
+}
+.titlebar.lightgray {
 	background: #e6e6e6;
 	.topFilterWrapper {
 	}
@@ -208,7 +259,7 @@ body {
 		line-height: 100px;
 		font-size: 21px;
 		font-weight: 600;
-		color: $blue;
+		color: white;
 	}
 }
 

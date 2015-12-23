@@ -144,6 +144,19 @@ angular.module("siApp")
 		return json.courseEvents;
 	}
 
+	function getCourseEventsForDay(month, day) {
+		var events = [];
+		for(var i=0; i<json.courseEvents.length; i++){
+			if(json.courseEvents[i].startsAt.substr(2,2) == 115){ var mm = json.courseEvents[i].startsAt.substr(5, 2)*1; }
+			else { var mm = json.courseEvents[i].startsAt.substr(5, 2)*1 + 12; }
+			if(mm == month &&
+			    json.courseEvents[i].startsAt.substr(8, 2)*1 == day) {
+			    events.push(json.courseEvents[i]);
+			}
+		}
+		return events;
+	}
+
 	
 
 	return {
@@ -156,6 +169,7 @@ angular.module("siApp")
 		getGroup: getGroup,
 		getLecture: getLecture,
 		getGlobalEvents: getGlobalEvents,
-		getCourseEvents: getCourseEvents
+		getCourseEvents: getCourseEvents,
+		getCourseEventsForDay: getCourseEventsForDay
 	};
 }]);

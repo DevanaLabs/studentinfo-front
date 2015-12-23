@@ -1,8 +1,15 @@
 <div class="modalWrapper" >
 	<div class="modalBack"></div>
 	<div class="modalMain" id="displayedModalMain">
-		<div class="titlebar shadow noflex blue" ng-class="{'orange' : modalType=='lecture' && lecture.type != 'Предавања'}">
-			<a href="" class="closeBut" ng-click="closeModal()"><img src="images/iconExit42x42.svg" alt=""></a>
+		<div class="titlebar shadow noflex blue" ng-class="{
+			'orange' : (modalType=='lecture' && lecture.type != 'Предавања') || color=='orange',
+			'green' : color=='green', 
+			'yellow' : color=='yellow', 
+			'gray' : color=='gray',
+			'multi' : color=='multi'
+			}">
+			<a href="" ng-if="color=='yellow'" class="closeBut" ng-click="closeModal()"><img src="images/iconExit42x42g.svg" alt=""></a>
+			<a href="" ng-if="color!='yellow'" class="closeBut" ng-click="closeModal()"><img src="images/iconExit42x42.svg" alt=""></a>
 			<span class="normalCaption">{{title}}</span>
 		</div>
 		<div class="modalContWrapper">
@@ -18,13 +25,18 @@
 				 -->
 				<div ng-if="lecture.notifications.length > 0">
 					<h1 class="modalCaption" ng-class="{'orange' : modalType=='lecture' && lecture.type != 'Предавања'}">Обавештења</h1>
-					<span class="modalHead"  ng-repeat="notif in lecture.notifications" ng-class="{'orange' : modalData.type != 'Предавања'}">- {{notif.description}}</span>
+					<span class="modalHead" ng-repeat="notif in lecture.notifications" ng-class="{'orange' : modalData.type != 'Предавања'}">- {{notif.description}}</span>
 				</div>
 			</div>
 
 			<div ng-if="modalType=='group'">
 				<h1 class="modalCaption">Обавештења</h1>
-				<span class="modalHead"  ng-repeat="notif in modalNotifs">- {{notif.description}}</span>
+				<span class="modalHead" ng-repeat="notif in modalNotifs">- {{notif.description}}</span>
+			</div>
+
+			<div ng-if="modalType=='day'">
+				<span class="modalHead" ng-repeat="notif in modalNotifs">- {{notif.description}}</span>
+				<span class="modalHead" ng-if="modalNotifs.length == 0">(нема додатних информација)</span>
 			</div>
 
 		</div>
