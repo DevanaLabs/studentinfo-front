@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('siApp')
-    .directive('siTeacherpicker', function($compile, $timeout, dataExchangeService){
+    .directive('siTeacherpicker', ['$compile', '$timeout', 'dataExchangeService',function($compile, $timeout, dataExchangeService){
         return {
             scope: '',
             replace: true,
@@ -41,4 +41,4 @@ angular.module('siApp')
                 }
             }
         };
-    });
+    }]);

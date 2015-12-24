@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('siApp')
-.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider) {
 	$urlRouterProvider.otherwise("/");
 
 	//$httpProvider.defaults.withCredentials = true;
@@ -62,4 +62,4 @@ angular.module('siApp')
 			templateUrl: 'app/components/calendar/yearly/views/yearly.html'
 		})
 		;
-});
+}]);
