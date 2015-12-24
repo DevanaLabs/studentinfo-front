@@ -1,0 +1,110 @@
+#aboutWrapper{
+	height: 100%;
+	width: 100%;
+	background: white;
+	#topAboutWrapper {
+		padding: 50px 100px;
+		*{
+			color: $textgray;
+		}
+		.aboutColumn {
+			height: 50%;
+			width: 49%;
+			float: left;
+			#bigLogoFaks {
+				height: 120px;
+				display: block;
+				margin-bottom: 60px;
+				margin-top: 30px;
+			}
+			#bigLogoLabs {
+				height: 140px;
+				display: block;
+				margin-bottom: 40px;
+				margin-top: 10px;
+			}
+			.miniCaption{
+				font-size: 18px;
+				font-weight: 600;	
+			}
+			.infoItem {
+				display: block;
+				line-height: 44px;
+				font-size: 24px;
+				.infoIcon {
+					display: inline-block;
+					height: 30px;
+					width: 30px;
+					vertical-align: middle;
+					margin-right: 30px;
+				}
+			}
+			#peopleWrapper {
+				width: 100%;
+				margin-top: 20px;
+				.peopleSubWrapper {
+					width: 50%;
+					float: left;
+					font-size: 24px;
+					line-height: 40px;
+					.peopleHead {
+						font-weight: 600;
+						display: block;
+					}
+					.peopleItem {
+						display: block;
+					}
+				}
+			}
+		}
+	}
+	#feedbackWrapper {
+		height: 45%;
+		transition: all .3s;
+		#inputWrapper{
+			height: 350px;
+			width: 100%;
+			padding: 0 15%;
+			box-sizing: border-box;
+			#write{
+				height: 100%;
+				width: 100%;
+				outline: none;
+				border: 1px solid #bbb;
+				border-radius: 5px;
+				box-sizing: border-box;
+				padding: 20px;
+				resize: none;
+				font-size: 21px;
+				margin-bottom: 100px;
+			}
+			.feedbackButton{
+				height: 80px;
+				width: 300px;
+				border: 0;
+				border-radius: 5px;
+				outline: none;
+				color: white;
+				font-size: 21px;
+				font-weight: 600;
+				margin: 30px 0;
+			}
+			#sendFeedback {
+				background: $green;
+				float: right;
+			}
+			#cancelFeedback {
+				background: #D32F2F;
+				float: left;
+			}
+		}
+	}
+	#feedbackWrapper.active {
+		height: 100%;
+		#inputWrapper{
+			#write {
+				margin-bottom: 0;
+			}
+		}
+	}
+}

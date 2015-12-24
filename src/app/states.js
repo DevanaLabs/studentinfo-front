@@ -61,5 +61,9 @@ angular.module('siApp')
 			url: "/yearly", 
 			templateUrl: 'app/components/calendar/yearly/views/yearly.html'
 		})
+		.state("about", {
+			url: "/about", 
+			templateUrl: 'app/components/about/views/about.html'
+		})
 		;
 });

@@ -4,9 +4,19 @@ angular.module('siApp').controller('scheduleCtrl', ['$scope', 'dataExchangeServi
 											function($scope, dataExchangeService, $compile, $element, $timeout, $http, Dashboard){
 	$scope.stuff = {};
 	$scope.dailyStuff = ['', [], [], [], [], [], [], []];
-	$scope.name = dataExchangeService.name;
 	$scope.gpid = dataExchangeService.id;
 	$scope.type = dataExchangeService.type;
+	if($scope.type == "group") {
+		$scope.name = "Група " + dataExchangeService.name;
+	}
+	//else if($scope.type == "classroom") {
+	//	if(dataExchangeService.name.substr(0,8) != "Учионица") {
+	//		$scope.name = "Учионица " + dataExchangeService.name;
+	//	}
+	//}
+	else {
+		$scope.name = dataExchangeService.name;
+	}
 	$scope.displayedId = dataExchangeService.id;
 	$scope.notifs = 0;
 
