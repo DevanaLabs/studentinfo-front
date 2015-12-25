@@ -27,18 +27,23 @@ angular.module("siApp")
 		var untranslatedData = {};
 
 		var yearsTranslate = ["Остало", "Прва година", "Друга година", "Трећа година", "Четврта година"];
+		// temp fix for filtering other groups
+		yearsTranslate[9] = "Остало";
 		var floorsTranslate = ["Приземље", "Први спрат", "Други спрат", "Трећи спрат", "Четврти спрат", "Пети спрат", "Шести спрат", "Седми спрат", "Осми спрат", "Девети спрат", "Десети спрат", "Једанаести спрат", "Дванаести спрат"];
 
 		var years = [];
 		for(var i=0; i<json.groups.length; i++){
+			// temp fix for filtering other groups
+			if(json.groups[i].year === 100) json.groups[i].year = 9;
 			if(years.indexOf(json.groups[i].year) == -1) years.push(json.groups[i].year);
 		}
 		// sort and translate
 		years.sort(function(a,b){return a-b;});
 		untranslatedData.years = years;
 		var yearsTr = [];
-		for(i = 0; i<years.length; i++)
+		for(i = 0; i<years.length; i++){
 			yearsTr[i] = yearsTranslate[years[i]];
+		}
 		filterData.years = yearsTr;
 
 		var floors = [];
@@ -91,6 +96,8 @@ angular.module("siApp")
 		}
 		fD.teachers = abc;
 		for(i=0; i<json.groups.length; i++){
+			// temp fix for filtering other groups
+			if(json.groups[i].year === 100) json.groups[i].year = 9;
 			fD.groups.push(json.groups[i]);
 		}
 		for(i=0; i<json.classrooms.length; i++){

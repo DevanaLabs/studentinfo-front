@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module("siApp")
-.controller("timeCtrl", ['$scope', function ($scope) {
+.controller("sidebarCtrl", ['$scope', '$state', function ($scope, $state) {
 	$scope.date = new Date();
+	$scope.state = function (state) {return $state.is(state); }
 }])
 .filter('currentdate',['$filter',  function($filter) {
     return function() {

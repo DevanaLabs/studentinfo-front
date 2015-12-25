@@ -57,6 +57,9 @@
 				vertical-align: middle;
 			}
 		}
+		.sidebarItemWrapper.active {
+			background: rgba(255,255,255,.1);
+		}
 		hr {
 			border: 0;
 			border-top: 1px solid rgba(255, 255, 255, .2);

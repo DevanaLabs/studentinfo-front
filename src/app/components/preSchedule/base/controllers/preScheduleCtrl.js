@@ -37,6 +37,7 @@ angular.module('siApp')
 	};
 
 	$scope.switchSubFilter = function(targetSF) {
+		console.log(targetSF);
 		$scope.displayedSubFilter = targetSF;
 	};
 

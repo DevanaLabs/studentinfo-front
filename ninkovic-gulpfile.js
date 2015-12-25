@@ -3,20 +3,24 @@ var plugins = require('gulp-load-plugins')();
 var del = require('del');
 var gulpIgnore = require('gulp-ignore');
 var es = require('event-stream');
-var bowerFiles = require('main-bower-files');
+var bowerFiles = require('gulp-main-bower-files');
 var print = require('gulp-print');
 var Q = require('q');
+var mainBowerFiles = require('gulp-main-bower-files');
+var order = require("gulp-order");
+var wiredep = require('wiredep');
 
 // == PATH STRINGS ========
 
 var paths = {
-    scripts: ['src/**/*.js', '!src/bower_components/**/*.js'],
-    styles: ['src/styles/**/*.*'],
-    images: 'src/images/**/*',
+    scripts: ['src/**/*.js'],
+    styles: ['src/styles/**/*.css'],
+    images: ['src/images/**/*', './src/**/*.png'],
     index: './src/index.html',
     partials: ['src/**/*.html', '!src/index.html'],
     distDev: './dist',
     distProd: './dist',
+    distStyles: './dist/styles',
     distScriptsProd: './dist/scripts',
     scriptsDevServer: 'devServer/**/*.js'
 };
@@ -64,15 +68,18 @@ pipes.builtAppScriptsProd = function() {
 };
 
 pipes.builtVendorScriptsDev = function() {
-    return gulp.src(bowerFiles())
+    console.log(gulp.src('./bower.json').pipe(mainBowerFiles()));
+    return gulp.src('./bower.json')
+        .pipe(mainBowerFiles())        
         .pipe(gulp.dest('dist/bower_components'));
 };
 
 pipes.builtVendorScriptsProd = function() {
-    return gulp.src(bowerFiles('**/*.js'))
+    return gulp.src('./bower.json')
+        .pipe(mainBowerFiles('**/*.js'))
         .pipe(pipes.orderedVendorScripts())
         .pipe(plugins.concat('vendor.min.js'))
-        .pipe(plugins.uglify())
+        //.pipe(plugins.uglify())
         .pipe(gulp.dest(paths.distScriptsProd));
 };
 
@@ -105,7 +112,7 @@ pipes.scriptedPartials = function() {
 pipes.builtStylesDev = function() {
     return gulp.src(paths.styles)
         .pipe(plugins.sass())
-        .pipe(gulp.dest(paths.distDev));
+        .pipe(gulp.dest(paths.distStyles));
 };
 
 pipes.builtStylesProd = function() {
@@ -137,7 +144,7 @@ pipes.validatedIndex = function() {
 pipes.builtIndexDev = function() {
 
     var orderedVendorScripts = pipes.builtVendorScriptsDev()
-        .pipe(pipes.orderedVendorScripts());
+        .pipe(order(orderedVendorScripts));
 
     var orderedAppScripts = pipes.builtAppScriptsDev()
         .pipe(pipes.orderedAppScripts());
@@ -146,9 +153,42 @@ pipes.builtIndexDev = function() {
 
     return pipes.validatedIndex()
         .pipe(gulp.dest(paths.distDev)) // write first to get relative path for inject
+        /*
         .pipe(plugins.inject(orderedVendorScripts, {relative: true, name: 'bower'}))
         .pipe(plugins.inject(orderedAppScripts, {relative: true}))
         .pipe(plugins.inject(appStyles, {relative: true}))
+        */
+        .pipe(wiredep.stream({
+              fileTypes: {
+                html: {
+                  replace: {
+                    js: function(filePath) {
+                      return '<script src="' + filePath.substring(3) + '"></script>';
+                    },
+                    css: function(filePath) {
+                      return '<link rel="stylesheet" href="' + filePath.substring(3) + '"/>';
+                    }
+                  }
+                }
+              }
+            }))
+
+            .pipe(plugins.inject(
+              gulp.src(paths.scripts, { read: false }), {
+                addRootSlash: false,
+                transform: function(filePath, file, i, length) {
+                  return '<script src="' + filePath.replace('src/', '') + '"></script>';
+                }
+              }))
+
+            .pipe(plugins.inject(
+              gulp.src(paths.styles, { read: false }), {
+                addRootSlash: false,
+                transform: function(filePath, file, i, length) {
+                  return '<link rel="stylesheet" href="' + filePath.replace('src/', '') + '"/>';
+                }
+              }))
+
         .pipe(gulp.dest(paths.distDev));
 };
 
@@ -172,9 +212,7 @@ pipes.builtAppDev = function() {
 };
 
 pipes.builtAppProd = function() {
-    //return es.merge(pipes.builtIndexProd(), pipes.processedImagesProd());
-    return es.merge(pipes.builtIndexProd(), pipes.builtPartialsDev(), pipes.processedImagesProd());
-
+    return es.merge(pipes.builtIndexProd(), pipes.processedImagesProd());
 };
 
 // == TASKS ========
@@ -308,12 +346,11 @@ gulp.task('watch-prod', ['clean-build-app-prod', 'validate-devserver-scripts'], 
     //        console.log('[nodemon] restarted dev server');
     //    });
 
-
-    gulp.src('.')
-        .pipe(plugins.webserver({
-            livereload: false,
-            directoryListing: true
-        }));
+	gulp.src('.')
+	    .pipe(plugins.webserver({
+	        livereload: false,
+	        directoryListing: true
+	    }));
 
     // start live-reload server
     plugins.livereload.listen({start: true});

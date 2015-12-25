@@ -1,12 +1,12 @@
 <div id="mainSidebarWrapper">
-	<aside id="sidebarWrapper">
+	<aside id="sidebarWrapper" ng-controller="sidebarCtrl">
 		<section id="logoWrapper" class="text-center" ui-sref="root">Студент инфо</section>
-		<a class="sidebarItemWrapper" ui-sref="preSchedule.groups">
+		<a class="sidebarItemWrapper" ui-sref="preSchedule.groups" ng-class="{'active': state('preSchedule.groups') || state('preSchedule.classrooms') || state('preSchedule.teachers')}">
 			<img class="sidebarItemIcon" src="images/iconSbRaspCas.svg">
 			<span class="sidebarItem">Распоред часова</span>
 		</a>
 		<hr>
-		<a class="sidebarItemWrapper" ui-sref="calendar.yearly">
+		<a class="sidebarItemWrapper" ui-sref="calendar.yearly" ng-class="{'active': state('calendar.yearly') || state('calendar.months')}">
 			<img class="sidebarItemIcon" src="images/iconSbKalAkt.svg">
 			<span class="sidebarItem">Календар активности</span>
 		</a>
@@ -15,7 +15,7 @@
 				<img id="bottomFaksLogo" src="images/imgBgLogoFaks.svg">
 				<span id="bottomFaksSpan">Рачунарски факултет</span>
 			</div>
-			<div id="bottomTimeWrapper" ng-controller="timeCtrl">
+			<div id="bottomTimeWrapper">
 				{{'' | currentdate}}
 			</div>
 		</section>
