@@ -26,11 +26,6 @@ angular.module("siApp")
 		var filterData = {};
 		var untranslatedData = {};
 
-		var yearsTranslate = ["Остало", "Прва година", "Друга година", "Трећа година", "Четврта година"];
-		// temp fix for filtering other groups
-		yearsTranslate[9] = "Остало";
-		var floorsTranslate = ["Приземље", "Први спрат", "Други спрат", "Трећи спрат", "Четврти спрат", "Пети спрат", "Шести спрат", "Седми спрат", "Осми спрат", "Девети спрат", "Десети спрат", "Једанаести спрат", "Дванаести спрат"];
-
 		var years = [];
 		for(var i=0; i<json.groups.length; i++){
 			// temp fix for filtering other groups
@@ -40,11 +35,7 @@ angular.module("siApp")
 		// sort and translate
 		years.sort(function(a,b){return a-b;});
 		untranslatedData.years = years;
-		var yearsTr = [];
-		for(i = 0; i<years.length; i++){
-			yearsTr[i] = yearsTranslate[years[i]];
-		}
-		filterData.years = yearsTr;
+		filterData.years = years;
 
 		var floors = [];
 		for(i=0; i<json.classrooms.length; i++){
@@ -53,10 +44,7 @@ angular.module("siApp")
 		// sort and translate
 		floors.sort(function(a,b){return a-b;});
 		untranslatedData.floors = floors;
-		var floorsTr = [];
-		for(i = 0; i<floors.length; i++)
-			floorsTr[i] = floorsTranslate[floors[i]];
-		filterData.floors = floorsTr;
+		filterData.floors = floors;
 
 
 		var azbuka = ["А", "Б", "В", "Г", "Д", "Ђ", "Е", "Ж", "З", "И", "Ј", "К", "Л", "Љ", "М", "Н", "Њ", "О", "П", "Р", "С", "Т", "Ћ", "У", "Ф", "Х", "Ц", "Ч", "Џ", "Ш"];
@@ -163,8 +151,6 @@ angular.module("siApp")
 		}
 		return events;
 	}
-
-	
 
 	return {
 		refreshData: refreshData,

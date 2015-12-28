@@ -28,12 +28,7 @@ angular.module('siApp')
 
 	$scope.switchFilter = function(targetF) {
 		$scope.displayedFilter = targetF;
-		if(targetF == "years"){
-			$scope.displayedSubFilter = $scope.untranslatedData[targetF][1];
-		}
-		else {
-			$scope.displayedSubFilter = $scope.untranslatedData[targetF][0];
-		}
+		$scope.displayedSubFilter = $scope.untranslatedData[targetF][0];
 	};
 
 	$scope.switchSubFilter = function(targetSF) {
@@ -41,7 +36,49 @@ angular.module('siApp')
 		$scope.displayedSubFilter = targetSF;
 	};
 
-}]);
+}])
+.filter( 'yearsTranslate',  [ function () {    
+        var yearsMap = {
+            "1" : "Прва година",
+            "2" : "Друга година",
+            "3" : "Трећа година",
+            "4" : "Четврта година"
+      };
+
+      function translateYearFilter(year) {
+        if ( yearsMap[year] ) {
+       		return yearsMap[year];
+	    } else {
+	        return "Остало";
+	    }
+      }
+
+        return translateYearFilter;
+    }])
+.filter( 'classroomsTranslate',  [ function () {    
+        var classroomsMap = {
+        	"-1" : "Подрум",
+            "0" : "Приземље",
+            "1" : "Први спрат",
+            "2" : "Други спрат",
+            "3" : "Трећи спрат",
+            "4" : "Четврти спрат",
+            "5" : "Пети спрат",
+            "6" : "Шести спрат",
+            "7" : "Седми спрат",
+            "8" : "Осми спрат",
+            "9" : "Девети спрат",
+            "10" : "Десети спрат",
+            "11" : "Једанаести спрат",
+            "12" : "Дванаести спрат",
+      };
+
+      function translateClassroomFilter(classroom) {
+          return classroomsMap[classroom];
+      }
+
+        return translateClassroomFilter;
+    }]);
 
 if(document.getElementById("pickersWrapper")){
 	document.getElementById("pickersWrapper").onscroll = function() {
