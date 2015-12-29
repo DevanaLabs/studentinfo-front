@@ -1,0 +1,32 @@
+<div class="monthWrapper" ng-controller="monthCtrl" ng-class="{'fiveRow' : data.length == 5, 'sixRow' : data.length == 6}" ng-animate>
+	<div class="titlebar shadow noflex">
+		<span class="fatCaption">{{monthTitle}}</span>
+		<a href="" class="closeBut" ui-sref="yearly"><img src="images/iconExit42x42g.svg" alt=""></a>
+	</div>
+	<div class="leftArrow" ng-click="prevMonth()"></div>
+	<div class="monthTableWrapper">
+		<table class="monthTable">
+			<tr class="adjustmentRow">
+				<th>00000000000000</th><th>00000000000000</th><th>00000000000000</th><th>00000000000000</th>
+				<th>00000000000000</th><th>00000000000000</th><th>00000000000000</th>
+			</tr>
+			<tr><th>Понедељак</th><th>Уторак</th><th>Среда</th><th>Четвртак</th><th>Петак</th><th>Субота</th><th>Недеља</th></tr>
+			<tr ng-repeat="week in data">
+				<td ng-repeat="day in week" 
+				id="{{ 'y'+day.year+'m'+day.month+'d'+day.date }}"
+				ng-click="openModal(day.year, day.month, day.date)"
+				ng-class="{
+					'today': ('y'+day.year+'m'+day.month+'d'+day.date) == today, 
+					{{day.type}}: true, 
+					{{day.background}}: true
+				}">
+					<span class="bottomDate">{{day.date}}</span>
+					<span class="eventNotifCont" ng-if="day.events.length > 0" ng-repeat="event in day.events">
+						<span class="eventNotif {{event | typeToClass}}">{{event}}</span>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="rightArrow" ng-click="nextMonth()"></div>
+</div>

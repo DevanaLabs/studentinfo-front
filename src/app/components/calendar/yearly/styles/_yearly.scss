@@ -3,6 +3,7 @@
 	width: 100%;
 	padding: 50px;
     box-sizing: border-box;
+    background: white;
 
 
     .yearMonthWrapper {
@@ -40,6 +41,7 @@
             text-align: left;
             font-weight: 700;
             padding: 0 6px;
+            text-transform: capitalize;
         }
         td {
             border: 1px solid white; 
@@ -48,31 +50,31 @@
         .weeknd {
             opacity: .6;
         }
-        .yearDayTd.multi {
+        td.multi {
             background: #999999 !important;
             color: white;
         }
-        .yearDayTd.blue {
+        td.blue {
             background: $blue;
             color: white;
         }
-        .yearDayTd.orange {
+        td.orange {
             background: $orange;
             color: white;
         }
-        .yearDayTd.gray {
+        td.gray {
             background: #808080;
             color: white;
         }
-        .yearDayTd.green {
+        td.green {
             background: #66BB6A;
             color: white;
         }
-        .yearDayTd.yellow {
+        td.yellow {
             background: #FFE082;
             color: $textgray;
         }
-        .yearDayTd.today {
+        td.today {
             background: red;
             border-radius: 50%;
             color: white;
@@ -81,15 +83,15 @@
             height: 30px;
             width: 32px;
         }
-        .yearDayTd.todayExtra {
+        td.todayExtra {
             border: 4px red solid;
             width: 30px;
         }
-        .yearDayTd.past {
+        td.past {
             opacity: .5;
         }
-        .nextMonDay, .prevMonDay {
-            opacity: .3;
+        .nextMonth, .prevMonth {
+            opacity: .1;
         }
 
     }
@@ -125,3 +127,32 @@
     }
 }
 
+
+
+
+#yearWrapper.ng-enter, #monthWrapper.ng-leave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    transition:all .5s ease-in-out;
+}
+
+#yearWrapper.ng-enter {
+    opacity: 0;
+    transform:translate3d(0, 0, 50%);
+}
+
+#yearWrapper.ng-enter-active {
+  opacity: 1;
+  transform:translate3d(0, 0, 0);
+}
+
+#monthWrapper.ng-leave {
+  opacity: 1;
+  transform:translate3d(0, 0, 0);
+}
+
+#monthWrapper.ng-leave-active {
+  opacity: 0;
+  transform:translate3d(0, 0, 50%);
+}

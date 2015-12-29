@@ -6,7 +6,7 @@
 			<span class="sidebarItem">Распоред часова</span>
 		</a>
 		<hr>
-		<a class="sidebarItemWrapper" ui-sref="calendar.yearly" ng-class="{'active': state('calendar.yearly') || state('calendar.months')}">
+		<a class="sidebarItemWrapper" ui-sref="yearly" ng-class="{'active': state('yearly') || state('months')}">
 			<img class="sidebarItemIcon" src="images/iconSbKalAkt.svg">
 			<span class="sidebarItem">Календар активности</span>
 		</a>
@@ -16,7 +16,7 @@
 				<span id="bottomFaksSpan">Рачунарски факултет</span>
 			</div>
 			<div id="bottomTimeWrapper">
-				{{'' | currentdate}}
+				{{currentTime}}
 			</div>
 		</section>
 	</aside>

@@ -2,7 +2,7 @@
 
 angular.module('siApp')
 .controller('PreScheduleCtrl', ['$scope', '$timeout', 'Dashboard', function($scope, $timeout, Dashboard) {
-	console.log(Dashboard.getAll());
+	//console.log(Dashboard.getAll());
 	$scope.elementExists = function (id) {
 		var element = angular.element("#" + id);
 		return element.length;
@@ -32,7 +32,7 @@ angular.module('siApp')
 	};
 
 	$scope.switchSubFilter = function(targetSF) {
-		console.log(targetSF);
+		//console.log(targetSF);
 		$scope.displayedSubFilter = targetSF;
 	};
 
