@@ -22,7 +22,7 @@ angular.module("siApp")
 	// write days of previous month
 	for(var i = lastDayPrev - firstWeekDay + 2; i <= lastDayPrev; i++){
 	    cal.push({
-	    	date: i, 
+	    	date: i+"p", 
 	    	month: prevMonthDate.month()+1,
 	    	year: prevMonthDate.year(),
 	    	type: 'prevMonth', 
@@ -50,7 +50,7 @@ angular.module("siApp")
 	// write days of next month
 	for(var i = 1; i <= 7 - lastWeekDay; i++){
 		cal.push({
-	    	date: i, 
+	    	date: i+"n", 
 	    	month: nextMonthDate.month()+1,
 	    	year: nextMonthDate.year(),
 	    	type: 'nextMonth', 
@@ -121,7 +121,6 @@ angular.module("siApp")
 	$scope.openModal = function(y, m, d){
 		var el = angular.element("#y"+y+"m"+m+"d"+d);
 		$scope.color = el[0].className.split(" ")[el[0].className.split(" ").length-1];
-		console.log($scope.color);
 		var el = $compile( "<si-modal id='displayedModal' year='"+ y +"' month='"+ m +"' day='"+ d +"' type='day' titlebarcolor='"+$scope.color+"'></si-modal>" )( $scope );
 		$element.parent().append( el );
 		$timeout(function() {

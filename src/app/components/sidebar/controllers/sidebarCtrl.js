@@ -7,7 +7,6 @@ angular.module("siApp")
 	$scope.date = new Date();
 	$scope.currentTime = moment().locale('sr-cyrl').format('HH:MM - D. MMMM, dddd');
 	function tick() {
-		console.log('asdf')
 		$scope.currentTime = moment().locale('sr-cyrl').format('HH:mm - D. MMMM, dddd');
 		$timeout(function(){tick()}, 1000);
 	}

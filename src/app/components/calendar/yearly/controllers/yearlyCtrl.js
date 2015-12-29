@@ -118,7 +118,7 @@ angular.module("siApp")
 		else { month++; }
 	}
 
-	console.log(months);
+	//console.log(months);
 
 	$scope.months = months;
 
