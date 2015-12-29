@@ -1,27 +1,15 @@
 .monthWrapper{ 
 	height: 100%; 
 	width: 100%; 
+	background: white;
 	overflow: hidden;
 	.fatCaption {
 		padding-left: 110px;
-		width: calc(100% - 390px);
+		width: calc(100% - 330px);
+		text-transform: capitalize;
 	}
-	.yearlyBut {
-		display: inline-block;
-		color: $blue;
-		text-decoration: none;
-		text-align: center;
-		width: 160px;
-		height: 80px;
-		margin: 16px 0 0;
-		font-weight: 600;
-		font-size: 18px;
-		img {
-			height: 38px;
-			display: block;
-			margin: 0 auto;
-			margin-bottom: 8px;
-		}
+	.closeBut {
+		float: none;
 	}
 	.leftArrow {
 		height: 100%;
@@ -64,7 +52,7 @@
 			        position: relative;
 			        text-align: right;
 			        float: right;
-			        margin: calc(100% - 54px) 10px 10px 0;
+			        margin: calc(100% - 48px) 10px 10px 0;
 			    }
 			    .eventNotifCont {
 			    	width: calc(100% - 44px);
@@ -105,41 +93,41 @@
 					line-height: 34px;
 				}
 			}
-			.DayTd.multi {
+			td.multi {
 				background: #999999 !important;
 				.bottomDate {
 					color: white;
 				}
 			}
-			.DayTd.blue {
+			td.blue {
 				background: $blue;
 				.bottomDate {
 					color: white;
 				}
 			}
-			.DayTd.orange {
+			td.orange {
 				background: $orange;
 				.bottomDate {
 					color: white;
 				}
 			}
-			.DayTd.gray {
+			td.gray {
 				background: $gray;
 				.bottomDate {
 					color: white;
 				}
 			}
-			.DayTd.green {
+			td.green {
 				background: $green;
 				.bottomDate {
 					color: white;
 				}
 			}
-			.DayTd.yellow {
+			td.yellow {
 				background: $yellow;
 				color: $textgray;
 			}
-			.prevMonDay, .nextMonDay { 
+			.prevMonDay, .nextMonDay, .prevMonth, .nextMonth { 
 				opacity: .3;
 				background: #BBBBBB;
 				font-weight: normal;

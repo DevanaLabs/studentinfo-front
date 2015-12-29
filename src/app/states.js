@@ -46,20 +46,19 @@ angular.module('siApp')
 				var currentMonth = (date.getYear() == 115) ? (date.getMonth() + 1) : (date.getMonth() + 13 );
 				//console.log(a);
 				//console.log("next: " + ($location.path().substr(17)*1+1));
-				currentMonth = "/calendar/months/" + currentMonth + ""
+				currentMonth = "/months/" + currentMonth + ""
 				$timeout(function(){$location.path(currentMonth)}, 10);
 
 				// $state.go('months({monNumber: a})')
 			}
 		})
-		.state("calendar.months", {
-			url: "/months/:monNumber", 
-			templateUrl: function($stateParams) { return 'app/components/calendar/month/views/months/'+ $stateParams.monNumber +'.html' }/*,
-			controller: 'PreScheduleCtrl'*/
-		})
-		.state("calendar.yearly", {
+		.state("yearly", {
 			url: "/yearly", 
 			templateUrl: 'app/components/calendar/yearly/views/yearly.html'
+		})
+		.state("months", {
+			url: "/monthly/:year/:month", 
+			templateUrl: 'app/components/calendar/months/views/month.html'
 		})
 		.state("about", {
 			url: "/about", 

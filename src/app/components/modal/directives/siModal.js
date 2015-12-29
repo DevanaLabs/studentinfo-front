@@ -41,11 +41,11 @@ angular.module('siApp')
                 }
                 else if($scope.modalType == "day") {
                     var monthsTr = ["", "Јануар", "Фебруар", "Март", "Април", "Мај", "Јун", "Јул", "Август", "Септембар", "Октобар", "Новембар", "Децембар", "Јануар", "Фебруар", "Март", "Април", "Мај", "Јун", "Јул", "Август", "Септембар", "Октобар", "Новембар", "Децембар"];
-                    $scope.title = $attr.day + ". " + monthsTr[$attr.month] + " " + (($attr.month>12)?"2016":"2015");
+                    $scope.title = $attr.day + ". " + $attr.month + " " + $attr.year;
                     $scope.color = $attr.titlebarcolor;
-                    console.log($scope.color);
-                    $scope.modalNotifs = Dashboard.getCourseEventsForDay($attr.month, $attr.day);
-                    console.log($scope.modalNotifs);
+                    //console.log($scope.color);
+                    $scope.modalNotifs = Dashboard.getCourseEventsForDay($attr.day, $attr.month, $attr.day);
+                    //console.log($scope.modalNotifs);
 
                 }
             }

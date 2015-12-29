@@ -20,15 +20,16 @@
     "metisMenu": "~2.2.0",
     "bootstrap": "~3.3.6",
     "moment": "~2.10.6",
-    //"angular-moment": "1.x",
-    "moment-timezone": "0.3.x",
     "angular-form-for": "~4.1.10",
     "api-check": "~7.5.5",
-    //"angular-formly": "~7.3.9",
-    //"angular-formly-templates-bootstrap": "~6.2.0",
     "angular-bootstrap": "~0.14.3",
     "bootstrap-ui-datetime-picker": "~2.0.4",
     "angular-cookies": "~1.4.8",
-    "angular-ui-notification": "~0.1.0"
+    "angular-ui-notification": "~0.1.0",
+    "lodash": "~3.10.1"
   }
 }
+    //"angular-moment": "1.x",
+    //"moment-timezone": "0.3.x",
+    //"angular-formly": "~7.3.9",
+    //"angular-formly-templates-bootstrap": "~6.2.0",
