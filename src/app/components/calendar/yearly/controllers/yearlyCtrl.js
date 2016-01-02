@@ -4,7 +4,7 @@ angular.module("siApp")
 .controller("yearlyCtrl", ['$scope', '$location', '$timeout', '$compile', 'Dashboard', function($scope, $location, $timeout, $compile, Dashboard){
 	
 	if(new Date().getMonth() >= 9) var year = new Date().getYear() + 1900;
-	else var year = new Date().getYear() + 1901;
+	else var year = new Date().getYear() + 1899;
 
 	var today = new Date();
 	$scope.today = "y"+(today.getYear()+1900)+"m"+(today.getMonth()+1)+"d"+today.getDate();
