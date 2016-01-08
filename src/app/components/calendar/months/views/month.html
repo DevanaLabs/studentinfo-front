@@ -3,7 +3,9 @@
 		<span class="fatCaption">{{monthTitle}}</span>
 		<a href="" class="closeBut" ui-sref="yearly"><img src="images/iconExit42x42g.svg" alt=""></a>
 	</div>
-	<div class="leftArrow" ng-click="prevMonth()"></div>
+	<div class="leftArrowWrapper" ng-click="prevMonth()">
+		<div class="leftArrow"></div>
+	</div>
 	<div class="monthTableWrapper">
 		<table class="monthTable">
 			<tr class="adjustmentRow">
@@ -28,5 +30,7 @@
 			</tr>
 		</table>
 	</div>
-	<div class="rightArrow" ng-click="nextMonth()"></div>
+	<div class="rightArrowWrapper" ng-click="nextMonth()">
+		<div class="rightArrow"></div>
+	</div>
 </div>

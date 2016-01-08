@@ -13,9 +13,19 @@ html, body, .section.group, .col {
 }
 body {
 	background: url("images/bg.jpg") !important;
-	background-size: 100% !important;
+	background-size: cover !important;
 	overflow: hidden;
 	// dev-comment cursor: none;
+	#indexSidebarWrapper {
+		position: relative;
+		float: left !important;
+		width: 23% !important;
+	}
+	#indexContentWrapper {
+		position: relative;
+		float: left !important;
+		width: 77% !important;
+	}
 }
 * {
 	font-family: "Open Sans", sans-serif;
@@ -37,8 +47,8 @@ body {
 	position: fixed;
 	width: 800px;
 	height: 600px;
-	top: 200px;
-	left: 800px;
+	top: calc(50% - 300px);
+	left: calc(50% - 200px);
 	//margin: 0 auto;
 	opacity: .5;
 }
@@ -98,11 +108,15 @@ body {
 		height: 100%;
 		width: 100%;
 		text-align: center;
-		line-height: 100px;
+		padding-top: 4px;
+		line-height: 90px;
 		text-transform: uppercase;
 		font-size: 18px;
 		font-weight: 700;
 		opacity: .7;
+        cursor: pointer;
+        border-bottom: 6px solid $blue;
+		
 	}
 	.topFilterWrapper.active {
 		color: $blue;
@@ -111,8 +125,8 @@ body {
 	}
 	.topFilterWrapper.disabled {
 		background: #CCC;
-		border-bottom: 6px solid #CCC;
-		opacity: .2;
+		border-bottom: 6px solid #CCC !important;
+		opacity: .2; 
 	}
 	.horBreak {
 		border: 0;
@@ -134,7 +148,7 @@ body {
 		text-overflow: ellipsis;
 		overflow: hidden;
 		padding-right: 0;
-		width: calc(100% - 300px);
+		//width: calc(100% - 300px);
 	}
 	.fatCaption {
 		float: left;
@@ -147,20 +161,27 @@ body {
 		text-overflow: ellipsis;
 		overflow: hidden;
 		padding-right: 0;
-		width: calc(100% - 200px);
+		//width: calc(100% - 200px);
 	}
 	.closeBut {
 		float: right;
 		display: inline-block;
-		height: 42px;
+		height: 44px;
 		width: 42px;
 		padding: 28px 50px;
+	}
+	.closeBut:hover {
+		background: rgba(0, 0, 0, 0.1);
 	}
 }
 .titlebar.blue {
 	background: $blue;
 	.topFilterWrapper {
 		color: white !important; 
+	}
+	.topFilterWrapper:hover {
+		background: darken($blue, 5%);
+		border-bottom-color: darken($blue, 5%);
 	}
 	.topFilterWrapper.active {
 		border-color: white;
@@ -235,10 +256,21 @@ body {
 .titlebar.lightgray {
 	background: #e6e6e6;
 	.topFilterWrapper {
+		border-bottom: 6px solid #e6e6e6;
+	}
+	.topFilterWrapper:hover {
+		background: darken(#e6e6e6, 5%);
+		border-bottom-color: darken(#e6e6e6, 5%);
 	}
 	.topFilterWrapper.active {
 		color: $blue !important; 
 		border-color: $blue;
+	}
+}
+.titlebar.white {
+	background: white;
+	* {
+		color: $textgray;
 	}
 }
 .titlebar.noflex {
@@ -247,7 +279,7 @@ body {
 .titlebar.smaller{
 	min-height: 80px;
 	.topFilterWrapper {
-		line-height: 80px;
+		line-height: 70px;
 	}
 }
 .titlebar.bottom.shadow {
@@ -277,18 +309,25 @@ body {
 	z-index: 1001;
 	pointer-events: none;
 	.modalMain{
-		margin-top: 100%;
+		transform: translate3d(0, 100%, 0);
 		position: relative;
 		height: 100%;
 		z-index: 1003;
 		background: white;
 		pointer-events: all;
 		transition: all .3s ease;
+		.modalContWrapper {
+			padding: 30px 100px;
+		}
 		.modalHead {
 			font-size: 28px;
     		line-height: 44px;
     		color: $textgray;
     		display: block;
+		}
+		.modalHead.big {
+			font-weight: 600;
+			font-size: 32px; 
 		}
 		.modalCaption {
 			font-size: 36px;
@@ -298,6 +337,10 @@ body {
 		}
 		.modalCaption.orange {
 			color: $orange;
+		}
+		hr {
+			border: 0;
+			border-top: 1px solid #ddd;
 		}
 	}
 	.modalBack {
@@ -314,10 +357,7 @@ body {
 
 .modalWrapper.displayedModal {
 	.modalMain {
-		margin-top: 0;
-		.modalContWrapper {
-			padding: 30px 100px;
-		}
+		transform: translate3d(0, 0, 0);
 	}
 	.modalBack {
 		opacity: .3

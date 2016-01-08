@@ -22,7 +22,7 @@ angular.module("siApp")
 	// write days of previous month
 	for(var i = lastDayPrev - firstWeekDay + 2; i <= lastDayPrev; i++){
 	    cal.push({
-	    	date: i+"p", 
+	    	date: i/*+"p"*/, 
 	    	month: prevMonthDate.month()+1,
 	    	year: prevMonthDate.year(),
 	    	type: 'prevMonth', 
@@ -50,7 +50,7 @@ angular.module("siApp")
 	// write days of next month
 	for(var i = 1; i <= 7 - lastWeekDay; i++){
 		cal.push({
-	    	date: i+"n", 
+	    	date: i/*+"n"*/, 
 	    	month: nextMonthDate.month()+1,
 	    	year: nextMonthDate.year(),
 	    	type: 'nextMonth', 

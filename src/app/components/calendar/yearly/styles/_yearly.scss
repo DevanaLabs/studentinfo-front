@@ -6,10 +6,11 @@
     background: white;
 
 
+
     .yearMonthWrapper {
         float: left;
         width: 19%;
-        height: 210px;
+        height: 213px;
         margin: 0px 41px 10px;
         box-sizing: border-box;
     }
@@ -17,7 +18,13 @@
 
     .yearMonthTableWrapper {
         width: 100%;
+        border: 1px solid transparent;
+        padding: 10px;
         //height: 100%;
+    }
+    .yearMonthTableWrapper:hover {
+        border: 1px solid #999;
+        //background: #eee;
     }
 
     .yearHeader {
@@ -25,7 +32,7 @@
         color: $blue;
         display: block;
         width: 100%;
-        padding: 0 50px;
+        padding: 0 55px;
         clear: both;
     }
 
@@ -34,6 +41,7 @@
         height: 100%;
         text-align: center;
         vertical-align: middle;
+        cursor: pointer;
         tr{
             height: 30px;
         }
@@ -94,6 +102,9 @@
             opacity: .1;
         }
 
+    }
+    table:hover {
+        //background: #eee;
     }
     #legendWrapper {
         height: 210px;

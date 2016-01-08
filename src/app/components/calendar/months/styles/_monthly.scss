@@ -11,24 +11,38 @@
 	.closeBut {
 		float: none;
 	}
-	.leftArrow {
+	.leftArrowWrapper, .rightArrowWrapper {
 		height: 100%;
 		width: 100px;
+		cursor: pointer;
+		.leftArrow, .rightArrow {
+			height: 100%;
+			width: 100px;
+		}
+		
+	}
+	.leftArrowWrapper {
 		float: left;
-		background: url("images/iconArrowBack30x50.svg");
-		background-repeat: no-repeat;
-		background-position: 30px;
-		background-size: 40px;
+		.leftArrow {
+			background: url("images/iconArrowBack30x50.svg");
+			background-repeat: no-repeat;
+			background-position: 30px;
+			background-size: 40px;
+		}
 	}
-	.rightArrow {
-		height: 100%;
-		width: 100px;
+	.rightArrowWrapper {
 		float: right;
-		background: url("images/iconArrowFwd30x50.svg");
-		background-repeat: no-repeat;
-		background-position: 30px;
-		background-size: 40px;
+		.rightArrow {
+			background: url("images/iconArrowFwd30x50.svg");
+			background-repeat: no-repeat;
+			background-position: 30px;
+			background-size: 40px;
+		}
 	}
+	.leftArrowWrapper:hover, .rightArrowWrapper:hover {
+		background: #eee;
+	}
+
 	.monthTableWrapper {
 		padding: 20px 10px;
 		height: calc(100% - 180px);
@@ -40,47 +54,69 @@
 			width: 100%;
 			color: $textgray;
 			td {
-			    padding: 0px;
-			    //text-align: left;
-			    //vertical-align: top;
-			    border: 1px solid #E6E6E6;
-			    font-size: 21px;
-			    font-weight: 600;
-			    width: 1000px;
-			    vertical-align: top;
-			    .bottomDate {
-			        position: relative;
-			        text-align: right;
-			        float: right;
-			        margin: calc(100% - 48px) 10px 10px 0;
-			    }
-			    .eventNotifCont {
-			    	width: calc(100% - 44px);
-			    	display: inline-block;
-			    	.eventNotif {
-			    		width: calc(100% + 34px);
-			    		display: inline-block;
-			    		padding: 3px 0 3px 10px;
-			    		background: $blue;
-			    		color: white;
-			    	}
-			    	.eventNotif.blue {
+				padding: 0px;
+				//text-align: left;
+				//vertical-align: top;
+				border: 1px solid #E6E6E6;
+				font-size: 21px;
+				font-weight: 600;
+				width: 1000px;
+				vertical-align: top;
+				cursor: pointer;
+				.bottomDate {
+					position: relative;
+					text-align: right;
+					float: right;
+					margin: calc(100% - 48px) 10px 10px 0;
+				}
+				.eventNotifCont {
+					width: calc(100% - 44px);
+					display: inline-block;
+					.eventNotif {
+						width: calc(100% + 34px);
+						display: inline-block;
+						padding: 3px 0 3px 10px;
 						background: $blue;
-			    	}
-			    	.eventNotif.orange {
+						color: white;
+					}
+					.eventNotif.blue {
+						background: $blue;
+					}
+					.eventNotif.orange {
 						background: $orange;
-			    	}
-			    	.eventNotif.gray {
+					}
+					.eventNotif.gray {
 						background: $gray;
-			    	}
-			    	.eventNotif.green {
+					}
+					.eventNotif.green {
 						background: $green;
-			    	}
-			    	.eventNotif.yellow {
+					}
+					.eventNotif.yellow {
 						background: $yellow;
 						color: $textgray;
-			    	}
-			    }
+					}
+				}
+			}
+			td:hover {
+				background: darken(white, 10%);
+				.eventNotifCont {
+					.eventNotif.blue {
+						background: darken($blue, 10%);
+					}
+					.eventNotif.orange {
+						background: darken($orange, 10%);
+					}
+					.eventNotif.gray {
+						background: darken($gray, 10%);
+					}
+					.eventNotif.green {
+						background: darken($green, 10%);
+					}
+					.eventNotif.yellow {
+						background: darken($yellow, 10%);
+						color: $textgray;
+					}
+				}
 			}
 			.today {
 				.bottomDate {
@@ -99,11 +135,17 @@
 					color: white;
 				}
 			}
+			td.multi:hover {
+				background: darken(#999999, 10%);
+			}
 			td.blue {
 				background: $blue;
 				.bottomDate {
 					color: white;
 				}
+			}
+			td.blue:hover {
+				background: darken($blue, 10%);
 			}
 			td.orange {
 				background: $orange;
@@ -111,11 +153,17 @@
 					color: white;
 				}
 			}
+			td.orange:hover {
+				background: darken($orange, 10%);
+			}
 			td.gray {
 				background: $gray;
 				.bottomDate {
 					color: white;
 				}
+			}
+			td.gray:hover {
+				background: darken($gray, 10%);
 			}
 			td.green {
 				background: $green;
@@ -123,15 +171,24 @@
 					color: white;
 				}
 			}
+			td.green:hover {
+				background: darken($green, 10%);
+			}
 			td.yellow {
 				background: $yellow;
 				color: $textgray;
+			}
+			td.yellow:hover {
+				background: darken($yellow, 10%);
 			}
 			.prevMonDay, .nextMonDay, .prevMonth, .nextMonth { 
 				opacity: .3;
 				background: #BBBBBB;
 				font-weight: normal;
 			} 
+			.prevMonDay:hover, .nextMonDay:hover, .prevMonth:hover, .nextMonth:hover { 
+				background: darken(#BBBBBB, 10%);
+			}
 			th {
 				height: 50px;
 				font-weight: normal;

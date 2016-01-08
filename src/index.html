@@ -29,10 +29,10 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
   <div class="section group" ng-controller="baseCtrl" ng-click="baseClick()">
-    <div class="col " style="width: 23%; float: left;">
+    <div class="col" id="indexSidebarWrapper">
       <si-sidebar> </si-sidebar>
     </div>
-    <div class="col " style="width: 77%; float: left; position: relative;">
+    <div class="col" id="indexContentWrapper">
       <img id="bgLogo" src="images/imgBgLogoFaks.svg">
       <div id="UIcont" ui-view style="height: 100%" ng-animate="'animate'"></div>
     </div>

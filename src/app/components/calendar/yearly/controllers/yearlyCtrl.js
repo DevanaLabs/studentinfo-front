@@ -120,7 +120,9 @@ angular.module("siApp")
 
 	//console.log(months);
 
-	$scope.months = months;
+	//$timeout(function(){
+		$scope.months = months;
+	//}, 400);
 
 	
 }])

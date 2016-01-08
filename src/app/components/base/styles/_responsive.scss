@@ -1,0 +1,140 @@
+@media screen and (max-width: 1919px) {
+	#indexSidebarWrapper {
+		min-width: 360px;
+	}
+	#indexContentWrapper {
+		max-width: calc(100% - 360px);
+	}
+	#mainSidebarWrapper {
+		#sidebarWrapper {
+			.sidebarItemWrapper {
+				height: 90px;
+				padding: 0 30px;
+				.sidebarItem {
+					line-height: 90px;
+					font-size: 18px;
+				}
+			}
+			#logoWrapper {
+				font-size: 42px;
+			}
+			#bottomWrapper {
+				height: 120px;
+				#bottomFaksLogoWrapper {
+					margin-top: 30px;
+					height: 54px;
+				}
+				#bottomFaksSpan {
+					font-size: 21px;
+				}
+			}
+		}
+	}
+	.titlebar {
+		min-height: 80px;
+		.topFilterWrapper {
+			line-height: 80px;
+			font-size: 16px;
+		}
+		.fatCaption {
+			font-size: 54px;
+		}
+		.normalCaption {
+			font-size: 28px;
+			padding: 5px 100px;
+		}
+		.closeBut {
+			padding: 19px 50px;
+		}
+	}
+	.fatPicker {
+		width: 200px;
+		height: 100px;
+		line-height: 100px;
+		margin: 16px;
+		font-size: 28px;
+	}
+	.thinPicker {
+		width: 31%;
+		margin: 1%;
+		height: 70px;
+		line-height: 70px;
+		font-size: 18px;
+	}
+	.scheduleWrapper {
+		#tableWrapper {
+			table {
+				.lectureWrapper {
+					padding: 4px 8px;
+					.lectureCaption {
+						font-size: 16px;
+						line-height: 20px;
+					}
+					.lectureSubCaption {
+						font-size: 14px;
+						line-height: 18px;
+						margin-top: 0;
+					}
+				}
+				.lectureWrapper.smallerText {
+					* {
+						font-size: 13px;
+						line-height: 16px;
+					}
+					.lectureSubCaption {
+						margin-top: -2px;
+						position: absolute;
+					}
+				}
+			}
+		}
+	}
+
+
+	#yearWrapper {
+		overflow-x: hidden;
+		overflow-y: auto;
+		.yearMonthWrapper {
+		    width: 220px;
+		    margin: 0px 30px 10px;
+		}
+		.yearHeader {
+			padding-left: 47px;
+		}
+		#legendWrapper {
+			width: auto;
+			float: none;
+			clear: both;
+			padding: 30px 30px 0;
+			height: 130px;
+		}
+	}
+
+
+	#aboutWrapper {
+		#topAboutWrapper {
+			padding: 30px 50px;
+			.aboutColumn {
+				#bigLogoFaks {
+					width: 80%;
+				}
+				#bigLogoLabs {
+					width: 80%;
+				}
+				#peopleWrapper {
+					.peopleSubWrapper.right {
+						width: 45%;
+						margin-left: 5%;
+					}
+				}
+			}
+		}
+		#feedbackWrapper {
+			height: 70px !important;
+			min-height: 70px;
+			#inputWrapper {
+				height: calc(100% - 220px);
+			}
+		}
+	}
+}

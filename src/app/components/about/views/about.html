@@ -21,7 +21,7 @@
 					<span class="peopleItem">Никола Нинковић</span>
 					<span class="peopleItem">Небојша Урошевић</span>
 				</div>
-				<div class="peopleSubWrapper">
+				<div class="peopleSubWrapper right">
 					<span class="peopleHead">Ментори: </span>
 					<span class="peopleItem">Антун Дебак</span>
 					<span class="peopleItem">Владимир Преловац</span>
@@ -30,13 +30,14 @@
 				</div>
 			</div>
 		</div>
+		<div id="feedbackNotif" class="feedbackNotif">Хвала!</div>
 	</div>
 	
 	<div id="feedbackWrapper" class="titlebar bottom shadow noflex" ng-controller="aboutCtrl" ng-class="{'active' : showKeyboard}">
-		<h2>Пошаљите нам сугестије и предлоге: </h2>
+		<h2 ng-click="showKeyboard = true">Пошаљите нам сугестије и предлоге: </h2>
 		<div id="inputWrapper">
 			<textarea name="" id="write" placeholder="Додирните за тастатуру" ng-focus="showKeyboard = true"></textarea>
-			<button id="cancelFeedback" class="feedbackButton" ng-click="showKeyboard = false">Откажи</button>
+			<button id="cancelFeedback" class="feedbackButton" ng-click="cancelFeedback(); showKeyboard = false">Откажи</button>
 			<button id="sendFeedback" class="feedbackButton" ng-click="sendFeedback()">Пошаљи</button>
 			<si-keyboard></si-keyboard>
 		</div>

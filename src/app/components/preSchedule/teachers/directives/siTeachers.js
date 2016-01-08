@@ -15,7 +15,7 @@ angular.module('siApp')
                     dataExchangeService.id = $scope.gpid;
                     dataExchangeService.type = 'teacher';
                     dataExchangeService.name = $scope.text;
-                    var el = $compile( "<si-table id='scheduleWrapper' style='top: " +  e.pageY + "px; left: calc(" +  e.pageX + "px - 23vw);'></si-table>" )( $scope );
+                    var el = $compile( "<si-table id='scheduleWrapper' style='transform: scale3d(.01, .01, 1) translate3d(" +  ((e.pageX-440)*100) + "px, " +  (e.pageY*100) + "px, 0);'></si-table>" )( $scope );
                     $element.parent().append( el );
                     $timeout(function() {
                         angular.element("#scheduleWrapper").addClass("displayed");

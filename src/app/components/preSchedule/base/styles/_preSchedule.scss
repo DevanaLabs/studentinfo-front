@@ -15,8 +15,8 @@
 	text-align: center;
 	line-height: 120px;
 	font-size: 36px;
-    box-shadow: none;
-    border-bottom: 4px solid #1069A5;
+    //box-shadow: none;
+    //border-bottom: 4px solid #1069A5;
     text-transform: capitalize;
     cursor: pointer;
 }
@@ -39,6 +39,11 @@
 	position: relative;
 	box-sizing: border-box;
 	cursor: pointer;
+}
+
+.fatPicker:hover, .thinPicker:hover {
+	background: darken($blue, 10%);
+    //border-bottom: 4px solid darken(#1069A5, 10%);
 }
 
 .noLectures {

@@ -9,7 +9,7 @@
 		}
 		.aboutColumn {
 			height: 50%;
-			width: 49%;
+			width: 50%;
 			float: left;
 			#bigLogoFaks {
 				height: 120px;
@@ -46,16 +46,37 @@
 					width: 50%;
 					float: left;
 					font-size: 24px;
-					line-height: 40px;
+					line-height: 30px;
 					.peopleHead {
 						font-weight: 600;
 						display: block;
 					}
 					.peopleItem {
 						display: block;
+						margin: 10px 0;
 					}
 				}
 			}
+		}
+		.feedbackNotif {
+			position: absolute;
+			height: 80px;
+			width: 500px;
+			margin-top: -100px;
+			top: 0;
+			left: calc(50% - 250px);
+			background: $green;
+			color: white;
+			transition: all .3s;
+			box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+			text-align: center;
+			line-height: 80px;
+			font-size: 32px;
+			font-weight: 600;
+			border-radius: 5px;
+		}
+		.feedbackNotif.active {
+			margin-top: 50px;
 		}
 	}
 	#feedbackWrapper {
@@ -78,6 +99,9 @@
 				font-size: 21px;
 				margin-bottom: 100px;
 			}
+			#write:focus {
+				box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+			}
 			.feedbackButton{
 				height: 80px;
 				width: 300px;
@@ -88,19 +112,35 @@
 				font-size: 21px;
 				font-weight: 600;
 				margin: 30px 0;
+				transition: all .3s;
+			}
+			.feedbackButton:hover {
+				box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 			}
 			#sendFeedback {
 				background: $green;
 				float: right;
 			}
+			#sendFeedback:hover {
+				background: darken($green, 10%);
+			}
+			#sendFeedback:active {
+				background: darken($green, 20%);
+			}
 			#cancelFeedback {
 				background: #D32F2F;
 				float: left;
 			}
+			#cancelFeedback:hover {
+				background: darken(#D32F2F, 10%);
+			}
+			#cancelFeedback:active {
+				background: darken(#D32F2F, 20%);
+			}
 		}
 	}
 	#feedbackWrapper.active {
-		height: 100%;
+		height: 100% !important;
 		#inputWrapper{
 			#write {
 				margin-bottom: 0;

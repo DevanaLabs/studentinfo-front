@@ -1,22 +1,25 @@
 <div class="modalWrapper" >
 	<div class="modalBack"></div>
 	<div class="modalMain" id="displayedModalMain">
-		<div class="titlebar shadow noflex blue" ng-class="{
+		<div class="titlebar shadow noflex" ng-class="{
+			'blue' : (modalType=='lecture' && lecture.type == 'Предавања') || color=='blue',
 			'orange' : (modalType=='lecture' && lecture.type != 'Предавања') || color=='orange',
 			'green' : color=='green', 
 			'yellow' : color=='yellow', 
 			'gray' : color=='gray',
-			'multi' : color=='multi'
+			'multi' : color=='multi',
+			'white' : color=='white'
 			}">
-			<a href="" ng-if="color=='yellow'" class="closeBut" ng-click="closeModal()"><img src="images/iconExit42x42g.svg" alt=""></a>
+			<a href="" ng-if="color=='yellow' || color=='white'" class="closeBut" ng-click="closeModal()"><img src="images/iconExit42x42g.svg" alt=""></a>
 			<a href="" ng-if="color!='yellow'" class="closeBut" ng-click="closeModal()"><img src="images/iconExit42x42.svg" alt=""></a>
 			<span class="normalCaption">{{title}}</span>
 		</div>
 		<div class="modalContWrapper">
 			<!-- <h2>Display data for {{modalType}} with ID: {{id}}</h2> -->
 			<div ng-if="modalType=='lecture'">
-				<span class="modalHead">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
+				<span class="modalHead big">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
 				<span class="modalHead">{{lecture.type}}</span>
+				<hr>
 				<span class="modalHead">{{day}}, {{lecture.startsAt | limitTo : 5 : 11}}-{{lecture.endsAt | limitTo : 5 : 11}}h ({{(lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)}}h)</span>
 				<span class="modalHead">{{lecture.classroom.name}}</span>
 				<!-- 
