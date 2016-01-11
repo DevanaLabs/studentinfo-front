@@ -1,7 +1,8 @@
 #yearWrapper {
 	height: 100%;
 	width: 100%;
-	padding: 50px;
+	padding: 50px 40px 0 40px;
+    overflow-y: auto;
     box-sizing: border-box;
     background: white;
 
@@ -31,7 +32,6 @@
         font-size: 36px;
         color: $blue;
         display: block;
-        width: 100%;
         padding: 0 55px;
         clear: both;
     }
@@ -89,7 +89,7 @@
             font-weight: 600;
             border: 2px solid transparent;
             height: 30px;
-            width: 32px;
+            width: 30px;
         }
         td.todayExtra {
             border: 4px red solid;

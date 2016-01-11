@@ -138,3 +138,81 @@
 		}
 	}
 }
+
+
+@media screen and (max-width: 1440px) {
+	.titlebar {
+		min-height: 70px;
+		.topFilterWrapper {
+			line-height: 70px;
+			font-size: 14px;
+		}
+		.fatCaption {
+			font-size: 42px;
+		}
+		.normalCaption {
+			font-size: 24px;
+			padding: 0px 100px;
+		}
+		.closeBut {
+			padding: 13px 50px;
+		}
+	}
+	.titlebar.smaller {
+		min-height: 60px;
+		.topFilterWrapper {
+			line-height: 60px;
+			font-size: 14px;
+		}
+	}
+	.bottomDate, th {
+		font-size: 14px !important;
+	}
+	.eventNotif {
+		font-size: 13px;
+	}
+	#bgLogo {
+		width: 600px;
+		height: 450px;
+		top: calc(50% - 225px);
+		left: calc(50% - 100px);
+	}
+}
+
+
+@media screen and (max-width: 1280px) {
+	#indexSidebarWrapper  {
+		min-width: auto;
+		width: 110px;
+		#logoWrapper {
+			display: none;
+		}
+		.sidebarItem, #bottomFaksSpan, #bottomTimeWrapper {
+			display: none;
+		}
+		.sidebarItemIcon {
+			padding-top: 26px;
+		}
+		#bottomFaksLogo {
+			margin: 0 !important;
+		}
+		#bottomWrapper  {
+			height: 90px !important;
+		}
+	}
+	#indexContentWrapper {
+		max-width: none;
+		#yearWrapper {
+			padding: 40px 20px;
+			.yearMonthWrapper {
+			    margin: 0px 28px 10px;
+			}
+		}
+	}
+	#bgLogo {
+		width: 600px;
+		height: 450px;
+		top: calc(50% - 225px);
+		left: calc(50% - 300px);
+	}
+}

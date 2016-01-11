@@ -5,16 +5,17 @@
 	overflow: hidden;
 	.fatCaption {
 		padding-left: 110px;
-		width: calc(100% - 330px);
 		text-transform: capitalize;
 	}
 	.closeBut {
-		float: none;
+		//float: none;
 	}
 	.leftArrowWrapper, .rightArrowWrapper {
 		height: 100%;
 		width: 100px;
 		cursor: pointer;
+		position: relative;
+		z-index: 1000;
 		.leftArrow, .rightArrow {
 			height: 100%;
 			width: 100px;
@@ -40,7 +41,7 @@
 		}
 	}
 	.leftArrowWrapper:hover, .rightArrowWrapper:hover {
-		background: #eee;
+		background: rgba(0,0,0,0.1);
 	}
 
 	.monthTableWrapper {
@@ -53,27 +54,39 @@
 			height: 100%;
 			width: 100%;
 			color: $textgray;
+			tbody {
+				display: flex;
+				flex-flow: column;
+				height: 100%;
+			}
+			tr {
+				display: flex;
+				flex: 1 1 0;
+				flex-flow: row;
+			}
 			td {
+				position: relative;
+				flex: 1 1 0;
 				padding: 0px;
 				//text-align: left;
 				//vertical-align: top;
 				border: 1px solid #E6E6E6;
 				font-size: 21px;
 				font-weight: 600;
-				width: 1000px;
+				//width: 1000px;
 				vertical-align: top;
 				cursor: pointer;
 				.bottomDate {
-					position: relative;
+					position: absolute;
 					text-align: right;
-					float: right;
-					margin: calc(100% - 48px) 10px 10px 0;
+					bottom: 10px;
+					right: 10px;
 				}
 				.eventNotifCont {
-					width: calc(100% - 44px);
+					width: calc(100% - 40px);
 					display: inline-block;
 					.eventNotif {
-						width: calc(100% + 34px);
+						width: calc(100% + 30px);
 						display: inline-block;
 						padding: 3px 0 3px 10px;
 						background: $blue;
@@ -189,8 +202,13 @@
 			.prevMonDay:hover, .nextMonDay:hover, .prevMonth:hover, .nextMonth:hover { 
 				background: darken(#BBBBBB, 10%);
 			}
+			.daysRow {
+				flex: 0 0 auto;
+			}
 			th {
-				height: 50px;
+				//height: 50px;
+				flex: 1 1 0;
+				padding: 10px 0;
 				font-weight: normal;
 				font-size: 18px;
 			}
@@ -202,18 +220,6 @@
 					height: 0;
 					line-height: 0;
 					border: 0;
-				}
-			}
-		}
-	}
-} 
-
-.sixRow {
-	.monthTableWrapper {
-		.monthTable{
-			td{
-				.bottomDate{
-					margin: calc(100% - 75px) 10px 10px 0;
 				}
 			}
 		}

@@ -8,11 +8,7 @@
 	</div>
 	<div class="monthTableWrapper">
 		<table class="monthTable">
-			<tr class="adjustmentRow">
-				<th>00000000000000</th><th>00000000000000</th><th>00000000000000</th><th>00000000000000</th>
-				<th>00000000000000</th><th>00000000000000</th><th>00000000000000</th>
-			</tr>
-			<tr><th>Понедељак</th><th>Уторак</th><th>Среда</th><th>Четвртак</th><th>Петак</th><th>Субота</th><th>Недеља</th></tr>
+			<tr class="daysRow"><th>Понедељак</th><th>Уторак</th><th>Среда</th><th>Четвртак</th><th>Петак</th><th>Субота</th><th>Недеља</th></tr>
 			<tr ng-repeat="week in data">
 				<td ng-repeat="day in week" 
 				id="{{ 'y'+day.year+'m'+day.month+'d'+day.date }}"

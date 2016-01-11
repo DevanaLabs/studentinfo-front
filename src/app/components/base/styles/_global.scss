@@ -14,17 +14,21 @@ html, body, .section.group, .col {
 body {
 	background: url("images/bg.jpg") !important;
 	background-size: cover !important;
-	overflow: hidden;
+	overflow: auto;
+	min-width: 800px;
 	// dev-comment cursor: none;
-	#indexSidebarWrapper {
-		position: relative;
-		float: left !important;
-		width: 23% !important;
-	}
-	#indexContentWrapper {
-		position: relative;
-		float: left !important;
-		width: 77% !important;
+	#indexMainWrapper {
+		display: flex;
+		overflow-x: hidden;
+		#indexSidebarWrapper {
+			position: relative;
+			flex: 0 0 auto;
+		}
+		#indexContentWrapper {
+			position: relative;
+			overflow: hidden;
+			flex: 1 1 0;
+		}
 	}
 }
 * {
@@ -36,6 +40,9 @@ body {
 }
 .text-center {
 	text-align: center;
+}
+.italic {
+	font-style: italic;
 }
 .no-border {
 	border: 0 !important;
@@ -362,4 +369,23 @@ body {
 	.modalBack {
 		opacity: .3
 	}
+}
+
+.textblue {
+	color: $blue !important;
+}
+.textorange {
+	color: $orange !important;
+}
+.textgreen {
+	color: $green !important;
+}
+.textyellow {
+	color: $yellow !important;
+}
+.textgray {
+	color: #808080 !important;
+}
+.textmulti {
+	color: #999999 !important;
 }

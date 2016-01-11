@@ -1,5 +1,5 @@
 // Disable context menu
-// dev-comment document.addEventListener('contextmenu', function(event){ event.preventDefault(); });
+document.addEventListener('contextmenu', function(event){ event.preventDefault(); });
 
 'use strict';
 
