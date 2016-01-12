@@ -75,8 +75,8 @@ angular.module("siApp")
 
 		for(var i=0; i<events.length; i++){
 
-			var currentDate = new Date(events[i].startsAt);
-			var stopDate = new Date(events[i].endsAt);
+			var currentDate = new Date(events[i].datetime.startsAt);
+			var stopDate = new Date(events[i].datetime.endsAt);
 			while (currentDate <= stopDate) {
 				var tmpDate = new Date(currentDate);
 				var dd = tmpDate.getDate();

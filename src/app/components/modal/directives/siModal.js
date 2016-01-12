@@ -44,7 +44,7 @@ angular.module('siApp')
                     $scope.title = $attr.day + ". " + monthsTr[$attr.month] + " " + $attr.year;
                     $scope.color = $attr.titlebarcolor;
                     //console.log($scope.color);
-                    $scope.modalNotifs = Dashboard.getCourseEventsForDay($attr.day, $attr.month, $attr.day);
+                    $scope.modalNotifs = Dashboard.getCourseEventsForDay($attr.year, $attr.month, $attr.day);
                     //console.log($scope.modalNotifs);
 
                 }

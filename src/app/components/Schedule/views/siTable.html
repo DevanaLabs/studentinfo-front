@@ -7,15 +7,15 @@
 		<table>
 			<tr class="adjustmentRow"> <td class="timeCol"> <span class="timeSpan">   </span> </td>   <td>000000000000000</td> <td>000000000000000</td> <td>000000000000000</td> <td>000000000000000</td> <td>000000000000000</td>  <td ng-if="dailyStuff[6].length > 0">000000000000000</td>   </tr>
 			<tr class="dayRow"> <td class="timeCol"> <span class="timeSpan">   </span> </td>   <td class="dayCell">Понељак</td> <td class="dayCell">Уторак</td> <td class="dayCell">Среда</td> <td class="dayCell">Четвртак</td> <td class="dayCell">Петак</td> <td ng-if="dailyStuff[6].length > 0" class="dayCell">Субота</td>   </tr>
-			<tr> 
-				<td class="timeCol"> <span class="timeSpan">09h</span> </td>   
+			<tr>
+				<td class="timeCol"> <span class="timeSpan">09h</span> </td>
 				<td>
 					<!-- PONEDELJAK -->
 					<div style="position: relative; height: 100%">
-						<div class="lectureWrapper" ng-click="openModal('lecture', lecture.id, gpid)" ng-repeat="lecture in dailyStuff[1]" 
+						<div class="lectureWrapper" ng-click="openModal('lecture', lecture.id, gpid)" ng-repeat="lecture in dailyStuff[1]"
 							ng-class="{
-								'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања', 
-								'hasNotif' : lecture.notifications.length > 0, 
+								'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања',
+								'hasNotif' : lecture.notifications.length > 0,
 								'smallerText' : (lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11) < 3 && lecture.course.name.length >30
 							 }"
 							style="top: calc({{((lecture.startsAt | limitTo : 2 : 11) - 9)*100}}% + {{((lecture.startsAt | limitTo : 2 : 11) - 9)*1}}px);
@@ -30,15 +30,15 @@
 							</span>
 						</div>
 					</div>
-				</td> 
+				</td>
 
 				<td>
 					<!-- UTORAK -->
 					<div style="position: relative; height: 100%">
-						<div class="lectureWrapper" ng-click="openModal('lecture', lecture.id, gpid)" ng-repeat="lecture in dailyStuff[2]" 
+						<div class="lectureWrapper" ng-click="openModal('lecture', lecture.id, gpid)" ng-repeat="lecture in dailyStuff[2]"
 							ng-class="{
-								'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања', 
-								'hasNotif' : lecture.notifications.length > 0, 
+								'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања',
+								'hasNotif' : lecture.notifications.length > 0,
 								'smallerText' : (lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11) < 3 && lecture.course.name.length >30
 							 }"
 							style="top: calc({{((lecture.startsAt | limitTo : 2 : 11) - 9)*100}}% + {{((lecture.startsAt | limitTo : 2 : 11) - 9)*1}}px);
@@ -53,15 +53,15 @@
 							</span>
 						</div>
 					</div>
-				</td> 
+				</td>
 
 				<td>
 					<!-- SREDA -->
 					<div style="position: relative; height: 100%">
-						<div class="lectureWrapper" ng-click="openModal('lecture', lecture.id, gpid)" ng-repeat="lecture in dailyStuff[3]" 
+						<div class="lectureWrapper" ng-click="openModal('lecture', lecture.id, gpid)" ng-repeat="lecture in dailyStuff[3]"
 							ng-class="{
-								'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања', 
-								'hasNotif' : lecture.notifications.length > 0, 
+								'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања',
+								'hasNotif' : lecture.notifications.length > 0,
 								'smallerText' : (lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11) < 3 && lecture.course.name.length >30
 							 }"
 							style="top: calc({{((lecture.startsAt | limitTo : 2 : 11) - 9)*100}}% + {{((lecture.startsAt | limitTo : 2 : 11) - 9)*1}}px);
@@ -76,15 +76,15 @@
 							</span>
 						</div>
 					</div>
-				</td> 
+				</td>
 
 				<td>
 					<!-- CETVRTAK -->
 					<div style="position: relative; height: 100%">
-						<div class="lectureWrapper" ng-click="openModal('lecture', lecture.id, gpid)" ng-repeat="lecture in dailyStuff[4]" 
+						<div class="lectureWrapper" ng-click="openModal('lecture', lecture.id, gpid)" ng-repeat="lecture in dailyStuff[4]"
 							ng-class="{
-								'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања', 
-								'hasNotif' : lecture.notifications.length > 0, 
+								'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања',
+								'hasNotif' : lecture.notifications.length > 0,
 								'smallerText' : (lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11) < 3 && lecture.course.name.length >30
 							 }"
 							style="top: calc({{((lecture.startsAt | limitTo : 2 : 11) - 9)*100}}% + {{((lecture.startsAt | limitTo : 2 : 11) - 9)*1}}px);
@@ -99,15 +99,15 @@
 							</span>
 						</div>
 					</div>
-				</td> 
+				</td>
 
 				<td>
 					<!-- PETAK -->
 					<div style="position: relative; height: 100%">
-						<div class="lectureWrapper" ng-click="openModal('lecture', lecture.id, gpid)" ng-repeat="lecture in dailyStuff[5]" 
+						<div class="lectureWrapper" ng-click="openModal('lecture', lecture.id, gpid)" ng-repeat="lecture in dailyStuff[5]"
 							ng-class="{
-								'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања', 
-								'hasNotif' : lecture.notifications.length > 0, 
+								'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања',
+								'hasNotif' : lecture.notifications.length > 0,
 								'smallerText' : (lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11) < 3 && lecture.course.name.length >30
 							 }"
 							style="top: calc({{((lecture.startsAt | limitTo : 2 : 11) - 9)*100}}% + {{((lecture.startsAt | limitTo : 2 : 11) - 9)*1}}px);
@@ -122,15 +122,15 @@
 							</span>
 						</div>
 					</div>
-				</td>  
+				</td>
 
 				<td ng-if="dailyStuff[6].length > 0">
 					<!-- SUBOTA -->
 					<div style="position: relative; height: 100%">
-						<div class="lectureWrapper" ng-click="openModal('lecture', lecture.id, gpid)" ng-repeat="lecture in dailyStuff[6]" 
+						<div class="lectureWrapper" ng-click="openModal('lecture', lecture.id, gpid)" ng-repeat="lecture in dailyStuff[6]"
 							ng-class="{
-								'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања', 
-								'hasNotif' : lecture.notifications.length > 0, 
+								'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања',
+								'hasNotif' : lecture.notifications.length > 0,
 								'smallerText' : (lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11) < 3 && lecture.course.name.length >30
 							 }"
 							style="top: calc({{((lecture.startsAt | limitTo : 2 : 11) - 9)*100}}% + {{((lecture.startsAt | limitTo : 2 : 11) - 9)*1}}px);

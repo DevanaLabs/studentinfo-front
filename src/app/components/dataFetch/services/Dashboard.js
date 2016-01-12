@@ -5,7 +5,13 @@ angular.module("siApp")
 	refreshData();
 
 	var json = JSON.parse(localStorage.getItem("cachedResource://data")).value.success.data;
-	
+	//var json = '',
+	//	ls = null;
+	//if (localStorage.getItem("cachedResource://data") != null) {
+	//	json = JSON.parse(localStorage.getItem("cachedResource://data")).value.success.data;
+	//	//console.log(json);
+	//}
+
 	function refreshData() {
 		//console.log("Refreshing data...");
 		var jsonPromise = $cachedResource('data', (API_BASE_URL + 'data/'));
@@ -16,7 +22,6 @@ angular.module("siApp")
 		});
 		$timeout(function(){refreshData()}, 5*60*1000);
 	}
-
 	function getAll() {
 		return json;
 	}
@@ -73,7 +78,7 @@ angular.module("siApp")
 
 		//var azbuka = ["А", "Б", "В", "Г", "Д", "Ђ", "Е", "Ж", "З", "И", "Ј", "К", "Л", "Љ", "М", "Н", "Њ", "О", "П", "Р", "С", "Т", "Ћ", "У", "Ф", "Х", "Ц", "Ч", "Џ", "Ш"];
 		var abc = {"А": [], "Б": [], "В": [], "Г": [], "Д": [], "Ђ": [], "Е": [], "Ж": [], "З": [], "И": [], "Ј": [], "К": [], "Л": [], "Љ": [], "М": [], "Н": [], "Њ": [], "О": [], "П": [], "Р": [], "С": [], "Т": [], "Ћ": [], "У": [], "Ф": [], "Х": [], "Ц": [], "Ч": [], "Џ": [], "Ш": []};
-		
+
 		var tch = json.teachers;
 		tch.sort(function(a,b){
 			return (new Intl.Collator('rs').compare(a.lastName, b.lastName));
@@ -127,7 +132,13 @@ angular.module("siApp")
 	function getSchedule(type, id) {
 		//return json[type+'s'][id-1].lectures;
 		for(var i=0; i<json[type+'s'].length; i++){
-			if(json[type+'s'][i].id == id) return json[type+'s'][i].lectures;
+			if(json[type+'s'][i].id == id){
+				for(var j=0; j<json[type+'s'][i].lectures.length; j++){
+					json[type+'s'][i].lectures[j].startsAt = (moment().day(1).hour(0).minute(0).second(0).add(json[type+'s'][i].lectures[j].time.startsAt, 'seconds')).format();
+					json[type+'s'][i].lectures[j].endsAt = (moment().day(1).hour(0).minute(0).second(0).add(json[type+'s'][i].lectures[j].time.endsAt, 'seconds')).format();
+				}
+				return json[type+'s'][i].lectures;
+			}
 		}
 	}
 
@@ -142,11 +153,11 @@ angular.module("siApp")
 	function getCourseEventsForDay(year, month, day) {
 		var events = [];
 		for(var i=0; i<json.courseEvents.length; i++){
-			var mm = json.courseEvents[i].startsAt.substr(5, 2)*1;
-			var yy = json.courseEvents[i].startsAt.substr(8, 4)*1;
-			if(json.courseEvents[i].startsAt.substr(5, 2)*1 == month && 
-				json.courseEvents[i].startsAt.substr(0, 4)*1 == year && 
-			    json.courseEvents[i].startsAt.substr(8, 2)*1 == day) {
+			var mm = json.courseEvents[i].datetime.startsAt.substr(5, 2)*1;
+			var yy = json.courseEvents[i].datetime.startsAt.substr(8, 4)*1;
+			if(json.courseEvents[i].datetime.startsAt.substr(5, 2)*1 == month &&
+				json.courseEvents[i].datetime.startsAt.substr(0, 4)*1 == year &&
+			    json.courseEvents[i].datetime.startsAt.substr(8, 2)*1 == day) {
 			    events.push(json.courseEvents[i]);
 			}
 		}
