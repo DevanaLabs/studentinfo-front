@@ -26,6 +26,7 @@ angular.module('siApp').controller('scheduleCtrl', ['$scope', 'dataExchangeServi
 	$scope.notifs = 0;
 
 	$scope.lectures = Dashboard.getSchedule($scope.type, dataExchangeService.id);
+	//console.log($scope.lectures);
 	for(var i=0; i<$scope.lectures.length; i++) {
 		var d = new Date(moment().day(1).hour(0).minute(0).second(0).add($scope.lectures[i].time.startsAt, 'seconds'));
 		//$scope.lectures[i].startsAt = (moment().day(1).hour(0).minute(0).second(0).add($scope.lectures[i].time.startsAt, 'seconds')).format();

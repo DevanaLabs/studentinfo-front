@@ -69,7 +69,7 @@ body {
 	position: absolute;
 	left: 0;
 	right: 0;
-	transition:all .5s ease-in-out;
+	transition:all .3s ease;
 }
 
 #UIcont.ng-enter {
@@ -326,6 +326,10 @@ body {
 		.modalContWrapper {
 			padding: 30px 100px;
 		}
+		.modalContWrapperWithArrows {
+			padding: 30px 0;
+			float: left;
+		}
 		.modalHead {
 			font-size: 28px;
     		line-height: 44px;
@@ -369,6 +373,40 @@ body {
 	.modalBack {
 		opacity: .3
 	}
+}
+
+.leftArrowWrapper, .rightArrowWrapper {
+	height: 100%;
+	width: 100px;
+	cursor: pointer;
+	position: relative;
+	z-index: 1000;
+	.leftArrow, .rightArrow {
+		height: 100%;
+		width: 100px;
+	}
+	
+}
+.leftArrowWrapper {
+	float: left;
+	.leftArrow {
+		background: url("images/iconArrowBack30x50.svg");
+		background-repeat: no-repeat;
+		background-position: 30px;
+		background-size: 40px;
+	}
+}
+.rightArrowWrapper {
+	float: right;
+	.rightArrow {
+		background: url("images/iconArrowFwd30x50.svg");
+		background-repeat: no-repeat;
+		background-position: 30px;
+		background-size: 40px;
+	}
+}
+.leftArrowWrapper:hover, .rightArrowWrapper:hover {
+	background: rgba(0,0,0,0.1);
 }
 
 .textblue {

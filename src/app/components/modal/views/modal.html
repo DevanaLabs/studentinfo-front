@@ -1,7 +1,7 @@
 <div class="modalWrapper" >
 	<div class="modalBack"></div>
 	<div class="modalMain" id="displayedModalMain">
-		<div class="titlebar shadow noflex" ng-class="{
+		<div class="titlebar shadow noflex" ng-click="prevDay()" ng-class="{
 			'blue' : (modalType=='lecture' && lecture.type == 'Предавања') || color=='blue',
 			'orange' : (modalType=='lecture' && lecture.type != 'Предавања') || color=='orange',
 			'green' : color=='green', 
@@ -14,7 +14,12 @@
 			<a href="" ng-if="color!='yellow' && color!='white'" class="closeBut" ng-click="closeModal()"><img src="images/iconExit42x42.svg" alt=""></a>
 			<span class="normalCaption">{{title}}</span>
 		</div>
-		<div class="modalContWrapper">
+
+		<div class="leftArrowWrapper" ng-click="prevDay()" ng-if="modalType=='day'">
+			<div class="leftArrow"></div>
+		</div>
+		<div class="modalContWrapper" ng-class="{'modalContWrapperWithArrows' : modalType == 'day'}">
+
 			<!-- <h2>Display data for {{modalType}} with ID: {{id}}</h2> -->
 			<div ng-if="modalType=='lecture'">
 				<span class="modalHead big">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
@@ -48,7 +53,11 @@
 				<span class="modalHead" ng-repeat="notif in modalNotifs">- {{notif.description}}</span>
 				<span class="modalHead" ng-if="modalNotifs.length == 0">(нема додатних информација)</span>
 			</div>
+			
 
+		</div>
+		<div class="rightArrowWrapper" ng-click="nextDay()" ng-if="modalType=='day'">
+			<div class="rightArrow"></div>
 		</div>
 	</div>
 </div>

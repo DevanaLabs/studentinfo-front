@@ -2,15 +2,12 @@
 
 angular.module("siApp")
 .service('Dashboard', ['$cachedResource', '$timeout', 'API_BASE_URL', 'dataExchangeService', function ($cachedResource, $timeout, API_BASE_URL, dataExchangeService) {
-	refreshData();
+	var json;
+	if(localStorage.getItem("cachedResource://data")) {
+		json = JSON.parse(localStorage.getItem("cachedResource://data")).value.success.data;
+	}
 
-	var json = JSON.parse(localStorage.getItem("cachedResource://data")).value.success.data;
-	//var json = '',
-	//	ls = null;
-	//if (localStorage.getItem("cachedResource://data") != null) {
-	//	json = JSON.parse(localStorage.getItem("cachedResource://data")).value.success.data;
-	//	//console.log(json);
-	//}
+	refreshData();
 
 	function refreshData() {
 		//console.log("Refreshing data...");
@@ -33,12 +30,13 @@ angular.module("siApp")
 
 		var years = [];
 		for(var i=0; i<json.groups.length; i++){
-			// temp fix for filtering other groups
-			if(json.groups[i].year === 100) json.groups[i].year = 9;
 			if(years.indexOf(json.groups[i].year) == -1) years.push(json.groups[i].year);
 		}
 		// sort and translate
-		years.sort(function(a,b){return a-b;});
+		years.sort(function(a,b){
+			if(b==0) return -1; // put other years on end
+			else return a-b;
+		});
 		untranslatedData.years = years;
 		filterData.years = years;
 
@@ -89,8 +87,6 @@ angular.module("siApp")
 		}
 		fD.teachers = abc;
 		for(i=0; i<json.groups.length; i++){
-			// temp fix for filtering other groups
-			if(json.groups[i].year === 100) json.groups[i].year = 9;
 			fD.groups.push(json.groups[i]);
 		}
 		for(i=0; i<json.classrooms.length; i++){
@@ -122,7 +118,10 @@ angular.module("siApp")
 		    if(json[dataExchangeService.type+'s'][i].id == gpid) {
 				for(var k=0; k<json[dataExchangeService.type+'s'][i].lectures.length; k++){
 				    if(json[dataExchangeService.type+'s'][i].lectures[k].id == lectid) {
-						return json[dataExchangeService.type+'s'][i].lectures[k];
+				    	var lecture = $.extend(true, {}, json[dataExchangeService.type+'s'][i].lectures[k]);
+				    	lecture.startsAt = (moment().day(1).hour(0).minute(0).second(0).add(json[dataExchangeService.type+'s'][i].lectures[k].time.startsAt, 'seconds')).format();
+				    	lecture.endsAt = (moment().day(1).hour(0).minute(0).second(0).add(json[dataExchangeService.type+'s'][i].lectures[k].time.endsAt, 'seconds')).format();
+						return lecture;
 					}
 				}
 			}
@@ -131,19 +130,34 @@ angular.module("siApp")
 
 	function getSchedule(type, id) {
 		//return json[type+'s'][id-1].lectures;
+		var schedule = [];
 		for(var i=0; i<json[type+'s'].length; i++){
 			if(json[type+'s'][i].id == id){
 				for(var j=0; j<json[type+'s'][i].lectures.length; j++){
 					json[type+'s'][i].lectures[j].startsAt = (moment().day(1).hour(0).minute(0).second(0).add(json[type+'s'][i].lectures[j].time.startsAt, 'seconds')).format();
 					json[type+'s'][i].lectures[j].endsAt = (moment().day(1).hour(0).minute(0).second(0).add(json[type+'s'][i].lectures[j].time.endsAt, 'seconds')).format();
+					schedule[j] = $.extend( true, {}, json[type+'s'][i].lectures[j] );
 				}
-				return json[type+'s'][i].lectures;
+				return schedule;
 			}
 		}
 	}
 
 	function getGlobalEvents() {
 		return json.globalEvents;
+	}
+
+	function getGlobalEventsForDay(year, month, day) {
+		var inputdate = new Date(year+"-"+month+"-"+day);
+		var events = [];
+		for(var i=0; i<json.globalEvents.length; i++){
+			var startdate = new Date(json.globalEvents[i].datetime.startsAt);
+			var enddate = new Date(json.globalEvents[i].datetime.endsAt);
+			if(inputdate.getTime()+14400000 >= startdate && inputdate <= enddate) {
+			    events.push(json.globalEvents[i]);
+			}
+		}
+		return events;
 	}
 
 	function getCourseEvents() {
@@ -174,6 +188,7 @@ angular.module("siApp")
 		getGroup: getGroup,
 		getLecture: getLecture,
 		getGlobalEvents: getGlobalEvents,
+		getGlobalEventsForDay: getGlobalEventsForDay,
 		getCourseEvents: getCourseEvents,
 		getCourseEventsForDay: getCourseEventsForDay
 	};

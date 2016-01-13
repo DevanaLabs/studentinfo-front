@@ -10,39 +10,6 @@
 	.closeBut {
 		//float: none;
 	}
-	.leftArrowWrapper, .rightArrowWrapper {
-		height: 100%;
-		width: 100px;
-		cursor: pointer;
-		position: relative;
-		z-index: 1000;
-		.leftArrow, .rightArrow {
-			height: 100%;
-			width: 100px;
-		}
-		
-	}
-	.leftArrowWrapper {
-		float: left;
-		.leftArrow {
-			background: url("images/iconArrowBack30x50.svg");
-			background-repeat: no-repeat;
-			background-position: 30px;
-			background-size: 40px;
-		}
-	}
-	.rightArrowWrapper {
-		float: right;
-		.rightArrow {
-			background: url("images/iconArrowFwd30x50.svg");
-			background-repeat: no-repeat;
-			background-position: 30px;
-			background-size: 40px;
-		}
-	}
-	.leftArrowWrapper:hover, .rightArrowWrapper:hover {
-		background: rgba(0,0,0,0.1);
-	}
 
 	.monthTableWrapper {
 		padding: 20px 10px;
