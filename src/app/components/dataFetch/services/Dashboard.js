@@ -4,7 +4,12 @@ angular.module("siApp")
 .service('Dashboard', ['$cachedResource', '$timeout', 'API_BASE_URL', 'dataExchangeService', function ($cachedResource, $timeout, API_BASE_URL, dataExchangeService) {
 	var json;
 	if(localStorage.getItem("cachedResource://data")) {
-		json = JSON.parse(localStorage.getItem("cachedResource://data")).value.success.data;
+		var cachedjson = JSON.parse(localStorage.getItem("cachedResource://data")).value;
+		if(typeof cachedjson.success != 'undefined') {
+			if(typeof cachedjson.success.data != 'undefined') {
+				json = cachedjson;
+			}
+		}
 	}
 
 	refreshData();
@@ -13,7 +18,7 @@ angular.module("siApp")
 		//console.log("Refreshing data...");
 		var jsonPromise = $cachedResource('data', (API_BASE_URL + 'data/'));
 		jsonPromise.get().$promise.then(function(data){
-			//console.log(data.success.data);
+			console.log(data);
 			json = data.success.data;
 			//console.log("Done refreshing data...");
 		});
