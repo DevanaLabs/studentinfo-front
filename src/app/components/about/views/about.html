@@ -34,7 +34,7 @@
 	</div>
 	
 	<div id="feedbackWrapper" class="titlebar bottom shadow noflex" ng-controller="aboutCtrl" ng-class="{'active' : showKeyboard}">
-		<h2 ng-click="showKeyboard = true">Пошаљите нам сугестије и предлоге: </h2>
+		<h2 ng-click="showKeyboard = true" id="showFeedback" class="textblue">Пошаљите нам сугестије и предлоге</h2>
 		<div id="inputWrapper">
 			<textarea name="" id="write" placeholder="Додирните за тастатуру" ng-focus="showKeyboard = true"></textarea>
 			<button id="cancelFeedback" class="feedbackButton" ng-click="cancelFeedback(); showKeyboard = false">Откажи</button>

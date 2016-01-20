@@ -112,6 +112,7 @@
 
 
 	#aboutWrapper {
+		overflow: auto;
 		#topAboutWrapper {
 			padding: 30px 50px;
 			.aboutColumn {
@@ -130,13 +131,48 @@
 			}
 		}
 		#feedbackWrapper {
-			height: 70px !important;
+			height: auto !important;
 			min-height: 70px;
+			position: relative;
+			overflow: auto;
+			top: 30px;
 			#inputWrapper {
-				height: calc(100% - 220px);
+				//height: calc(100% - 220px);
+				#write {
+					margin-bottom: 0;
+				}
+				::-webkit-input-placeholder {
+				    color: white;
+				}
+				:-moz-placeholder {
+				    color: white;
+				}
+				::-moz-placeholder {
+				    color: white;
+				}
+				:-ms-input-placeholder {
+				    color: white;
+				}
+
+				#cancelFeedback {
+					display: none;
+				}
+				#keyboardContainer {
+					display: none;
+				}
 			}
 		}
+		#feedbackWrapper.active {
+			height: auto !important;
+		}
 	}
+	// Text selection should be enabled but it interferes with swipe
+	//.modalContWrapper *, .fatCaption, .normalCaption {
+	//    -webkit-user-select: initial;
+	//    -moz-user-select: initial;
+	//    -ms-user-select: initial;
+	//    user-select: initial;
+	//}
 }
 
 

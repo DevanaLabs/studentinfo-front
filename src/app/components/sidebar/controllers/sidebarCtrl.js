@@ -11,5 +11,11 @@ angular.module("siApp")
 		$timeout(function(){tick()}, 1000);
 	}
 	tick();
+
+	$scope.goToSchedule = function() {
+		if(!($state.is('preSchedule.groups') || $state.is('preSchedule.classrooms') || $state.is('preSchedule.teachers'))) {
+			$state.go('preSchedule.groups');
+		}
+	}
 }])
 ;

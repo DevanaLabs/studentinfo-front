@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('siApp')
-.controller('PreScheduleCtrl', ['$scope', '$timeout', 'Dashboard', function($scope, $timeout, Dashboard) {
+.controller('PreScheduleCtrl', ['$scope', '$timeout', '$state', 'Dashboard', function($scope, $timeout, $state, Dashboard) {
 	//console.log(Dashboard.getAll());
 	$scope.elementExists = function (id) {
 		var element = angular.element("#" + id);
@@ -35,6 +35,9 @@ angular.module('siApp')
 		//console.log(targetSF);
 		$scope.displayedSubFilter = targetSF;
 	};
+
+	$state.go('preSchedule.groups');
+	$scope.switchFilter('years');
 
 }])
 .filter( 'yearsTranslate',  [ function () {    
