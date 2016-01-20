@@ -88,9 +88,10 @@ angular.module("siApp")
 		});
 		for(var i=0; i<json.teachers.length; i++) {
 			//if(json.teachers[i].lectures.length > 0) {}
-				abc[ json.teachers[i].lastName.substr(0,1) ].push(json.teachers[i]);
+				abc[json.teachers[i].lastName.substr(0,1) ].push(json.teachers[i]);
 		}
 		fD.teachers = abc;
+		//console.log(fD);
 		for(i=0; i<json.groups.length; i++){
 			fD.groups.push(json.groups[i]);
 		}
