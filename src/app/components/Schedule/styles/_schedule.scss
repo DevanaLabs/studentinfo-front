@@ -27,6 +27,9 @@
 				height: 8%;
 				vertical-align: top;
 			}
+			td.today {
+				background: #eee;
+			}
 			.timeCol {
 				width: 45px;
 				background: transparent;
@@ -55,6 +58,10 @@
 				font-size: 18px;
 				color: #666666;
 			}
+			.dayCell.today {
+				background: white;
+				font-weight: 600;
+			}
 			.lectureWrapper {
 				position: absolute;
 				width: 100%;
@@ -76,6 +83,7 @@
 					margin-top: 5px;
 					display: inline-block;
 					line-height: 24px;
+					opacity: .7;
 				}
 			}
 			.lectureWrapper.smallerText * {
@@ -107,6 +115,9 @@
 		display: block;
 		margin-top: -9px;
 	}	
+	.timeSpan.right {
+		text-align: right;
+	} 
 }
 
 .scheduleWrapper.displayed {

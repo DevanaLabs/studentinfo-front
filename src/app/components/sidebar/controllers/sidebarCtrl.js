@@ -11,6 +11,8 @@ angular.module("siApp")
 		$timeout(function(){tick()}, 1000);
 	}
 	tick();
+	
+	nextImg(); 
 
 	$scope.goToSchedule = function() {
 		if(!($state.is('preSchedule.groups') || $state.is('preSchedule.classrooms') || $state.is('preSchedule.teachers'))) {

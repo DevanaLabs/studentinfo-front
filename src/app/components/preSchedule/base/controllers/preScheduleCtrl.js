@@ -11,7 +11,7 @@ angular.module('siApp')
 	$scope.scrollTo = function(letter) { 
 		if($scope.elementExists(letter)){
 			$scope.switchSubFilter(letter);
-			angular.element("#pickersWrapper").scrollTop(angular.element("#"+letter)[0].offsetTop - 200);
+			angular.element("#pickersWrapper").scrollTop(angular.element("#"+letter)[0].offsetTop - 195);
 		}
 	};
 

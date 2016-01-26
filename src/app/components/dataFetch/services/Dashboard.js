@@ -18,7 +18,7 @@ angular.module("siApp")
 		//console.log("Refreshing data...");
 		var jsonPromise = $cachedResource('data', (API_BASE_URL + 'data/'));
 		jsonPromise.get().$promise.then(function(data){
-			console.log(data);
+			//console.log(data);
 			json = data.success.data;
 			//console.log("Done refreshing data...");
 		});
@@ -57,8 +57,8 @@ angular.module("siApp")
 
 		var azbuka = ["А", "Б", "В", "Г", "Д", "Ђ", "Е", "Ж", "З", "И", "Ј", "К", "Л", "Љ", "М", "Н", "Њ", "О", "П", "Р", "С", "Т", "Ћ", "У", "Ф", "Х", "Ц", "Ч", "Џ", "Ш"];
 		var abc = {"А": [], "Б": [], "В": [], "Г": [], "Д": [], "Ђ": [], "Е": [], "Ж": [], "З": [], "И": [], "Ј": [], "К": [], "Л": [], "Љ": [], "М": [], "Н": [], "Њ": [], "О": [], "П": [], "Р": [], "С": [], "Т": [], "Ћ": [], "У": [], "Ф": [], "Х": [], "Ц": [], "Ч": [], "Џ": [], "Ш": []};
-		filterData.abc = Object.keys(abc);
-		untranslatedData.abc = filterData.abc;
+		//filterData.abc = Object.keys(abc);
+		//untranslatedData.abc = filterData.abc;
 
 		filterData.abc = azbuka;
 		untranslatedData.abc = azbuka;

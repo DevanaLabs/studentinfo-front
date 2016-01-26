@@ -83,13 +83,28 @@
             color: $textgray;
         }
         td.today {
-            background: red;
+            background: #D41818;
             border-radius: 50%;
             color: white;
             font-weight: 600;
             border: 2px solid transparent;
             height: 30px;
             width: 30px;
+            -webkit-animation-name: pulseRed; /* Chrome, Safari, Opera */
+            -webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
+            animation-name: pulseRed;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
+        @-webkit-keyframes pulseRed {
+            0%   {background-color:#D41818;}
+            50%  {background-color:#FF1818;}
+            100% {background-color:#D41818; }
+        }
+        @keyframes pulseRed {
+            0%   {background-color:#D41818;}
+            50%  {background-color:#FF1818;}
+            100% {background-color:#D41818; }
         }
         td.todayExtra {
             border: 4px red solid;

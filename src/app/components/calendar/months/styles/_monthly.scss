@@ -100,13 +100,28 @@
 			}
 			.today {
 				.bottomDate {
-					background: red;
+					background: #D41818;
 					border-radius: 50%;
 					height: 34px;
 					width: 34px;
 					text-align: center;
 					color: white;
 					line-height: 34px;
+					-webkit-animation-name: pulseRed; /* Chrome, Safari, Opera */
+					-webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
+					animation-name: pulseRed;
+					animation-duration: 2s;
+					animation-iteration-count: infinite;
+				}
+				@-webkit-keyframes pulseRed {
+				    0%   {background-color:#D41818;}
+				    50%  {background-color:#FF1818;}
+				    100% {background-color:#D41818; }
+				}
+				@keyframes pulseRed {
+				    0%   {background-color:#D41818;}
+				    50%  {background-color:#FF1818;}
+				    100% {background-color:#D41818; }
 				}
 			}
 			td.multi {

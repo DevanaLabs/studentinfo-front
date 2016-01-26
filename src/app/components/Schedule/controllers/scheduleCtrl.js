@@ -35,6 +35,8 @@ angular.module('siApp').controller('scheduleCtrl', ['$scope', 'dataExchangeServi
 		if($scope.lectures[i].notifications.length > 0) $scope.notifs++;
 	}
 
+	$(".day" + moment().isoWeekday()).addClass("today");
+
 	$scope.openModal = function(tp, elementid){
 		var el = $compile( "<si-modal id='displayedModal' elementid='"+ elementid +"' type='"+ tp +"' gpid='"+ arguments[2] +"'></si-modal>" )( $scope );
 		$element.parent().append( el );
