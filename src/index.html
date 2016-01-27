@@ -124,19 +124,24 @@
             "password":document.getElementById('passwordField').value
         };
         r.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-        console.log("Sending...")
+        //console.log("Sending...")
         r.send(JSON.stringify(a));
         document.getElementById("sendButton").className = "sending";
         r.onreadystatechange = function () {
             if(r.readyState == 4) {
                 document.getElementById("sendButton").className = "";
-                console.log(r.response);
+                //console.log(r.response);
                 if(JSON.parse(r.response).error) {
                     alert(JSON.parse(r.response).error.message);
                 }
                 else {
                     //alert("Добродошли, "+JSON.parse(r.response).success.data.user.firstName);
                     if(JSON.parse(r.response).success.data.user.userType == "Admin") {
+                        //console.log(JSON.parse(r.response).success);
+                        document.cookie = "session-exists=true";
+                        document.cookie = "session-id="+JSON.parse(r.response).success.data.user.id;
+                        document.cookie = "session-user-object="+JSON.stringify(JSON.parse(r.response).success.data.user);
+                        document.cookie = "session-user-role=admin"
                         document.location = "admin/index.html";
                     }
                     else {
