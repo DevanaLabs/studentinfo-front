@@ -1,0 +1,52 @@
+<div class="sidebar-collapse">
+	<ul class="nav metismenu" id="side-menu">
+		<li class="nav-header">
+			<div class="dropdown profile-element">
+				<span>
+					<img alt="image" class="img-circle text-center" src="images/profile_small.png">
+				</span>
+				<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+					<span class="clear">
+						<span class="block m-t-xs">
+							<strong class="font-bold">{{ currentUser.firstName }} {{ currentUser.lastName }}</strong>
+						</span>
+						<span class="text-muted text-xs block">
+							Admin
+						</span>
+					</span>
+				</a>
+			</div>
+			<div class="logo-element">
+			</div>
+		</li>
+		<li>
+			<a ui-sref="events"><i class="fa fa-calendar"></i> <span class="nav-label">Dogadjaji</span></a>
+		</li>
+		<li>
+            <a>
+            	<i class="fa fa-bell"></i>
+            	<span class="nav-label">Obavestenja</span>
+            	<span class="fa arrow"></span>
+            </a>
+            <ul class="nav nav-second-level collapse in">
+                <li><a ui-sref="lectureNotifications">Za predavanja/vezbe</a></li>
+                <li><a ui-sref="eventNotifications">Za dogadjaje</a></li>
+            </ul>
+        </li>
+		<li>
+			<a ui-sref="staff({type: 'professors'})"><i class="fa fa-user"></i> <span class="nav-label">Profesori</span></a>
+		</li>
+		<li>
+			<a ui-sref="staff({type: 'assistants'})"><i class="fa fa-user"></i> <span class="nav-label">Asistenti</span></a>
+		</li>
+		<li>
+			<a ui-sref="staff({type: 'students'})"><i class="fa fa-users"></i> <span class="nav-label">Studenti</span></a>
+		</li>
+		<li>
+			<a ui-sref="settings()"><i class="fa fa-gears"></i> <span class="nav-label">Podesavanja</span></a>
+		</li>
+		<li>
+			<a ui-sref="logout"><i class="fa fa-sign-out"></i> <span class="nav-label">Kraj rada</span></a>
+		</li>
+	</ul>
+</div>

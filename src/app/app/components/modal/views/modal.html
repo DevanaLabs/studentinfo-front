@@ -1,0 +1,93 @@
+<div class="modalWrapper" >
+	<div class="modalBack"></div>
+	<div class="modalMain" id="displayedModalMain">
+		<div class="titlebar shadow noflex" ng-class="{
+			'blue' : (modalType=='lecture' && lecture.type == 'Предавања') || color=='blue',
+			'orange' : (modalType=='lecture' && lecture.type != 'Предавања') || color=='orange',
+			'green' : color=='green', 
+			'yellow' : color=='yellow', 
+			'gray' : color=='gray',
+			'multi' : color=='multi',
+			'white' : color=='white'
+			}">
+			<a href="" ng-if="color=='yellow' || color=='white'" class="closeBut" ng-click="closeModal()"><img src="images/iconExit42x42g.svg" alt=""></a>
+			<a href="" ng-if="color!='yellow' && color!='white'" class="closeBut" ng-click="closeModal()"><img src="images/iconExit42x42.svg" alt=""></a>
+			<span class="normalCaption">{{title}}</span>
+		</div>
+
+		<div class="leftArrowWrapper" ng-click="prevDay()" ng-if="modalType=='day'">
+			<div class="leftArrow"></div>
+		</div>
+		<div class="modalContWrapper" ng-class="{'modalContWrapperWithArrows' : modalType == 'day'}">
+
+			<!-- <h2>Display data for {{modalType}} with ID: {{id}}</h2> -->
+			<div ng-if="modalType=='lecture'">
+				<span class="modalHead big">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
+				<span class="modalHead italic">{{lecture.type}}</span>
+				<hr>
+				<span class="modalHead" ng-class="{
+					'textblue' : (modalType=='lecture' && lecture.type == 'Предавања') || color=='blue',
+					'textorange' : (modalType=='lecture' && lecture.type != 'Предавања') || color=='orange',
+					'textgreen' : color=='green', 
+					'textyellow' : color=='yellow', 
+					'textgray' : color=='gray',
+					'textmulti' : color=='multi',
+					}">{{day}}, {{lecture.startsAt | limitTo : 5 : 11}}-{{lecture.endsAt | limitTo : 5 : 11}}h ({{(lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)}}h)</span>
+				<span class="modalHead">{{lecture.classroom.name}}</span>
+				<!-- 
+				<span class="modalHead" ng-if="lecture.groups.length == 1">Група: <span>{{lecture.groups[0].name}}</span></span>
+				<span class="modalHead" ng-if="lecture.groups.length > 1">Групе: <span>{{lecture.groups[1].name}}</span><span ng-repeat="group in lecture.groups">, {{group.name}}</span></span>
+				 -->
+				<div ng-if="lecture.notifications.length > 0">
+					<h1 class="modalCaption" ng-class="{'orange' : modalType=='lecture' && lecture.type != 'Предавања'}">Обавештења</h1>
+					<span class="modalHead" ng-repeat="notif in lecture.notifications" ng-class="{'orange' : modalData.type != 'Предавања'}">- {{notif.description}}</span>
+				</div>
+			</div>
+
+			<div ng-if="modalType=='group'">
+				<h1 class="modalCaption">Обавештења</h1>
+				<span class="modalHead" ng-repeat="notif in modalNotifs">- {{notif.description}}</span>
+			</div>
+
+			<div ng-if="modalType=='day'">
+				<!--<span class="modalHead" ng-repeat="notif in modalNotifs">- {{notif.description}}</span>-->
+<!-- 
+					<table border="1" class="modalHead" style="width:100%" ng-if="modalNotifs.length > 0">
+					<tr>
+						<th>Догађај</th>
+						<th>Предмет</th>
+						<th>Време</th>
+						<th>Учионице</th>
+					</tr>
+					<tr ng-repeat-start="notif in modalNotifs">
+						<td colspan="3">{{notif.course.name}}</td>
+					</tr>
+					<tr ng-repeat-end="notif in modalNotifs">
+						<td>{{notif.type}}</td>
+						<td>{{notif.datetime.startsAt | limitTo : 5 : 11 }}</td>
+						<td><span>{{notif.classrooms[0].name}}</span> <span ng-repeat="classroom in notif.classrooms" ng-if="$index > 0">, {{classroom.name}}</span></td>
+					</tr>
+				</table>
+ -->
+ 				<span class="modalHead big" ng-repeat-start="notif in modalNotifs">{{notif.course.name}}</span>
+ 				<span class="modalHead" ng-repeat-end="notif in modalNotifs">
+ 					<span ng-class="{
+					'textblue' : (modalType=='lecture' && lecture.type == 'Предавања') || color=='blue',
+					'textorange' : (modalType=='lecture' && lecture.type != 'Предавања') || color=='orange',
+					'textgreen' : color=='green', 
+					'textyellow' : color=='yellow', 
+					'textgray' : color=='gray',
+					'textmulti' : color=='multi',
+					}">{{notif.datetime.startsAt | limitTo : 5 : 11 }}</span> ({{notif.type}}) - 
+ 					<span>{{notif.classrooms[0].name}}</span><span ng-repeat="classroom in notif.classrooms" ng-if="$index > 0">, {{classroom.name}}</span><br>
+ 				</span>
+				<span class="modalHead" ng-if="modalNotifs.length == 0">(нема додатних информација)</span>
+			</div>
+			
+
+		</div>
+		<div class="rightArrowWrapper" ng-click="nextDay()" ng-if="modalType=='day'">
+			<div class="rightArrow"></div>
+		</div>
+	</div>
+</div>

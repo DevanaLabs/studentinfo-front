@@ -1,0 +1,53 @@
+<div class="col-lg-12">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>Dogadjaji</h5>
+        </div>
+        <div class="ibox-content">
+            <button ui-sref="event_new" class="btn btn-primary">Dodaj dogadjaj</button>
+            <hr/>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td colspan="6"><input class="form-control" type="text" ng-model="query" placeholder="Pretraga"></td>
+                    </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Tip</th>
+                        <th>Opis</th>
+                        <th>Pocetak</th>
+                        <th>Kraj</th>
+                        <th>Obavestenja</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="event in events | filter:query" class="repeated-item">
+                        <td>{{ $index }}</td>
+                        <td>{{ event.type }}</td>
+                        <td>{{ event.description }}</td>
+                        <!--<td>{{ event.startsAt.raw | amDateFormat:'HH:mm DD/MM/YYYY' }}</td>
+                        <td>{{ event.endsAt.raw | amDateFormat:'HH:mm DD/MM/YYYY' }}</td>-->
+                        <td>
+                            <button
+                                ng-show="event.notifications.length > 0"
+                                ui-sref="eventNotifications_event({id: event.id})"
+                                type="button" class="btn btn-primary m-r-sm">{{ event.notifications.length }}</button>
+
+                            <button
+                                ui-sref="eventNotification_new({event: event.id})"
+                                type="button" class="btn btn-success m-r-sm">
+                                <small><i class="fa fa-plus-square"></i></small>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-alert" ui-sref="event({id: event.id})">Izmeni</button>
+                            <button class="btn btn-danger" ng-click="deleteEvent(event.id)">Obrisi</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button ng-show="!loadedAll" ng-click="showMore()" class="btn btn-primary btn-block m-t"><i class="fa fa-arrow-down"></i> Prikazi jos</button>
+    </div>
+</div>
