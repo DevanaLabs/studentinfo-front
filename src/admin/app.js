@@ -5,6 +5,7 @@ var app = angular.module('siAdminApp', [
   'ngCookies',
   'ngAnimate',
   'toastr',
+  'angularMoment',
   'ui.router',
   'ui.bootstrap',
   'ui-notification',
@@ -158,14 +159,14 @@ app
             }
           }
         })
-        .state('settings', {
-          url: '/settings',
-          templateUrl: 'components/settings/views/form.html',
-          data: {
-            authorizedRoles: 'admin'
-          },
-          controller: 'SettingsCtrl'
-        })
+        //.state('settings', {
+        //  url: '/settings',
+        //  templateUrl: 'components/settings/views/form.html',
+        //  data: {
+        //    authorizedRoles: 'admin'
+        //  },
+        //  controller: 'SettingsCtrl'
+        //})
         .state('logout', {
           url: '/logout',
           template: '<h2>logging out</h2>',
@@ -200,41 +201,43 @@ app
   });
 
 app
-  .run(function ($rootScope, $cookies, $state, $http, AUTH_EVENTS, AuthService, Session) {
+  .run(['$rootScope', '$cookies', '$state', '$http', 'AUTH_EVENTS', 'AuthService',
+    'Session', 'amMoment', function ($rootScope, $cookies, $state, $http, AUTH_EVENTS, AuthService, Session, amMoment) {
+      amMoment.changeLocale('sr');
 
-    $rootScope.$on('$stateChangeStart', function (event, next) {
-      console.log('stateChangeStart event handler');
-      var authorizedRoles = next.data.authorizedRoles;
+      $rootScope.$on('$stateChangeStart', function (event, next) {
+        console.log('stateChangeStart event handler');
+        var authorizedRoles = next.data.authorizedRoles;
 
-      console.log('Next route');
-      console.log(next);
+        console.log('Next route');
+        console.log(next);
 
-      if (Session.isInCookies()) {
-        Session.load();
-        console.log('Found session in cookies');
-        $http.defaults.withCredentials = true;
-        $rootScope.globals = {
-          loggedIn: true,
-          currentUser: Session.userObject
-        };
-      }
-
-      if (next.name === 'login') {
-        console.log('Next route is login');
-        return;
-      }
-
-      if (!AuthService.isAuthorized(authorizedRoles)) {
-        event.preventDefault();
-        if (AuthService.isAuthenticated()) {
-          // user is not allowed
-          console.log('emit notAuthorized');
-          $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
-        } else {
-          // user is not logged in
-          console.log('emit notAuthenticated');
-          $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+        if (Session.isInCookies()) {
+          Session.load();
+          console.log('Found session in cookies');
+          $http.defaults.withCredentials = true;
+          $rootScope.globals = {
+            loggedIn: true,
+            currentUser: Session.userObject
+          };
         }
-      }
-    });
-  })
+
+        if (next.name === 'login') {
+          console.log('Next route is login');
+          return;
+        }
+
+        if (!AuthService.isAuthorized(authorizedRoles)) {
+          event.preventDefault();
+          if (AuthService.isAuthenticated()) {
+            // user is not allowed
+            console.log('emit notAuthorized');
+            $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+          } else {
+            // user is not logged in
+            console.log('emit notAuthenticated');
+            $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+          }
+        }
+      });
+    }]);

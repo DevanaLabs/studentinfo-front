@@ -26,8 +26,8 @@
                         <td>{{ $index }}</td>
                         <td>{{ event.type }}</td>
                         <td>{{ event.description }}</td>
-                        <!--<td>{{ event.startsAt.raw | amDateFormat:'HH:mm DD/MM/YYYY' }}</td>
-                        <td>{{ event.endsAt.raw | amDateFormat:'HH:mm DD/MM/YYYY' }}</td>-->
+                        <td>{{ event.datetime.startsAt | amDateFormat:'HH:mm DD/MM/YYYY' }}</td>
+                        <td>{{ event.datetime.endsAt | amDateFormat:'HH:mm DD/MM/YYYY' }}</td>
                         <td>
                             <button
                                 ng-show="event.notifications.length > 0"

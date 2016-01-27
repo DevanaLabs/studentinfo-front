@@ -8,7 +8,7 @@
 				<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 					<span class="clear">
 						<span class="block m-t-xs">
-							<strong class="font-bold">{{ currentUser.firstName }} {{ currentUser.lastName }}</strong>
+							<strong class="font-bold">{{ globals.currentUser.firstName }} {{ globals.currentUser.lastName }}</strong>
 						</span>
 						<span class="text-muted text-xs block">
 							Admin
@@ -42,9 +42,9 @@
 		<li>
 			<a ui-sref="staff({type: 'students'})"><i class="fa fa-users"></i> <span class="nav-label">Studenti</span></a>
 		</li>
-		<li>
-			<a ui-sref="settings()"><i class="fa fa-gears"></i> <span class="nav-label">Podesavanja</span></a>
-		</li>
+		<!--<li>-->
+			<!--<a ui-sref="settings()"><i class="fa fa-gears"></i> <span class="nav-label">Podesavanja</span></a>-->
+		<!--</li>-->
 		<li>
 			<a ui-sref="logout"><i class="fa fa-sign-out"></i> <span class="nav-label">Kraj rada</span></a>
 		</li>
