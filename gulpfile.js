@@ -16,8 +16,12 @@ var bowerFiles = require('main-bower-files');
 var allAppsPaths = {
   global: {
     scripts: ['src/*.js'],
-    partials: ['src/*.html'],
-    index: ['src/login.html']
+    styles: [],
+    images: [],
+    index: ['src/*.html'],
+    partials: [],
+    distDev: './dist/',
+    distProd: './dist/'
   },
   app: {
     scripts: ['src/app/**/*.js', '!src/bower_components/**/*.js'],
@@ -225,6 +229,62 @@ functions.builtAppProd = function(paths) {
  */
 
 var allAppsPipes = {
+  global: {
+    orderedVendorScripts: function() {
+      return utils.orderedVendorScripts();
+    },
+    orderedAppScripts: function() {
+      return utils.orderedAppScripts();
+    },
+    minifiedFileName: function() {
+      return utils.minifiedFileName();
+    },
+    validatedAppScripts: function() {
+      return functions.validatedAppScripts(allAppsPaths.global);
+    },
+    builtAppScriptsDev: function() {
+      return functions.builtAppScriptsDev(allAppsPaths.global);
+    },
+    builtAppScriptsProd: function() {
+      return functions.builtAppScriptsProd(allAppsPaths.global);
+    },
+    builtVendorScriptsDev: function() {
+      return functions.builtVendorScriptsDev(allAppsPaths.global);
+    },
+    builtVendorScriptsProd: function() {
+      return functions.builtVendorScriptsProd(allAppsPaths.global);
+    },
+    // validatedDevServerScripts: function() {
+    //   return functions.validatedDevServerScripts(allAppsPaths.global);
+    // },
+    validatedPartials: function() {
+      return functions.validatedPartials(allAppsPaths.global);
+    },
+    builtPartialsDev: function() {
+      return functions.builtPartialsDev(allAppsPaths.global);
+    },
+    scriptedPartials: function() {
+      return functions.scriptedPartials(allAppsPaths.global);
+    },
+    builtStylesDev: function() {
+      return functions.builtStylesDev(allAppsPaths.global);
+    },
+    builtStylesProd: function() {
+      return functions.builtStylesProd(allAppsPaths.global);
+    },
+    processedImagesDev: function() {
+      return functions.processedImagesDev(allAppsPaths.global);
+    },
+    builtAppDev: function() {
+      return functions.builtAppDev(allAppsPaths.global);
+    },
+    builtAppProd: function() {
+      return functions.builtApp(allAppsPaths.global);
+    },
+    builtIndexDev: function() {
+      return functions.builtIndexDev(allAppsPaths.global);
+    }
+  },
   app: {
     orderedVendorScripts: function() {
       return utils.orderedVendorScripts();
