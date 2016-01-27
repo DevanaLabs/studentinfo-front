@@ -23,11 +23,13 @@ function nextImg() {
 	"resized_shutterstock_323467583.jpg"
 	]
 	
-	var num = bgs[Math.floor(Math.random() * bgs.length)];
-	document.body.style.background = "url('images/bgs/" + num + "')";
-	document.getElementById("bgBlur").style.background = "url('images/bgs/" + num + "') ";
+	var num = Math.floor( (moment().valueOf()) / 86400000  %bgs.length );
+
+	//var num = bgs[Math.floor(Math.random() * bgs.length)];
+	document.body.style.background = "url('images/bgs/" + bgs[num] + "')";
+	document.getElementById("bgBlur").style.background = "url('images/bgs/" + bgs[num] + "') ";
 	
-	setTimeout(function(){nextImg()}, 1000*60*60*24); //24h
+	setTimeout(function(){nextImg()}, 1000*60*60*1); //24h
 }
 //nextImg(); 
 

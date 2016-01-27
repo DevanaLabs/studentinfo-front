@@ -21,6 +21,7 @@
 			height: 100%;
 			width: 100%;
 			color: $textgray;
+			table-layout: fixed;
 			tbody {
 				display: flex;
 				flex-flow: column;
