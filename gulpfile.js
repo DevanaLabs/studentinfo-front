@@ -18,8 +18,8 @@ var allAppsPaths = {
     scripts: ['src/*.js'],
     styles: [],
     images: [],
-    index: ['src/*.html'],
-    partials: [],
+    index: [],
+    partials: ['src/*.html'],
     distDev: './dist/',
     distProd: './dist/'
   },

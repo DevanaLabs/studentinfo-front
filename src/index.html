@@ -12,7 +12,7 @@
             position: relative;
         }
         html, body {
-            background: url("images/bgBlurred.jpg") !important;
+            background: url("app/images/bgBlurred.jpg") !important;
             background-size: cover !important;
             height: 100%;
         }
@@ -101,13 +101,13 @@
     <h1>Добродошли на Студент инфо</h1>
     <div class="inputWrapper">
         <div class="imgWrapper">
-            <img class="icon" src="images/aboutIconMail.svg" alt="">
+            <img class="icon" src="app/images/aboutIconMail.svg" alt="">
         </div>
         <input type="text" id="emailField" placeholder="Ваша адреса" onkeydown="(function(e){if(e.keyCode == 13) send()})(event)">
     </div>
     <div class="inputWrapper">
         <div class="imgWrapper">
-            <img class="icon" src="images/registerIconLockOutline.svg" alt="">
+            <img class="icon" src="app/images/registerIconLockOutline.svg" alt="">
         </div>
         <input type="password" id="passwordField" placeholder="Ваша шифра" onkeydown="(function(e){if(e.keyCode == 13) send()})(event)">
     </div>
@@ -137,10 +137,10 @@
                 else {
                     //alert("Добродошли, "+JSON.parse(r.response).success.data.user.firstName);
                     if(JSON.parse(r.response).success.data.user.userType == "Admin") {
-                        document.location = "admin/";
+                        document.location = "admin/index.html";
                     }
                     else {
-                        document.location = "app/"
+                        document.location = "app/index.html"
                     }
                 }
             }
