@@ -14,6 +14,11 @@ var bowerFiles = require('main-bower-files');
  */
 
 var allAppsPaths = {
+  global: {
+    scripts: ['src/*.js'],
+    partials: ['src/*.html'],
+    index: ['src/login.html']
+  },
   app: {
     scripts: ['src/app/**/*.js', '!src/bower_components/**/*.js'],
     styles: ['src/app/styles/**/*.*'],
