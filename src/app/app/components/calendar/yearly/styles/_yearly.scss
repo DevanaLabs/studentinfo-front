@@ -1,0 +1,169 @@
+#yearWrapper {
+	height: 100%;
+	width: 100%;
+	padding: 50px 40px 0 40px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    background: white;
+
+
+
+    .yearMonthWrapper {
+        float: left;
+        width: 19%;
+        height: 213px;
+        margin: 0px 41px 10px;
+        box-sizing: border-box;
+    }
+
+
+    .yearMonthTableWrapper {
+        width: 100%;
+        border: 1px solid transparent;
+        padding: 10px;
+        //height: 100%;
+    }
+    .yearMonthTableWrapper:hover {
+        border: 1px solid #999;
+        //background: #eee;
+    }
+
+    .yearHeader {
+        font-size: 36px;
+        color: $blue;
+        display: block;
+        padding: 0 55px;
+        clear: both;
+    }
+
+    table {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        tr{
+            height: 30px;
+        }
+        .yearMonthHeader {
+            text-align: left;
+            font-weight: 700;
+            padding: 0 6px;
+            text-transform: capitalize;
+        }
+        td {
+            border: 1px solid white; 
+            font-size: 18px;
+        }
+        .weeknd {
+            opacity: .6;
+        }
+        td.multi {
+            background: #999999 !important;
+            color: white;
+        }
+        td.blue {
+            background: $blue;
+            color: white;
+        }
+        td.orange {
+            background: $orange;
+            color: white;
+        }
+        td.gray {
+            background: #808080;
+            color: white;
+        }
+        td.green {
+            background: #66BB6A;
+            color: white;
+        }
+        td.yellow {
+            background: #FFE082;
+            color: $textgray;
+        }
+        td.today {
+            background: red;
+            border-radius: 50%;
+            color: white;
+            font-weight: 600;
+            border: 2px solid transparent;
+            height: 30px;
+            width: 30px;
+        }
+        td.todayExtra {
+            border: 4px red solid;
+            width: 30px;
+        }
+        td.past {
+            opacity: .5;
+        }
+        .nextMonth, .prevMonth {
+            opacity: .1;
+        }
+
+    }
+    table:hover {
+        //background: #eee;
+    }
+    #legendWrapper {
+        height: 210px;
+        width: 600px;
+        margin-top: 40px;
+        float: right;
+        .legendSubWrapper {
+            float: left;
+            position: relative;
+            width: 50%;
+            .legendIcon {
+                display: inline-block;
+                height: 30px;
+                width: 30px;
+                background: $blue;
+                vertical-align: middle;
+                margin-right: 10px;
+            }
+            .legendIcon.orange { background: $orange; }
+            .legendIcon.gray { background: $gray; }
+            .legendIcon.green { background: $green; }
+            .legendIcon.yellow { background: $yellow; }
+            .legentCaption {
+                display: inline-block;
+                vertical-align: middle;
+                line-height: 40px;
+                font-size: 18px;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+
+
+
+#yearWrapper.ng-enter, #monthWrapper.ng-leave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    transition:all .5s ease-in-out;
+}
+
+#yearWrapper.ng-enter {
+    opacity: 0;
+    transform:translate3d(0, 0, 50%);
+}
+
+#yearWrapper.ng-enter-active {
+  opacity: 1;
+  transform:translate3d(0, 0, 0);
+}
+
+#monthWrapper.ng-leave {
+  opacity: 1;
+  transform:translate3d(0, 0, 0);
+}
+
+#monthWrapper.ng-leave-active {
+  opacity: 0;
+  transform:translate3d(0, 0, 50%);
+}
