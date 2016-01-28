@@ -1,0 +1,310 @@
+<div class="scheduleWrapper" ng-controller="scheduleCtrl as ctrl">
+    <div class="titlebar noflex shadow">
+        <a href="" class="closeBut" ng-click="closeTable()"><img src="images/iconExit42x42g.svg" alt=""></a>
+        <span class="fatCaption">{{name}}</span>
+    </div>
+    <div id="tableWrapper" ng-class="{'notifsDisplayed' : notifs > 0}">
+        <table>
+            <tr class="adjustmentRow">
+                <td class="timeCol"><span class="timeSpan">   </span></td>
+                <td>000000000000000</td>
+                <td>000000000000000</td>
+                <td>000000000000000</td>
+                <td>000000000000000</td>
+                <td>000000000000000</td>
+                <td ng-if="dailyStuff[6].length > 0">000000000000000</td>
+            </tr>
+            <tr class="dayRow">
+                <td class="timeCol"><span class="timeSpan">   </span></td>
+                <td class="dayCell day1">Понељак</td>
+                <td class="dayCell day2">Уторак</td>
+                <td class="dayCell day3">Среда</td>
+                <td class="dayCell day4">Четвртак</td>
+                <td class="dayCell day5">Петак</td>
+                <td ng-if="dailyStuff[6].length > 0" class="dayCell day6">Субота</td>
+            </tr>
+            <tr>
+                <td class="timeCol"><span class="timeSpan">09h</span></td>
+                <td class="day1">
+                    <!-- PONEDELJAK -->
+                    <div style="position: relative; height: 100%">
+                        <div class="lectureWrapper" ng-click="openModal('lecture', lecture.id, gpid)"
+                             ng-repeat="lecture in dailyStuff[1]"
+                             ng-class="{
+								'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања',
+								'hasNotif' : lecture.notifications.length > 0,
+								'smallerText' : (lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11) < 3 && lecture.course.name.length >30
+							 }"
+                             style="top: calc({{((lecture.startsAt | limitTo : 2 : 11) - 9)*100}}% + {{((lecture.startsAt | limitTo : 2 : 11) - 9)*1}}px);
+									height: calc({{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) *100 }}% + {{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) - 1}}px)"
+                                >
+                            <span class="lectureCaption">{{lecture.course.name}}</span> <br>
+                            <span class="lectureSubCaption"
+                                  ng-if="type=='group' && (lecture.type == 'Predavanje' || lecture.type == 'Предавања')">{{lecture.classroom.name}}</span>
+                            <span class="lectureSubCaption"
+                                  ng-if="type=='group' && lecture.type != 'Predavanje' && lecture.type != 'Предавања'">{{lecture.classroom.name}} ({{lecture.type}})</span>
+                            <span class="lectureSubCaption" ng-if="type=='classroom'">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
+							<span class="lectureSubCaption" ng-if="type=='teacher'">
+								<span>{{lecture.groups[0].name}}</span><span ng-repeat="group in lecture.groups"
+                                                                             ng-if="$index > 0">, {{group.name}}</span>
+							</span>
+                        </div>
+                    </div>
+                </td>
+
+                <td class="day2">
+                    <!-- UTORAK -->
+                    <div style="position: relative; height: 100%">
+                        <div class="lectureWrapper" ng-click="openModal('lecture', lecture.id, gpid)"
+                             ng-repeat="lecture in dailyStuff[2]"
+                             ng-class="{
+								'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања',
+								'hasNotif' : lecture.notifications.length > 0,
+								'smallerText' : (lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11) < 3 && lecture.course.name.length >30
+							 }"
+                             style="top: calc({{((lecture.startsAt | limitTo : 2 : 11) - 9)*100}}% + {{((lecture.startsAt | limitTo : 2 : 11) - 9)*1}}px);
+									height: calc({{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) *100 }}% + {{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) - 1}}px)"
+                                >
+                            <span class="lectureCaption">{{lecture.course.name}}</span> <br>
+                            <span class="lectureSubCaption"
+                                  ng-if="type=='group' && (lecture.type == 'Predavanje' || lecture.type == 'Предавања')">{{lecture.classroom.name}}</span>
+                            <span class="lectureSubCaption"
+                                  ng-if="type=='group' && lecture.type != 'Predavanje' && lecture.type != 'Предавања'">{{lecture.classroom.name}} ({{lecture.type}})</span>
+                            <span class="lectureSubCaption" ng-if="type=='classroom'">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
+							<span class="lectureSubCaption" ng-if="type=='teacher'">
+								<span>{{lecture.groups[0].name}}</span><span ng-repeat="group in lecture.groups"
+                                                                             ng-if="$index > 0">, {{group.name}}</span>
+							</span>
+                        </div>
+                    </div>
+                </td>
+
+                <td class="day3">
+                    <!-- SREDA -->
+                    <div style="position: relative; height: 100%">
+                        <div class="lectureWrapper" ng-click="openModal('lecture', lecture.id, gpid)"
+                             ng-repeat="lecture in dailyStuff[3]"
+                             ng-class="{
+								'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања',
+								'hasNotif' : lecture.notifications.length > 0,
+								'smallerText' : (lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11) < 3 && lecture.course.name.length >30
+							 }"
+                             style="top: calc({{((lecture.startsAt | limitTo : 2 : 11) - 9)*100}}% + {{((lecture.startsAt | limitTo : 2 : 11) - 9)*1}}px);
+									height: calc({{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) *100 }}% + {{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) - 1}}px)"
+                                >
+                            <span class="lectureCaption">{{lecture.course.name}}</span> <br>
+                            <span class="lectureSubCaption"
+                                  ng-if="type=='group' && (lecture.type == 'Predavanje' || lecture.type == 'Предавања')">{{lecture.classroom.name}}</span>
+                            <span class="lectureSubCaption"
+                                  ng-if="type=='group' && lecture.type != 'Predavanje' && lecture.type != 'Предавања'">{{lecture.classroom.name}} ({{lecture.type}})</span>
+                            <span class="lectureSubCaption" ng-if="type=='classroom'">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
+							<span class="lectureSubCaption" ng-if="type=='teacher'">
+								<span>{{lecture.groups[0].name}}</span><span ng-repeat="group in lecture.groups"
+                                                                             ng-if="$index > 0">, {{group.name}}</span>
+							</span>
+                        </div>
+                    </div>
+                </td>
+
+                <td class="day4">
+                    <!-- CETVRTAK -->
+                    <div style="position: relative; height: 100%">
+                        <div class="lectureWrapper" ng-click="openModal('lecture', lecture.id, gpid)"
+                             ng-repeat="lecture in dailyStuff[4]"
+                             ng-class="{
+								'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања',
+								'hasNotif' : lecture.notifications.length > 0,
+								'smallerText' : (lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11) < 3 && lecture.course.name.length >30
+							 }"
+                             style="top: calc({{((lecture.startsAt | limitTo : 2 : 11) - 9)*100}}% + {{((lecture.startsAt | limitTo : 2 : 11) - 9)*1}}px);
+									height: calc({{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) *100 }}% + {{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) - 1}}px)"
+                                >
+                            <span class="lectureCaption">{{lecture.course.name}}</span> <br>
+                            <span class="lectureSubCaption"
+                                  ng-if="type=='group' && (lecture.type == 'Predavanje' || lecture.type == 'Предавања')">{{lecture.classroom.name}}</span>
+                            <span class="lectureSubCaption"
+                                  ng-if="type=='group' && lecture.type != 'Predavanje' && lecture.type != 'Предавања'">{{lecture.classroom.name}} ({{lecture.type}})</span>
+                            <span class="lectureSubCaption" ng-if="type=='classroom'">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
+							<span class="lectureSubCaption" ng-if="type=='teacher'">
+								<span>{{lecture.groups[0].name}}</span><span ng-repeat="group in lecture.groups"
+                                                                             ng-if="$index > 0">, {{group.name}}</span>
+							</span>
+                        </div>
+                    </div>
+                </td>
+
+                <td class="day5">
+                    <!-- PETAK -->
+                    <div style="position: relative; height: 100%">
+                        <div class="lectureWrapper" ng-click="openModal('lecture', lecture.id, gpid)"
+                             ng-repeat="lecture in dailyStuff[5]"
+                             ng-class="{
+								'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања',
+								'hasNotif' : lecture.notifications.length > 0,
+								'smallerText' : (lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11) < 3 && lecture.course.name.length >30
+							 }"
+                             style="top: calc({{((lecture.startsAt | limitTo : 2 : 11) - 9)*100}}% + {{((lecture.startsAt | limitTo : 2 : 11) - 9)*1}}px);
+									height: calc({{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) *100 }}% + {{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) - 1}}px)"
+                                >
+                            <span class="lectureCaption">{{lecture.course.name}}</span> <br>
+                            <span class="lectureSubCaption"
+                                  ng-if="type=='group' && (lecture.type == 'Predavanje' || lecture.type == 'Предавања')">{{lecture.classroom.name}}</span>
+                            <span class="lectureSubCaption"
+                                  ng-if="type=='group' && lecture.type != 'Predavanje' && lecture.type != 'Предавања'">{{lecture.classroom.name}} ({{lecture.type}})</span>
+                            <span class="lectureSubCaption" ng-if="type=='classroom'">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
+							<span class="lectureSubCaption" ng-if="type=='teacher'">
+								<span>{{lecture.groups[0].name}}</span><span ng-repeat="group in lecture.groups"
+                                                                             ng-if="$index > 0">, {{group.name}}</span>
+							</span>
+                        </div>
+                    </div>
+                </td>
+
+                <td class="day6" ng-if="dailyStuff[6].length > 0">
+                    <!-- SUBOTA -->
+                    <div style="position: relative; height: 100%">
+                        <div class="lectureWrapper" ng-click="openModal('lecture', lecture.id, gpid)"
+                             ng-repeat="lecture in dailyStuff[6]"
+                             ng-class="{
+								'orange' : lecture.type != 'Predavanje' && lecture.type != 'Предавања',
+								'hasNotif' : lecture.notifications.length > 0,
+								'smallerText' : (lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11) < 3 && lecture.course.name.length >30
+							 }"
+                             style="top: calc({{((lecture.startsAt | limitTo : 2 : 11) - 9)*100}}% + {{((lecture.startsAt | limitTo : 2 : 11) - 9)*1}}px);
+									height: calc({{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) *100 }}% + {{ ((lecture.endsAt | limitTo : 2 : 11) - (lecture.startsAt | limitTo : 2 : 11)) - 1}}px)"
+                                >
+                            <span class="lectureCaption">{{lecture.course.name}}</span> <br>
+                            <span class="lectureSubCaption"
+                                  ng-if="type=='group' && (lecture.type == 'Predavanje' || lecture.type == 'Предавања')">{{lecture.classroom.name}}</span>
+                            <span class="lectureSubCaption"
+                                  ng-if="type=='group' && lecture.type != 'Predavanje' && lecture.type != 'Предавања'">{{lecture.classroom.name}} ({{lecture.type}})</span>
+                            <span class="lectureSubCaption" ng-if="type=='classroom'">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
+							<span class="lectureSubCaption" ng-if="type=='teacher'">
+								<span>{{lecture.groups[0].name}}</span><span ng-repeat="group in lecture.groups"
+                                                                             ng-if="$index > 0">, {{group.name}}</span>
+							</span>
+                        </div>
+                    </div>
+                </td>
+                <td class="timeCol"><span class="timeSpan right">09h</span></td>
+            </tr>
+            <tr>
+                <td class="timeCol"><span class="timeSpan">10h</span></td>
+                <td class="day1"></td>
+                <td class="day2"></td>
+                <td class="day3"></td>
+                <td class="day4"></td>
+                <td class="day5"></td>
+                <td class="day6" ng-if="dailyStuff[6].length > 0"></td>
+                <td class="timeCol"><span class="timeSpan right">10h</span></td>
+            </tr>
+            <tr>
+                <td class="timeCol"><span class="timeSpan">11h</span></td>
+                <td class="day1"></td>
+                <td class="day2"></td>
+                <td class="day3"></td>
+                <td class="day4"></td>
+                <td class="day5"></td>
+                <td class="day6" ng-if="dailyStuff[6].length > 0"></td>
+                <td class="timeCol"><span class="timeSpan right">11h</span></td>
+            </tr>
+            <tr>
+                <td class="timeCol"><span class="timeSpan">12h</span></td>
+                <td class="day1"></td>
+                <td class="day2"></td>
+                <td class="day3"></td>
+                <td class="day4"></td>
+                <td class="day5"></td>
+                <td class="day6" ng-if="dailyStuff[6].length > 0"></td>
+                <td class="timeCol"><span class="timeSpan right">12h</span></td>
+            </tr>
+            <tr>
+                <td class="timeCol"><span class="timeSpan">13h</span></td>
+                <td class="day1"></td>
+                <td class="day2"></td>
+                <td class="day3"></td>
+                <td class="day4"></td>
+                <td class="day5"></td>
+                <td class="day6" ng-if="dailyStuff[6].length > 0"></td>
+                <td class="timeCol"><span class="timeSpan right">13h</span></td>
+            </tr>
+            <tr>
+                <td class="timeCol"><span class="timeSpan">14h</span></td>
+                <td class="day1"></td>
+                <td class="day2"></td>
+                <td class="day3"></td>
+                <td class="day4"></td>
+                <td class="day5"></td>
+                <td class="day6" ng-if="dailyStuff[6].length > 0"></td>
+                <td class="timeCol"><span class="timeSpan right">14h</span></td>
+            </tr>
+            <tr>
+                <td class="timeCol"><span class="timeSpan">15h</span></td>
+                <td class="day1"></td>
+                <td class="day2"></td>
+                <td class="day3"></td>
+                <td class="day4"></td>
+                <td class="day5"></td>
+                <td class="day6" ng-if="dailyStuff[6].length > 0"></td>
+                <td class="timeCol"><span class="timeSpan right">15h</span></td>
+            </tr>
+            <tr>
+                <td class="timeCol"><span class="timeSpan">16h</span></td>
+                <td class="day1"></td>
+                <td class="day2"></td>
+                <td class="day3"></td>
+                <td class="day4"></td>
+                <td class="day5"></td>
+                <td class="day6" ng-if="dailyStuff[6].length > 0"></td>
+                <td class="timeCol"><span class="timeSpan right">16h</span></td>
+            </tr>
+            <tr>
+                <td class="timeCol"><span class="timeSpan">17h</span></td>
+                <td class="day1"></td>
+                <td class="day2"></td>
+                <td class="day3"></td>
+                <td class="day4"></td>
+                <td class="day5"></td>
+                <td class="day6" ng-if="dailyStuff[6].length > 0"></td>
+                <td class="timeCol"><span class="timeSpan right">17h</span></td>
+            </tr>
+            <tr>
+                <td class="timeCol"><span class="timeSpan">18h</span></td>
+                <td class="day1"></td>
+                <td class="day2"></td>
+                <td class="day3"></td>
+                <td class="day4"></td>
+                <td class="day5"></td>
+                <td class="day6" ng-if="dailyStuff[6].length > 0"></td>
+                <td class="timeCol"><span class="timeSpan right">18h</span></td>
+            </tr>
+            <tr>
+                <td class="timeCol"><span class="timeSpan">19h</span></td>
+                <td class="day1"></td>
+                <td class="day2"></td>
+                <td class="day3"></td>
+                <td class="day4"></td>
+                <td class="day5"></td>
+                <td class="day6" ng-if="dailyStuff[6].length > 0"></td>
+                <td class="timeCol"><span class="timeSpan right">19h</span></td>
+            </tr>
+            <tr>
+                <td class="timeCol"><span class="timeSpan">20h</span></td>
+                <td class="day1"></td>
+                <td class="day2"></td>
+                <td class="day3"></td>
+                <td class="day4"></td>
+                <td class="day5"></td>
+                <td class="day6" ng-if="dailyStuff[6].length > 0"></td>
+                <td class="timeCol"><span class="timeSpan right">20h</span></td>
+            </tr>
+            <!-- <tr> <td class="timeCol">21h</td>   <td></td> <td></td> <td></td> <td></td> <td></td>   </tr> -->
+        </table>
+        <span class="timeSpan">21h</span>
+        <span class="timeSpan right" style="margin-top: -20px;">21h</span>
+    </div>
+    <div class="titlebar bottom blue shadow noflex" ng-if="notifs > 0" ng-click="openModal('group', displayedId)">
+        <span class="bottomCaption" ng-if="notifs == 1">{{notifs}} Obaveštenje</span>
+        <span class="bottomCaption" ng-if="notifs > 1">{{notifs}} Obaveštenja</span>
+    </div>
+</div>
