@@ -1,0 +1,65 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<h2>Izmena dogadjaja</h2>
+		<hr>
+		<form>
+			<div class="form-group">
+				<label for="inputType">Tip</label>
+				<input type="text" ng-disabled="true" ng-model="vm.event.type" class="form-control" />
+ 			</div>
+			<div class="form-group">
+				<label for="inputDescription">Opis</label>
+				<textarea rows="10" maxrows="20" placeholder="Opis" id="inputDescription" class="form-control" ng-model="vm.event.description" ng-required="true">
+				</textarea>
+			</div>
+			<div class="form-group">
+				<label for="inputStartsAt">Pocetak</label>
+				<div class="row">
+					<div class="col-md-6">
+						<p class="input-group">
+							<input type="text" class="form-control"
+								uib-datepicker-popup="dd-MMMM-yyyy"
+								starting-day="1"
+								ng-model="vm.event.startsAt.date" is-open="status.startsAt.opened"
+								ng-required="true" close-text="Close" />
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" ng-click="openStartsAt($event)">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+						</p>
+					</div>
+					<div class="col-md-6">
+						<uib-timepicker ng-model="vm.event.startsAt.time" hour-step="1" minute-step="1" show-meridian="ismeridian"></uib-timepicker>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEndsAt">Kraj</label>
+				<div class="row">
+					<div class="col-md-6">
+						<p class="input-group">
+							<input type="text" class="form-control"
+								uib-datepicker-popup="dd-MMMM-yyyy"
+								starting-day="1"
+								ng-model="vm.event.endsAt.date" is-open="status.endsAt.opened"
+								ng-required="true" close-text="Close" />
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" ng-click="openEndsAt($event)">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+						</p>
+					</div>
+					<div class="col-md-6">
+						<uib-timepicker ng-model="vm.event.endsAt.time" hour-step="1" minute-step="1" show-meridian="ismeridian"></uib-timepicker>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+					<button type="button" ui-sref="events" class="btn btn-alert">Odustani</button>
+				<button type="submit" ng-click="save()" class="btn btn-primary">Sacuvaj</button>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
-// Za parcionisanje gulpfile-a, posle cu to da uradim
 // var requireDir = require('require-dir');
 // var tasks = requireDir('./tasks');
 var Q = require('q');
@@ -22,8 +21,7 @@ var allAppsPaths = {
     index: ['src/*.html'],
     partials: [],
     distDev: './dist/',
-    distProd: './dist/',
-    distScriptsProd: './dist/scripts'
+    distProd: './dist/'
   },
   app: {
     scripts: ['src/app/**/*.js', '!src/bower_components/**/*.js'],
@@ -32,8 +30,7 @@ var allAppsPaths = {
     index: 'src/app/index.html',
     partials: ['src/app/**/*.html', '!src/app/index.html'],
     distDev: './dist/app/',
-    distProd: './dist/app/',
-    distScriptsProd: './dist/app/scripts'
+    distProd: './dist/app/'
   },
   admin: {
     scripts: ['src/admin/**/*.js'],
@@ -43,7 +40,6 @@ var allAppsPaths = {
     partials: ['src/admin/**/*.html', '!src/admin/index.html'],
     distDev: './dist/admin/',
     distProd: './dist/admin/',
-    distScriptsProd: './dist/admin/scripts'
   }
 };
 
@@ -107,6 +103,12 @@ functions.builtVendorScriptsProd = function (paths) {
     .pipe(plugins.uglify())
     .pipe(gulp.dest(paths.distScriptsProd));
 };
+
+// functions.validatedDevServerScripts = function(paths) {
+//   return gulp.src(paths.scriptsDevServer)
+//     .pipe(plugins.jshint())
+//     .pipe(plugins.jshint.reporter('jshint-stylish'));
+// };
 
 functions.validatedPartials = function (paths) {
   return gulp.src(paths.partials)
@@ -252,6 +254,9 @@ var allAppsPipes = {
     builtVendorScriptsProd: function () {
       return functions.builtVendorScriptsProd(allAppsPaths.global);
     },
+    // validatedDevServerScripts: function() {
+    //   return functions.validatedDevServerScripts(allAppsPaths.global);
+    // },
     validatedPartials: function () {
       return functions.validatedPartials(allAppsPaths.global);
     },
@@ -274,7 +279,7 @@ var allAppsPipes = {
       return functions.builtAppDev(allAppsPaths.global);
     },
     builtAppProd: function () {
-      return functions.builtAppProd(allAppsPaths.global);
+      return functions.builtApp(allAppsPaths.global);
     },
     builtIndexDev: function () {
       return functions.builtIndexDev(allAppsPaths.global);
@@ -305,6 +310,9 @@ var allAppsPipes = {
     builtVendorScriptsProd: function () {
       return functions.builtVendorScriptsProd(allAppsPaths.app);
     },
+    // validatedDevServerScripts: function() {
+    //   return functions.validatedDevServerScripts(allAppsPaths.app);
+    // },
     validatedPartials: function () {
       return functions.validatedPartials(allAppsPaths.app);
     },
@@ -327,7 +335,7 @@ var allAppsPipes = {
       return functions.builtAppDev(allAppsPaths.app);
     },
     builtAppProd: function () {
-      return functions.builtAppProd(allAppsPaths.app);
+      return functions.builtApp(allAppsPaths.app);
     },
     builtIndexDev: function () {
       return functions.builtIndexDev(allAppsPaths.app);
@@ -358,6 +366,9 @@ var allAppsPipes = {
     builtVendorScriptsProd: function () {
       return functions.builtVendorScriptsProd(allAppsPaths.admin);
     },
+    // validatedDevServerScripts: function() {
+    //   return functions.validatedDevServerScripts(allAppsPaths.admin);
+    // },
     validatedPartials: function () {
       return functions.validatedPartials(allAppsPaths.admin);
     },
@@ -380,7 +391,7 @@ var allAppsPipes = {
       return functions.builtAppDev(allAppsPaths.admin);
     },
     builtAppProd: function () {
-      return functions.builtAppProd(allAppsPaths.admin);
+      return functions.builtApp(allAppsPaths.admin);
     },
     builtIndexDev: function () {
       return functions.builtIndexDev(allAppsPaths.admin);
@@ -394,20 +405,23 @@ var allAppsPipes = {
 
 gulp.task('clean-dev', function () {
   var deferred = Q.defer();
-  del(allAppsPaths.global.distDev, function () {
-    deferred.resolve();
+  _.forEach(allAppsPaths, function (paths) {
+    del(paths.distDev, function () {
+      deferred.resolve();
+    });
   });
   return deferred.promise;
 });
 
 gulp.task('clean-prod', function () {
   var deferred = Q.defer();
-  del(allAppsPaths.global.distProd, function () {
-    deferred.resolve();
+  _.forEach(allAppsPaths, function (paths) {
+    del(paths.distProd, function () {
+      deferred.resolve();
+    });
   });
   return deferred.promise;
 });
-
 // checks html source files for syntax errors
 gulp.task('validate-partials', function () {
   _.forEach(allAppsPipes, function (pipe) {
@@ -541,12 +555,6 @@ gulp.task('watch-dev', ['clean-build-app-dev'], function () {
   });
 
   // watch index
-  gulp.watch(allAppsPaths.global.index, function () {
-    return allAppsPipes.global.builtIndexDev()
-      .pipe(plugins.livereload());
-  });
-
-  // watch index
   gulp.watch(allAppsPaths.app.index, function () {
     return allAppsPipes.app.builtIndexDev()
       .pipe(plugins.livereload());
@@ -569,6 +577,7 @@ gulp.task('watch-dev', ['clean-build-app-dev'], function () {
     return allAppsPipes.app.builtStylesDev()
       .pipe(plugins.livereload());
   });
+
 
   // watch index
   gulp.watch(allAppsPaths.admin.index, function () {
@@ -596,7 +605,15 @@ gulp.task('watch-dev', ['clean-build-app-dev'], function () {
 
 });
 
-gulp.task('watch-prod', ['clean-build-app-prod'], function () {
+gulp.task('watch-prod', ['clean-build-app-prod', 'validate-devserver-scripts'], function () {
+
+  // start nodemon to auto-reload the dev server
+  //plugins.nodemon({ script: 'server.js', ext: 'js', watch: ['devServer/'], env: {NODE_ENV : 'production'} })
+  //    .on('change', ['validate-devserver-scripts'])
+  //    .on('restart', function () {
+  //        console.log('[nodemon] restarted dev server');
+  //    });
+
 
   gulp.src('.')
     .pipe(plugins.webserver({
@@ -606,12 +623,6 @@ gulp.task('watch-prod', ['clean-build-app-prod'], function () {
 
   // start live-reload server
   plugins.livereload.listen({start: true});
-
-  // watch index
-  gulp.watch(allAppsPaths.global.index, function () {
-    return allAppsPipes.global.builtIndexProd()
-      .pipe(plugins.livereload());
-  });
 
   // watch index
   gulp.watch(allAppsPaths.app.index, function () {
@@ -652,7 +663,7 @@ gulp.task('watch-prod', ['clean-build-app-prod'], function () {
 
   // watch html partials
   gulp.watch(allAppsPaths.admin.partials, function () {
-    return allAppsPipes.admin.builtPartialsDev()
+    return allAppsPipes.admin.builtPartialsProd()
       .pipe(plugins.livereload());
   });
 
