@@ -118,7 +118,7 @@
 <script>
     function send() {
         var r = new XMLHttpRequest;
-        r.open("POST", "http://10.0.21.242:2200/auth/");
+        r.open("POST", "http://api.studentinfo.dev/auth/");
         var a = {
             "email":document.getElementById('emailField').value,
             "password":document.getElementById('passwordField').value
