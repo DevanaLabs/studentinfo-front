@@ -65,7 +65,7 @@
     #tableWrapper {
       table {
         .lectureWrapper {
-          padding: 4px 8px;
+          padding: 4px 5px;
           .lectureCaption {
             font-size: 16px;
             line-height: 20px;
@@ -114,6 +114,7 @@
     #topAboutWrapper {
       padding: 30px 50px;
       .aboutColumn {
+        width: 50%;
         #bigLogoFaks {
           width: 80%;
         }
@@ -123,10 +124,30 @@
         #peopleWrapper {
           .peopleSubWrapper.right {
             width: 45%;
-            margin-left: 5%;
+            //margin-left: 5%;
           }
         }
       }
+      .aboutColumn.people {
+        width: 100%;
+        .aboutWrapper {
+          padding: 0 50px;
+          display: block;
+          #peopleWrapper {
+            .peopleSubWrapper {
+              width: 50%;
+              float: left;
+              text-align: center;
+              .peopleSubSubWrapper {
+                display: inline-block;
+                padding: 0 50px;
+                text-align: left;
+              }
+            }
+          }
+        }
+      }
+
     }
     #feedbackWrapper {
       height: auto !important;
@@ -182,13 +203,16 @@
     }
     .fatCaption {
       font-size: 42px;
+      padding-left: 90px;
     }
     .normalCaption {
       font-size: 24px;
       padding: 0px 100px;
     }
     .closeBut {
-      padding: 13px 50px;
+      padding: 20px 30px;
+      height: 30px;
+      width: 30px;
     }
   }
   .titlebar.smaller {
@@ -197,6 +221,9 @@
       line-height: 60px;
       font-size: 14px;
     }
+  }
+  .modalContWrapper {
+    height: calc(100% - 130px) !important;
   }
   .bottomDate, th {
     font-size: 14px !important;
@@ -210,6 +237,30 @@
     height: 450px;
     top: calc(50% - 225px);
     left: calc(50% - 100px);
+  }
+  .leftArrow, .rightArrow, .leftArrowWrapper, .rightArrowWrapper {
+    width: 80px !important;
+  }
+  .monthWrapper {
+    .monthTableWrapper {
+      height: calc(100% - 110px);
+      width: calc(100% - 180px);
+      padding-top: 10px;
+    }
+  }
+  .leftArrow, .rightArrow {
+    background-size: 30px 40px !important;
+    background-position: 50% !important;
+  }
+  .modalHead {
+    font-size: 18px !important;
+    line-height: 24px !important;
+    margin: 6px 0 14px !important;
+  }
+  .modalHead.big {
+    font-size: 24px !important;
+    line-height: 24px !important;
+    margin: 0 !important;
   }
 }
 

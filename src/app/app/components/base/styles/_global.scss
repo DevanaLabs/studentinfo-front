@@ -367,10 +367,12 @@ body {
       line-height: 44px;
       color: $textgray;
       display: block;
+      margin-bottom: 10px;
     }
     .modalHead.big {
       font-weight: 600;
       font-size: 32px;
+      margin-bottom: 0;
     }
     .modalCaption {
       font-size: 36px;

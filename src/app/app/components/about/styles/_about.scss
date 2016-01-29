@@ -9,51 +9,60 @@
     }
     .aboutColumn {
       height: 50%;
-      width: 50%;
+      width: 33%;
       float: left;
-      #bigLogoFaks {
-        height: 120px;
-        display: block;
-        margin-bottom: 60px;
-        margin-top: 30px;
-      }
-      #bigLogoLabs {
-        height: 120px;
-        display: block;
-        margin-bottom: 50px;
-        margin-top: 20px;
-      }
-      .miniCaption {
-        font-size: 18px;
-        font-weight: 600;
-      }
-      .infoItem {
-        display: block;
-        line-height: 44px;
-        font-size: 24px;
-        .infoIcon {
+      text-align: center;
+      .aboutWrapper {
+        display: inline-block;
+        text-align: left;
+        #bigLogoFaks {
+          height: 220px;
           display: inline-block;
-          height: 30px;
-          width: 30px;
-          vertical-align: middle;
-          margin-right: 30px;
+          margin-bottom: 40px;
+          //margin-top: 30px;
         }
-      }
-      #peopleWrapper {
-        width: 100%;
-        margin-top: 20px;
-        .peopleSubWrapper {
-          width: 50%;
-          float: left;
-          font-size: 24px;
-          line-height: 30px;
-          .peopleHead {
-            font-weight: 600;
+        #bigLogoLabs {
+          height: 220px;
+          display: inline-block;
+          margin-bottom: 40px;
+          //margin-top: 20px;
+        }
+        .infoWrapper {
+          display: inline-block;
+          text-align: left;
+          .infoItem {
             display: block;
+            line-height: 44px;
+            font-size: 24px;
+            .infoIcon {
+              display: inline-block;
+              height: 30px;
+              width: 30px;
+              vertical-align: middle;
+              margin-right: 30px;
+            }
           }
-          .peopleItem {
-            display: block;
-            margin: 10px 0;
+        }
+        .miniCaption {
+          font-size: 18px;
+          font-weight: 600;
+        }
+        #peopleWrapper {
+          width: 100%;
+          margin-top: 20px;
+          .peopleSubWrapper {
+            width: 100%;
+            font-size: 24px;
+            line-height: 30px;
+            margin-top: 30px;
+            .peopleHead {
+              font-weight: 600;
+              display: block;
+            }
+            .peopleItem {
+              display: block;
+              margin: 10px 0;
+            }
           }
         }
       }

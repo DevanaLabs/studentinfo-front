@@ -33,7 +33,7 @@ function nextImg () {
 
   setTimeout(function () {
     nextImg()
-  }, 1000 * 60 * 60 * 1); //24h
+  }, 1000 * 60 * 60 * 1); 
 }
 //nextImg(); 
 
