@@ -136,6 +136,7 @@
 <script>
     function send () {
         var r = new XMLHttpRequest;
+        r.withCredentials = true;
         r.open("POST", "http://api.studentinfo.rs/auth/");
         var a = {
             "email": document.getElementById('emailField').value,
