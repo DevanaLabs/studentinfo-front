@@ -137,31 +137,25 @@
     function send () {
         var r = new XMLHttpRequest;
         r.withCredentials = true;
-        r.open("POST", "http://api.studentinfo.rs/auth/");
+        r.open("POST", "http://api.studentinfo.dev/auth/");
         var a = {
             "email": document.getElementById('emailField').value,
             "password": document.getElementById('passwordField').value
         };
         r.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-        //console.log("Sending...")
         r.send(JSON.stringify(a));
         document.getElementById("sendButton").className = "sending";
         r.onreadystatechange = function () {
             if (r.readyState == 4) {
                 document.getElementById("sendButton").className = "";
-                //console.log(r.response);
                 if (JSON.parse(r.response).error) {
                     alert(JSON.parse(r.response).error.message);
-                }
-                else {
-                    //alert("Добродошли, "+JSON.parse(r.response).success.data.user.firstName);
+                } else {
                     if (JSON.parse(r.response).success.data.user.userType == "Admin") {
-                        //console.log(JSON.parse(r.response).success);
+                        console.log(r);
                         document.cookie = "session-exists=true";
-                        document.cookie = "session-id=" + JSON.parse(r.response).success.data.user.id;
                         document.cookie = "session-user-object=" + JSON.stringify(JSON.parse(r.response).success.data.user);
-                        document.cookie = "session-user-role=admin"
-                        document.location = "admin/index.html";
+                        document.location = "admin/index.html#/home";
                     }
                     else {
                         document.location = "app/index.html"

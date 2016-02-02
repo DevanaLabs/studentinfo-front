@@ -28,15 +28,11 @@ angular.module('siAdminApp')
       };
 
       authService.isAuthenticated = function () {
-        return Session.userId;
+        return Session.exists;
       };
 
       authService.isAuthorized = function (authorizedRoles) {
-        if (!angular.isArray(authorizedRoles)) {
-          authorizedRoles = [authorizedRoles];
-        }
-        return (authService.isAuthenticated() &&
-        authorizedRoles.indexOf(Session.userRole) !== -1);
+        return (authService.isAuthenticated());
       };
 
       return authService;

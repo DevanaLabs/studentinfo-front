@@ -38,14 +38,14 @@ app
       });
 
       $stateProvider
-        .state('login', {
-          url: '/login',
-          templateUrl: 'components/login/views/view.html',
-          controller: 'LoginCtrl',
-          data: {
-            authorizedRoles: ['*']
-          }
-        })
+        //.state('login', {
+        //  url: '/login',
+        //  templateUrl: 'components/login/views/view.html',
+        //  controller: 'LoginCtrl',
+        //  data: {
+        //    authorizedRoles: ['*']
+        //  }
+        //})
         .state('home', {
           url: '/home',
           templateUrl: 'components/home/views/view.html',
@@ -159,6 +159,14 @@ app
             }
           }
         })
+        .state('changePassword', {
+          url: '/password',
+          templateUrl: 'components/admin/views/edit_password.html',
+          data: {
+            authorizedRoles: 'admin'
+          },
+          controller: 'AdminCtrl'
+        })
         //.state('settings', {
         //  url: '/settings',
         //  templateUrl: 'components/settings/views/form.html',
@@ -205,6 +213,17 @@ app
     'Session', 'amMoment', function ($rootScope, $cookies, $state, $http, AUTH_EVENTS, AuthService, Session, amMoment) {
       amMoment.changeLocale('sr');
 
+      if (Session.isInCookies()) {
+        Session.load();
+        console.log('Found session in cookies');
+        $http.defaults.withCredentials = true;
+        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+        $rootScope.globals = {
+          loggedIn: true,
+          currentUser: Session.userObject
+        };
+      }
+
       $rootScope.$on('$stateChangeStart', function (event, next) {
         console.log('stateChangeStart event handler');
         var authorizedRoles = next.data.authorizedRoles;
@@ -222,10 +241,10 @@ app
           };
         }
 
-        if (next.name === 'login') {
-          console.log('Next route is login');
-          return;
-        }
+        //if (next.name === 'login') {
+        //  console.log('Next route is login');
+        //  return;
+        //}
 
         if (!AuthService.isAuthorized(authorizedRoles)) {
           event.preventDefault();

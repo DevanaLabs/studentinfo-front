@@ -26,7 +26,7 @@ angular.module('siAdminApp')
 
       $scope.$on(AUTH_EVENTS.notAuthenticated, function () {
         console.log('Handle notAuthenticated from MainCtrl');
-        $state.go('login');
+        document.location = 'dist/login.html';
       });
 
     }]);
