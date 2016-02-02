@@ -37,7 +37,16 @@ angular.module('siAdminApp')
       };
 
       $scope.deleteNotification = function (id) {
-        alert('Sta ima brt?');
+        NotificationService.lectureNotification.remove({id: id}, function (response) {
+          if (response.success) {
+            toastr.success('Obavestenje je obrisano');
+            _.remove($scope.notifications, function (notification) {
+              return notification.id == id;
+            });
+          } else {
+            toastr.error('Obavestenje je obrisano');
+          }
+        });
       };
 
       this.loadNotifications(0, 5);

@@ -6,12 +6,13 @@ angular.module('siAdminApp')
     '$state',
     '$stateParams',
     'API',
-    function ($scope, $state, $stateParams, API) {
+    'Upload',
+    function ($scope, $state, $stateParams, API, Upload) {
+      var self = this;
       $scope.formData = {};
       $scope.formValid = false;
       $scope.typeFromUrl = false;
-      $scope.acceptTypes = 'image/*';
-      $scope.uploadUrl = 'http://api.studentinfo.dev' + '/wallpaper';
+      $scope.file = '';
 
       $scope.types = [
         {id: 0, slug: 'students', name: 'Studenti'},
@@ -33,6 +34,18 @@ angular.module('siAdminApp')
       }
 
       $scope.processForm = function () {
+        Upload.upload({
+          url: 'http://api.studentinfo.dev/raf/import' + self.capitalize($scope.formData.types[$scope.importType].slug),
+          data: {'import': file}
+        }).then(function (response) {
+          toastr.success('Uspesno importovani podaci');
+        }, function (response) {
+          console.error(response);
+          toastr.error('Greska prilikom importa podataka');
+        });
+      }
 
+      this.capitalize = function (string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
       }
     }]);

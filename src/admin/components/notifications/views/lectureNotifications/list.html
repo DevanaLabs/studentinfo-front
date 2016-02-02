@@ -4,6 +4,8 @@
             <h5>Obavestenja - Lekcije</h5>
         </div>
         <div class="ibox-content">
+            <button ui-sref="lectureNotification_new" class="btn btn-primary">Dodaj obavestenje</button>
+            <hr/>
             <table class="table">
                 <thead>
                 <tr>
@@ -21,11 +23,11 @@
                 <tr ng-repeat="notification in notifications | filter:query" class="repeated-item">
                     <td>{{ $index }}</td>
                     <td>{{ notification.description }}</td>
-                    <td>{{ notification.expiresAt.raw | amDateFormat:'HH:mm DD/MM/YYYY' }}</td>
+                    <td>{{ notification.expiresAt | amDateFormat:'HH:mm DD/MM/YYYY' }}</td>
                     <td>
                         <button class="btn btn-alert" ui-sref="lectureNotification_edit({id: notification.id})">Izmeni
                         </button>
-                        <button class="btn btn-danger" ng-click="deletenotification(notification.id)">Obrisi</button>
+                        <button class="btn btn-danger" ng-click="deleteNotification(notification.id)">Obrisi</button>
                     </td>
                 </tr>
                 </tbody>

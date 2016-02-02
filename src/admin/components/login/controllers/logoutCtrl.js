@@ -16,7 +16,7 @@ angular.module('siAdminApp')
         self.deleteAllCookies();
         $http.defaults.withCredentials = false;
         $rootScope.globals = null;
-        //document.location = '/dist/index.html';
+        document.location = '/dist/index.html';
       });
 
       this.deleteAllCookies = function () {

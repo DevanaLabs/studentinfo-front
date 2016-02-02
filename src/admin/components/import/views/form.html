@@ -8,12 +8,14 @@
                 <form id="import-form" ng-submit="processForm()">
                     <div class="form-group">
                         <label for="import-type"></label>
-                        <select name="import-type" id="import-type" ng-model="importType" ng-hide="typeFromUrl">
+                        <select name="import-type" id="import-type" ng-model="importType" ng-hide="typeFromUrl" class="form-control">
                             <option ng-repeat="type in types" value="{{type.id}}">{{type.name}}</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="import-wallpaper"></label>
+                        <div class="btn btn-info" ngf-select ng-model="file" name="import"
+                             gf-max-size="50MB">Odaberite fajl
+                        </div>
                     </div>
                     <div class="form-group">
                         <button type="button" ui-sref="home" class="btn btn-alert">Odustani</button>

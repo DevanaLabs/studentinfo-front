@@ -24,29 +24,27 @@
             <a ui-sref="events"><i class="fa fa-calendar"></i> <span class="nav-label">Dogadjaji</span></a>
         </li>
         <li>
-            <a>
-                <i class="fa fa-bell"></i>
-                <span class="nav-label">Obavestenja</span>
-                <span class="fa arrow"></span>
-            </a>
-            <ul class="nav nav-second-level collapse in">
-                <li><a ui-sref="lectureNotifications">Za predavanja/vezbe</a></li>
-                <li><a ui-sref="eventNotifications">Za dogadjaje</a></li>
-            </ul>
+            <a ui-sref="lectureNotifications"><i class="fa fa-university"></i> <span class="nav-label">Predavanja i vezbe</span></a>
+        </li>
+        <li>
+            <a ui-sref="eventNotifications"><i class="fa fa-bell"></i> <span class="nav-label">Obavestenja</span></a>
         </li>
         <li>
             <a ui-sref="staff({type: 'professors'})"><i class="fa fa-user"></i> <span class="nav-label">Profesori</span></a>
         </li>
         <li>
-            <a ui-sref="staff({type: 'assistants'})"><i class="fa fa-user"></i> <span class="nav-label">Asistenti</span></a>
+            <a ui-sref="staff({type: 'assistants'})"><i class="fa fa-users"></i> <span class="nav-label">Asistenti</span></a>
         </li>
         <li>
-            <a ui-sref="staff({type: 'students'})"><i class="fa fa-users"></i> <span
+            <a ui-sref="staff({type: 'students'})"><i class="fa fa-graduation-cap"></i> <span
                     class="nav-label">Studenti</span></a>
         </li>
-        <!--<li>-->
-        <!--<a ui-sref="settings()"><i class="fa fa-gears"></i> <span class="nav-label">Podesavanja</span></a>-->
-        <!--</li>-->
+        <li>
+            <a ui-sref="import"><i class="fa fa-database"></i> <span class="nav-label">Import podataka</span></a>
+        </li>
+        <li>
+            <a ui-sref="changePassword"><i class="fa fa-gears"></i> <span class="nav-label">Promena lozinke</span></a>
+        </li>
         <li>
             <a ui-sref="logout"><i class="fa fa-sign-out"></i> <span class="nav-label">Kraj rada</span></a>
         </li>

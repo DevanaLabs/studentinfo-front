@@ -6,6 +6,7 @@ var app = angular.module('siAdminApp', [
   'ngAnimate',
   'toastr',
   'angularMoment',
+  'ngFileUpload',
   'ui.router',
   'ui.bootstrap',
   'ui-notification',
@@ -89,7 +90,7 @@ app
           controller: 'LectureNotificationsCtrl'
         })
         .state('lectureNotification_new', {
-          url: '/lectureNotifications/new/{lecture:int}',
+          url: '/lectureNotifications/new',
           templateUrl: 'components/notifications/views/lectureNotifications/single_new.html',
           data: {
             authorizedRoles: 'admin'
@@ -121,6 +122,15 @@ app
             authorizedRoles: 'admin'
           },
           controller: 'NewEventNotificationCtrl',
+          controllerAs: 'vm'
+        })
+        .state('eventNotification_edit', {
+          url: '/eventNotification/edit/{id:int}',
+          templateUrl: 'components/notifications/views/eventNotifications/single_edit.html',
+          data: {
+            authorizedRoles: 'admin'
+          },
+          controller: 'EditEventNotificationCtrl',
           controllerAs: 'vm'
         })
         .state('eventNotifications_event', {

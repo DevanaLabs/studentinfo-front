@@ -21,7 +21,7 @@
                 <tr ng-repeat="notification in notifications | filter:query" class="repeated-item">
                     <td>{{ $index }}</td>
                     <td>{{ notification.description }}</td>
-                    <td>{{ notification.expiresAt.raw | amDateFormat:'HH:mm DD/MM/YYYY' }}</td>
+                    <td>{{ notification.expiresAt | amDateFormat:'HH:mm DD/MM/YYYY' }}</td>
                     <td>
                         <button class="btn btn-alert" ui-sref="eventNotification_edit({id: notification.id})">Izmeni
                         </button>
