@@ -25,9 +25,7 @@
             margin: 0 auto;
             text-align: center;
             background: white;
-            min-height: 400px;
-            top: calc(50% - 200px);
-            border-radius: 5px;
+            min-height: 100%;
             box-sizing: border-box;
             box-shadow: 0 0 5px rgba(0, 0, 0, .5);
         }
@@ -136,7 +134,6 @@
 <script>
     function send () {
         var r = new XMLHttpRequest;
-        r.withCredentials = true;
         r.open("POST", "http://api.studentinfo.dev/auth/");
         var a = {
             "email": document.getElementById('emailField').value,
