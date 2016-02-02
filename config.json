@@ -1,0 +1,8 @@
+{
+  "dev": {
+    "API_URL": "http://api.studentinfo.dev"
+  },
+  "prod": {
+    "API_URL": "http://api.studentinfo.rs"
+  }
+}
