@@ -255,7 +255,7 @@ gulp.task('build', ['build-app'], function () {
   // watch html partials
   gulp.watch(paths.partials, function () {
     return functions.buildPartials()
-      .pipe(plugins.livereload());
+      .pipe(livereload());
   });
 
   // watch styles

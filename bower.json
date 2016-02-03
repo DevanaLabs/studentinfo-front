@@ -22,6 +22,7 @@
     "bootstrap-sass": "~3.3.6",
     "angular-toastr": "~1.7.0",
     "lodash": "~4.2.0",
-    "moment": "momentjs#~2.11.1"
+    "moment": "momentjs#~2.11.1",
+    "angular-local-storage": "~0.2.3"
   }
 }
