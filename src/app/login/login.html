@@ -1,0 +1,23 @@
+<div class="loginWrapper">
+  <div class="innerLoginWrapper">
+    <h1>Добродошли на Студент инфо</h1>
+  
+    <div class="inputWrapper">
+      <div class="imgWrapper">
+        <img class="icon" src="assets/svg/aboutIconMail.svg" alt="">
+      </div>
+      <input type="text" id="emailField" placeholder="Ваша адреса"
+           onkeydown="(function(e){if(e.keyCode == 13) send()})(event)">
+    </div>
+  
+    <div class="inputWrapper">
+      <div class="imgWrapper">
+        <img class="icon" src="assets/svg/registerIconLockOutline.svg" alt="">
+      </div>
+      <input type="password" id="passwordField" placeholder="Ваша шифра"
+           onkeydown="(function(e){if(e.keyCode == 13) send()})(event)">
+    </div>
+  
+    <button id="sendButton">Пријавите се</button>
+  </div>
+</div>
