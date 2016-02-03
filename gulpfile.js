@@ -223,7 +223,10 @@ functions.buildApp = function () {
  */
 
 gulp.task('clean', function (cb) {
-  del(paths.distDev, cb);
+  if (!util.argumentPassed('--no-clean')) {
+    return del(paths.distDev, cb);
+  }
+  return gulp.src('');
 });
 
 gulp.task('build-app', ['clean'], functions.buildApp);
