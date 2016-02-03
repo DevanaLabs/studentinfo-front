@@ -1,5 +1,4 @@
 var gulp = require('gulp'),
-  fs = require('fs'),
   del = require('del'),
   es = require('event-stream'),
   bowerFiles = require('main-bower-files'),
@@ -114,9 +113,10 @@ functions.scriptedPartials = function () {
 
 functions.buildVendorScripts = function () {
   return gulp.src(bowerFiles('**/*.js'))
+    .pipe(debug())
     .pipe(order(['jquery.js', 'angular.js']))
     .pipe(gulpif(util.isProduction(), concat('vendor.min.js')))
-    //.pipe(gulpif(util.isProduction(), uglify()))
+    .pipe(gulpif(util.isProduction(), uglify()))
     .pipe(gulpif(util.isProduction(), gulp.dest(paths.distVendorScriptsProd), gulp.dest(paths.distVendorScriptsDev)));
 };
 
@@ -129,7 +129,7 @@ functions.buildAppScripts = function () {
     .pipe(order(['jquery.js', 'angular.js']))
     .pipe(gulpif(util.isProduction(), sourcemaps.init()))
     .pipe(gulpif(util.isProduction(), concat('app.min.js')))
-    //.pipe(gulpif(util.isProduction(), uglify()))
+    .pipe(gulpif(util.isProduction(), uglify()))
     .pipe(gulpif(util.isProduction(), sourcemaps.write()))
     .pipe(gulpif(util.isProduction(), gulp.dest(paths.distAppScriptsProd), gulp.dest(paths.distAppScriptsDev)));
 };
@@ -196,6 +196,7 @@ functions.buildIndex = function () {
   var app = mergeStream(appScripts, appStyles);
 
   return gulp.src(paths.index)
+    .pipe(gulpif(util.isProduction(), gulp.dest(paths.distProd), gulp.dest(paths.distDev)))
     .pipe(htmlhint())
     .pipe(htmlhint.reporter())
     .pipe(inject(vendor, {
