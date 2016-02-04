@@ -1,15 +1,11 @@
 'use strict';
 
 angular.module('siApp')
-  .factory('Auth', ['$rootScope', 'localStorageService', 'Api', 'ROLES', 'EVENTS',
-    function ($rootScope, localStorageService, Api, ROLES, EVENTS) {
+  .factory('Auth', ['$rootScope', 'localStorageService', 'Api', 'OAuth2Client', 'ROLES', 'EVENTS',
+    function ($rootScope, localStorageService, Api, OAuth2Client, ROLES, EVENTS) {
       var auth = {};
 
-      var oauth2Params = {
-        'client_id': '1',
-        'client_secret': 'secret',
-        'grant_type': 'password'
-      };
+      var oauth2Params = OAuth2Client;
 
       var user = {
         roles: []
