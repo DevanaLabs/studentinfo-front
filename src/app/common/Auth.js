@@ -16,6 +16,7 @@ angular.module('siApp')
           if (response.data.success) {
             auth.set(response.data.success.data);
             $rootScope.$broadcast(EVENTS.AUTH.LOGIN_SUCCESS, response.data.success.data);
+            $rootScope.$broadcast(EVENTS.AUTH.AUTHORIZED);
           } else {
             $rootScope.$broadcast(EVENTS.AUTH.LOGIN_FAILED, response);
           }
@@ -52,6 +53,14 @@ angular.module('siApp')
 
       auth.user = function () {
         return user;
+      };
+
+      auth.alreadyLoggedIn = function () {
+        if (_.includes(localStorageService.keys(), 'user')) {
+          // TODO : Check for access token expiration
+          return true;
+        }
+        return false;
       };
 
       return auth;

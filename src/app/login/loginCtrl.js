@@ -12,7 +12,7 @@ angular.module('siApp')
 
       $scope.$on(EVENTS.AUTH.LOGIN_SUCCESS, function (data) {
         if (_.includes(Auth.user().roles, 'admin')) {
-          $state.go('admin.home');
+          $state.go('admin.overview');
         } else if (_.includes(Auth.user().roles, 'student')) {
           $state.go('dashboard.home');
         }
