@@ -1,17 +1,19 @@
 'use strict';
 
 angular.module('siApp')
-  .factory('ApiUrlBuilder', function (API_URL) {
-    var urlBuilder = {
-      baseEndpoints: ['auth']
-    };
+  .factory('ApiUrlBuilder', ['API_URL',
+    function (API_URL) {
+      var urlBuilder = {
+        baseEndpoints: ['auth'],
+        slug: ''
+      };
 
-    urlBuilder.build = function (resource) {
-      if (_.indexOf(urlBuilder.baseEndpoints, resource) != -1) {
-        return API_URL + '/' + resource;
-      }
-      return API_URL + '/raf/' + resource;
-    };
+      urlBuilder.build = function (resource) {
+        if (_.includes(urlBuilder.baseEndpoints, resource)) {
+          return API_URL + '/' + resource;
+        }
+        return API_URL + '/raf/' + resource;
+      };
 
-    return urlBuilder;
-  });
+      return urlBuilder;
+    }]);

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('siApp')
-  .config(function ($stateProvider, ROLES) {
+  .config(['$stateProvider', 'ROLES', function ($stateProvider, ROLES) {
     $stateProvider
       .state('login', {
         url: '/login',
@@ -25,4 +25,4 @@ angular.module('siApp')
           authorizedRoles: [ROLES.admin, ROLES.superAdmin]
         }
       });
-  });
+  }]);

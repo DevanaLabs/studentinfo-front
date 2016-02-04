@@ -2,15 +2,15 @@
 
 angular.module('siApp')
   .constant('EVENTS', {
-    auth: {
-      loginFailed: 'auth:login-failed',
-      loginSuccess: 'auth:login-success',
-      notAuthorized: 'auth:not-authorized',
-      notAuthenticated: 'auth:not-authenticated',
+    AUTH: {
+      LOGIN_FAILED: 'auth.login_failed',
+      LOGIN_SUCCESS: 'auth.login_success',
+      NOT_AUTHORIZED: 'auth.not_authorized',
+      NOT_AUTHENTICATED: 'auth.not_authenticated',
     },
-    api: {
-      refreshStart: 'api:refresh-start',
-      refreshSuccess: 'api:refresh-success',
-      refreshError: 'api:refresh-error'
+    API: {
+      REFRESH_START: 'api:refresh_start',
+      REFRESH_SUCCESS: 'api:refresh_success',
+      REFRESH_ERROR: 'api:refresh_error'
     }
   });

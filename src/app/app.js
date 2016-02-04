@@ -8,11 +8,12 @@ angular.module('siApp', ['ui.router', 'LocalStorageModule', 'siApp.config'])
     admin: 'admin',
     superAdmin: 'super_admin'
   })
-  .run(function ($rootScope, $state, Privilege, EVENTS) {
-    $rootScope.$on('$stateChangeStart', function (event, next) {
-      if (!Privilege.check(next.data.authorizedRoles)) {
-        event.preventDefault();
-        $rootScope.$broadcast(EVENTS.notAuthorized);
-      }
-    });
-  });
+  .run(['$rootScope', '$state', 'Privilege', 'EVENTS',
+    function ($rootScope, $state, Privilege, EVENTS) {
+      $rootScope.$on('$stateChangeStart', function (event, toState) {
+        if (!Privilege.check(toState.data.authorizedRoles)) {
+          event.preventDefault();
+          $rootScope.$broadcast(EVENTS.NOT_AUTHORIZED);
+        }
+      });
+    }]);
