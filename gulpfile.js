@@ -21,7 +21,8 @@ var gulp = require('gulp'),
   replace = require('gulp-replace'),
   debug = require('gulp-debug'),
   imagemin = require('gulp-imagemin'),
-  gulpNgConfig = require('gulp-ng-config');
+  gulpNgConfig = require('gulp-ng-config'),
+  angularFilesort = require('gulp-angular-filesort');
 
 /**
  *  Paths ----------------------------------------
@@ -127,6 +128,7 @@ functions.buildAppScripts = function () {
 
   return es.merge(scriptedPartials, validatedAppScripts, config)
     .pipe(order(['jquery.js', 'angular.js']))
+    .pipe(angularFilesort())
     .pipe(gulpif(util.isProduction(), sourcemaps.init()))
     .pipe(gulpif(util.isProduction(), concat('app.min.js')))
     .pipe(gulpif(util.isProduction(), uglify()))
