@@ -13,13 +13,23 @@ angular.module('siApp', ['ui.router', 'LocalStorageModule', 'siApp.config', 'pas
 
       if (Auth.alreadyLoggedIn()) {
         Auth.load();
-        $rootScope.$broadcast(EVENTS.AUTH.AUTHORIZED);
       }
 
-      $rootScope.$on('$stateChangeStart', function (event, toState) {
-        if (!Privilege.check(toState.data.authorizedRoles)) {
-          event.preventDefault();
-          $rootScope.$broadcast(EVENTS.NOT_AUTHORIZED);
+      $rootScope.$on(EVENTS.AUTH.NOT_AUTHORIZED, function (event, fromState, fromParams) {
+        if (Auth.userExists()) {
+          $state.go(fromState, fromParams);
+        } else {
+          $rootScope.$emit(EVENTS.AUTH.NOT_AUTHENTICATED);
+          $state.go('login');
         }
       });
+
+      $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+        if (!Privilege.check(toState.data.authorizedRoles)) {
+          console.log('Not authorized');
+          event.preventDefault();
+          $rootScope.$broadcast(EVENTS.AUTH.NOT_AUTHORIZED, fromState, fromParams);
+        }
+      });
+
     }]);

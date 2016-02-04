@@ -63,5 +63,9 @@ angular.module('siApp')
         return false;
       };
 
+      auth.userExists = function () {
+        return user.roles.length > 0;
+      };
+
       return auth;
     }]);

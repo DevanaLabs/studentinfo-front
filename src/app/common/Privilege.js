@@ -10,7 +10,6 @@ angular.module('siApp')
           authorizedRoles = [authorizedRoles];
         }
 
-
         if (_.includes(authorizedRoles, ROLES.any)) {
           return true;
         }

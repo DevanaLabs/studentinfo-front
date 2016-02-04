@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('siApp')
-  .controller('LoginCtrl', ['$rootScope', '$scope', '$state', 'Auth', 'EVENTS',
-    function ($rootScope, $scope, $state, Auth, EVENTS) {
+  .controller('LoginCtrl', ['$rootScope', '$scope', '$state', 'Auth', 'Privilege', 'EVENTS', 'ROLES',
+    function ($rootScope, $scope, $state, Auth, Privilege, EVENTS, ROLES) {
       var self = this;
 
       $scope.credentials = {
@@ -10,10 +10,10 @@ angular.module('siApp')
         password: ''
       };
 
-      $scope.$on(EVENTS.AUTH.LOGIN_SUCCESS, function (data) {
-        if (_.includes(Auth.user().roles, 'admin')) {
+      $scope.$on(EVENTS.AUTH.LOGIN_SUCCESS, function (event, data) {
+        if (Privilege.check([ROLES.superAdmin, ROLES.admin])) {
           $state.go('admin.overview');
-        } else if (_.includes(Auth.user().roles, 'student')) {
+        } else {
           $state.go('dashboard.home');
         }
       });
