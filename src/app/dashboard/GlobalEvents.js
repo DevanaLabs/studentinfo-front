@@ -1,22 +1,35 @@
 'use strict';
 
 angular.module('siApp.dashboard', ['siApp'])
-  .factory("GlobalEvents", ['$scope', 'Dashboard', function ($scope, Dashboard) {
+  .factory('GlobalEvents', ['$rootScope', 'Dashboard', 'EVENTS', function ($rootScope, Dashboard, EVENTS) {
     var globalEventsService = {};
 
     var globalEvents = Dashboard.getGlobalEvents();
 
-    globalEventsService.getAll = function (id) {
+    $rootScope.$on(EVENTS.API.REFRESH_SUCCESS, function () {
+      globalEvents = Dashboard.getGlobalEvents();
+    });
+
+    globalEventsService.getAll = function () {
       return globalEvents;
     };
-    globalEventsService.getForDay = function (year, month, day) {
-      var inputdate = new Date(year + "-" + month + "-" + day);
-      var events = _.values(_.pickBy(globalEvents, function(o){
-        var startdate = new Date(o.datetime.startsAt);
-        var enddate = new Date(o.datetime.endsAt);
-        return (inputdate.getTime() + 14400000 >= startdate && inputdate <= enddate)
+
+    globalEventsService.getForDay = function (day) {
+      day.month--;
+      var date = moment(day);
+      var events = _.values(_.pickBy(globalEvents, function (event) {
+        var start = moment(event.datetime.startsAt, 'YYYY-MM-DD');
+        var end = moment(event.datetime.endsAt, 'YYYY-MM-DD');
+        return date.isAfter(start.subtract(1, 'days')) && date.isBefore(end);
       }));
-      var type = (events.length > 1) ? "multi" : events[0].type;
+
+      var type = null;
+      if (events.length > 1) {
+        type = 'multi';
+      }
+      else if (events.length > 0) {
+        type = events[0].type;
+      }
       // type is used for coloring the day on calendars
       return {
         events: events,

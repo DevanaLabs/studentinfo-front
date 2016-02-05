@@ -1,21 +1,25 @@
 'use strict';
 
 angular.module('siApp.dashboard', ['siApp'])
-  .factory("CourseEvents", ['$scope', 'Dashboard', function ($scope, Dashboard) {
+  .factory('CourseEvents', ['$rootScope', 'Dashboard', 'EVENTS', function ($rootScope, Dashboard, EVENTS) {
     var courseEventsService = {};
 
     var courseEvents = Dashboard.getCourseEvents();
 
-    courseEventsService.getAll = function (id) {
+    $rootScope.$on(EVENTS.API.REFRESH_SUCCESS, function () {
+      courseEvents = Dashboard.getCourseEvents();
+    });
+
+    courseEventsService.getAll = function () {
       return courseEvents;
     };
-    courseEventsService.getForDay = function (year, month, day) {
-      return _.values(_.pickBy(courseEvents, function(o){
-        return (
-          o.datetime.startsAt.substr(0, 4) * 1 == year &&
-          o.datetime.startsAt.substr(5, 2) * 1 == month &&
-          o.datetime.startsAt.substr(8, 2) * 1 == day
-        )
+
+    courseEventsService.getForDay = function (day) {
+      // Moment.js: http://momentjs.com/docs/#/parsing/object/
+      day.month--;
+      var date = moment(day);
+      return _.values(_.pickBy(courseEvents, function (event) {
+        return moment(event.datetime.startsAt, 'YYYY-MM-DD').isSame(date);
       }));
     };
 

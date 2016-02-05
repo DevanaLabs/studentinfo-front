@@ -2,27 +2,36 @@
 
 angular.module('siApp.dashboard', ['siApp'])
   .factory('Dashboard', function () {
+    var data = {};
     var dashboard = {};
-    
+
+    dashboard.setData = function (newData) {
+      data = newData;
+    };
+
     dashboard.getClassrooms = function () {
-      return this.data.classrooms;
+      return data.classrooms;
     };
+
     dashboard.getCourseEvents = function () {
-      return this.data.courseEvents;
+      return data.courseEvents;
     };
+
     dashboard.getGlobalEvents = function () {
-      return this.data.globalEvents;
+      return data.globalEvents;
     };
+
     dashboard.getGroupEventss = function () {
-      return this.data.groupEvents;
+      return data.groupEvents;
     };
+
     dashboard.getGroups = function () {
-      return this.data.groups;
+      return data.groups;
     };
+
     dashboard.getTeachers = function () {
-      return this.data.teachers;
+      return data.teachers;
     };
-    
 
     return dashboard;
   })
@@ -32,8 +41,8 @@ angular.module('siApp.dashboard', ['siApp'])
         $rootScope.$broadcast(EVENTS.API.REFRESH_START);
         Api.fetchDashboardData().then(function (response) {
           if (response.success) {
-            Dashboard.data = response.success.data;
-            $rootScope.$broadcast(EVENTS.API.REFRESH_SUCCESS, Dashboard.data);
+            Dashboard.setData(response.success.data);
+            $rootScope.$broadcast(EVENTS.API.REFRESH_SUCCESS);
           }
         }, function (response) {
           $rootScope.$broadcast(EVENTS.API.REFRESH_ERROR, response);

@@ -1,26 +1,39 @@
 'use strict';
 
 angular.module('siApp.dashboard', ['siApp'])
-  .factory("Teachers", ['$scope', 'Dashboard', 'LANGUAGE_CONSTANTS', function ($scope, Dashboard, LANGUAGE_CONSTANTS) {
-    var teachersService = {};
+  .factory('Teachers', ['$rootScope', 'Dashboard', 'LANGUAGE_CONSTANTS', 'EVENTS',
+    function ($rootScope, Dashboard, LANGUAGE_CONSTANTS, EVENTS) {
+      var teachersService = {};
 
-    var teachers = Dashboard.getTeachers();
-    teachers.sort(function (a, b) {
-      return (new Intl.Collator('rs').compare(a.lastName, b.lastName));
-    });
+      var teachers = Dashboard.getTeachers();
 
-    teachersService.getById = function (id) {
-      return _.find(teachers, {'id': id});
-    };
-    teachersService.getShownTeachers = function (year) {
-      return _.groupBy(teachers,  function(o) { return o.lastName.substr(0,1); });
-    };
-    teachersService.getFilters = function () {
-      var allTeachers = _.groupBy(teachers,  function(o) { return o.lastName.substr(0,1); });
-      var azbuka = LANGUAGE_CONSTANTS.CYRILIC;
-      return _.zipObject(azbuka, _.map(azbuka, function(o){ return allTeachers.hasOwnProperty(o); }));
-    };
+      $rootScope.$on(EVENTS.API.REFRESH_SUCCESS, function () {
+        teachers = Dashboard.getTeachers();
+      });
 
+      teachers.sort(function (a, b) {
+        return (new Intl.Collator('rs').compare(a.lastName, b.lastName));
+      });
 
-    return teachersService;
-  }]);
+      teachersService.getById = function (id) {
+        return _.find(teachers, {'id': id});
+      };
+
+      teachersService.getShownTeachers = function () {
+        return _.groupBy(teachers, function (teacher) {
+          return teacher.lastName[0];
+        });
+      };
+
+      teachersService.getFilters = function () {
+        var allTeachers = _.groupBy(teachers, function (teacher) {
+          return teacher.lastName[0];
+        });
+        var azbuka = LANGUAGE_CONSTANTS.CYRILIC;
+        return _.zipObject(azbuka, _.map(azbuka, function (o) {
+          return allTeachers.hasOwnProperty(o);
+        }));
+      };
+
+      return teachersService;
+    }]);

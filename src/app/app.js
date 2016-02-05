@@ -32,4 +32,7 @@ angular.module('siApp', ['ui.router', 'LocalStorageModule', 'siApp.config', 'pas
         }
       });
 
-    }]);
+    }])
+  .constant('LANGUAGE_CONSTANTS', {
+    CYRILIC: ['А', 'Б', 'В', 'Г', 'Д', 'Ђ', 'Е', 'Ж', 'З', 'И', 'Ј', 'К', 'Л', 'Љ', 'М', 'Н', 'Њ', 'О', 'П', 'Р', 'С', 'Т', 'Ћ', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Џ', 'Ш']
+  });
