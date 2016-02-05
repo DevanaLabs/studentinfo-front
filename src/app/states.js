@@ -23,6 +23,8 @@ angular.module('siApp')
         abstract: true,
         data: {
           authorizedRoles: [ROLES.admin, ROLES.superAdmin]
-        }
+        },
+        templateUrl: 'admin/index.html',
+        controller: 'MainAdminCtrl'
       });
   }]);

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('siApp', ['ui.router', 'LocalStorageModule', 'siApp.config'])
+angular.module('siApp', ['ui.router', 'LocalStorageModule', 'siApp.config', 'pascalprecht.translate'])
   .constant('ROLES', {
     any: '*',
     none: '!',
@@ -8,12 +8,28 @@ angular.module('siApp', ['ui.router', 'LocalStorageModule', 'siApp.config'])
     admin: 'admin',
     superAdmin: 'super_admin'
   })
-  .run(['$rootScope', '$state', 'Privilege', 'EVENTS',
-    function ($rootScope, $state, Privilege, EVENTS) {
-      $rootScope.$on('$stateChangeStart', function (event, toState) {
-        if (!Privilege.check(toState.data.authorizedRoles)) {
-          event.preventDefault();
-          $rootScope.$broadcast(EVENTS.NOT_AUTHORIZED);
+  .run(['$rootScope', '$state', 'Privilege', 'Auth', 'EVENTS',
+    function ($rootScope, $state, Privilege, Auth, EVENTS) {
+
+      if (Auth.alreadyLoggedIn()) {
+        Auth.load();
+      }
+
+      $rootScope.$on(EVENTS.AUTH.NOT_AUTHORIZED, function (event, fromState, fromParams) {
+        if (Auth.userExists()) {
+          $state.go(fromState, fromParams);
+        } else {
+          $rootScope.$emit(EVENTS.AUTH.NOT_AUTHENTICATED);
+          $state.go('login');
         }
       });
+
+      $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+        if (!Privilege.check(toState.data.authorizedRoles)) {
+          console.log('Not authorized');
+          event.preventDefault();
+          $rootScope.$broadcast(EVENTS.AUTH.NOT_AUTHORIZED, fromState, fromParams);
+        }
+      });
+
     }]);

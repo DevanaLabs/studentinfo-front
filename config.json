@@ -1,8 +1,18 @@
 {
   "dev": {
-    "API_URL": "http://api.studentinfo.dev"
+    "API_URL": "http://api.studentinfo.dev",
+    "OAuth2Client": {
+      "grant_type": "password",
+      "client_id": "1",
+      "client_secret": "secret"
+    }
   },
   "prod": {
-    "API_URL": "http://api.studentinfo.rs"
+    "API_URL": "http://api.studentinfo.rs",
+    "OAuth2Client": {
+      "grant_type": "password",
+      "client_id": "1",
+      "client_secret": "secret"
+    }
   }
 }
