@@ -1,12 +1,19 @@
 'use strict';
 
 angular.module('siApp')
-  .factory('Api', ['$http', 'API_URL', 'ApiUrlBuilder',
-    function ($http, API_URL, ApiUrlBuilder) {
-      var access_token = null;
+  .factory('Api', ['$rootScope', '$http', 'API_URL', 'ApiUrlBuilder', 'EVENTS',
+    function ($rootScope, $http, API_URL, ApiUrlBuilder, EVENTS) {
+      var accessToken = null;
+
+      $rootScope.$on(EVENTS.AUTH.OAUTH2_ACCESS_TOKEN_CHANGED, function (event, authToken) {
+        accessToken = authToken;
+      });
 
       return {
         login: function (credentials) {
+          return $http.post(ApiUrlBuilder.build('oauth/access_token'), credentials);
+        },
+        authUser: function (credentials) {
           return $http.post(ApiUrlBuilder.build('auth'), credentials);
         },
         fetchDashboardData: function () {

@@ -25,7 +25,6 @@ angular.module('siApp')
       };
 
       this.validateCredentials = function (credentials) {
-        // TODO: This shouldn't be in a controller
         return (credentials.username.length > 0 && credentials.password.length > 0);
       };
     }]);

@@ -14,7 +14,7 @@ var gulp = require('gulp'),
   jshint = require('gulp-jshint'),
   rename = require('gulp-rename'),
   sass = require('gulp-sass'),
-  minifyCss = require('gulp-minify-css'),
+  cssnano = require('gulp-cssnano'),
   livereload = require('gulp-livereload'),
   webserver = require('gulp-webserver'),
   mergeStream = require('merge-stream'),
@@ -114,7 +114,6 @@ functions.scriptedPartials = function () {
 
 functions.buildVendorScripts = function () {
   return gulp.src(bowerFiles('**/*.js'))
-    .pipe(debug())
     .pipe(order(['jquery.js', 'angular.js']))
     .pipe(gulpif(util.isProduction(), concat('vendor.min.js')))
     .pipe(gulpif(util.isProduction(), uglify()))
@@ -140,7 +139,7 @@ functions.buildVendorStyles = function () {
   return gulp.src(bowerFiles(['**/*.css', '**/*.scss']))
     .pipe(gulpif(util.isProduction(), sourcemaps.init()))
     .pipe(sass())
-    .pipe(gulpif(util.isProduction(), minifyCss()))
+    .pipe(gulpif(util.isProduction(), cssnano()))
     .pipe(gulpif(util.isProduction(), sourcemaps.write()))
     .pipe(gulpif(util.isProduction(), functions.minifiedFileName()))
     .pipe(gulpif(util.isProduction(), gulp.dest(paths.distVendorStylesProd), gulp.dest(paths.distVendorStylesDev)));
@@ -166,7 +165,7 @@ functions.buildAppStyles = function () {
     .pipe(sass({
       includePaths: paths.bootstrapScss
     }))
-    .pipe(gulpif(util.isProduction(), minifyCss()))
+    .pipe(gulpif(util.isProduction(), cssnano()))
     .pipe(gulpif(util.isProduction(), sourcemaps.write()))
     .pipe(gulpif(util.isProduction(), functions.minifiedFileName()))
     .pipe(gulpif(util.isProduction(), gulp.dest(paths.distAppStylesProd), gulp.dest(paths.distAppStylesDev)));

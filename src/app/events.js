@@ -8,6 +8,7 @@ angular.module('siApp')
       AUTHORIZED: 'auth.authorized',
       NOT_AUTHORIZED: 'auth.not_authorized',
       NOT_AUTHENTICATED: 'auth.not_authenticated',
+      OAUTH2_ACCESS_TOKEN_CHANGED: 'auth.oauth2_access_token_changed'
     },
     API: {
       REFRESH_START: 'api:refresh_start',

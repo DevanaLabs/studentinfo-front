@@ -17,7 +17,12 @@ angular.module('siApp', ['ui.router', 'LocalStorageModule', 'siApp.config', 'pas
 
       $rootScope.$on(EVENTS.AUTH.NOT_AUTHORIZED, function (event, fromState, fromParams) {
         if (Auth.userExists()) {
-          $state.go(fromState, fromParams);
+          if (fromState.abstract) {
+            // TODO : Looping, should be redirected on homepage based on roles
+            $state.go('dashboard.home');
+          } else {
+            $state.go(fromState, fromParams);
+          }
         } else {
           $rootScope.$emit(EVENTS.AUTH.NOT_AUTHENTICATED);
           $state.go('login');

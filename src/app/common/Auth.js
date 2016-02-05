@@ -13,16 +13,33 @@ angular.module('siApp')
 
       auth.login = function (credentials) {
         Api.login(angular.extend(credentials, oauth2Params)).then(function (response) {
-          if (response.data.success) {
-            auth.set(response.data.success.data);
-            $rootScope.$broadcast(EVENTS.AUTH.LOGIN_SUCCESS, response.data.success.data);
-            $rootScope.$broadcast(EVENTS.AUTH.AUTHORIZED);
-          } else {
+            console.log(response);
+            if (response.data.success) {
+              var oauthToken = response.data.success.data.oauth;
+              $rootScope.$broadcast(EVENTS.AUTH.OAUTH2_ACCESS_TOKEN_CHANGED, oauthToken);
+
+              Api.authUser({
+                email: credentials.username,
+                password: credentials.password
+              }).
+                then(function (response) {
+                  var user = response.data.success.data;
+                  user.oauth = oauthToken;
+                  auth.set(user);
+                  $rootScope.$broadcast(EVENTS.AUTH.LOGIN_SUCCESS, response.data.success.data);
+                  $rootScope.$broadcast(EVENTS.AUTH.AUTHORIZED);
+                }, function (response) {
+                  $rootScope.$broadcast(EVENTS.AUTH.LOGIN_FAILED, response);
+                });
+            }
+            else {
+              $rootScope.$broadcast(EVENTS.AUTH.LOGIN_FAILED, response);
+            }
+          }, function (response) {
             $rootScope.$broadcast(EVENTS.AUTH.LOGIN_FAILED, response);
           }
-        }, function (response) {
-          $rootScope.$broadcast(EVENTS.AUTH.LOGIN_FAILED, response);
-        });
+        )
+        ;
       };
 
       auth.logout = function () {
@@ -30,12 +47,14 @@ angular.module('siApp')
       };
 
       auth.set = function (data) {
+        console.log(data);
+        data.oauth.expiresAt = moment().add(data.oauth.expires_in, 'seconds');
         user = {
           roles: [data.user.userType.toLowerCase()],
           firstName: data.user.firstName,
           lastName: data.user.lastName,
           faculty: data.user.faculty,
-          accessToken: data.oauth.access_token
+          accessToken: data.oauth
         };
         localStorageService.set('user', user);
       };
@@ -68,4 +87,5 @@ angular.module('siApp')
       };
 
       return auth;
-    }]);
+    }])
+;

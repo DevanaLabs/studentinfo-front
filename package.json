@@ -55,6 +55,7 @@
     "gulp": "^3.9.0",
     "gulp-angular-filesort": "^1.1.1",
     "gulp-cli": "^1.0.0",
+    "gulp-cssnano": "^2.1.0",
     "gulp-debug": "^2.1.2",
     "gulp-if": "^2.0.0",
     "gulp-imagemin": "^2.4.0",
