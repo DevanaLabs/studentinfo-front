@@ -3,6 +3,26 @@
 angular.module('siApp.dashboard', ['siApp'])
   .factory('Dashboard', function () {
     var dashboard = {};
+    
+    dashboard.getClassrooms = function () {
+      return this.data.classrooms;
+    };
+    dashboard.getCourseEvents = function () {
+      return this.data.courseEvents;
+    };
+    dashboard.getGlobalEvents = function () {
+      return this.data.globalEvents;
+    };
+    dashboard.getGroupEventss = function () {
+      return this.data.groupEvents;
+    };
+    dashboard.getGroups = function () {
+      return this.data.groups;
+    };
+    dashboard.getTeachers = function () {
+      return this.data.teachers;
+    };
+    
 
     return dashboard;
   })
