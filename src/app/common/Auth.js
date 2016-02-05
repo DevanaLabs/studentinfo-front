@@ -7,26 +7,30 @@ angular.module('siApp')
 
       var oauth2Params = OAuth2Client;
 
-      var user = {
-        roles: []
+      var authParams = {
+        user: {
+          roles: []
+        },
+        oauth2: null
       };
 
       auth.login = function (credentials) {
         Api.login(angular.extend(credentials, oauth2Params)).then(function (response) {
             console.log(response);
             if (response.data.success) {
-              var oauthToken = response.data.success.data.oauth;
-              $rootScope.$broadcast(EVENTS.AUTH.OAUTH2_ACCESS_TOKEN_CHANGED, oauthToken);
+              var oauth2Token = response.data.success.data.oauth;
 
               Api.authUser({
                 email: credentials.username,
                 password: credentials.password
               }).
                 then(function (response) {
-                  var user = response.data.success.data;
-                  user.oauth = oauthToken;
-                  auth.set(user);
-                  $rootScope.$broadcast(EVENTS.AUTH.LOGIN_SUCCESS, response.data.success.data);
+                  var user = response.data.success.data.user;
+                  auth.set({
+                    user: user,
+                    oauth2: oauth2Token
+                  });
+                  $rootScope.$broadcast(EVENTS.AUTH.LOGIN_SUCCESS);
                   $rootScope.$broadcast(EVENTS.AUTH.AUTHORIZED);
                 }, function (response) {
                   $rootScope.$broadcast(EVENTS.AUTH.LOGIN_FAILED, response);
@@ -47,43 +51,52 @@ angular.module('siApp')
       };
 
       auth.set = function (data) {
-        console.log(data);
-        data.oauth.expiresAt = moment().add(data.oauth.expires_in, 'seconds');
-        user = {
-          roles: [data.user.userType.toLowerCase()],
-          firstName: data.user.firstName,
-          lastName: data.user.lastName,
-          faculty: data.user.faculty,
-          accessToken: data.oauth
+        data.oauth2.expiresAt = moment().add(data.oauth2.expires_in, 'milliseconds');
+        authParams = {
+          user: {
+            roles: [data.user.userType.toLowerCase()],
+            userType: data.user.userType,
+            firstName: data.user.firstName,
+            lastName: data.user.lastName,
+            faculty: data.user.faculty,
+          },
+          oauth2: data.oauth2
         };
-        localStorageService.set('user', user);
+        $rootScope.$broadcast(EVENTS.AUTH.OAUTH2_ACCESS_TOKEN_CHANGED, authParams.oauth2);
+        $rootScope.$broadcast(EVENTS.AUTH.FACULTY_SLUG_CHANGED, authParams.user.faculty.slug);
+        localStorageService.set('auth', authParams);
       };
 
       auth.unset = function (data) {
-        user = {
-          roles: []
+        authParams = {
+          user: {
+            roles: []
+          },
+          oauth2: null
         };
-        localStorageService.remove('user');
+        localStorageService.remove('auth');
       };
 
       auth.load = function () {
-        user = localStorageService.get('user');
+        console.log('Setting auth');
+        auth.set(localStorageService.get('auth'));
       };
 
       auth.user = function () {
-        return user;
+        return authParams.user;
       };
 
       auth.alreadyLoggedIn = function () {
-        if (_.includes(localStorageService.keys(), 'user')) {
-          // TODO : Check for access token expiration
+        if (authParams) {
           return true;
+        } else if (_.includes(localStorageService.keys(), 'auth')) {
+          return moment(localStorageService.get('auth').oauth2.expiresAt).isBefore(moment());
         }
         return false;
       };
 
       auth.userExists = function () {
-        return user.roles.length > 0;
+        return authParams.user.roles.length > 0;
       };
 
       return auth;

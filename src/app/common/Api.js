@@ -17,7 +17,9 @@ angular.module('siApp')
           return $http.post(ApiUrlBuilder.build('auth'), credentials);
         },
         fetchDashboardData: function () {
-          return $http.get(ApiUrlBuilder.build('data'));
+          return $http.get(ApiUrlBuilder.build('data', {
+            access_token: accessToken.access_token
+          }));
         },
         logout: function () {
           return $http.delete(ApiUrlBuilder.build('auth'));

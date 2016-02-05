@@ -21,7 +21,7 @@ angular.module('siApp.dashboard', ['siApp'])
       return data.globalEvents;
     };
 
-    dashboard.getGroupEventss = function () {
+    dashboard.getGroupEvents = function () {
       return data.groupEvents;
     };
 
@@ -47,11 +47,11 @@ angular.module('siApp.dashboard', ['siApp'])
         }, function (response) {
           $rootScope.$broadcast(EVENTS.API.REFRESH_ERROR, response);
         });
-      };
 
-      $timeout(function () {
-        refresh();
-      }, API_REFRESH_TIMEOUT);
+        $timeout(function () {
+          refresh();
+        }, API_REFRESH_TIMEOUT);
+      };
 
       refresh();
     }])
