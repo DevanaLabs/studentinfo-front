@@ -83,7 +83,7 @@ angular.module('siApp')
           Entities.remove(e.id, function (response) {
             if (response.success) {
               // TODO: Ovo ne radi iz nekog razloga, ne update-uje $scope.entities
-              _.remove($scope.entities, function (scopeE) {
+              _.remove($scope.entities, function (scope) {
                 return scope.id === e.id;
               });
             } else {

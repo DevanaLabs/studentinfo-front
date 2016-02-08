@@ -1,6 +1,6 @@
 <div id="form-wrapper">
   <div id="inner-form-wrapper">
-    <form action="">
+    <form action="" ng-submit="onSubmit()">
       <h1>{{ 'LOGIN.WELCOME' | translate }}</h1>
     
       <div class="input-wrapper">
@@ -17,7 +17,7 @@
         </div>
       </div>
     
-      <button id="send-button" type="submit" ng-click="onSubmit()">{{ 'LOGIN.SIGNIN' | translate }}</button>
+      <button id="send-button" type="submit">{{ 'LOGIN.SIGNIN' | translate }}</button>
     </form>
   </div>
 </div>

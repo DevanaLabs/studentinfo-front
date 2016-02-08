@@ -1,6 +1,5 @@
 'use strict';
 
-
 angular.module('siApp')
   .factory('Students', ['$rootScope', 'Api', function ($rootScope, Api) {
     var students = {};
