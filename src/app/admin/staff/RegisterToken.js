@@ -1,5 +1,6 @@
 'use strict';
 
+
 angular.module('siApp')
   .factory('RegisterToken', ['Api', function (Api) {
     var registerToken = {};

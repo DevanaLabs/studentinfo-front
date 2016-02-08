@@ -12,7 +12,7 @@ angular.module('siApp')
 
       $scope.query = '';
       $scope.currentPage = 0;
-      $scope.perPage = 20;
+      $scope.perPage = 25;
       $scope.paginatedEntities = [];
       $scope.entities = [];
       $scope.staffType = Entities.staffType;
