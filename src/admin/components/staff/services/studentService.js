@@ -8,7 +8,7 @@ angular.module('siAdminApp')
         method: 'GET',
         params: {
           start: 0,
-          count: 25
+          count: 1000
         },
         url: API.url + '/students/:start/:count'
       }

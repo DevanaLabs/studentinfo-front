@@ -13,7 +13,7 @@ angular.module('siAdminApp')
 
       $scope.query = '';
       $scope.currentPage = 0;
-      $scope.perPage = 10;
+      $scope.perPage = 25;
       $scope.paginatedEntities = [];
       $scope.entities = [];
       $scope.type = EntityService.type;
