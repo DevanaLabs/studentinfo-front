@@ -10,10 +10,10 @@ html, body {
   height: 100%;
 }
 
-#login-wrapper {
+#form-wrapper {
   background: url("/assets/img/bgBlurred.jpg") !important;
   height: 100%;
-  #inner-login-wrapper {
+  #inner-form-wrapper {
     padding: 10px 0;
     width: 500px;
     margin: 0 auto;
@@ -33,7 +33,7 @@ html, body {
       width: 320px;
       height: 40px;
       margin: 30px auto;
-      .login-input {
+      .form-input {
         float: right;
         width: 280px;
         height: 40px;
@@ -70,7 +70,7 @@ html, body {
       }
     }
 
-    .input-wrapper.disabled, input:disabled {
+    .input-wrapper.disabled, input:disabled, .input-wrapper.disabled * {
       background: #E6E6E6;
       vertical-align: middle;
     }

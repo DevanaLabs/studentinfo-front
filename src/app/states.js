@@ -11,12 +11,20 @@ angular.module('siApp')
         templateUrl: 'login/login.html',
         controller: 'LoginCtrl'
       })
+      .state('register', {
+        url: '/register',
+        data: {
+          authorizedRoles: ROLES.none
+        },
+        templateUrl: 'register/register.html'
+      })
       .state('dashboard', {
         url: '/dashboard',
-        abstract: true,
+        //abstract: true,
         data: {
           authorizedRoles: ROLES.any
-        }
+        },
+        templateUrl: 'dashboard/index.html'
       })
       .state('admin', {
         url: '/admin',

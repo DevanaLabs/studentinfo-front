@@ -1,21 +1,23 @@
-<div id="login-wrapper">
-  <div id="inner-login-wrapper">
-    <h1>Добродошли на Студент инфо</h1>
-  
-    <div class="input-wrapper">
-      <input class="login-input" ng-model="credentials.username" type="text" id="email-field" placeholder="Ваша адреса">
-      <div class="img-wrapper">
-        <img class="icon" src="assets/svg/aboutIconMail.svg" alt="">
+<div id="form-wrapper">
+  <div id="inner-form-wrapper">
+    <form action="">
+      <h1>{{ 'LOGIN.WELCOME' | translate }}</h1>
+    
+      <div class="input-wrapper">
+        <input class="form-input" ng-model="credentials.username" type="text" id="email-field" placeholder="{{ 'LOGIN.EMAIL' | translate }}">
+        <div class="img-wrapper">
+          <img class="icon" src="assets/svg/aboutIconMail.svg" alt="">
+        </div>
       </div>
-    </div>
-  
-    <div class="input-wrapper">
-      <input class="login-input" ng-model="credentials.password" type="password" id="password-field" placeholder="Ваша шифра">
-      <div class="img-wrapper">
-        <img class="icon" src="assets/svg/registerIconLockOutline.svg" alt="">
+    
+      <div class="input-wrapper">
+        <input class="form-input" ng-model="credentials.password" type="password" id="password-field" placeholder="{{ 'LOGIN.PASSWORD' | translate }}">
+        <div class="img-wrapper">
+          <img class="icon" src="assets/svg/registerIconLockOutline.svg" alt="">
+        </div>
       </div>
-    </div>
-  
-    <button id="send-button" ng-click="onSubmit()">Пријавите се</button>
+    
+      <button id="send-button" type="submit" ng-click="onSubmit()">{{ 'LOGIN.SIGNIN' | translate }}</button>
+    </form>
   </div>
 </div>
