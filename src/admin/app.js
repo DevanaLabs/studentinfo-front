@@ -11,6 +11,30 @@ var app = angular.module('siAdminApp', [
   'ui.bootstrap',
   'ui-notification',
   'ui.bootstrap.datetimepicker']);
+
+app.factory('oauthInterceptor', ['$q', '$cookies', function ($q, $cookies) {
+  var inter = {
+    request: function (config) {
+      console.log(config);
+      var deferred = $q.defer();
+
+      if (config.url.indexOf('api') === -1) {
+        deferred.resolve(config);
+      } else if (config.method === 'GET') {
+        config.url += '?access_token=' + $cookies.get('access_token');
+        deferred.resolve(config);
+      } else if (config.method === 'POST' || config.method === 'PUT' || config.method === 'DELETE') {
+        config.data.access_token = $cookies.get('access_token');
+        deferred.resolve(config);
+      }
+      return deferred.promise;
+    }
+  };
+
+
+  return inter;
+}]);
+
 app
   .config([
     '$httpProvider',
@@ -19,9 +43,10 @@ app
     'toastrConfig',
     function ($httpProvider, $stateProvider, $urlRouteProvider, toastrConfig) {
 
+      $httpProvider.interceptors.push('oauthInterceptor');
+
       $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
-      $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
-      $httpProvider.defaults.withCredentials = true;
+      //$httpProvider.defaults.withCredentials = true;
       //$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
       angular.extend(toastrConfig, {
@@ -223,10 +248,16 @@ app
     'Session', 'amMoment', function ($rootScope, $cookies, $state, $http, AUTH_EVENTS, AuthService, Session, amMoment) {
       amMoment.changeLocale('sr');
 
+      if ($cookies.get('access_token')) {
+        AuthService.oauth2 = {
+          access_token: $cookies.get('access_token')
+        };
+      }
+
       if (Session.isInCookies()) {
         Session.load();
         console.log('Found session in cookies');
-        $http.defaults.withCredentials = true;
+        //$http.defaults.withCredentials = true;
         $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
         $rootScope.globals = {
           loggedIn: true,
@@ -244,7 +275,7 @@ app
         if (Session.isInCookies()) {
           Session.load();
           console.log('Found session in cookies');
-          $http.defaults.withCredentials = true;
+          //$http.defaults.withCredentials = true;
           $rootScope.globals = {
             loggedIn: true,
             currentUser: Session.userObject

@@ -175,7 +175,7 @@ functions.builtIndexDev = function (paths) {
   var appStyles = functions.builtStylesDev(paths);
 
   return functions.validatedIndex(paths)
-    //.pipe(gulp.dest(paths.distDev)) // write first to get relative path for inject
+    .pipe(gulp.dest(paths.distDev)) // write first to get relative path for inject
     .pipe(plugins.inject(orderedVendorScripts, {
       relative: true,
       name: 'bower'

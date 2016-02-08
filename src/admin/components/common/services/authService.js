@@ -13,18 +13,11 @@ angular.module('siAdminApp')
 
       authService.login = function (credentials) {
         return $http
-          .post(API.url_base + '/auth?XDEBUG_SESSION_START=1', credentials);
+          .post(API.url_base + '/auth', credentials);
       };
 
       authService.logout = function (callback) {
-        return $http
-          .delete('http://api.studentinfo.dev/auth?XDEBUG_SESSION_START=1')
-          .then(function (res) {
-            console.log("Response after logout");
-            console.log(res);
-            Session.destroy();
-            callback();
-          });
+        $cookies.remove('access_token');
       };
 
       authService.isAuthenticated = function () {

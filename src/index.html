@@ -118,20 +118,46 @@
             <img class="icon" src="app/images/aboutIconMail.svg" alt="">
         </div>
         <input type="text" id="emailField" placeholder="Ваша адреса"
-               onkeydown="(function(e){if(e.keyCode == 13) send()})(event)">
+               onkeydown="(function(e){if(e.keyCode == 13) oauth2Send()})(event)">
     </div>
     <div class="inputWrapper">
         <div class="imgWrapper">
             <img class="icon" src="app/images/registerIconLockOutline.svg" alt="">
         </div>
         <input type="password" id="passwordField" placeholder="Ваша шифра"
-               onkeydown="(function(e){if(e.keyCode == 13) send()})(event)">
+               onkeydown="(function(e){if(e.keyCode == 13) oauth2Send()})(event)">
     </div>
-    <button id="sendButton" onclick="function(){send()}">Пријавите се</button>
+    <button id="sendButton" onclick="oauth2Send()">Пријавите се</button>
 </div>
 
 
 <script>
+    function oauth2Send() {
+        var r = new XMLHttpRequest;
+        r.open("POST", "http://api.studentinfo.dev/oauth/access_token");
+        var a = {
+            "grant_type": "password",
+            "client_id": "1",
+            "client_secret": "secret",
+            "username": document.getElementById('emailField').value,
+            "password": document.getElementById('passwordField').value
+        };
+        r.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+        r.send(JSON.stringify(a));
+        document.getElementById("sendButton").className = "sending";
+        r.onreadystatechange = function () {
+            if (r.readyState == 4) {
+                document.getElementById("sendButton").className = "";
+                if (JSON.parse(r.response).error) {
+                    alert(JSON.parse(r.response).error.message);
+                } else {
+                    document.cookie = 'access_token=' + JSON.parse(r.response).success.data.oauth.access_token;
+                    send();
+                }
+            }
+        }
+    }
+
     function send () {
         var r = new XMLHttpRequest;
         r.open("POST", "http://api.studentinfo.dev/auth/");

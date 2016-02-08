@@ -20,6 +20,7 @@ angular.module('siAdminApp')
         {id: 2, slug: 'classrooms', name: 'Ucionice'},
         {id: 3, slug: 'courses', name: 'Kursevi'},
         {id: 4, slug: 'assistants', name: 'Asistenti'},
+        {id: 5, slug: 'lecture', name: 'Raspored'}
       ];
 
       if ($stateParams.importType.length) {
@@ -35,8 +36,8 @@ angular.module('siAdminApp')
 
       $scope.processForm = function () {
         Upload.upload({
-          url: 'http://api.studentinfo.dev/raf/import' + self.capitalize($scope.formData.types[$scope.importType].slug),
-          data: {'import': file}
+          url: 'http://api.studentinfo.dev/raf/import' + self.capitalize($scope.types[$scope.importType].slug),
+          data: {'import': $scope.file}
         }).then(function (response) {
           toastr.success('Uspesno importovani podaci');
         }, function (response) {
