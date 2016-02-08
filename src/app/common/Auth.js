@@ -87,10 +87,8 @@ angular.module('siApp')
       };
 
       auth.alreadyLoggedIn = function () {
-        if (authParams) {
-          return true;
-        } else if (_.includes(localStorageService.keys(), 'auth')) {
-          return moment(localStorageService.get('auth').oauth2.expiresAt).isBefore(moment());
+        if (_.includes(localStorageService.keys(), 'auth')) {
+          return moment(localStorageService.get('auth').oauth2.expiresAt).isAfter(moment());
         }
         return false;
       };

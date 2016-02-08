@@ -1,0 +1,49 @@
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <td colspan="6"><input class="form-control" type="text" ng-model="query" placeholder="Pretraga">
+            </td>
+        </tr>
+        <tr ng-show="selectedCount">
+            <td colspan="6">
+                <p>Sa odabranim</p>
+                <button class="btn btn-info" ng-click="issueRegisterTokens()">Posalji registracione tokene</button>
+                <button class="btn btn-danger" ng-click="deleteEntities()">Obrisi</button>
+            </td>
+        </tr>
+        <tr>
+            <th></th>
+            <th ng-if="staffType.slug === 'professors' || staffType.slug === 'assistants' ">
+                Titula
+            </th>
+            <th ng-if="staffType.slug === 'students'">
+                Indeks
+            </th>
+            <th>Ime i prezime</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="entity in paginatedEntities | filter:query" class="repeated-item"
+            ng-class="event.registered ? '' : 'warning'">
+            <td>
+                <input type="checkbox" ng-model="entity.selected" ng-change="entitySelectChanged(entity)">
+            </td>
+            <th ng-if="staffType.slug === 'professors' || staffType.slug === 'assistants' ">
+            <td>{{ entity.title }}</td>
+            </th>
+            <th ng-if="staffType.slug === 'students'">
+            <td>{{ entity.indexNumber }}</td>
+            </th>
+            <td>{{ entity.firstName }} {{ entity.lastName }}</td>
+            <td>{{ entity.email.email }}</td>
+            <td>
+                <small class="alert-danger">Registracioni token istekao</small>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <uib-pagination total-items="entities.length" items-per-page="perPage" ng-model="currentPage"></uib-pagination>
+</div>

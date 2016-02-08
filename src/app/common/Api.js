@@ -23,6 +23,38 @@ angular.module('siApp')
         },
         logout: function () {
           return $http.delete(ApiUrlBuilder.build('auth'));
+        },
+        getStudents: function (pagination) {
+          return $http.get(ApiUrlBuilder.build('students', {
+            access_token: accessToken.access_token,
+            start: pagination.start,
+            count: pagination.count
+          }));
+        },
+        removeStudent: function (id) {
+          return $http.delete(ApiUrlBuilder.build('student/' + id, {
+            access_token: accessToken.access_token
+          }));
+        },
+        getAssistants: function (pagination) {
+          return $http.get(ApiUrlBuilder.build('assistants', {
+            access_token: accessToken.access_token,
+            start: pagination.start,
+            count: pagination.count
+          }));
+        },
+        getProfessors: function (pagination) {
+          return $http.get(ApiUrlBuilder.build('professors', {
+            access_token: accessToken.access_token,
+            start: pagination.start,
+            count: pagination.count
+          }));
+        },
+        issueRegisterTokens: function (emails) {
+          return $http.post(ApiUrlBuilder.build('register'), {
+            access_token: accessToken.access_token,
+            email: emails
+          });
         }
       };
     }]);
