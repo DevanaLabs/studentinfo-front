@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('siApp.dashboard', ['siApp'])
+angular.module('siApp.dashboard')
   .factory('Teachers', ['$rootScope', 'Dashboard', 'LANGUAGE_CONSTANTS', 'EVENTS',
     function ($rootScope, Dashboard, LANGUAGE_CONSTANTS, EVENTS) {
       var teachersService = {};

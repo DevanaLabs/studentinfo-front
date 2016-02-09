@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('siApp.dashboard', ['siApp'])
+angular.module('siApp.dashboard')
   .factory('CourseEvents', ['$rootScope', 'Dashboard', 'EVENTS', function ($rootScope, Dashboard, EVENTS) {
     var courseEventsService = {};
 

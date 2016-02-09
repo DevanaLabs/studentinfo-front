@@ -147,9 +147,9 @@ functions.buildVendorStyles = function () {
 
 functions.buildImages = function () {
   var imgs = gulp.src(paths.assets.img)
-    .pipe(imagemin({
-      progressive: true
-    }))
+    //.pipe(imagemin({
+    //  progressive: true
+    //}))
     .pipe(gulpif(util.isProduction(), gulp.dest(paths.distAssetsImgDev), gulp.dest(paths.distAssetsImgProd)));
   var svgs = gulp.src(paths.assets.svg)
     .pipe(imagemin({

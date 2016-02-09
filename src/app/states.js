@@ -20,7 +20,7 @@ angular.module('siApp')
       })
       .state('dashboard', {
         url: '/dashboard',
-        //abstract: true,
+        abstract: true,
         data: {
           authorizedRoles: ROLES.any
         },

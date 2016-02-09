@@ -1,0 +1,34 @@
+#preschedule-wrapper {
+  height: 100%;
+  #preschedule-filter-wrapper {
+    display: flex;
+    justify-content: space-around;
+    background: #333;
+    .filter-item-wrapper{
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+      .filter-item-icon {
+        height: 35px;
+        vertical-align: middle;
+        margin-right: 10px;
+      }
+      .filter-item-text {
+        font-size: 21px;
+        //font-weight: 600;
+        color: white;
+        vertical-align: middle;
+        line-height: 100px;
+      }
+    }
+    .filter-item-wrapper:hover {
+      background: rgba(0,0,0,0.2);
+    }
+    .filter-item-wrapper.active {
+      background: rgba(0,0,0,0.5);
+    }
+  }
+  #preschedule-ui-view {
+
+  }
+}

@@ -1,0 +1,19 @@
+<div id="preschedule-wrapper">
+  <div id="preschedule-filter-wrapper" class="titlebar">
+    <div class="filter-item-wrapper active" ui-sref="dashboard.preSchedule.groups">
+      <img src="assets/svg/iconPsGroups.svg" alt="" class="filter-item-icon">
+      <span class="filter-item-text">{{ 'GROUPS' | translate }}</span>
+    </div>
+    <div class="filter-item-wrapper" ui-sref="dashboard.preSchedule.classrooms">
+      <img src="assets/svg/iconPsClassrooms.svg" alt="" class="filter-item-icon">
+      <span class="filter-item-text">{{ 'CLASSROOMS' | translate }}</span>
+    </div>
+    <div class="filter-item-wrapper" ui-sref="dashboard.preSchedule.teachers">
+      <img src="assets/svg/iconPsTeachers.svg" alt="" class="filter-item-icon">
+      <span class="filter-item-text">{{ 'TEACHERS' | translate }}</span>
+    </div>
+  </div>
+  <div id="preschedule-ui-view" ui-view>
+    
+  </div>
+</div>
