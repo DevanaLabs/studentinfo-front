@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('siApp.dashboard', ['ui.router', 'LocalStorageModule', 'siApp.config', 'siApp.dashboard', 'ui.bootstrap', 'pascalprecht.translate', 'toastr'])
+angular.module('siApp.dashboard', ['ui.router', 'LocalStorageModule', 'siApp.config', 'ui.bootstrap', 'pascalprecht.translate', 'toastr'])
   .config(['$stateProvider', function ($stateProvider) {
     $stateProvider
       .state('dashboard.preSchedule', {
