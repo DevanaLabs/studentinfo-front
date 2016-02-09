@@ -78,7 +78,6 @@ angular.module('siApp')
       };
 
       auth.load = function () {
-        console.log('Setting auth');
         auth.set(localStorageService.get('auth'));
       };
 

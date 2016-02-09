@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('siApp.dashboard')
-  .factory('Dashboard', function () {
+  .factory('Dashboard', ['$rootScope', '$timeout', 'Api', 'EVENTS', 'API_REFRESH_TIMEOUT',
+    function ($rootScope, $timeout, Api, EVENTS, API_REFRESH_TIMEOUT) {
     var data = {};
     var dashboard = {};
 
@@ -33,16 +34,17 @@ angular.module('siApp.dashboard')
       return data.teachers;
     };
 
-    return dashboard;
-  })
-  .run(['$rootScope', '$timeout', 'Api', 'Dashboard', 'API_REFRESH_TIMEOUT', 'EVENTS',
-    function ($rootScope, $timeout, Api, Dashboard, API_REFRESH_TIMEOUT, EVENTS) {
+    dashboard.initialLoad = function () {
+      console.log('Initial load');
+
       var refresh = function () {
+        console.log("ref");
         $rootScope.$broadcast(EVENTS.API.REFRESH_START);
         Api.fetchDashboardData().then(function (response) {
           if (response.success) {
-            Dashboard.setData(response.success.data);
+            dashboard.setData(response.success.data);
             $rootScope.$broadcast(EVENTS.API.REFRESH_SUCCESS);
+            console.log('Done initial load');
           }
         }, function (response) {
           $rootScope.$broadcast(EVENTS.API.REFRESH_ERROR, response);
@@ -54,5 +56,8 @@ angular.module('siApp.dashboard')
       };
 
       refresh();
-    }])
+    };
+
+    return dashboard;
+  }])
   .constant('API_REFRESH_TIMEOUT', 30000);

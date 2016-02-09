@@ -24,7 +24,8 @@ angular.module('siApp')
         data: {
           authorizedRoles: ROLES.any
         },
-        templateUrl: 'dashboard/index.html'
+        templateUrl: 'dashboard/index.html',
+        controller: 'MainDashboardCtrl'
       })
       .state('admin', {
         url: '/admin',
