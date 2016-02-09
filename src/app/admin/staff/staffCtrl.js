@@ -77,7 +77,7 @@ angular.module('siApp')
         var errorHappened = false;
 
         _.forEach(selected, function (e) {
-          Entities.remove(e.id, function (response) {
+          Entities.remove(e.id).then(function (response) {
             if (response.success) {
               $scope.entities = _.remove($scope.entities, function (entity) {
                 return e.id === entity.id;
@@ -91,12 +91,6 @@ angular.module('siApp')
             selected = [];
           });
         });
-
-        if (errorHappened) {
-          toastr.error('Greska!');
-        } else {
-          toastr.success('Uspesno obrisani!');
-        }
       };
 
       $scope.loadEntities();

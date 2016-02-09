@@ -4,11 +4,11 @@ angular.module('siApp')
   .factory('ApiUrlBuilder', ['$rootScope', 'API_URL', 'EVENTS',
     function ($rootScope, API_URL, EVENTS) {
       var urlBuilder = {
-        baseEndpoints: ['auth', 'oauth/access_token'],
+        baseEndpoints: ['auth', 'oauth/access_token', 'register'],
         slug: ''
       };
 
-      $rootScope.$on(EVENTS.AUTH.FACULTY_SLUG_CHANGED, function (event, slug) {
+      $rootScope.$on(EVENTS.AUTH.FACULTY_CHANGED, function (event, slug) {
         urlBuilder.slug = slug;
       });
 

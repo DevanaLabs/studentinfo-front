@@ -63,7 +63,7 @@ angular.module('siApp')
           oauth2: data.oauth2
         };
         $rootScope.$broadcast(EVENTS.AUTH.OAUTH2_ACCESS_TOKEN_CHANGED, authParams.oauth2);
-        $rootScope.$broadcast(EVENTS.AUTH.FACULTY_SLUG_CHANGED, authParams.user.faculty.slug);
+        $rootScope.$broadcast(EVENTS.AUTH.FACULTY_CHANGED, authParams.user.faculty.slug);
         localStorageService.set('auth', authParams);
       };
 
