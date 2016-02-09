@@ -41,7 +41,7 @@ function nextImg () {
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('siApp', ['ngCachedResource', 'ui.router', 'ngAnimate']);
+angular.module('siApp', ['ngCachedResource', 'ui.router', 'ngAnimate', 'ngCookies']);
 
 angular.module('siApp')
   .constant('API_BASE_URL', globalSettings.apiBaseUrl)
