@@ -5,10 +5,11 @@ angular.module('siApp')
     '$scope',
     '$state',
     '$stateParams',
+    '$filter',
     'Entities',
     'RegisterToken',
     'toastr',
-    function ($scope, $state, $stateParams, Entities, RegisterToken, toastr) {
+    function ($scope, $state, $stateParams, $filter, Entities, RegisterToken, toastr) {
       var self = this;
 
       $scope.query = '';
@@ -70,8 +71,8 @@ angular.module('siApp')
         Entities.remove(entity.id).then(function (response) {
           if (response.data.success) {
             toastr.success('Uspesno obrisano');
-            $scope.entities = _.difference($scope.entities, [entity]);
-            self.repaginateItems();
+            _.remove($scope.entities, entity);
+            self.paginateEntities();
             entity.selected = false;
             $scope.entitySelectChanged(entity);
           }
@@ -81,13 +82,25 @@ angular.module('siApp')
       };
 
       $scope.$watch('currentPage + perPage', function () {
-        self.repaginateItems();
+        self.paginateEntities();
       });
 
-      this.repaginateItems = function () {
+      $scope.$watch('query', function (newValue, oldValue) {
+        if (newValue === '') {
+          self.paginateEntities($scope.entities);
+        } else {
+          var filtered = $filter('filter')($scope.entities, newValue);
+          self.paginateEntities(filtered);
+        }
+      });
+
+      this.paginateEntities = function (entities) {
+        if (entities === undefined) {
+          entities = $scope.entities;
+        }
         var begin = (($scope.currentPage - 1) * $scope.perPage),
           end = begin + $scope.perPage;
-        $scope.paginatedEntities = _.slice($scope.entities, begin, end);
+        $scope.paginatedEntities = _.slice(entities, begin, end);
       };
 
       $scope.loadEntities();
