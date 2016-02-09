@@ -7,7 +7,8 @@ angular.module('siApp')
     '$stateParams',
     'Entities',
     'RegisterToken',
-    function ($scope, $state, $stateParams, Entities, RegisterToken) {
+    'toastr',
+    function ($scope, $state, $stateParams, Entities, RegisterToken, toastr) {
       var self = this;
 
       $scope.query = '';
@@ -19,11 +20,7 @@ angular.module('siApp')
       $scope.selectedCount = 0;
 
       $scope.loadEntities = function () {
-        Entities.getAll({
-          start: 0,
-          count: 10000
-        }).then(function (response) {
-          console.log(response);
+        Entities.getAll({}).then(function (response) {
           if (response.data.success) {
             $scope.entities = _.forEach(response.data.success.data, function (e) {
               e.selected = false;
@@ -31,11 +28,11 @@ angular.module('siApp')
             });
             $scope.currentPage = 1;
           } else {
-            //toastr.error('Greska prilikom ucitavanja entiteta');
+            toastr.error('Greska prilikom ucitavanja entiteta');
           }
         }, function (response) {
           console.error(response);
-          //toastr.error('Greska prilikom ucitavanja entiteta');
+          toastr.error('Greska prilikom ucitavanja entiteta');
         });
       };
 
@@ -65,9 +62,9 @@ angular.module('siApp')
         if (emails.length) {
           var response = RegisterToken.issue(emails, function () {
             if (response.success) {
-              //toastr.success('Tokeni su izdati');
+              toastr.success('Tokeni su izdati');
             } else {
-              //toastr.success('Tokeni nisu izdati');
+              toastr.success('Tokeni nisu izdati');
             }
           });
         }
@@ -82,24 +79,23 @@ angular.module('siApp')
         _.forEach(selected, function (e) {
           Entities.remove(e.id, function (response) {
             if (response.success) {
-              // TODO: Ovo ne radi iz nekog razloga, ne update-uje $scope.entities
-              _.remove($scope.entities, function (scope) {
-                return scope.id === e.id;
+              $scope.entities = _.remove($scope.entities, function (entity) {
+                return e.id === entity.id;
               });
             } else {
               console.error(response);
               errorHappened = true;
             }
           }, function () {
-            //toastr.error('Greska prilikom brisanja!');
+            toastr.error('Greska prilikom brisanja!');
             selected = [];
           });
         });
 
         if (errorHappened) {
-          //toastr.error('Greska!');
+          toastr.error('Greska!');
         } else {
-          //toastr.success('Uspesno obrisani!');
+          toastr.success('Uspesno obrisani!');
         }
       };
 

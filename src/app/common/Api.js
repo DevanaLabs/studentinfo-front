@@ -11,49 +11,57 @@ angular.module('siApp')
 
       return {
         login: function (credentials) {
-          return $http.post(ApiUrlBuilder.build('oauth/access_token'), credentials);
+          return $http.post(ApiUrlBuilder.build('oauth/access_token'), credentials, {
+            noOAuth2: true
+          });
         },
         authUser: function (credentials) {
-          return $http.post(ApiUrlBuilder.build('auth'), credentials);
+          return $http.post(ApiUrlBuilder.build('auth'), credentials, {
+            noOAuth2: true
+          });
         },
         fetchDashboardData: function () {
-          return $http.get(ApiUrlBuilder.build('data', {
-            access_token: accessToken.access_token
-          }));
+          return $http.get(ApiUrlBuilder.build('data'));
         },
         logout: function () {
           return $http.delete(ApiUrlBuilder.build('auth'));
         },
         getStudents: function (pagination) {
-          return $http.get(ApiUrlBuilder.build('students', {
-            access_token: accessToken.access_token,
-            start: pagination.start,
-            count: pagination.count
-          }));
+          return $http.get(ApiUrlBuilder.build('students'), {
+            data: {
+              start: pagination.start,
+              count: pagination.count
+            }
+          });
         },
         removeStudent: function (id) {
-          return $http.delete(ApiUrlBuilder.build('student/' + id, {
-            access_token: accessToken.access_token
-          }));
+          return $http.delete(ApiUrlBuilder.build('student/' + id));
         },
         getAssistants: function (pagination) {
-          return $http.get(ApiUrlBuilder.build('assistants', {
-            access_token: accessToken.access_token,
-            start: pagination.start,
-            count: pagination.count
-          }));
+          return $http.get(ApiUrlBuilder.build('assistants'), {
+            data: {
+              start: pagination.start,
+              count: pagination.count
+            }
+          });
+        },
+        removeAssistant: function (id) {
+          return $http.delete(ApiUrlBuilder.build('assistant/' + id));
         },
         getProfessors: function (pagination) {
-          return $http.get(ApiUrlBuilder.build('professors', {
-            access_token: accessToken.access_token,
-            start: pagination.start,
-            count: pagination.count
-          }));
+          return $http.get(ApiUrlBuilder.build('professors'), {
+            data: {
+              start: pagination.start,
+              count: pagination.count
+            }
+          });
+        },
+        removeProfessor: function (id) {
+          return $http.delete(ApiUrlBuilder.build('professor/' + id));
         },
         issueRegisterTokens: function (emails) {
           return $http.post(ApiUrlBuilder.build('register'), {
-            access_token: accessToken.access_token,
-            email: emails
+            emails: emails
           });
         }
       };

@@ -8,5 +8,9 @@ angular.module('siApp')
       return Api.getProfessors(pagination);
     };
 
+    professors.remove = function (id) {
+      return Api.removeProfessor(id);
+    };
+
     return professors;
   }]);

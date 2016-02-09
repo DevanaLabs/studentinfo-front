@@ -7,7 +7,12 @@ angular.module('siApp', ['ui.router', 'LocalStorageModule', 'siApp.config', 'ui.
     student: 'student',
     admin: 'admin',
     superAdmin: 'super_admin'
-  })
+  });
+
+angular.module('siApp')
+  .config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push('OAuth2Interceptor');
+  }])
   .run(['$rootScope', '$state', 'Privilege', 'Auth', 'EVENTS',
     function ($rootScope, $state, Privilege, Auth, EVENTS) {
 

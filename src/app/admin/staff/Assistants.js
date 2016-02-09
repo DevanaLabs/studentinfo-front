@@ -5,7 +5,11 @@ angular.module('siApp')
     var assistants = {};
 
     assistants.getAll = function (pagination) {
-      return Api.getStudents(pagination);
+      return Api.getAssistants(pagination);
+    };
+
+    assistants.remove = function (id) {
+      return Api.removeAssistant(id);
     };
 
     return assistants;
