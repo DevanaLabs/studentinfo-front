@@ -33,7 +33,7 @@ function nextImg () {
 
   setTimeout(function () {
     nextImg()
-  }, 1000 * 60 * 60 * 1); 
+  }, 1000 * 60 * 60 * 1);
 }
 //nextImg(); 
 
@@ -46,3 +46,33 @@ angular.module('siApp', ['ngCachedResource', 'ui.router', 'ngAnimate']);
 angular.module('siApp')
   .constant('API_BASE_URL', globalSettings.apiBaseUrl)
   .constant('SCREENSAVER_TIME', globalSettings.screensaverTime);
+
+
+angular.module('siApp').factory('oauthInterceptor', ['$q', '$cookies', function ($q, $cookies) {
+  var inter = {
+    request: function (config) {
+      console.log(config);
+      var deferred = $q.defer();
+
+      if (config.url.indexOf('api') === -1) {
+        deferred.resolve(config);
+      } else if (config.method === 'GET') {
+        config.url += '?access_token=' + $cookies.get('access_token');
+        deferred.resolve(config);
+      } else if (config.method === 'POST' || config.method === 'PUT' || config.method === 'DELETE') {
+        config.data.access_token = $cookies.get('access_token');
+        deferred.resolve(config);
+      }
+      return deferred.promise;
+    }
+  };
+
+  return inter;
+}]);
+
+angular.module('siApp')
+  .config([
+    '$httpProvider',
+    function ($httpProvider) {
+      $httpProvider.interceptors.push('oauthInterceptor');
+    }]);
