@@ -28,7 +28,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="entity in paginatedEntities | filter:query" class="repeated-item"
+        <tr ng-repeat="entity in paginatedEntities" class="repeated-item"
             ng-class="event.registered ? '' : 'warning'">
             <td>
                 <input type="checkbox" ng-model="entity.selected" ng-change="entitySelectChanged(entity)">
@@ -52,5 +52,5 @@
         </tr>
         </tbody>
     </table>
-    <uib-pagination total-items="entities.length" items-per-page="perPage" ng-model="currentPage"></uib-pagination>
+    <uib-pagination total-items="totalItems" items-per-page="perPage" ng-model="currentPage"></uib-pagination>
 </div>

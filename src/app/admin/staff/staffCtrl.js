@@ -15,6 +15,7 @@ angular.module('siApp')
       $scope.query = '';
 
       $scope.currentPage = 0;
+      $scope.totalItems = 0;
       $scope.perPage = 25;
       $scope.paginatedEntities = [];
 
@@ -101,6 +102,7 @@ angular.module('siApp')
         var begin = (($scope.currentPage - 1) * $scope.perPage),
           end = begin + $scope.perPage;
         $scope.paginatedEntities = _.slice(entities, begin, end);
+        $scope.totalItems = entities.length;
       };
 
       $scope.loadEntities();
