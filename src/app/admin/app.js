@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('siApp')
-  .config(['$stateProvider', 'ROLES', function ($stateProvider, ROLES) {
+  .config(['$stateProvider', '$httpProvider', 'ROLES', function ($stateProvider, $httpProvider, ROLES) {
+    $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
+
     $stateProvider
       .state('admin.overview', {
         url: '/overview',
