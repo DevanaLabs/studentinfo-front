@@ -20,15 +20,13 @@ angular.module('siApp')
       $scope.selectedCount = 0;
 
       $scope.loadEntities = function () {
-        Entities.getAll({}).then(function (response) {
+        Entities.getAll().then(function (response) {
           if (response.data.success) {
             $scope.entities = _.forEach(response.data.success.data, function (e) {
               e.selected = false;
               e.registered = e.registerToken === '0';
             });
             $scope.currentPage = 1;
-          } else {
-            toastr.error('Greska prilikom ucitavanja entiteta');
           }
         }, function (response) {
           console.error(response);
@@ -60,12 +58,15 @@ angular.module('siApp')
           });
 
         if (emails.length) {
-          var response = RegisterToken.issue(emails, function () {
+          RegisterToken.issue(emails).then(function (response) {
             if (response.success) {
               toastr.success('Tokeni su izdati');
             } else {
               toastr.success('Tokeni nisu izdati');
             }
+          }, function (response) {
+            console.error(response);
+            toastr.success('Doslo je do greske, tokeni nisu izdati');
           });
         }
       };
@@ -74,7 +75,6 @@ angular.module('siApp')
         var selected = _.filter($scope.entities, function (e) {
           return e.selected;
         });
-        var errorHappened = false;
 
         _.forEach(selected, function (e) {
           Entities.remove(e.id).then(function (response) {
@@ -84,7 +84,6 @@ angular.module('siApp')
               });
             } else {
               console.error(response);
-              errorHappened = true;
             }
           }, function () {
             toastr.error('Greska prilikom brisanja!');
