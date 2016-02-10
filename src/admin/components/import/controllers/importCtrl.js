@@ -7,7 +7,8 @@ angular.module('siAdminApp')
     '$stateParams',
     'API',
     'Upload',
-    function ($scope, $state, $stateParams, API, Upload) {
+    'toastr',
+    function ($scope, $state, $stateParams, API, Upload, toastr) {
       var self = this;
       $scope.formData = {};
       $scope.formValid = false;
@@ -42,7 +43,7 @@ angular.module('siAdminApp')
           toastr.success('Uspesno importovani podaci');
         }, function (response) {
           console.error(response);
-          toastr.error('Greska prilikom importa podataka');
+          toastr.error(response.data.error.data, 'Greska prilikom importa podataka');
         });
       }
 
