@@ -43,6 +43,9 @@ app
     'toastrConfig',
     function ($httpProvider, $stateProvider, $urlRouteProvider, toastrConfig) {
 
+      $urlRouteProvider.otherwise('/events');
+
+
       $httpProvider.interceptors.push('oauthInterceptor');
 
       $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
@@ -72,14 +75,14 @@ app
         //    authorizedRoles: ['*']
         //  }
         //})
-        .state('home', {
-          url: '/home',
-          templateUrl: 'components/home/views/view.html',
-          controller: 'HomeCtrl',
-          data: {
-            authorizedRoles: 'admin'
-          }
-        })
+        //.state('home', {
+        //  url: '/home',
+        //  templateUrl: 'components/home/views/view.html',
+        //  controller: 'HomeCtrl',
+        //  data: {
+        //    authorizedRoles: 'admin'
+        //  }
+        //})
         .state('events', {
           url: '/events',
           templateUrl: 'components/events/views/list.html',
