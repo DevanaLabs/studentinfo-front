@@ -46,7 +46,7 @@ app
       $httpProvider.interceptors.push('oauthInterceptor');
 
       $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
-      //$httpProvider.defaults.withCredentials = true;
+      $httpProvider.defaults.withCredentials = true;
       //$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
       angular.extend(toastrConfig, {

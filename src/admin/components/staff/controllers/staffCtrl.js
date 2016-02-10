@@ -9,7 +9,7 @@ angular.module('siAdminApp')
     '$filter',
     'RegisterTokenService',
     'toastr',
-    function ($scope, $state, $stateParams, $filter, EntityService, RegisterTokenService, toastr) {
+    function ($scope, $state, $stateParams, EntityService, $filter, RegisterTokenService, toastr) {
       var self = this;
 
       $scope.query = '';
