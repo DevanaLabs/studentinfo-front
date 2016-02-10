@@ -27,6 +27,6 @@ angular.module('siApp')
         }, function (response) {
           toastr.error('Promena lozinke nije uspela');
         });
-      }
+      };
 
     }]);

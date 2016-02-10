@@ -16,5 +16,6 @@ angular.module('siApp')
         }).finally(function () {
           $scope.feedbackSending = false;
         });
-      }
+      };
+
     }]);
