@@ -5,8 +5,8 @@ angular.module('siAdminApp')
     '$scope',
     '$state',
     '$stateParams',
-    'EntityService',
     '$filter',
+    'EntityService',
     'RegisterTokenService',
     'toastr',
     function ($scope, $state, $stateParams, $filter, EntityService, RegisterTokenService, toastr) {
@@ -25,7 +25,7 @@ angular.module('siAdminApp')
 
       $scope.loadEntities = function () {
         EntityService.getAll({}).$promise.then(function success (response) {
-          if (response.data.success) {
+          if (response.success) {
             $scope.entities = _.forEach(response.success.data, function (e) {
               e.selected = false;
               e.registered = e.registerToken === '0';

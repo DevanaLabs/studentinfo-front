@@ -36,7 +36,7 @@ angular.module('siAdminApp')
 
       $scope.processForm = function () {
         Upload.upload({
-          url: 'http://api.studentinfo.rs/raf/import' + self.capitalize($scope.types[$scope.importType].slug),
+          url: 'http://api.studentinfo.dev/raf/import' + self.capitalize($scope.types[$scope.importType].slug),
           data: {'import': $scope.file}
         }).then(function (response) {
           toastr.success('Uspesno importovani podaci');
