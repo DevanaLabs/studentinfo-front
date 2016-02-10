@@ -69,6 +69,11 @@ angular.module('siApp')
             password: password.password,
             password_confirmation: password.confirmation
           });
+        },
+        sendFeedback: function (content) {
+          return $http.post(ApiUrlBuilder.build('feedback'), {
+            text: content
+          });
         }
       };
     }]);

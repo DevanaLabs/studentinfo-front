@@ -14,6 +14,11 @@ angular.module('siApp')
         templateUrl: 'admin/profile/edit_profile.html',
         controller: 'ProfileCtrl'
       })
+      .state('admin.feedback', {
+        url: '/feedback',
+        templateUrl: 'admin/feedback/feedback.html',
+        controller: 'FeedbackCtrl'
+      })
       .state('admin.staff', {
         url: '/staff/{type:string}',
         templateUrl: 'admin/staff/staff.html',

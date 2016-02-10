@@ -15,13 +15,11 @@ angular.module('siApp')
         confirmation: ''
       };
 
-      $scope.onSubmit = function onSubmit() {
-        console.log('asdf');
-
+      $scope.onSubmit = function () {
         if ($scope.password.password !== $scope.password.confirmation) {
           toastr.error('Lozinke se ne poklapaju');
         }
-        console.log(Auth.user());
+
         Profile.changePassword(Auth.user().id, $scope.password).then(function (response) {
           if (response.data.success) {
             toastr.success('Promena lozinke je uspela');
