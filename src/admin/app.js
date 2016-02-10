@@ -183,15 +183,16 @@ app
           },
           controller: 'StaffCtrl',
           resolve: {
-            EntityService: function ($stateParams, StudentService, AssistantService, ProfessorService) {
-              if ($stateParams.type === 'students') {
-                return angular.extend(StudentService, {type: {slug: 'students', title: 'Studenti'}});
-              } else if ($stateParams.type === 'professors') {
-                return angular.extend(ProfessorService, {type: {slug: 'professors', title: 'Profesori'}});
-              } else if ($stateParams.type === 'assistants') {
-                return angular.extend(AssistantService, {type: {slug: 'assistants', title: 'Asistenti'}});
-              }
-            }
+            EntityService: ['$stateParams', 'StudentService', 'AssistantService', 'ProfessorService',
+              function ($stateParams, StudentService, AssistantService, ProfessorService) {
+                if ($stateParams.type === 'students') {
+                  return angular.extend(StudentService, {type: {slug: 'students', title: 'Studenti'}});
+                } else if ($stateParams.type === 'professors') {
+                  return angular.extend(ProfessorService, {type: {slug: 'professors', title: 'Profesori'}});
+                } else if ($stateParams.type === 'assistants') {
+                  return angular.extend(AssistantService, {type: {slug: 'assistants', title: 'Asistenti'}});
+                }
+              }]
           }
         })
         .state('changePassword', {
@@ -257,7 +258,7 @@ app
       if (Session.isInCookies()) {
         Session.load();
         console.log('Found session in cookies');
-        //$http.defaults.withCredentials = true;
+        $http.defaults.withCredentials = true;
         $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
         $rootScope.globals = {
           loggedIn: true,

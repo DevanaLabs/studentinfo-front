@@ -90,7 +90,7 @@ functions.builtAppScriptsProd = function (paths) {
     .pipe(utils.orderedAppScripts())
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.concat('app.min.js'))
-    .pipe(plugins.uglify())
+    //.pipe(plugins.uglify())
     .pipe(plugins.sourcemaps.write())
     .pipe(gulp.dest(paths.distScriptsProd));
 };
@@ -181,7 +181,7 @@ functions.builtIndexDev = function (paths) {
       name: 'bower'
     }))
     .pipe(plugins.inject(orderedAppScripts, {
-      relative: true,
+      relative: true
     }))
     .pipe(plugins.inject(appStyles, {
       relative: true
