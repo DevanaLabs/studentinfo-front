@@ -106,8 +106,10 @@
 
         button:active, button.sending {
             background: #2E9335;
-            pointer-events: none;
             cursor: normal;
+        }
+        button.sending {
+            pointer-events: none;
         }
     </style>
 </head>
@@ -129,7 +131,7 @@
         <input type="password" id="passwordField" placeholder="Ваша шифра"
                onkeydown="(function(e){if(e.keyCode == 13) oauth2Send()})(event)">
     </div>
-    <button id="sendButton" onclick="oauth2Send()">Пријавите се</button>
+    <button id="sendButton" onclick="oauth2Send();">Пријавите се</button>
 </div>
 
 
