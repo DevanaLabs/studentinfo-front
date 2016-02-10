@@ -240,8 +240,8 @@ app
 
 app
   .constant('API', {
-    url: 'http://api.studentinfo.dev/raf',
-    url_base: 'http://api.studentinfo.dev'
+    url: 'http://api.studentinfo.rs/raf',
+    url_base: 'http://api.studentinfo.rs'
   });
 
 app

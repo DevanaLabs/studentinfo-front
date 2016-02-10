@@ -5,7 +5,7 @@ angular.module('siAdminApp')
     return {
       uploadImage: function (file) {
         Upload.upload({
-          url: 'http://api.studentinfo.dev/raf/wallpaper',
+          url: 'http://api.studentinfo.rs/raf/wallpaper',
           data: {'import': file}
         }).then(function (response) {
           toastr.success('Success');
