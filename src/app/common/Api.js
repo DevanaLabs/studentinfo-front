@@ -63,6 +63,12 @@ angular.module('siApp')
           return $http.post(ApiUrlBuilder.build('register'), {
             emails: emails
           });
+        },
+        changeUserPassword: function (userId, password) {
+          return $http.post(ApiUrlBuilder.build('user') + '/' + userId, {
+            password: password.password,
+            password_confirmation: password.confirmation
+          });
         }
       };
     }]);

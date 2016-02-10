@@ -4,7 +4,7 @@ angular.module('siApp')
   .factory('ApiUrlBuilder', ['$rootScope', 'API_URL', 'EVENTS',
     function ($rootScope, API_URL, EVENTS) {
       var urlBuilder = {
-        baseEndpoints: ['auth', 'oauth/access_token', 'register'],
+        baseEndpoints: ['auth', 'oauth/access_token', 'register', 'user'],
         slug: ''
       };
 

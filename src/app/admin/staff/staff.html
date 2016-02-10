@@ -5,10 +5,10 @@
             <td colspan="6"><input class="form-control" type="text" ng-model="query" placeholder="Pretraga">
             </td>
         </tr>
-        <tr ng-show="selectedCount">
+        <tr>
             <td colspan="6">
-                <span>Sa odabranim</span>
-                <button class="btn btn-info" ng-click="issueRegisterTokens()">Posalji registracione tokene</button>
+                <p>Sa odabranim</p>
+                <button ng-disabled="!selectedCount" class="btn btn-success" ng-click="issueRegisterTokens()">Posalji registracione tokene</button>
             </td>
         </tr>
         <tr>
@@ -40,7 +40,7 @@
                 <span ng-if="staffType.slug === 'students'">
                     {{ entity.indexNumber }}
                 </span>
-            </td>>
+            </td>
             <td>{{ entity.firstName }} {{ entity.lastName }}</td>
             <td>{{ entity.email.email }}</td>
             <td>

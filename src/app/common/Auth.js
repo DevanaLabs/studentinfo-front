@@ -54,6 +54,7 @@ angular.module('siApp')
         data.oauth2.expiresAt = moment().add(data.oauth2.expires_in, 'milliseconds');
         authParams = {
           user: {
+            id: data.user.id,
             roles: [data.user.userType.toLowerCase()],
             userType: data.user.userType,
             firstName: data.user.firstName,

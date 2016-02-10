@@ -9,6 +9,11 @@ angular.module('siApp')
         url: '/overview',
         templateUrl: 'admin/overview/overview.html'
       })
+      .state('admin.profile', {
+        url: '/profile',
+        templateUrl: 'admin/profile/edit_profile.html',
+        controller: 'ProfileCtrl'
+      })
       .state('admin.staff', {
         url: '/staff/{type:string}',
         templateUrl: 'admin/staff/staff.html',
