@@ -6,23 +6,26 @@ angular.module('siAdminApp')
     '$state',
     '$stateParams',
     'EntityService',
+    '$filter',
     'RegisterTokenService',
     'toastr',
-    function ($scope, $state, $stateParams, EntityService, RegisterTokenService, toastr) {
+    function ($scope, $state, $stateParams, $filter, EntityService, RegisterTokenService, toastr) {
       var self = this;
 
       $scope.query = '';
       $scope.currentPage = 0;
+      $scope.totalItems = 0;
       $scope.perPage = 25;
       $scope.paginatedEntities = [];
+
       $scope.entities = [];
+
       $scope.type = EntityService.type;
       $scope.selectedCount = 0;
 
       $scope.loadEntities = function () {
         EntityService.getAll({}).$promise.then(function success (response) {
-          if (response.success) {
-            console.log(response.success.data);
+          if (response.data.success) {
             $scope.entities = _.forEach(response.success.data, function (e) {
               e.selected = false;
               e.registered = e.registerToken === '0';
@@ -36,10 +39,17 @@ angular.module('siAdminApp')
         });
       };
 
+      $scope.$watch('query', function (newValue, oldValue) {
+        if (newValue === '') {
+          self.paginateEntities($scope.entities);
+        } else {
+          var filtered = $filter('filter')($scope.entities, newValue);
+          self.paginateEntities(filtered);
+        }
+      });
+
       $scope.$watch('currentPage + perPage', function () {
-        var begin = (($scope.currentPage - 1) * $scope.perPage),
-          end = begin + $scope.perPage;
-        $scope.paginatedEntities = _.slice($scope.entities, begin, end);
+        self.paginateEntities();
       });
 
       $scope.entitySelectChanged = function (entity) {
@@ -72,36 +82,35 @@ angular.module('siAdminApp')
         }
       };
 
-      $scope.deleteEntities = function () {
-        var selected = _.filter($scope.entities, function (e) {
-          return e.selected;
+      $scope.deleteEntities = function (entity) {
+        EntityService.remove({id: entity.id}, function (response) {
+          if (response.success) {
+            _.remove($scope.entities, function (e) {
+              return entity.id === e.id;
+              entity.selected = false;
+              $scope.entitySelectChanged(entity);
+              self.paginateEntities();
+            });
+          } else {
+            console.error(response);
+          }
+        }, function () {
+          toastr.error('Greska prilikom brisanja!');
         });
-        var errorHappened = false;
-
-        _.forEach(selected, function (e) {
-          EntityService.remove({id: e.id}, function (response) {
-            if (response.success) {
-              // TODO: Ovo ne radi iz nekog razloga, ne update-uje $scope.entities
-              _.remove($scope.entities, function (scopeE) {
-                return scopeE.id === e.id;
-              });
-            } else {
-              console.error(response);
-              errorHappened = true;
-            }
-          }, function () {
-            toastr.error('Greska prilikom brisanja!');
-            selected = [];
-          });
-        });
-
-        if (errorHappened) {
-          toastr.error('Greska!');
-        } else {
-          toastr.success('Uspesno obrisani!');
-        }
       };
+
+      this.paginateEntities = function (entities) {
+        if (entities === undefined) {
+          entities = $scope.entities;
+        }
+        var begin = (($scope.currentPage - 1) * $scope.perPage),
+          end = begin + $scope.perPage;
+        $scope.paginatedEntities = _.slice(entities, begin, end);
+        $scope.totalItems = entities.length;
+      };
+
 
       $scope.loadEntities();
     }
-  ]);
+  ])
+;
