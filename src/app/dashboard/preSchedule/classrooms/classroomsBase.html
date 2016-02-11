@@ -1,0 +1,12 @@
+<div id="preschedule-ui-view-subcontainer">
+  <div class="titlebar subfilter" ng-class="{'titlebar-hidden' : subfilters.length < 2}">
+    <div class="subfilter-wrapper"  ng-repeat="subfilter in subfilters" ng-class="{'active':displayedSubfilter === subfilter}">
+      <span class="subfilter-text">
+      	{{ 'SPRATOVI_'+subfilter | translate }}
+      </span>
+    </div>
+  </div>
+  <div class="pickers-wrapper">
+    <div ng-repeat="classroom in classroomsForFloor()" ng-attr-id="{{'classroom'+classroom.id}}">{{classroom.name}}</div>
+  </div>
+</div>

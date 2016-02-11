@@ -11,11 +11,11 @@ angular.module('siApp.dashboard')
     });
 
     groupsService.getById = function (id) {
-      return _.find(groups, {'id': id});
+      return _.find(groups, {'id': id*1});
     };
 
     groupsService.getForYear = function (year) {
-      return _.values(_.pickBy(groups, {'year': year}));
+      return _.values(_.pickBy(groups, {'year': year*1}));
     };
 
     groupsService.getFilters = function () {

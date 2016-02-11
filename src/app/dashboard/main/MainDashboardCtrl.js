@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('siApp.dashboard')
-  .controller('MainDashboardCtrl', ['$rootScope', 'Dashboard', 'EVENTS',
-    function ($rootScope, Dashboard, EVENTS) {
+  .controller('MainDashboardCtrl', ['$rootScope', '$scope', 'Dashboard', 'EVENTS', '$state', 
+    function ($rootScope, $scope, Dashboard, EVENTS, $state) {
 
       $rootScope.$on(EVENTS.API.REFRESH_START, function () {
         console.log('Dashboard refresh start');
@@ -11,6 +11,10 @@ angular.module('siApp.dashboard')
       $rootScope.$on(EVENTS.API.REFRESH_SUCCESS, function () {
         console.log('Dashboard refresh success');
       });
+
+      $scope.state = function (state) {
+        return $state.is(state);
+      };
 
       Dashboard.initialLoad();
 

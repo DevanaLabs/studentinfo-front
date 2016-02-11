@@ -15,7 +15,7 @@ angular.module('siApp.dashboard')
         if (localStorageService.get('dashboard-data')) {
           dashboard.setData(localStorageService.get('dashboard-data'));
         }
-      }
+      };
 
       dashboard.getClassrooms = function () {
         return data.classrooms;

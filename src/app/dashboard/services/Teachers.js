@@ -16,10 +16,10 @@ angular.module('siApp.dashboard')
       });
 
       teachersService.getById = function (id) {
-        return _.find(teachers, {'id': id});
+        return _.find(teachers, {'id': id*1});
       };
 
-      teachersService.getShownTeachers = function () {
+      teachersService.getShown = function () {
         return _.groupBy(teachers, function (teacher) {
           return teacher.lastName[0];
         });

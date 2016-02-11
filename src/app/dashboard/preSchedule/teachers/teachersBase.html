@@ -1,0 +1,17 @@
+<div id="preschedule-ui-view-subcontainer">
+  <div class="titlebar subfilter" ng-class="{'titlebar-hidden' : subfilters.length < 2}">
+    <div class="subfilter-wrapper letter"  ng-repeat="(letter, disabled) in subfilters" ng-class="{ 'disabled' : disabled === false }">
+      <span class="subfilter-text">
+      	{{ letter }}
+      </span>
+    </div>
+  </div>
+  <div class="pickers-wrapper">
+	<div ng-repeat="(letter, teachers) in allTeachers" ng-attr-id="{{'teacherLetter'+letter}}">
+	  <div ng-repeat="teacher in teachers" ng-attr-id="{{'teacher'+teacher.id}}">
+	    {{teacher.firstName}} {{teacher.lastName}} 
+	  </div>
+	  <hr>
+	</div>
+  </div>
+</div>

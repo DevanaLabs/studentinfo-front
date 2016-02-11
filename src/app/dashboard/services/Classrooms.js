@@ -11,11 +11,11 @@ angular.module('siApp.dashboard')
     });
 
     classroomsService.getById = function (id) {
-      return _.find(classrooms, {'id': id});
+      return _.find(classrooms, {'id': id*1});
     };
 
     classroomsService.getForFloor = function (floor) {
-      return _.values(_.pickBy(classrooms, {'floor': floor}));
+      return _.values(_.pickBy(classrooms, {'floor': floor*1}));
     };
 
     classroomsService.getFilters = function () {

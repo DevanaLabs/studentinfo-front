@@ -1,12 +1,12 @@
-<div>
-  <div class="titlebar">
-    <div class="subfilter-wrapper"  ng-repeat="subfilter in subfilters">
+<div id="preschedule-ui-view-subcontainer">
+  <div class="titlebar subfilter">
+    <div class="subfilter-wrapper" ng-repeat="subfilter in subfilters" ng-click="setSubfilter(subfilter)"  ng-class="{'active':displayedSubfilter == subfilter}">
       <span class="subfilter-text">
-      	{{ subfilter }}
+      	{{ 'GODINE_'+subfilter | translate }}
       </span>
     </div>
   </div>
   <div class="pickers-wrapper">
-
+	<div ng-repeat="group in groupsForYear()" ng-attr-id="{{'group'+group.id}}">{{group.name}}</div>
   </div>
 </div>

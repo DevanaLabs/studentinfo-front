@@ -1,0 +1,318 @@
+<div id="schedule-main-container">
+  <div class="titlebar shadow">
+    <span class="caption">
+      <span ng-if="params.type == 'groups'">{{ 'GROUP' | translate }} {{timetableObject.name}}</span>
+      <span ng-if="params.type == 'classrooms'">{{timetableObject.name}}</span>
+      <span ng-if="params.type == 'teachers'">{{timetableObject.firstName}} {{timetableObject.lastName}}</span>
+    </span>
+  </div>
+  <div id="schedule-wrapper">
+    <div class="time-column left">
+      <div class="time-marker-container">
+        <div class="time-marker" style="top: calc({{timeMarker}}% + {{timeMarker/200}}px)"></div>
+      </div>
+      <div>09h</div>
+      <div>10h</div>
+      <div>11h</div>
+      <div>12h</div>
+      <div>13h</div>
+      <div>14h</div>
+      <div>15h</div>
+      <div>16h</div>
+      <div>17h</div>
+      <div>18h</div>
+      <div>19h</div>
+      <div>20h</div>
+      <div>21h</div>
+    </div>
+  	<div id="schedule-table-wrapper">
+  		<table>
+  		<tbody>
+  			<tr>
+  				<th class="dayCell day1">{{ 'DAY_1' | translate }}</th>
+  				<th class="dayCell day2">{{ 'DAY_2' | translate }}</th>
+  				<th class="dayCell day3">{{ 'DAY_3' | translate }}</th>
+  				<th class="dayCell day4">{{ 'DAY_4' | translate }}</th>
+  				<th class="dayCell day5">{{ 'DAY_5' | translate }}</th>
+  				<th class="dayCell day6" ng-if="timetableData[5].length > 0">{{ 'DAY_6' | translate }}</th>
+  			</tr>
+        <tr class="normalRow">
+          <td class="day1">
+            <div class="lectures-container">
+              <div class="time-marker" style="top: calc({{timeMarker}}% + {{timeMarker/100}}px)"></div>
+              <div class="lecture-wrapper" ng-repeat="lecture in timetableData[0]"
+                style="
+                  top: calc({{ (lecture.time.startsAt - 900) / 3600 * 100 - 900 }}% + {{ (lecture.time.startsAt - 900) / 3600 - 9 }}px);
+                  height: calc({{ ((lecture.time.endsAt + 900) - lecture.time.startsAt) / 3600 * 100}}% + {{ ((lecture.time.endsAt + 900) - lecture.time.startsAt) / 3600 -1 }}px);
+                " 
+                ng-class="{
+                  'orange' : LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1, 
+                  'has-notif' : lecture.notifications.length > 0, 
+                  'smaller-text' : (lecture.time.endsAt - lecture.time.startsAt) <= 7200 && lecture.course.name.length > 25
+                }"
+              >
+                <span class="lecture-caption">{{lecture.course.name}}</span>
+
+                <span class="lecture-sub-caption" ng-if="params.type=='groups' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) !== -1">{{lecture.classroom.name}}</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='groups' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1">{{lecture.classroom.name}} ({{lecture.type}})</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='classrooms'">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='teachers'">
+                  <span>{{lecture.groups[0].name}}</span>
+                  <span ng-repeat="group in lecture.groups" ng-if="$index > 0">, {{group.name}}</span>
+                </span>
+
+              </div>
+            </div>
+          </td>
+          <td class="day2">
+            <div class="lectures-container">
+              <div class="time-marker" style="top: calc({{timeMarker}}% + {{timeMarker/100}}px)"></div>
+              <div class="lecture-wrapper" ng-repeat="lecture in timetableData[1]"
+                style="
+                  top: calc({{ (lecture.time.startsAt - 900) / 3600 * 100 - 900 }}% + {{ (lecture.time.startsAt - 900) / 3600 - 9 }}px);
+                  height: calc({{ ((lecture.time.endsAt + 900) - lecture.time.startsAt) / 3600 * 100}}% + {{ ((lecture.time.endsAt + 900) - lecture.time.startsAt) / 3600 -1 }}px);
+                " 
+                ng-class="{
+                  'orange' : LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1, 
+                  'has-notif' : lecture.notifications.length > 0, 
+                  'smaller-text' : (lecture.time.endsAt - lecture.time.startsAt) <= 7200 && lecture.course.name.length > 25
+                }"
+              >
+                <span class="lecture-caption">{{lecture.course.name}}</span>
+
+                <span class="lecture-sub-caption" ng-if="params.type=='groups' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) !== -1">{{lecture.classroom.name}}</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='groups' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1">{{lecture.classroom.name}} ({{lecture.type}})</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='classrooms'">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='teachers'">
+                  <span>{{lecture.groups[0].name}}</span>
+                  <span ng-repeat="group in lecture.groups" ng-if="$index > 0">, {{group.name}}</span>
+                </span>
+
+              </div>
+            </div>
+
+          </td>
+          <td class="day3">
+            <div class="lectures-container">
+              <div class="time-marker" style="top: calc({{timeMarker}}% + {{timeMarker/100}}px)"></div>
+              <div class="lecture-wrapper" ng-repeat="lecture in timetableData[2]"
+                style="
+                  top: calc({{ (lecture.time.startsAt - 900) / 3600 * 100 - 900 }}% + {{ (lecture.time.startsAt - 900) / 3600 - 9 }}px);
+                  height: calc({{ ((lecture.time.endsAt + 900) - lecture.time.startsAt) / 3600 * 100}}% + {{ ((lecture.time.endsAt + 900) - lecture.time.startsAt) / 3600 -1 }}px);
+                " 
+                ng-class="{
+                  'orange' : LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1, 
+                  'has-notif' : lecture.notifications.length > 0, 
+                  'smaller-text' : (lecture.time.endsAt - lecture.time.startsAt) <= 7200 && lecture.course.name.length > 25
+                }"
+              >
+                <span class="lecture-caption">{{lecture.course.name}}</span>
+
+                <span class="lecture-sub-caption" ng-if="params.type=='groups' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) !== -1">{{lecture.classroom.name}}</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='groups' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1">{{lecture.classroom.name}} ({{lecture.type}})</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='classrooms'">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='teachers'">
+                  <span>{{lecture.groups[0].name}}</span>
+                  <span ng-repeat="group in lecture.groups" ng-if="$index > 0">, {{group.name}}</span>
+                </span>
+
+              </div>
+            </div>
+
+          </td>
+          <td class="day4">
+            <div class="lectures-container">
+              <div class="time-marker" style="top: calc({{timeMarker}}% + {{timeMarker/100}}px)"></div>
+              <div class="lecture-wrapper" ng-repeat="lecture in timetableData[3]"
+                style="
+                  top: calc({{ (lecture.time.startsAt - 900) / 3600 * 100 - 900 }}% + {{ (lecture.time.startsAt - 900) / 3600 - 9 }}px);
+                  height: calc({{ ((lecture.time.endsAt + 900) - lecture.time.startsAt) / 3600 * 100}}% + {{ ((lecture.time.endsAt + 900) - lecture.time.startsAt) / 3600 -1 }}px);
+                " 
+                ng-class="{
+                  'orange' : LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1, 
+                  'has-notif' : lecture.notifications.length > 0, 
+                  'smaller-text' : (lecture.time.endsAt - lecture.time.startsAt) <= 7200 && lecture.course.name.length > 25
+                }"
+              >
+                <span class="lecture-caption">{{lecture.course.name}}</span>
+
+                <span class="lecture-sub-caption" ng-if="params.type=='groups' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) !== -1">{{lecture.classroom.name}}</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='groups' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1">{{lecture.classroom.name}} ({{lecture.type}})</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='classrooms'">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='teachers'">
+                  <span>{{lecture.groups[0].name}}</span>
+                  <span ng-repeat="group in lecture.groups" ng-if="$index > 0">, {{group.name}}</span>
+                </span>
+
+              </div>
+            </div>
+
+          </td>
+          <td class="day5">
+            <div class="lectures-container">
+              <div class="time-marker" style="top: calc({{timeMarker}}% + {{timeMarker/100}}px)"></div>
+              <div class="lecture-wrapper" ng-repeat="lecture in timetableData[4]"
+                style="
+                  top: calc({{ (lecture.time.startsAt - 900) / 3600 * 100 - 900 }}% + {{ (lecture.time.startsAt - 900) / 3600 - 9 }}px);
+                  height: calc({{ ((lecture.time.endsAt + 900) - lecture.time.startsAt) / 3600 * 100}}% + {{ ((lecture.time.endsAt + 900) - lecture.time.startsAt) / 3600 -1 }}px);
+                " 
+                ng-class="{
+                  'orange' : LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1, 
+                  'has-notif' : lecture.notifications.length > 0, 
+                  'smaller-text' : (lecture.time.endsAt - lecture.time.startsAt) <= 7200 && lecture.course.name.length > 25
+                }"
+              >
+                <span class="lecture-caption">{{lecture.course.name}}</span>
+
+                <span class="lecture-sub-caption" ng-if="params.type=='groups' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) !== -1">{{lecture.classroom.name}}</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='groups' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1">{{lecture.classroom.name}} ({{lecture.type}})</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='classrooms'">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='teachers'">
+                  <span>{{lecture.groups[0].name}}</span>
+                  <span ng-repeat="group in lecture.groups" ng-if="$index > 0">, {{group.name}}</span>
+                </span>
+
+              </div>
+            </div>
+
+          </td>
+          <td class="day6" ng-if="timetableData[5].length > 0">
+            <div class="lectures-container">
+              <div class="time-marker" style="top: calc({{timeMarker}}% + {{timeMarker/100}}px)"></div>
+              <div class="lecture-wrapper" ng-repeat="lecture in timetableData[5]"
+                style="
+                  top: calc({{ (lecture.time.startsAt - 900) / 3600 * 100 - 900 }}% + {{ (lecture.time.startsAt - 900) / 3600 - 9 }}px);
+                  height: calc({{ ((lecture.time.endsAt + 900) - lecture.time.startsAt) / 3600 * 100}}% + {{ ((lecture.time.endsAt + 900) - lecture.time.startsAt) / 3600 -1 }}px);
+                " 
+                ng-class="{
+                  'orange' : LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1, 
+                  'has-notif' : lecture.notifications.length > 0, 
+                  'smaller-text' : (lecture.time.endsAt - lecture.time.startsAt) <= 7200 && lecture.course.name.length > 25
+                }"
+              >
+                <span class="lecture-caption">{{lecture.course.name}}</span>
+
+                <span class="lecture-sub-caption" ng-if="params.type=='groups' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) !== -1">{{lecture.classroom.name}}</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='groups' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1">{{lecture.classroom.name}} ({{lecture.type}})</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='classrooms'">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='teachers'">
+                  <span>{{lecture.groups[0].name}}</span>
+                  <span ng-repeat="group in lecture.groups" ng-if="$index > 0">, {{group.name}}</span>
+                </span>
+
+              </div>
+            </div>
+
+          </td>
+        </tr>
+        <tr class="normalRow">
+          <td class="day1"></td>
+          <td class="day2"></td>
+          <td class="day3"></td>
+          <td class="day4"></td>
+          <td class="day5"></td>
+          <td class="day6" ng-if="timetableData[5].length > 0"></td>
+        </tr>
+        <tr class="normalRow">
+          <td class="day1"></td>
+          <td class="day2"></td>
+          <td class="day3"></td>
+          <td class="day4"></td>
+          <td class="day5"></td>
+          <td class="day6" ng-if="timetableData[5].length > 0"></td>
+        </tr>
+        <tr class="normalRow">
+          <td class="day1"></td>
+          <td class="day2"></td>
+          <td class="day3"></td>
+          <td class="day4"></td>
+          <td class="day5"></td>
+          <td class="day6" ng-if="timetableData[5].length > 0"></td>
+        </tr>
+        <tr class="normalRow">
+          <td class="day1"></td>
+          <td class="day2"></td>
+          <td class="day3"></td>
+          <td class="day4"></td>
+          <td class="day5"></td>
+          <td class="day6" ng-if="timetableData[5].length > 0"></td>
+        </tr>
+        <tr class="normalRow">
+          <td class="day1"></td>
+          <td class="day2"></td>
+          <td class="day3"></td>
+          <td class="day4"></td>
+          <td class="day5"></td>
+          <td class="day6" ng-if="timetableData[5].length > 0"></td>
+        </tr>
+        <tr class="normalRow">
+          <td class="day1"></td>
+          <td class="day2"></td>
+          <td class="day3"></td>
+          <td class="day4"></td>
+          <td class="day5"></td>
+          <td class="day6" ng-if="timetableData[5].length > 0"></td>
+        </tr>
+        <tr class="normalRow">
+          <td class="day1"></td>
+          <td class="day2"></td>
+          <td class="day3"></td>
+          <td class="day4"></td>
+          <td class="day5"></td>
+          <td class="day6" ng-if="timetableData[5].length > 0"></td>
+        </tr>
+        <tr class="normalRow">
+          <td class="day1"></td>
+          <td class="day2"></td>
+          <td class="day3"></td>
+          <td class="day4"></td>
+          <td class="day5"></td>
+          <td class="day6" ng-if="timetableData[5].length > 0"></td>
+        </tr>
+        <tr class="normalRow">
+          <td class="day1"></td>
+          <td class="day2"></td>
+          <td class="day3"></td>
+          <td class="day4"></td>
+          <td class="day5"></td>
+          <td class="day6" ng-if="timetableData[5].length > 0"></td>
+        </tr>
+        <tr class="normalRow">
+          <td class="day1"></td>
+          <td class="day2"></td>
+          <td class="day3"></td>
+          <td class="day4"></td>
+          <td class="day5"></td>
+          <td class="day6" ng-if="timetableData[5].length > 0"></td>
+        </tr>
+  			<tr class="normalRow">
+  				<td class="day1"></td>
+  				<td class="day2"></td>
+  				<td class="day3"></td>
+  				<td class="day4"></td>
+  				<td class="day5"></td>
+  				<td class="day6" ng-if="timetableData[5].length > 0"></td>
+  			</tr>
+  		</tbody>
+  		</table>
+  	</div>
+  	<div class="time-column right">
+     <div class="time-marker-container">
+        <div class="time-marker" style="top: calc({{timeMarker}}% + 10px)"></div>
+      </div>
+      <div>09h</div>
+      <div>10h</div>
+      <div>11h</div>
+      <div>12h</div>
+      <div>13h</div>
+      <div>14h</div>
+      <div>15h</div>
+      <div>16h</div>
+      <div>17h</div>
+      <div>18h</div>
+      <div>19h</div>
+      <div>20h</div>
+      <div>21h</div>
+    </div>
+  </div>
+</div>

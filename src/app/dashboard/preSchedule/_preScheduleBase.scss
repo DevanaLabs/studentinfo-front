@@ -1,9 +1,12 @@
 #preschedule-wrapper {
   height: 100%;
+  display: flex;
+  flex-direction: column;
   #preschedule-filter-wrapper {
+    flex: 0 0 auto;
     display: flex;
     justify-content: space-around;
-    background: #333;
+    background: #555;
     .filter-item-wrapper{
       width: 100%;
       text-align: center;
@@ -29,6 +32,66 @@
     }
   }
   #preschedule-ui-view {
-
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    #preschedule-ui-view-subcontainer {
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      .titlebar.subfilter {
+        flex: 0 0 auto;
+        background: #F2F2F2;
+        box-shadow: 0 2px 2px rgba(0,0,0,.2);
+        display: flex;
+        justify-content: space-around;
+        height: 80px;
+        .subfilter-wrapper {
+          width: 100%;
+          text-align: center;
+          cursor: pointer;
+          .subfilter-text {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 80px;
+            padding: 10px 30px;
+            border-radius: 22px;
+          }
+        }
+        .subfilter-wrapper:hover { 
+          .subfilter-text {
+            background: #ddd;
+          }
+        }
+        .subfilter-wrapper.active { 
+          .subfilter-text {
+            background: $blue;
+            color: white;
+          }
+        }
+        .subfilter-wrapper.letter {
+          .subfilter-text {
+            height: 40px;
+            width: 40px;
+            padding: 0;
+            display: inline-block;
+            margin: 20px 0;
+            line-height: 40px;
+          }
+        }
+        .subfilter-wrapper.disabled {
+          background: #ddd;
+          cursor: normal;
+          .subfilter-text {
+            color: #999;
+            background: transparent !important;
+          }
+        }
+      }
+      .pickers-wrapper {
+        flex: 1 1 0;
+        overflow: auto;
+      }
+    }
   }
 }
