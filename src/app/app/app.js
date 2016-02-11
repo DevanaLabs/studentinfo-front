@@ -3,6 +3,20 @@ document.addEventListener('contextmenu', function (event) {
   event.preventDefault();
 });
 
+function checkIfLoggedIn () {
+    var c = document.cookie.split(";");
+    var loggedIn = false;
+    for (var i = 0; i < c.length; i++) {
+        if(c[i].split("=")[0] == " session-user-object") {
+             loggedIn = true;
+        }
+    }
+    if(!loggedIn) {
+      document.location = "/index.html";
+    }
+}
+checkIfLoggedIn();
+
 // Change backgrounds 
 function nextImg () {
   var bgs = [
@@ -51,7 +65,7 @@ angular.module('siApp')
 angular.module('siApp').factory('oauthInterceptor', ['$q', '$cookies', function ($q, $cookies) {
   var inter = {
     request: function (config) {
-      console.log(config);
+      //console.log(config);
       var deferred = $q.defer();
 
       if (config.url.indexOf('api') === -1) {

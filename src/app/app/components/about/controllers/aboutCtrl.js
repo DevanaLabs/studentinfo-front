@@ -14,7 +14,7 @@ angular.module('siApp').controller('aboutCtrl', ['$scope', 'API_BASE_URL', '$htt
 
   $scope.sendFeedback = function () {
     var data = {'text': angular.element("#write").val()};
-    console.log(data);
+    //console.log(data);
     if(data.text != "") {
       //console.log(data);
       //console.log(API_BASE_URL + 'feedback/');

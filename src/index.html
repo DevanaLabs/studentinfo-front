@@ -182,7 +182,7 @@
                     document.cookie = "session-exists=true";
                     document.cookie = "session-user-object=" + JSON.stringify(JSON.parse(r.response).success.data.user);
                     if (JSON.parse(r.response).success.data.user.userType == "Admin") {
-                        console.log(r);
+                        //console.log(r);
                         document.location = "admin/index.html#/home";
                     }
                     else {
@@ -199,7 +199,7 @@
         for (var i = 0; i < c.length; i++) {
             if(c[i].split("=")[0] == " session-user-object") {
                 var object = JSON.parse(c[i].split('=')[1]);
-                console.log(object);
+                //console.log(object);
                 if(object.userType === 'Admin') {
                     document.location = "admin/index.html#/home";
                 }
