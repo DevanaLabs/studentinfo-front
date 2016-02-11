@@ -15,36 +15,25 @@ angular.module('siApp')
 
       $scope.pagination = Pagination.getPaginationHelper();
 
-      $scope.entities = [];
-
       $scope.staffType = Entities.staffType;
-      $scope.selectedCount = 0;
 
       $scope.loadEntities = function () {
         Entities.getAll({}).then(function (response) {
           if (response.data.success) {
-            $scope.entities = _.forEach(response.data.success.data, function (e) {
+            var entities = _.forEach(response.data.success.data, function (e) {
               e.selected = false;
               e.registered = e.registerToken === '0';
             });
-            $scope.pagination.init($scope.entities);
+            $scope.pagination.loadEntities(entities);
           }
         }, function (response) {
           toastr.error('Greska prilikom ucitavanja entiteta');
         });
       };
 
-      $scope.entitySelectChanged = function (entity) {
-        if (entity.selected) {
-          $scope.selectedCount++;
-        } else if ($scope.selectedCount > 0) {
-          $scope.selectedCount--;
-        }
-      };
-
       $scope.issueRegisterTokens = function () {
         var emails = _.map(
-          _.filter($scope.entities, function (e) {
+          _.filter($scope.pagination.entities, function (e) {
             return e.selected && !e.registered;
           }),
           function (e) {
@@ -68,10 +57,10 @@ angular.module('siApp')
         Entities.remove(entity.id).then(function (response) {
           if (response.data.success) {
             toastr.success('Uspesno obrisano');
-            _.remove($scope.entities, entity);
+            _.remove($scope.pagination.entities, entity);
             entity.selected = false;
-            $scope.entitySelectChanged(entity);
-            $scope.pagination.paginateEntities($scope.entities);
+            $scope.pagination.entitySelectChanged(entity);
+            $scope.pagination.paginateEntities();
           }
         }, function () {
           toastr.error('Greska prilikom brisanja!');
@@ -79,16 +68,11 @@ angular.module('siApp')
       };
 
       $scope.$watch('pagination.currentPage + pagination.perPage', function () {
-        $scope.pagination.paginateEntities($scope.entities);
+        $scope.pagination.paginateEntities();
       });
 
       $scope.$watch('pagination.query', function (newValue, oldValue) {
-        if (newValue === '') {
-          $scope.pagination.paginateEntities($scope.entities);
-        } else {
-          var filtered = $filter('filter')($scope.entities, newValue);
-          $scope.pagination.paginateEntities(filtered);
-        }
+        $scope.pagination.applySearchFilter(newValue);
       });
 
       $scope.loadEntities();

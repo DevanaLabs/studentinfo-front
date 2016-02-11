@@ -31,7 +31,7 @@
         <tr ng-repeat="entity in pagination.paginatedEntities" class="repeated-item"
             ng-class="event.registered ? '' : 'warning'">
             <td>
-                <input type="checkbox" ng-model="entity.selected" ng-change="entitySelectChanged(entity)">
+                <input type="checkbox" ng-model="entity.selected" ng-change="pagination.entitySelectChanged(entity)">
             </td>
             <td>
                 <span ng-if="staffType.slug === 'professors' || staffType.slug === 'assistants' ">
