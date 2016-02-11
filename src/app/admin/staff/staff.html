@@ -2,7 +2,7 @@
     <table class="table">
         <thead>
         <tr>
-            <td colspan="6"><input class="form-control" type="text" ng-model="query" placeholder="Pretraga">
+            <td colspan="6"><input class="form-control" type="text" ng-model="pagination.query" placeholder="Pretraga">
             </td>
         </tr>
         <tr>
@@ -28,7 +28,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="entity in paginatedEntities" class="repeated-item"
+        <tr ng-repeat="entity in pagination.paginatedEntities" class="repeated-item"
             ng-class="event.registered ? '' : 'warning'">
             <td>
                 <input type="checkbox" ng-model="entity.selected" ng-change="entitySelectChanged(entity)">
@@ -52,5 +52,5 @@
         </tr>
         </tbody>
     </table>
-    <uib-pagination total-items="totalItems" items-per-page="perPage" ng-model="currentPage"></uib-pagination>
+    <uib-pagination total-items="pagination.totalItems" items-per-page="pagination.perPage" ng-model="pagination.currentPage"></uib-pagination>
 </div>

@@ -5,19 +5,15 @@ angular.module('siApp')
     '$scope',
     '$state',
     '$stateParams',
+    'toastr',
     '$filter',
     'Entities',
     'RegisterToken',
-    'toastr',
-    function ($scope, $state, $stateParams, $filter, Entities, RegisterToken, toastr) {
+    'Pagination',
+    function ($scope, $state, $stateParams, toastr, $filter, Entities, RegisterToken, Pagination) {
       var self = this;
 
-      $scope.query = '';
-
-      $scope.currentPage = 0;
-      $scope.totalItems = 0;
-      $scope.perPage = 25;
-      $scope.paginatedEntities = [];
+      $scope.pagination = Pagination.getPaginationHelper();
 
       $scope.entities = [];
 
@@ -31,7 +27,7 @@ angular.module('siApp')
               e.selected = false;
               e.registered = e.registerToken === '0';
             });
-            $scope.currentPage = 1;
+            $scope.pagination.init($scope.entities);
           }
         }, function (response) {
           toastr.error('Greska prilikom ucitavanja entiteta');
@@ -73,37 +69,27 @@ angular.module('siApp')
           if (response.data.success) {
             toastr.success('Uspesno obrisano');
             _.remove($scope.entities, entity);
-            self.paginateEntities();
             entity.selected = false;
             $scope.entitySelectChanged(entity);
+            $scope.pagination.paginateEntities($scope.entities);
           }
         }, function () {
           toastr.error('Greska prilikom brisanja!');
         });
       };
 
-      $scope.$watch('currentPage + perPage', function () {
-        self.paginateEntities();
+      $scope.$watch('pagination.currentPage + pagination.perPage', function () {
+        $scope.pagination.paginateEntities($scope.entities);
       });
 
-      $scope.$watch('query', function (newValue, oldValue) {
+      $scope.$watch('pagination.query', function (newValue, oldValue) {
         if (newValue === '') {
-          self.paginateEntities($scope.entities);
+          $scope.pagination.paginateEntities($scope.entities);
         } else {
           var filtered = $filter('filter')($scope.entities, newValue);
-          self.paginateEntities(filtered);
+          $scope.pagination.paginateEntities(filtered);
         }
       });
-
-      this.paginateEntities = function (entities) {
-        if (entities === undefined) {
-          entities = $scope.entities;
-        }
-        var begin = (($scope.currentPage - 1) * $scope.perPage),
-          end = begin + $scope.perPage;
-        $scope.paginatedEntities = _.slice(entities, begin, end);
-        $scope.totalItems = entities.length;
-      };
 
       $scope.loadEntities();
     }
