@@ -6,12 +6,12 @@ angular.module('siApp')
       var feedback = {};
 
       feedback.sendAdminPanelFeedback = function (content) {
-        content = 'Admin : ' + content + ' ' + moment().format('hh:mm:ss, dd/MM/YYYY');
+        content = 'Admin : ' + content + ' ' + moment().format('hh:mm:ss, DD/MM/YYYY');
         return Api.sendFeedback(content);
       };
 
       feedback.sendDashboardFeedback = function (content) {
-        content = 'Dashboard : ' + content + ' ' + moment().format('hh:mm:ss, dd/MM/YYYY');
+        content = 'Dashboard : ' + content + ' ' + moment().format('hh:mm:ss, DD/MM/YYYY');
         return Api.sendFeedback(content);
       };
 

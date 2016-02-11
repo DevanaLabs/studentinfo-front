@@ -7,8 +7,8 @@
                 <textarea name="" id="" cols="30" rows="10" class="form-control" ng-model="feedback"></textarea>
             </div>
             <div class="form-group">
-                <button type="button" ui-sref="home" class="btn btn-alert">Odustani</button>
-                <button type="submit" class="btn btn-primary" ng-disabled="feedbackSending">Posalji</button>
+                <button type="button" ui-sref="admin.overview" class="btn btn-alert">Odustani</button>
+                <button type="submit" class="btn btn-primary" ng-disabled="!canSubmit">Posalji</button>
             </div>
         </form>
     </div>
