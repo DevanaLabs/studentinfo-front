@@ -5,6 +5,8 @@ angular.module('siApp')
     AUTH: {
       LOGIN_FAILED: 'auth.login_failed',
       LOGIN_SUCCESS: 'auth.login_success',
+      LOGOUT_FAILED: 'auth.logout_failed',
+      LOGOUT_SUCCESS: 'auth.logout_success',
       AUTHORIZED: 'auth.authorized',
       NOT_AUTHORIZED: 'auth.not_authorized',
       NOT_AUTHENTICATED: 'auth.not_authenticated',

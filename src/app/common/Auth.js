@@ -47,7 +47,12 @@ angular.module('siApp')
       };
 
       auth.logout = function () {
-        // TODO : After it's supported on API
+        return Api.logout().then(function (response) {
+          auth.unset();
+          $rootScope.$broadcast(EVENTS.AUTH.LOGOUT_SUCCESS, response);
+        }, function (response) {
+          $rootScope.$broadcast(EVENTS.AUTH.LOGOUT_FAILED, response);
+        });
       };
 
       auth.set = function (data) {
@@ -68,7 +73,7 @@ angular.module('siApp')
         localStorageService.set('auth', authParams);
       };
 
-      auth.unset = function (data) {
+      auth.unset = function () {
         authParams = {
           user: {
             roles: []

@@ -5,6 +5,10 @@ angular.module('siApp')
     $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
 
     $stateProvider
+      .state('admin.logout', {
+        url: '/logout',
+        controller: 'LogoutCtrl'
+      })
       .state('admin.overview', {
         url: '/overview',
         templateUrl: 'admin/overview/overview.html'

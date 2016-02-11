@@ -20,11 +20,11 @@ angular.module('siApp')
             noOAuth2: true
           });
         },
-        fetchDashboardData: function () {
-          return $http.get(ApiUrlBuilder.build('data'));
-        },
         logout: function () {
           return $http.delete(ApiUrlBuilder.build('auth'));
+        },
+        fetchDashboardData: function () {
+          return $http.get(ApiUrlBuilder.build('data'));
         },
         getStudents: function (pagination) {
           return $http.get(ApiUrlBuilder.build('students'), {
