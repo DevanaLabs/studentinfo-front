@@ -45,13 +45,11 @@ angular.module('siApp.dashboard')
         console.log('Initial load');
 
         var refresh = function () {
-          console.log("ref");
           $rootScope.$broadcast(EVENTS.API.REFRESH_START);
           Api.fetchDashboardData().then(function (response) {
             if (response.data.success) {
               dashboard.setData(response.data.success.data);
               $rootScope.$broadcast(EVENTS.API.REFRESH_SUCCESS);
-              console.log('Done initial load');
             }
           }, function (response) {
             $rootScope.$broadcast(EVENTS.API.REFRESH_ERROR, response);

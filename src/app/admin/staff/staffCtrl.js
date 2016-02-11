@@ -5,52 +5,35 @@ angular.module('siApp')
     '$scope',
     '$state',
     '$stateParams',
+    'toastr',
+    '$filter',
     'Entities',
     'RegisterToken',
-    'toastr',
-    function ($scope, $state, $stateParams, Entities, RegisterToken, toastr) {
+    'Pagination',
+    function ($scope, $state, $stateParams, toastr, $filter, Entities, RegisterToken, Pagination) {
       var self = this;
 
-      $scope.query = '';
-      $scope.currentPage = 0;
-      $scope.perPage = 25;
-      $scope.paginatedEntities = [];
-      $scope.entities = [];
+      $scope.pagination = Pagination.getPaginationHelper();
+
       $scope.staffType = Entities.staffType;
-      $scope.selectedCount = 0;
 
       $scope.loadEntities = function () {
-        Entities.getAll().then(function (response) {
+        Entities.getAll({}).then(function (response) {
           if (response.data.success) {
-            $scope.entities = _.forEach(response.data.success.data, function (e) {
+            var entities = _.forEach(response.data.success.data, function (e) {
               e.selected = false;
               e.registered = e.registerToken === '0';
             });
-            $scope.currentPage = 1;
+            $scope.pagination.loadEntities(entities);
           }
         }, function (response) {
-          console.error(response);
           toastr.error('Greska prilikom ucitavanja entiteta');
         });
       };
 
-      $scope.$watch('currentPage + perPage', function () {
-        var begin = (($scope.currentPage - 1) * $scope.perPage),
-          end = begin + $scope.perPage;
-        $scope.paginatedEntities = _.slice($scope.entities, begin, end);
-      });
-
-      $scope.entitySelectChanged = function (entity) {
-        if (entity.selected) {
-          $scope.selectedCount++;
-        } else {
-          $scope.selectedCount--;
-        }
-      };
-
       $scope.issueRegisterTokens = function () {
         var emails = _.map(
-          _.filter($scope.entities, function (e) {
+          _.filter($scope.pagination.entities, function (e) {
             return e.selected && !e.registered;
           }),
           function (e) {
@@ -65,32 +48,32 @@ angular.module('siApp')
               toastr.success('Tokeni nisu izdati');
             }
           }, function (response) {
-            console.error(response);
             toastr.success('Doslo je do greske, tokeni nisu izdati');
           });
         }
       };
 
-      $scope.deleteEntities = function () {
-        var selected = _.filter($scope.entities, function (e) {
-          return e.selected;
-        });
-
-        _.forEach(selected, function (e) {
-          Entities.remove(e.id).then(function (response) {
-            if (response.success) {
-              $scope.entities = _.remove($scope.entities, function (entity) {
-                return e.id === entity.id;
-              });
-            } else {
-              console.error(response);
-            }
-          }, function () {
-            toastr.error('Greska prilikom brisanja!');
-            selected = [];
-          });
+      $scope.deleteEntity = function (entity) {
+        Entities.remove(entity.id).then(function (response) {
+          if (response.data.success) {
+            toastr.success('Uspesno obrisano');
+            _.remove($scope.pagination.entities, entity);
+            entity.selected = false;
+            $scope.pagination.entitySelectChanged(entity);
+            $scope.pagination.paginateEntities();
+          }
+        }, function () {
+          toastr.error('Greska prilikom brisanja!');
         });
       };
+
+      $scope.$watch('pagination.currentPage + pagination.perPage', function () {
+        $scope.pagination.paginateEntities();
+      });
+
+      $scope.$watch('pagination.query', function (newValue, oldValue) {
+        $scope.pagination.applySearchFilter(newValue);
+      });
 
       $scope.loadEntities();
     }

@@ -2,48 +2,55 @@
     <table class="table">
         <thead>
         <tr>
-            <td colspan="6"><input class="form-control" type="text" ng-model="query" placeholder="Pretraga">
+            <td colspan="6"><input class="form-control" type="text" ng-model="pagination.query" placeholder="Pretraga">
             </td>
         </tr>
-        <tr ng-show="selectedCount">
+        <tr>
             <td colspan="6">
-                <span>Sa odabranim</span>
-                <button class="btn btn-info" ng-click="issueRegisterTokens()">Posalji registracione tokene</button>
-                <button class="btn btn-danger" ng-click="deleteEntities()">Obrisi</button>
+                <p>Sa odabranim</p>
+                <button ng-disabled="!selectedCount" class="btn btn-success" ng-click="issueRegisterTokens()">Posalji registracione tokene</button>
             </td>
         </tr>
         <tr>
             <th></th>
-            <th ng-if="staffType.slug === 'professors' || staffType.slug === 'assistants' ">
-                Titula
-            </th>
-            <th ng-if="staffType.slug === 'students'">
-                Indeks
+            <th>
+                <span ng-if="staffType.slug === 'professors' || staffType.slug === 'assistants' ">
+                    Titula
+                </span>
+                <span ng-if="staffType.slug === 'students'">
+                    Indeks
+                </span>
             </th>
             <th>Ime i prezime</th>
             <th>Email</th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="entity in paginatedEntities | filter:query" class="repeated-item"
+        <tr ng-repeat="entity in pagination.paginatedEntities" class="repeated-item"
             ng-class="event.registered ? '' : 'warning'">
             <td>
-                <input type="checkbox" ng-model="entity.selected" ng-change="entitySelectChanged(entity)">
+                <input type="checkbox" ng-model="entity.selected" ng-change="pagination.entitySelectChanged(entity)">
             </td>
-            <th ng-if="staffType.slug === 'professors' || staffType.slug === 'assistants' ">
-            <td>{{ entity.title }}</td>
-            </th>
-            <th ng-if="staffType.slug === 'students'">
-            <td>{{ entity.indexNumber }}</td>
-            </th>
+            <td>
+                <span ng-if="staffType.slug === 'professors' || staffType.slug === 'assistants' ">
+                    {{ entity.title }}
+                </span>
+                <span ng-if="staffType.slug === 'students'">
+                    {{ entity.indexNumber }}
+                </span>
+            </td>
             <td>{{ entity.firstName }} {{ entity.lastName }}</td>
             <td>{{ entity.email.email }}</td>
             <td>
                 <small class="alert-danger">Registracioni token istekao</small>
             </td>
+            <td>
+                <button class="btn btn-danger" ng-click="deleteEntity(entity)">Obrisi</button>
+            </td>
         </tr>
         </tbody>
     </table>
-    <uib-pagination total-items="entities.length" items-per-page="perPage" ng-model="currentPage"></uib-pagination>
+    <uib-pagination total-items="pagination.totalItems" items-per-page="pagination.perPage" ng-model="pagination.currentPage"></uib-pagination>
 </div>

@@ -11,7 +11,7 @@
             </a>
         </li>
         <li role="presentation">
-            <a href="#">
+            <a ui-sref="admin.profile">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 {{ 'PROFILE' | translate }}
             </a>
@@ -47,7 +47,13 @@
             </a>
         </li>
         <li role="presentation">
-            <a href="#">
+            <a ui-sref="admin.feedback">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                {{ 'FEEDBACK' | translate }}
+            </a>
+        </li>
+        <li role="presentation">
+            <a ui-sref="admin.logout">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                 {{ 'LOGOUT' | translate }}
             </a>

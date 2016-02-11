@@ -1,11 +1,27 @@
 'use strict';
 
 angular.module('siApp')
-  .config(['$stateProvider', 'ROLES', function ($stateProvider, ROLES) {
+  .config(['$stateProvider', '$httpProvider', 'ROLES', function ($stateProvider, $httpProvider, ROLES) {
+    $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
+
     $stateProvider
+      .state('admin.logout', {
+        url: '/logout',
+        controller: 'LogoutCtrl'
+      })
       .state('admin.overview', {
         url: '/overview',
         templateUrl: 'admin/overview/overview.html'
+      })
+      .state('admin.profile', {
+        url: '/profile',
+        templateUrl: 'admin/profile/edit_profile.html',
+        controller: 'ProfileCtrl'
+      })
+      .state('admin.feedback', {
+        url: '/feedback',
+        templateUrl: 'admin/feedback/feedback.html',
+        controller: 'FeedbackCtrl'
       })
       .state('admin.staff', {
         url: '/staff/{type:string}',

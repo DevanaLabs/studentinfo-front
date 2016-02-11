@@ -47,13 +47,19 @@ angular.module('siApp')
       };
 
       auth.logout = function () {
-        // TODO : After it's supported on API
+        return Api.logout().then(function (response) {
+          auth.unset();
+          $rootScope.$broadcast(EVENTS.AUTH.LOGOUT_SUCCESS, response);
+        }, function (response) {
+          $rootScope.$broadcast(EVENTS.AUTH.LOGOUT_FAILED, response);
+        });
       };
 
       auth.set = function (data) {
         data.oauth2.expiresAt = moment().add(data.oauth2.expires_in, 'milliseconds');
         authParams = {
           user: {
+            id: data.user.id,
             roles: [data.user.userType.toLowerCase()],
             userType: data.user.userType,
             firstName: data.user.firstName,
@@ -67,7 +73,7 @@ angular.module('siApp')
         localStorageService.set('auth', authParams);
       };
 
-      auth.unset = function (data) {
+      auth.unset = function () {
         authParams = {
           user: {
             roles: []

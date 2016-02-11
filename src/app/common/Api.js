@@ -20,11 +20,11 @@ angular.module('siApp')
             noOAuth2: true
           });
         },
-        fetchDashboardData: function () {
-          return $http.get(ApiUrlBuilder.build('data'));
-        },
         logout: function () {
           return $http.delete(ApiUrlBuilder.build('auth'));
+        },
+        fetchDashboardData: function () {
+          return $http.get(ApiUrlBuilder.build('data'));
         },
         getStudents: function (pagination) {
           return $http.get(ApiUrlBuilder.build('students'), {
@@ -62,6 +62,17 @@ angular.module('siApp')
         issueRegisterTokens: function (emails) {
           return $http.post(ApiUrlBuilder.build('register'), {
             emails: emails
+          });
+        },
+        changeUserPassword: function (userId, password) {
+          return $http.post(ApiUrlBuilder.build('user') + '/' + userId, {
+            password: password.password,
+            password_confirmation: password.confirmation
+          });
+        },
+        sendFeedback: function (content) {
+          return $http.post(ApiUrlBuilder.build('feedback'), {
+            text: content
           });
         }
       };
