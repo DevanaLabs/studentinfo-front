@@ -20,19 +20,11 @@ angular.module('siApp.dashboard')
       return Math.floor(lecture.time.startsAt/86400);
     });
 
-    // replace seconds since monday 00:00 in `lecture.time` to seconds since 00:00 of that day
-    _.forOwn($scope.timetableData, function(value, key) {
-      $scope.timetableData[key] = _.map(value, function (lecture) {
-        lecture.time.startsAt = lecture.time.startsAt  % 86400;
-        lecture.time.endsAt = lecture.time.endsAt  % 86400;
-        return lecture;
-      })
-    });
-
     // mark column as today 
-    $(".day" + moment().isoWeekday()).addClass("today");
+    angular.element(".day" + moment().isoWeekday()).addClass("today");
 
-    $scope.timeMarker = (moment().hours() - 9 + moment().minutes()/60) * 100;
+    //$scope.timeMarker = (moment().hours() - 9 + moment().minutes()/60) * 100;
+    $scope.timeMarker = (19 - 9 + 10/60) * 100;
     console.log($scope.timeMarker);
     console.log(moment().hours());
 

@@ -7,6 +7,10 @@
     </div>
   </div>
   <div class="pickers-wrapper">
-	<div ng-repeat="group in groupsForYear()" ng-attr-id="{{'group'+group.id}}">{{group.name}}</div>
+	  <div class="group-picker" 
+         ng-repeat="group in groupsForYear()" 
+         ng-attr-id="{{'group'+group.id}}"
+         ui-sref="dashboard.schedule({type:'group', id: {{group.id}}})"
+         >{{group.name}}</div>
   </div>
 </div>

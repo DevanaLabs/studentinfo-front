@@ -7,6 +7,10 @@
     </div>
   </div>
   <div class="pickers-wrapper">
-    <div ng-repeat="classroom in classroomsForFloor()" ng-attr-id="{{'classroom'+classroom.id}}">{{classroom.name}}</div>
+    <div class="classrooom-picker" 
+         ng-repeat="classroom in classroomsForFloor()" 
+         ng-attr-id="{{'classroom'+classroom.id}}"
+         ui-sref="dashboard.schedule({type:'classroom', id: {{classroom.id}}})"
+         >{{classroom.name}}</div>
   </div>
 </div>

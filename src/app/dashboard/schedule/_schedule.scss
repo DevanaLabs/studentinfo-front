@@ -9,39 +9,6 @@
 		flex: 1 1 0;
 		display: flex;
 		height: 100%;
-		.time-column {
-			flex: 0 0 auto;
-			width: 100px;
-			padding: 4% 20px 0;
-			height: calc(100% - 140px);
-			.time-marker-container {
-				float: left;
-				.time-marker {
-					background: #DDD;
-					position: absolute;
-					height: 5px;
-					z-index: 200;
-					width: 60px;
-					margin-left: -20px;
-					margin-top: 6px;
-				}
-			}
-			div {
-				height: 8%;
-				color: #666;
-				font-size: 16px;
-				font-weight: 400;
-				z-index: 400;
-			}
-		}
-		.time-column.left {
-		    text-align: right;
-			.time-marker-container {
-				.time-marker {
-					margin-left: 20px;
-				}
-			}
-		}
 		#schedule-table-wrapper {
 			padding: 30px 0 0;
 			flex: 1 1 0;
@@ -59,7 +26,7 @@
 							font-size: 18px;
 							color: #666666;
 							font-weight: 400;
-							padding-bottom: 9px;
+							//padding-bottom: 9px;
 						}
 						td {
 							height: 8%;
@@ -73,6 +40,7 @@
 									width: 100%;
 									background: #ddd;
 									height: 5px;
+									z-index: 100;
 								}
 								.lecture-wrapper {
 									position: absolute;
@@ -123,6 +91,36 @@
 							.time-marker {
 								display: block;
 							}
+						}
+						.time-cell {
+							vertical-align: bottom;
+							width: 100px;
+							border: 0;
+							padding: 0 20px;
+							color: #666;
+							font-size: 16px;
+							font-weight: 400;
+							div span {
+							    margin-bottom: -10px;
+							    display: block;
+							}
+							.time-marker-container {
+								height: 100%; 
+								border-top: 1px solid transparent;
+								.time-marker {
+									background: #ddd;
+									height: 5px;
+									margin: 0 20px 0 -20px;
+								}
+							}
+						}
+						.time-cell.left {
+							.time-marker-container {
+								.time-marker {
+									margin: 0 -20px 0 20px;
+								}
+							}
+							text-align: right;
 						}
 					}
 				}

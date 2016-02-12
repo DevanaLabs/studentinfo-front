@@ -34,11 +34,11 @@ angular.module('siApp.dashboard', ['ui.router', 'LocalStorageModule', 'siApp.con
         controller: 'ScheduleCtrl',
         resolve: {
           EntityService: ['$stateParams', 'Groups', 'Classrooms', 'Teachers', function ($stateParams, Groups, Classrooms, Teachers) {
-            if ($stateParams.type === 'groups') {
+            if ($stateParams.type === 'group') {
               return Groups;
-            } else if ($stateParams.type === 'teachers') {
+            } else if ($stateParams.type === 'teacher') {
               return Teachers;
-            } else if ($stateParams.type === 'classrooms') {
+            } else if ($stateParams.type === 'classroom') {
               return Classrooms;
             }
           }]

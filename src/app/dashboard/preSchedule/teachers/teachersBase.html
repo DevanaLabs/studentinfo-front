@@ -1,17 +1,24 @@
 <div id="preschedule-ui-view-subcontainer">
   <div class="titlebar subfilter" ng-class="{'titlebar-hidden' : subfilters.length < 2}">
-    <div class="subfilter-wrapper letter"  ng-repeat="(letter, disabled) in subfilters" ng-class="{ 'disabled' : disabled === false }">
-      <span class="subfilter-text">
-      	{{ letter }}
-      </span>
+    <div class="subfilter-wrapper letter"  
+         ng-repeat="(letter, disabled) in subfilters" 
+         ng-class="{ 'disabled' : disabled === false }"
+         ng-attr-id="{{'letter-filter-' + letter}}"
+         ng-click="scrollToLetter(letter)"
+         >
+      <span class="subfilter-text">{{ letter }}</span>
     </div>
   </div>
-  <div class="pickers-wrapper">
-	<div ng-repeat="(letter, teachers) in allTeachers" ng-attr-id="{{'teacherLetter'+letter}}">
-	  <div ng-repeat="teacher in teachers" ng-attr-id="{{'teacher'+teacher.id}}">
+  <div class="pickers-wrapper teachers">
+    <div ng-repeat-start="(letter, teachers) in allTeachers" ng-attr-id="{{'teacherLetter'+letter}}" class="teacher-header">{{letter}}</div>
+	  <div ng-repeat-end class="teacher-picker" 
+         ng-repeat="teacher in teachers" 
+         ng-attr-id="{{'teacher'+teacher.id}}"
+         ng-class="{ 'disabled' : teacher.lectures.length == 0 }"
+         ui-sref="dashboard.schedule({type:'teacher', id: {{teacher.id}}})"
+         >
 	    {{teacher.firstName}} {{teacher.lastName}} 
 	  </div>
 	  <hr>
-	</div>
   </div>
 </div>
