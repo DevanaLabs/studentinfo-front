@@ -155,7 +155,9 @@
                 if (JSON.parse(r.response).error) {
                     alert(JSON.parse(r.response).error.message);
                 } else {
-                    document.cookie = 'access_token=' + JSON.parse(r.response).success.data.oauth.access_token;
+                    var d = new Date();
+                    d.setFullYear(2050);
+                    document.cookie = 'access_token=' + JSON.parse(r.response).success.data.oauth.access_token+"; expires=" + (d.toGMTString()) + "; path=/";
                     send();
                 }
             }
@@ -179,8 +181,10 @@
                 if (JSON.parse(r.response).error) {
                     alert(JSON.parse(r.response).error.message);
                 } else {
-                    document.cookie = "session-exists=true";
-                    document.cookie = "session-user-object=" + JSON.stringify(JSON.parse(r.response).success.data.user);
+                    var d = new Date();
+                    d.setFullYear(2050);
+                    document.cookie = "session-exists=true; expires=" + (d.toGMTString()) + "; path=/"
+                    document.cookie = "session-user-object=" + JSON.stringify(JSON.parse(r.response).success.data.user)+"; expires=" + (d.toGMTString()) + "; path=/";
                     if (JSON.parse(r.response).success.data.user.userType == "Admin") {
                         //console.log(r);
                         document.location = "admin/index.html#/home";
