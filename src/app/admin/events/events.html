@@ -1,0 +1,53 @@
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <td colspan="6"><input class="form-control" type="text" ng-model="pagination.query" placeholder="Pretraga">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <button class="btn btn-success" ui-sref="admin.event_new">Novi dogadjaj</button>
+            </td>
+        </tr>
+        <tr>
+            <th>Opis</th>
+            <th>
+                Tip
+            </th>
+            <th>
+                <span ng-if="eventsType.slug === 'course'">Kurs</span>
+                <span ng-if="eventsType.slug === 'group'">Grupa</span>
+            </th>
+            <th>Pocetak</th>
+            <th>Kraj</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="event in pagination.paginatedEntities" class="repeated-item" ng-class="event.expired ? 'warning' : ''">
+            <td>{{ ::event.description }}</td>
+            <td>
+                {{ ::event.type }}
+            </td>
+            <td>
+                <span ng-if="eventsType.slug === 'course'">
+                    {{ ::event.course.name }}
+                </span>
+                <span ng-if="eventsType.slug === 'group'">
+                    {{ ::event.group.name }}
+                </span>
+            </td>
+            <td>
+                {{ event.momentTime.startsAt.format('HH:mm D/MMMM/YYYY') }}
+            </td>
+            <td>
+                {{ event.momentTime.endsAt.format('HH:mm D/MMMM/YYYY') }}
+            </td>
+            <td>
+                <button class="btn btn-danger" ng-click="deleteEvent(event)">Obrisi</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <uib-pagination total-items="pagination.totalItems" items-per-page="pagination.perPage" ng-model="pagination.currentPage"></uib-pagination>
+</div>

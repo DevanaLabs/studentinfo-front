@@ -113,7 +113,7 @@ functions.scriptedPartials = function () {
 };
 
 functions.buildVendorScripts = function () {
-  return gulp.src(bowerFiles('**/*.js'))
+  return gulp.src(bowerFiles(['**/*.js']))
     .pipe(order(['jquery.js', 'angular.js']))
     .pipe(gulpif(util.isProduction(), concat('vendor.min.js')))
     .pipe(gulpif(util.isProduction(), uglify()))

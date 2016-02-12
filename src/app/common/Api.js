@@ -74,6 +74,42 @@ angular.module('siApp')
           return $http.post(ApiUrlBuilder.build('feedback'), {
             text: content
           });
+        },
+        getGlobalEvents: function (pagination) {
+          return $http.get(ApiUrlBuilder.build('globalEvents'), {
+            data: {
+              start: pagination.start,
+              end: pagination.end
+            }
+          });
+        },
+        getGroupEvents: function (pagination) {
+          return $http.get(ApiUrlBuilder.build('groupEvents'), {
+            data: {
+              start: pagination.start,
+              end: pagination.end
+            }
+          });
+        },
+        getCourseEvents: function (pagination) {
+          return $http.get(ApiUrlBuilder.build('courseEvents'), {
+            data: {
+              start: pagination.start,
+              end: pagination.end
+            }
+          });
+        },
+        getGlobalEvent: function (id) {
+          return $http.get(ApiUrlBuilder.build('globalEvent/' + id));
+        },
+        getGroupEvent: function (id) {
+          return $http.get(ApiUrlBuilder.build('groupEvent/' + id));
+        },
+        getCourseEvent: function (id) {
+          return $http.get(ApiUrlBuilder.build('courseEvent/' + id));
+        },
+        removeEvent: function (id) {
+          return $http.delete(ApiUrlBuilder.build('event/' + id));
         }
       };
     }]);
