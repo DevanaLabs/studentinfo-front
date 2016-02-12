@@ -8,7 +8,7 @@
         <tr>
             <td colspan="6">
                 <p>Sa odabranim</p>
-                <button ng-disabled="!selectedCount" class="btn btn-success" ng-click="issueRegisterTokens()">Posalji registracione tokene</button>
+                <button ng-disabled="!pagination.selectedCount" class="btn btn-success" ng-click="issueRegisterTokens()">Posalji registracione tokene</button>
             </td>
         </tr>
         <tr>
@@ -35,16 +35,17 @@
             </td>
             <td>
                 <span ng-if="staffType.slug === 'professors' || staffType.slug === 'assistants' ">
-                    {{ entity.title }}
+                    {{ ::entity.title }}
                 </span>
                 <span ng-if="staffType.slug === 'students'">
-                    {{ entity.indexNumber }}
+                    {{ ::entity.indexNumber }}
                 </span>
             </td>
-            <td>{{ entity.firstName }} {{ entity.lastName }}</td>
-            <td>{{ entity.email.email }}</td>
+            <td>{{ ::entity.firstName }} {{ ::entity.lastName }}</td>
+            <td>{{ ::entity.email.email }}</td>
             <td>
-                <small class="alert-danger">Registracioni token istekao</small>
+                <small ng-if="entity.registerTokenExpired" class="alert-danger">Registracioni token istekao</small>
+                <small ng-if="!entity.registerTokenExpired && !entity.registered" class="alert-info">Registracioni token aktivan</small>
             </td>
             <td>
                 <button class="btn btn-danger" ng-click="deleteEntity(entity)">Obrisi</button>

@@ -39,7 +39,7 @@ angular.module('siApp')
         entitySelectChanged: function (entity) {
           if (entity.selected) {
             this.selectedCount++;
-          } else if ($scope.selectedCount > 0) {
+          } else if (this.selectedCount > 0) {
             this.selectedCount--;
           }
         }

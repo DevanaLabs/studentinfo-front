@@ -32,20 +32,24 @@ angular.module('siApp')
       };
 
       $scope.issueRegisterTokens = function () {
+        var selectedEntities = _.filter($scope.pagination.entities, function (e) {
+          return e.selected && !e.registered;
+        });
         var emails = _.map(
-          _.filter($scope.pagination.entities, function (e) {
-            return e.selected && !e.registered;
-          }),
+          selectedEntities,
           function (e) {
             return e.email.email;
           });
 
         if (emails.length) {
           RegisterToken.issue(emails).then(function (response) {
-            if (response.success) {
+            if (response.data.success) {
               toastr.success('Tokeni su izdati');
+              _.forEach(selectedEntities, function (e) {
+                e.registerTokenExpired = false;
+              });
             } else {
-              toastr.success('Tokeni nisu izdati');
+              toastr.error('Doslo je do greske, tokeni nisu izdati');
             }
           }, function (response) {
             toastr.success('Doslo je do greske, tokeni nisu izdati');
