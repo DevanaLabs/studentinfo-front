@@ -111,6 +111,12 @@ angular.module('siApp')
         removeEvent: function (id) {
           return $http.delete(ApiUrlBuilder.build('event/' + id));
         },
+        getCourses: function () {
+          return $http.get(ApiUrlBuilder.build('courses'));
+        },
+        getGroups: function () {
+          return $http.get(ApiUrlBuilder.build('groups'));
+        },
         makeNewGlobalEvent: function (event) {
           return $http.post(ApiUrlBuilder.build('globalEvent'), {
             type: event.type,
@@ -121,6 +127,42 @@ angular.module('siApp')
         },
         saveGlobalEvent: function (event) {
           return $http.put(ApiUrlBuilder.build('globalEvent/' + event.id), {
+            type: event.type,
+            description: event.description,
+            startsAt: event.startsAt,
+            endsAt: event.endsAt
+          });
+        },
+        makeNewGroupEvent: function (event) {
+          return $http.post(ApiUrlBuilder.build('groupEvent'), {
+            groupId: event.relatedEntity,
+            type: event.type,
+            description: event.description,
+            startsAt: event.startsAt,
+            endsAt: event.endsAt
+          });
+        },
+        saveGroupEvent: function (event) {
+          return $http.put(ApiUrlBuilder.build('globalEvent/' + event.id), {
+            groupId: event.group.id,
+            type: event.type,
+            description: event.description,
+            startsAt: event.startsAt,
+            endsAt: event.endsAt
+          });
+        },
+        makeNewCourseEvent: function (event) {
+          return $http.post(ApiUrlBuilder.build('courseEvent'), {
+            courseId: event.relatedEntity,
+            type: event.type,
+            description: event.description,
+            startsAt: event.startsAt,
+            endsAt: event.endsAt
+          });
+        },
+        saveCourseEvent: function (event) {
+          return $http.put(ApiUrlBuilder.build('courseEvent/' + event.id), {
+            courseId: event.course.id,
             type: event.type,
             description: event.description,
             startsAt: event.startsAt,

@@ -27,10 +27,12 @@ angular.module('siApp')
       };
 
       courseEvents.save = function (event) {
+        event.startsAt = DateTimeConverter.combineDateAndTime(event.startsAt);
+        event.endsAt = DateTimeConverter.combineDateAndTime(event.endsAt);
         if (event.id) {
-          return Api.makeNewCourseEvent(event);
+          return Api.saveCourseEvent(event);
         }
-        return Api.saveCourseEvent(event);
+        return Api.makeNewCourseEvent(event);
       };
 
       courseEvents.getAll = function (pagination) {
@@ -39,6 +41,10 @@ angular.module('siApp')
 
       courseEvents.remove = function (id) {
         return Api.removeEvent(id);
+      };
+
+      courseEvents.getRelatedEntities = function () {
+        return Api.getCourses();
       };
 
       return courseEvents;

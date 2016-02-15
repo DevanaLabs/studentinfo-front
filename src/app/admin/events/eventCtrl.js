@@ -7,6 +7,22 @@ angular.module('siApp')
       $scope.canSubmit = true;
       $scope.event = null;
 
+      $scope.mode = Mode;
+      $scope.relatedEntities = [];
+
+      $scope.eventsType = Event.eventsType;
+
+      if (Event.eventsType.slug !== 'global' && Mode === 'CREATE') {
+        Event.getRelatedEntities().then(function (response) {
+          if (response.data.success) {
+            console.log(_.values(response.data.success));
+            $scope.relatedEntities = _.values(response.data.success.data)[0];
+          }
+        }, function (response) {
+
+        });
+      }
+
       $scope.onSubmit = function () {
         if (!Event.validate($scope.event)) {
           toastr.error('Podaci nisu validni, molimo pokusajte ponovo');
@@ -15,7 +31,9 @@ angular.module('siApp')
         Event.save($scope.event).then(function (response) {
           if (response.data.success) {
             toastr.success('Sacuvano');
-            $state.go('admin.events');
+            $state.go('admin.events', {
+              type: Event.eventsType.slug
+            });
           }
         }, function () {
           toastr.error('Greska!');
@@ -27,10 +45,16 @@ angular.module('siApp')
           .then(function (response) {
             if (response.data.success) {
               $scope.event = response.data.success.data.event;
+              $scope.event.relatedEntity = $scope.event[Event.eventsType.slug].id;
+              $scope.event.relatedEntityName = $scope.event[Event.eventsType.slug].name;
             }
           }, function (response) {
             toastr.error('Greska pri ucitavanju dogadjaja');
           });
+      } else {
+        $scope.event = {
+          relatedEntity: -1
+        };
       }
 
       $scope.datePickersStatus = {

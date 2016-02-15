@@ -3,6 +3,16 @@
         <h2>Dogadjaj</h2>
         <hr>
         <form ng-submit="onSubmit()">
+            <div ng-if="eventsType.slug !== 'global' && mode === 'CREATE'" class="form-group">
+                <label for="relatedEntitySelect"></label>
+                <select id="relatedEntitySelect" class="form-control" ng-model="event.relatedEntity">
+                    <option ng-repeat="relatedEntity in relatedEntities" value="{{relatedEntity.id}}">{{ relatedEntity.name }}</option>
+                </select>
+            </div>
+            <div ng-if="eventsType.slug !== 'global' && mode === 'UPDATE'">
+                <label for="relatedEntity"></label>
+                <input ng-disabled="true" type="text" id="relatedEntity" class="form-control" ng-model="event.relatedEntityName">
+            </div>
             <div class="form-group">
                 <label for="inputType">Tip (Ispitni rok, kolokvijum...)</label>
                 <input id="inputType" type="text" ng-model="event.type" class="form-control" ng-required="true"/>
@@ -68,7 +78,7 @@
             </div>
             <div class="form-group">
                 <button type="button" ui-sref="admin.overview" class="btn btn-alert">Odustani</button>
-                <button type="submit" class="btn btn-primary">Sacuvaj</button>
+                <button type="submit" class="btn btn-primary" ng-disabled="!canSubmit">Sacuvaj</button>
             </div>
         </form>
     </div>
