@@ -3,7 +3,8 @@
 angular.module('siApp')
   .factory('DateTimeConverter', [function () {
     var dateTimeConverter = {
-      serverFormat: 'YYYY-MM-DDTHH:mm:ss+0000'
+      fromServerFormat: 'YYYY-MM-DDTHH:mm:ss+0000',
+      toServerFormat: 'YYYY-MM-DD HH:mm'
     };
 
     dateTimeConverter.toMoment = function (rawDatetime) {
@@ -27,7 +28,7 @@ angular.module('siApp')
       return moment(datetime.date)
         .minute(momentTime.minute())
         .hour(momentTime.hour())
-        .format(dateTimeConverter.serverFormat);
+        .format(dateTimeConverter.toServerFormat);
     };
 
     return dateTimeConverter;

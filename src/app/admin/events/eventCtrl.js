@@ -8,8 +8,10 @@ angular.module('siApp')
       $scope.event = null;
 
       $scope.onSubmit = function () {
-        $scope.event.startsAt = DateTimeConverter.combineDateAndTime($scope.event.startsAt);
-        $scope.event.endsAt = DateTimeConverter.combineDateAndTime($scope.event.endsAt);
+        if (!Event.validate($scope.event)) {
+          toastr.error('Podaci nisu validni, molimo pokusajte ponovo');
+          return;
+        }
         Event.save($scope.event).then(function (response) {
           if (response.data.success) {
             toastr.success('Sacuvano');
@@ -25,16 +27,13 @@ angular.module('siApp')
           .then(function (response) {
             if (response.data.success) {
               $scope.event = response.data.success.data.event;
-              $scope.event.startsAt = DateTimeConverter.separateDateAndTime($scope.event.datetime.startsAt);
-              $scope.event.endsAt = DateTimeConverter.separateDateAndTime($scope.event.datetime.endsAt);
-              console.log($scope.event);
             }
           }, function (response) {
             toastr.error('Greska pri ucitavanju dogadjaja');
           });
       }
 
-      $scope.status = {
+      $scope.datePickersStatus = {
         startsAt: {
           opened: false
         },
@@ -44,11 +43,11 @@ angular.module('siApp')
       };
 
       $scope.openStartsAt = function ($event) {
-        $scope.status.startsAt.opened = true;
+        $scope.datePickersStatus.startsAt.opened = true;
       };
 
       $scope.openEndsAt = function ($event) {
-        $scope.status.endsAt.opened = true;
+        $scope.datePickersStatus.endsAt.opened = true;
       };
 
     }]);

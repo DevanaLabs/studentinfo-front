@@ -7,7 +7,7 @@
         </tr>
         <tr>
             <td colspan="6">
-                <button class="btn btn-success" ui-sref="admin.event_new">Novi dogadjaj</button>
+                <button class="btn btn-success" ui-sref="admin.event_new({type: eventsType.slug})">Novi dogadjaj</button>
             </td>
         </tr>
         <tr>
@@ -44,6 +44,7 @@
                 {{ event.momentTime.endsAt.format('HH:mm D/MMMM/YYYY') }}
             </td>
             <td>
+                <button class="btn btn-info" ui-sref="admin.event_new({type: eventsType.slug, id: event.id})">Izmeni</button>
                 <button class="btn btn-danger" ng-click="deleteEvent(event)">Obrisi</button>
             </td>
         </tr>

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('siApp')
-  .factory('GroupEvents', ['Api',
-    function (Api) {
+  .factory('GroupEvents', ['$q', 'Api', 'DateTimeConverter',
+    function ($q, Api, DateTimeConverter) {
       var groupEvents = {};
 
       groupEvents.validate = function (event) {
@@ -10,7 +10,20 @@ angular.module('siApp')
       };
 
       groupEvents.get = function (id) {
-        return Api.getGroupEvent(id);
+        var deferred = $q.defer();
+
+        Api.getGroupEvent(id).then(function (response) {
+          response.data.success.data.event.startsAt =
+            DateTimeConverter.separateDateAndTime(response.data.success.data.event.datetime.startsAt);
+          response.data.success.data.event.endsAt =
+            DateTimeConverter.separateDateAndTime(response.data.success.data.event.datetime.endsAt);
+
+          deferred.resolve(response);
+        }, function (response) {
+          deferred.reject(response);
+        });
+
+        return deferred.promise;
       };
 
       groupEvents.getAll = function (pagination) {

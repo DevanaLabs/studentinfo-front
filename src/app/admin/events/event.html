@@ -31,7 +31,7 @@
                         <p class="input-group">
                             <input type="text" class="form-control" id="inputStartsAt"
                                    uib-datepicker-popup="dd-MMMM-yyyy"
-                                   ng-model="event.startsAt.date" is-open="status.startsAt.opened"
+                                   ng-model="event.startsAt.date" is-open="datePickersStatus.startsAt.opened"
                                    ng-required="true" close-text="Close" />
 							<span class="input-group-btn">
 								<button type="button" class="btn btn-default" ng-click="openStartsAt($event)">
@@ -52,7 +52,7 @@
                         <p class="input-group">
                             <input type="text" class="form-control" id="inputEndsAt"
                                    uib-datepicker-popup="dd-MMMM-yyyy"
-                                   ng-model="event.endsAt.date" is-open="status.endsAt.opened"
+                                   ng-model="event.endsAt.date" is-open="datePickersStatus.endsAt.opened"
                                    ng-required="true" close-text="Close" />
 							<span class="input-group-btn">
 								<button type="button" class="btn btn-default" ng-click="openEndsAt($event)">

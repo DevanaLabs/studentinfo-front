@@ -110,6 +110,22 @@ angular.module('siApp')
         },
         removeEvent: function (id) {
           return $http.delete(ApiUrlBuilder.build('event/' + id));
+        },
+        makeNewGlobalEvent: function (event) {
+          return $http.post(ApiUrlBuilder.build('globalEvent'), {
+            type: event.type,
+            description: event.description,
+            startsAt: event.startsAt,
+            endsAt: event.endsAt
+          });
+        },
+        saveGlobalEvent: function (event) {
+          return $http.put(ApiUrlBuilder.build('globalEvent/' + event.id), {
+            type: event.type,
+            description: event.description,
+            startsAt: event.startsAt,
+            endsAt: event.endsAt
+          });
         }
       };
     }]);

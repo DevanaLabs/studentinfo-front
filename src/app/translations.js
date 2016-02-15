@@ -9,7 +9,7 @@ angular.module('siApp')
       'OVERVIEW': 'Pregled',
       'PROFILE': 'Profil',
       'EVENTS': 'Dogadjaji',
-      'NOTIFICATIONS': 'Obavestenja',
+      'NOTIFICATIONS': 'Obaveštenja',
       'STUDENTS': 'Studenti',
       'PROFESSORS': 'Profesori',
       'ASSISTANTS': 'Asistenti',
@@ -44,7 +44,10 @@ angular.module('siApp')
       'DAY_4': 'Četvrtak',
       'DAY_5': 'Petak',
       'DAY_6': 'Subota',
-      'DAY_7': 'Nedelja'
+      'DAY_7': 'Nedelja',
+      'GLOBAL_EVENTS': 'Opšti dogadjaji',
+      'COURSE_EVENTS': 'Dogadjaji za kurs',
+      'GROUP_EVENTS': 'Dogadjaji za grupu'
     });
 
     $translateProvider.preferredLanguage('sr-lat');

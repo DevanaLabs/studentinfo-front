@@ -16,11 +16,29 @@
                 {{ 'PROFILE' | translate }}
             </a>
         </li>
-        <li role="presentation">
-            <a ui-sref="admin.events({type: 'global'})">
+        <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+               aria-expanded="false">
                 <i class="fa fa-calendar" aria-hidden="true"></i>
-                {{ 'EVENTS' | translate }}
+                {{ 'EVENTS' | translate }} <span class="caret"></span>
             </a>
+            <ul class="dropdown-menu nav">
+                <li role="presentation">
+                    <a ui-sref="admin.events({type: 'global'})">
+                        {{ 'GLOBAL_EVENTS' | translate }}
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="admin.events({type: 'course'})">
+                        {{ 'COURSE_EVENTS' | translate }}
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="admin.events({type: 'group'})">
+                        {{ 'GROUP_EVENTS' | translate }}
+                    </a>
+                </li>
+            </ul>
         </li>
         <li role="presentation">
             <a href="#">
