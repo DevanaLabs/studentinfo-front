@@ -13,6 +13,10 @@ angular.module('siApp')
       OAUTH2_ACCESS_TOKEN_CHANGED: 'auth.oauth2_access_token_changed',
       FACULTY_CHANGED: 'auth.faculty_slug_changed'
     },
+    UI: {
+      SHOW_LOADING_SCREEN: 'ui.show_loading_screen',
+      HIDE_LOADING_SCREEN: 'ui.hide_loading_screen'
+    },
     API: {
       REFRESH_START: 'api:refresh_start',
       REFRESH_SUCCESS: 'api:refresh_success',

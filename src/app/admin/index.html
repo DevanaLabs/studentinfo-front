@@ -9,7 +9,15 @@
             </div>
         </div>
         <div class="col-md-9">
-            <div ui-view></div>
+            <div id="please-wait" ng-show="globals.pleaseWait">
+                <div class="sk-folding-cube">
+                    <div class="sk-cube1 sk-cube"></div>
+                    <div class="sk-cube2 sk-cube"></div>
+                    <div class="sk-cube4 sk-cube"></div>
+                    <div class="sk-cube3 sk-cube"></div>
+                </div>
+            </div>
+            <div ui-view ng-show="!globals.pleaseWait"></div>
         </div>
     </div>
 </div>

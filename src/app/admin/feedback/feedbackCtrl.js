@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('siApp')
-  .controller('FeedbackCtrl', ['$scope', 'Feedback', 'toastr',
-    function ($scope, Feedback, toastr) {
+  .controller('FeedbackCtrl', ['$scope', 'Feedback', 'toastr', 'EVENTS',
+    function ($scope, Feedback, toastr, EVENTS) {
 
       $scope.canSubmit = true;
       $scope.feedback = '';
@@ -18,4 +18,5 @@ angular.module('siApp')
         });
       };
 
+      $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
     }]);

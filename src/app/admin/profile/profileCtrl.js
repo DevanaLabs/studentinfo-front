@@ -7,7 +7,8 @@ angular.module('siApp')
     'toastr',
     'Profile',
     'Auth',
-    function ($scope, $state, toastr, Profile, Auth) {
+    'EVENTS',
+    function ($scope, $state, toastr, Profile, Auth, EVENTS) {
 
       var self = this;
       $scope.password = {
@@ -29,4 +30,5 @@ angular.module('siApp')
         });
       };
 
+      $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
     }]);

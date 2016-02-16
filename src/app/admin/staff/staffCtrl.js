@@ -10,7 +10,8 @@ angular.module('siApp')
     'Entities',
     'RegisterToken',
     'Pagination',
-    function ($scope, $state, $stateParams, toastr, $filter, Entities, RegisterToken, Pagination) {
+    'EVENTS',
+    function ($scope, $state, $stateParams, toastr, $filter, Entities, RegisterToken, Pagination, EVENTS) {
       var self = this;
 
       $scope.pagination = Pagination.getPaginationHelper();
@@ -28,7 +29,9 @@ angular.module('siApp')
           }
         }, function (response) {
           toastr.error('Greska prilikom ucitavanja entiteta');
-        });
+        }).finally(function () {
+          $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
+        })
       };
 
       $scope.issueRegisterTokens = function () {

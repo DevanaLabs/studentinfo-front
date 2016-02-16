@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('siApp')
-  .controller('ImportCtrl', ['$scope', 'toastr', 'Import',
-    function ($scope, toastr, Import) {
+  .controller('ImportCtrl', ['$scope', 'toastr', 'Import', 'EVENTS',
+    function ($scope, toastr, Import, EVENTS) {
 
       $scope.canSubmit = true;
 
@@ -24,5 +24,7 @@ angular.module('siApp')
           $scope.canSubmit = true;
         });
       };
+
+      $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
 
     }]);

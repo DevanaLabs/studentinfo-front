@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('siApp')
-  .controller('EventsCtrl', ['$scope', 'toastr', 'DateTimeConverter', 'Events', 'Pagination',
-    function ($scope, toastr, DateTimeConverter, Events, Pagination) {
+  .controller('EventsCtrl', ['$scope', 'toastr', 'DateTimeConverter', 'Events', 'Pagination', 'EVENTS',
+    function ($scope, toastr, DateTimeConverter, Events, Pagination, EVENTS) {
       var self = this;
 
       $scope.pagination = Pagination.getPaginationHelper();
@@ -18,6 +18,8 @@ angular.module('siApp')
           }
         }, function (response) {
           toastr.error('Greska prilikom ucitavanja dogadjaja!');
+        }).finally(function () {
+          $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
         });
       };
 

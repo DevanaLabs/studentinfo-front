@@ -101,6 +101,7 @@ angular.module('siApp')
         }
       });
   }])
-  .run([function () {
+  .run(['$rootScope', 'EVENTS', function ($rootScope, EVENTS) {
+    $rootScope.$emit(EVENTS.UI.SHOW_LOADING_SCREEN);
     moment.locale('sr-cyr');
   }]);

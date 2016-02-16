@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('siApp')
-  .controller('EventCtrl', ['$scope', '$state', '$stateParams', 'toastr', 'Event', 'DateTimeConverter', 'Mode',
-    function ($scope, $state, $stateParams, toastr, Event, DateTimeConverter, Mode) {
+  .controller('EventCtrl', ['$scope', '$state', '$stateParams', 'toastr', 'Event', 'DateTimeConverter', 'Mode', 'EVENTS',
+    function ($scope, $state, $stateParams, toastr, Event, DateTimeConverter, Mode, EVENTS) {
 
       $scope.canSubmit = true;
       $scope.event = null;
@@ -20,6 +20,8 @@ angular.module('siApp')
           }
         }, function (response) {
 
+        }).finally(function () {
+          $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
         });
       }
 
@@ -50,6 +52,8 @@ angular.module('siApp')
             }
           }, function (response) {
             toastr.error('Greska pri ucitavanju dogadjaja');
+          }).finally(function () {
+            $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
           });
       } else {
         $scope.event = {

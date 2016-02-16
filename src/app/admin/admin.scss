@@ -1,10 +1,49 @@
-$bg:  #f5f5f5;
+$bg: #f5f5f5;
 
-//@import "bootstrap";
-//@import "admin_theme";
-
+@import "bootstrap";
+@import "admin_theme";
+@import "spinner";
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
 
-body {
+#please-wait.ng-hide-add {
+  animation: 0.3s hideAnimation ease;
+}
+
+#please-wait.ng-hide-remove {
+  opacity: 1;
+}
+
+@keyframes showAnimation {
+  0% {
+    transition-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hideAnimation {
+  0% {
+    transition-timing-function: ease-in;
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+#main-ui-view {
   background-color: $bg;
+}
+
+#please-wait {
+  background: $bg;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
 }
