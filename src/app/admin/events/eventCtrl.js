@@ -16,7 +16,7 @@ angular.module('siApp')
         Event.getRelatedEntities().then(function (response) {
           if (response.data.success) {
             console.log(_.values(response.data.success));
-            $scope.relatedEntities = _.values(response.data.success.data)[0];
+            $scope.relatedEntities = response.data.success.data;
           }
         }, function (response) {
 

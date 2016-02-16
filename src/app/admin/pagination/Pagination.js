@@ -43,7 +43,7 @@ angular.module('siApp')
             this.selectedCount--;
           }
         }
-      }
+      };
     };
 
     return pagination;
