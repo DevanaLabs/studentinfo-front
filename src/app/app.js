@@ -24,7 +24,7 @@ angular.module('siApp')
       $rootScope.$on(EVENTS.AUTH.NOT_AUTHORIZED, function (event, fromState, fromParams) {
         if (Auth.userExists()) {
           if (fromState.abstract) {
-            $state.go('dashboard.home');
+            $state.go(Privilege.redirectStateBasedOnRole());
           } else {
             $state.go(fromState, fromParams);
           }
