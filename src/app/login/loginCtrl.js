@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('siApp')
-  .controller('LoginCtrl', ['$rootScope', '$scope', '$state', 'toastr', '$translate', 'Auth', 'Privilege', 'EVENTS', 'ROLES',  
-  function ($rootScope, $scope, $state, toastr, $translate, Auth, Privilege, EVENTS, ROLES) {
+  .controller('LoginCtrl', ['$rootScope', '$scope', '$state', 'toastr', '$translate', 'Auth', 'Privilege', 'EVENTS', 'ROLES',
+    function ($rootScope, $scope, $state, toastr, $translate, Auth, Privilege, EVENTS, ROLES) {
       var self = this;
 
       $scope.credentials = {
@@ -11,11 +11,7 @@ angular.module('siApp')
       };
 
       $scope.$on(EVENTS.AUTH.LOGIN_SUCCESS, function (event, data) {
-        if (Privilege.check([ROLES.superAdmin, ROLES.admin])) {
-          $state.go('admin.overview');
-        } else {
-          $state.go('dashboard.home');
-        }
+        $state.go(Privilege.redirectStateBasedOnRole());
       });
 
       $scope.$on(EVENTS.AUTH.LOGIN_FAILED, function (event, data) {
@@ -25,14 +21,13 @@ angular.module('siApp')
         else {
           toastr.error($translate.instant(data.error));
         }
-        
+
       });
 
       $scope.onSubmit = function () {
         if (self.validateCredentials($scope.credentials)) {
           Auth.login($scope.credentials);
-        }
-        else {
+        } else {
           toastr.error($translate.instant('LOGIN.ERROR.INVALID_INPUT'));
         }
       };

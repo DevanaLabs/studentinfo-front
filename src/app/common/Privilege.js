@@ -20,5 +20,13 @@ angular.module('siApp')
         return _.intersection(authorizedRoles, Auth.user().roles).length > 0;
       };
 
+      privilege.redirectStateBasedOnRole = function () {
+        if (privilege.check([ROLES.superAdmin, ROLES.admin])) {
+          return 'admin.overview';
+        } else {
+          return 'dashboard.home';
+        }
+      };
+
       return privilege;
     }]);

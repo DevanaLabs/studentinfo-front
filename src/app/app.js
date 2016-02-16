@@ -24,7 +24,6 @@ angular.module('siApp')
       $rootScope.$on(EVENTS.AUTH.NOT_AUTHORIZED, function (event, fromState, fromParams) {
         if (Auth.userExists()) {
           if (fromState.abstract) {
-            // TODO : Looping, should be redirected on homepage based on roles
             $state.go('dashboard.home');
           } else {
             $state.go(fromState, fromParams);
@@ -37,8 +36,8 @@ angular.module('siApp')
 
       $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         if (!Privilege.check(toState.data.authorizedRoles)) {
-          console.log('Not authorized');
           event.preventDefault();
+          console.log('Not authorized');
           $rootScope.$broadcast(EVENTS.AUTH.NOT_AUTHORIZED, fromState, fromParams);
         }
       });
