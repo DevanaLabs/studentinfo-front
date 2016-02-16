@@ -36,7 +36,22 @@ angular.module('siApp')
       };
 
       courseEvents.getAll = function (pagination) {
-        return Api.getCourseEvents(pagination);
+        var deferred = $q.defer();
+
+        Api.getCourseEvents(pagination).then(function (response) {
+          response.data.success.data = _.forEach(response.data.success.data, function (e) {
+            e.momentTime = {
+              startsAt: DateTimeConverter.toMoment(e.datetime.startsAt),
+              endsAt: DateTimeConverter.toMoment(e.datetime.endsAt)
+            };
+            e.expired = moment().isAfter(e.momentTime.endsAt);
+          });
+          deferred.resolve(response);
+        }, function (response) {
+          deferred.reject(response);
+        });
+
+        return deferred.promise;
       };
 
       courseEvents.remove = function (id) {

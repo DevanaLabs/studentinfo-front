@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('siApp', ['ui.router', 'LocalStorageModule', 'siApp.config', 'siApp.dashboard', 'ui.bootstrap',
-  'pascalprecht.translate', 'toastr', 'ngAnimate', 'angularMoment'])
+  'pascalprecht.translate', 'ngFileUpload', 'toastr', 'ngAnimate', 'angularMoment'])
   .constant('ROLES', {
     any: '*',
     none: '!',

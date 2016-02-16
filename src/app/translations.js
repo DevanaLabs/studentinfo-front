@@ -47,7 +47,9 @@ angular.module('siApp')
       'DAY_7': 'Nedelja',
       'GLOBAL_EVENTS': 'Opšti dogadjaji',
       'COURSE_EVENTS': 'Dogadjaji za kurs',
-      'GROUP_EVENTS': 'Dogadjaji za grupu'
+      'GROUP_EVENTS': 'Dogadjaji za grupu',
+      'LECTURES': 'Predavanja i vežbe',
+      'COURSES': 'Kursevi'
     });
 
     $translateProvider.preferredLanguage('sr-lat');

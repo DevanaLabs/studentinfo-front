@@ -23,6 +23,11 @@ angular.module('siApp')
         templateUrl: 'admin/feedback/feedback.html',
         controller: 'FeedbackCtrl'
       })
+      .state('admin.import', {
+        url: '/import',
+        templateUrl: 'admin/import/import.html',
+        controller: 'ImportCtrl'
+      })
       .state('admin.events', {
         url: '/events/{type:string}',
         templateUrl: 'admin/events/events.html',
@@ -59,8 +64,23 @@ angular.module('siApp')
               }
             }],
           Mode: ['$stateParams', function ($stateParams) {
-            return $stateParams.id != '' ? 'UPDATE' : 'CREATE';
+            return $stateParams.id !== '' ? 'UPDATE' : 'CREATE';
           }]
+        }
+      })
+      .state('admin.notifications', {
+        url: '/notifications/{type:string}',
+        templateUrl: 'admin/notifications/notifications.html',
+        controller: 'NotificationsCtrl',
+        resolve: {
+          Notifications: ['$stateParams', 'LectureNotifications', 'EventNotifications',
+            function ($stateParams, LectureNotifications, EventNotifications) {
+              if ($stateParams.type === 'lectures') {
+                return angular.extend(LectureNotifications, {staffType: {slug: 'lectures'}});
+              } else if ($stateParams.type === 'professors') {
+                return angular.extend(EventNotifications, {staffType: {slug: 'events'}});
+              }
+            }]
         }
       })
       .state('admin.staff', {

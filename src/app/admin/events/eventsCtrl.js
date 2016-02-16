@@ -6,7 +6,6 @@ angular.module('siApp')
       var self = this;
 
       $scope.pagination = Pagination.getPaginationHelper();
-
       $scope.eventsType = Events.eventsType;
 
       $scope.loadEvents = function () {
@@ -14,11 +13,6 @@ angular.module('siApp')
           if (response.data.success) {
             var events = _.forEach(response.data.success.data, function (e) {
               e.selected = false;
-              e.momentTime = {
-                startsAt: DateTimeConverter.toMoment(e.datetime.startsAt),
-                endsAt: DateTimeConverter.toMoment(e.datetime.endsAt)
-              };
-              e.expired = moment().isAfter(e.momentTime.endsAt);
             });
             $scope.pagination.loadEntities(events);
           }

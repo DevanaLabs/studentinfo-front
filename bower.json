@@ -24,6 +24,8 @@
     "moment": "momentjs#~2.11.1",
     "angular-local-storage": "~0.2.3",
     "angular-translate": "~2.9.0",
-    "angular-bootstrap": "~1.1.2"
+    "angular-bootstrap": "~1.1.2",
+    "please-wait": "~0.0.5",
+    "ng-file-upload": "~12.0.1"
   }
 }
