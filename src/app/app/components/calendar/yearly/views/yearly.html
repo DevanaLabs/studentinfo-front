@@ -1,46 +1,46 @@
 <div id="yearWrapper" ng-controller="yearlyCtrl" ng-animate>
-    <div class="yearHeader">{{winterSemesterYear}}</div>
-    <div class="yearMonthWrapper fiveRow" ng-repeat="month in months | limitTo: 4"
+    <div class="yearHeader">{{::winterSemesterYear}}</div>
+    <div class="yearMonthWrapper fiveRow" ng-repeat="month in ::months | limitTo: 4"
          ui-sref="months({year: winterSemesterYear, month: month.number})">
         <div class="yearMonthTableWrapper">
             <table class="yearMonthTable">
                 <tr>
-                    <td class="yearMonthHeader" colspan="7">{{month.name}}</td>
+                    <td class="yearMonthHeader" colspan="7">{{::month.name}}</td>
                 </tr>
-                <tr ng-repeat="week in month.days">
-                    <td ng-repeat="day in week"
-                        ng-attr-id="{{ 'y'+day.year+'m'+day.month+'d'+day.date }}"
-                        ng-class="{
+                <tr ng-repeat="week in ::month.days">
+                    <td ng-repeat="day in ::week"
+                        ng-attr-id="'y'+day.year+'m'+day.month+'d'+day.date"
+                        ng-class="::{
 						'today': ('y'+day.year+'m'+day.month+'d'+day.date) == today, 
 						'past': day.past,
-						{{day.type}}: true, 
-						{{day.background}}: true
+						{{::day.type}}: true, 
+						{{::day.background}}: true
 					}">
-                        {{day.date}}
+                        {{::day.date}}
                     </td>
                 </tr>
             </table>
         </div>
     </div>
 
-    <div class="yearHeader">{{winterSemesterYear+1}}</div>
-    <div class="yearMonthWrapper fiveRow" ng-repeat="month in months" ng-if="$index >= 4"
+    <div class="yearHeader">{{::winterSemesterYear+1}}</div>
+    <div class="yearMonthWrapper fiveRow" ng-repeat="month in ::months" ng-if="$index >= 4"
          ui-sref="months({year: winterSemesterYear+1, month: month.number})">
         <div class="yearMonthTableWrapper">
             <table class="yearMonthTable">
                 <tr>
-                    <td class="yearMonthHeader" colspan="7">{{month.name}}</td>
+                    <td class="yearMonthHeader" colspan="7">{{::month.name}}</td>
                 </tr>
-                <tr ng-repeat="week in month.days">
-                    <td ng-repeat="day in week"
-                        ng-attr-id="{{ 'y'+day.year+'m'+day.month+'d'+day.date }}"
-                        ng-class="{
+                <tr ng-repeat="week in ::month.days">
+                    <td ng-repeat="day in ::week"
+                        ng-attr-id="'y'+day.year+'m'+day.month+'d'+day.date"
+                        ng-class="::{
 						'today': ('y'+day.year+'m'+day.month+'d'+day.date) == today, 
 						'past': day.past,
-						{{day.type}}: true, 
-						{{day.background}}: true
+						{{::day.type}}: true, 
+						{{::day.background}}: true
 					}">
-                        {{day.date}}
+                        {{::day.date}}
                     </td>
                 </tr>
             </table>

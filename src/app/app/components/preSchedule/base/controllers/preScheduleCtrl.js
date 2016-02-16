@@ -24,7 +24,7 @@ angular.module('siApp')
     $scope.filterData = fD.filterData;
     $scope.untranslatedData = fD.untranslatedData;
 
-    $scope.data = _.cloneDeep(Dashboard.getFilterData());
+    $scope.data = $.extend(Dashboard.getFilterData());
 
     $scope.switchFilter = function (targetF) {
       $scope.displayedFilter = targetF;
