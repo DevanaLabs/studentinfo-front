@@ -52,7 +52,7 @@ angular.module("siApp")
           type: 'currentMonth',
           events: [],
           background: 'white',
-          past: inPast
+          past: (inPast ? "past":"") 
         })
       }
 
@@ -73,8 +73,8 @@ angular.module("siApp")
 
       var events = Dashboard.getGlobalEvents();
 
-      for (var i = 0; i < events.length; i++) {
 
+      for (var i = 0; i < events.length; i++) {
         var currentDate = new Date(events[i].datetime.startsAt);
         var stopDate = new Date(events[i].datetime.endsAt);
         while (currentDate <= stopDate) {
@@ -100,6 +100,15 @@ angular.module("siApp")
         }
       }
 
+
+    cal =_.forEach(cal, function (day) {
+      day.finalClass = day.type + ' ' + day.background + ' ' + day.past;
+      if(('y'+day.year+'m'+day.month+'d'+day.date) == $scope.today) {
+        day.finalClass += " today";
+      }
+      day.id = 'y'+day.year+'m'+day.month+'d'+day.date;
+      return day;
+    });
 
       // divide into subarrays of 7 days
       cal = _.compact(cal.map(function (el, i) {
@@ -128,6 +137,7 @@ angular.module("siApp")
     //$timeout(function(){
     $scope.months = months;
     //}, 400);
+
 
 
   }])

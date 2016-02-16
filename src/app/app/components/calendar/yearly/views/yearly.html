@@ -1,4 +1,4 @@
-<div id="yearWrapper" ng-controller="yearlyCtrl" ng-animate>
+<div id="yearWrapper" ng-controller="yearlyCtrl">
     <div class="yearHeader">{{::winterSemesterYear}}</div>
     <div class="yearMonthWrapper fiveRow" ng-repeat="month in ::months | limitTo: 4"
          ui-sref="months({year: winterSemesterYear, month: month.number})">
@@ -9,13 +9,8 @@
                 </tr>
                 <tr ng-repeat="week in ::month.days">
                     <td ng-repeat="day in ::week"
-                        ng-attr-id="'y'+day.year+'m'+day.month+'d'+day.date"
-                        ng-class="::{
-						'today': ('y'+day.year+'m'+day.month+'d'+day.date) == today, 
-						'past': day.past,
-						{{::day.type}}: true, 
-						{{::day.background}}: true
-					}">
+                        ng-attr-id="::day.id"
+                        ng-class="::day.finalClass">
                         {{::day.date}}
                     </td>
                 </tr>
@@ -33,13 +28,8 @@
                 </tr>
                 <tr ng-repeat="week in ::month.days">
                     <td ng-repeat="day in ::week"
-                        ng-attr-id="'y'+day.year+'m'+day.month+'d'+day.date"
-                        ng-class="::{
-						'today': ('y'+day.year+'m'+day.month+'d'+day.date) == today, 
-						'past': day.past,
-						{{::day.type}}: true, 
-						{{::day.background}}: true
-					}">
+                        ng-attr-id="::day.id"
+                        ng-class="::day.finalClass">
                         {{::day.date}}
                     </td>
                 </tr>
