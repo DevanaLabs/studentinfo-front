@@ -3,15 +3,9 @@
         <h2>Dogadjaj</h2>
         <hr>
         <form ng-submit="onSubmit()">
-            <div ng-if="eventsType.slug !== 'global' && mode === 'CREATE'" class="form-group">
-                <label for="relatedEntitySelect"></label>
-                <select id="relatedEntitySelect" class="form-control" ng-model="event.relatedEntity">
-                    <option ng-repeat="relatedEntity in relatedEntities" value="{{relatedEntity.id}}">{{ relatedEntity.name }}</option>
-                </select>
-            </div>
-            <div ng-if="eventsType.slug !== 'global' && mode === 'UPDATE'" class="form-group">
+            <div class="form-group">
                 <label for="relatedEntity"></label>
-                <input ng-disabled="true" type="text" id="relatedEntity" class="form-control" ng-model="event.relatedEntityName">
+                <input ng-disabled="true" type="text" id="relatedEntity" class="form-control" ng-model="lecture.relatedEntityName">
             </div>
             <div class="form-group">
                 <label for="inputType">Tip (Ispitni rok, kolokvijum...)</label>

@@ -31,5 +31,9 @@ angular.module('siApp')
         .format(dateTimeConverter.toServerFormat);
     };
 
+    dateTimeConverter.fromBegginingOfTheWeek = function (offset) {
+      return moment().startOf('isoweek').add(offset, 'seconds');
+    };
+
     return dateTimeConverter;
   }]);

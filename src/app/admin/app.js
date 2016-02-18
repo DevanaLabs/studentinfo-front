@@ -68,21 +68,56 @@ angular.module('siApp')
           }]
         }
       })
-      .state('admin.notifications', {
-        url: '/notifications/{type:string}',
+      .state('admin.lectures', {
+        url: '/lectures',
+        templateUrl: 'admin/lectures/lectures.html',
+        controller: 'LecturesCtrl'
+      })
+      .state('admin.lecture_new', {
+        url: '/lectures/{id}',
+        templateUrl: 'admin/lectures/lecture.html',
+        controller: 'LectureCtrl',
+        resolve: {
+          Mode: ['$stateParams', function ($stateParams) {
+            return $stateParams.id !== '' ? 'UPDATE': 'CREATE';
+          }]
+        }
+      })
+      /*.state('admin.notifications', {
+        url: '/notifications/{type:string}/{relatedEntityId}',
         templateUrl: 'admin/notifications/notifications.html',
         controller: 'NotificationsCtrl',
         resolve: {
           Notifications: ['$stateParams', 'LectureNotifications', 'EventNotifications',
             function ($stateParams, LectureNotifications, EventNotifications) {
               if ($stateParams.type === 'lectures') {
-                return angular.extend(LectureNotifications, {staffType: {slug: 'lectures'}});
-              } else if ($stateParams.type === 'professors') {
-                return angular.extend(EventNotifications, {staffType: {slug: 'events'}});
+                return angular.extend(LectureNotifications, {notificationsType: {slug: 'lectures'}});
+              } else if ($stateParams.type === 'events') {
+                return angular.extend(EventNotifications, {notificationsType: {slug: 'events'}});
               }
             }]
         }
       })
+      .state('admin.eventNotification_new', {
+        url: '/notifications/events/{relatedEntityId}/{id}',
+        templateUrl: 'admin/notifications/eventNotification.html',
+        controller: 'EventNotificationCtrl',
+        resolve: {
+          Mode: ['$stateParams', function ($stateParams) {
+            return $stateParams.id !== '' ? 'UPDATE' : 'CREATE';
+          }]
+        }
+      })
+      .state('admin.lectureNotification_new', {
+        url: '/notifications/lectures/{relatedEntityId}/{id}',
+        templateUrl: 'admin/notifications/notification.html',
+        controller: 'NotificationCtrl',
+        resolve: {
+          Mode: ['$stateParams', function ($stateParams) {
+            return $stateParams.id !== '' ? 'UPDATE' : 'CREATE';
+          }]
+        }
+      })*/
       .state('admin.staff', {
         url: '/staff/{type:string}',
         templateUrl: 'admin/staff/staff.html',

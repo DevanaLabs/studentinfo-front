@@ -40,10 +40,29 @@
                 </li>
             </ul>
         </li>
+        <!--<li role="presentation" class="dropdown">-->
+            <!--<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"-->
+               <!--aria-expanded="false">-->
+                <!--<i class="fa fa-bell" aria-hidden="true"></i>-->
+                <!--{{ 'NOTIFICATONS' | translate }} <span class="caret"></span>-->
+            <!--</a>-->
+            <!--<ul class="dropdown-menu nav">-->
+                <!--<li role="presentation">-->
+                    <!--<a ui-sref="admin.notifications({type: 'events'})">-->
+                        <!--{{ 'EVENT_NOTIFICATIONS' | translate }}-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a ui-sref="admin.notifications({type: 'lectures'})">-->
+                        <!--{{ 'LECTURE_NOTIFICATIONS' | translate }}-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</li>-->
         <li role="presentation">
-            <a href="#">
-                <i class="fa fa-bell" aria-hidden="true"></i>
-                {{ 'NOTIFICATIONS' | translate }}
+            <a ui-sref="admin.lectures">
+                <i class="fa fa-book" aria-hidden="true"></i>
+                {{ 'LECTURES' | translate }}
             </a>
         </li>
         <li role="presentation">

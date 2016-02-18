@@ -1,0 +1,77 @@
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <td colspan="6">
+                <input class="form-control" type="text" ng-model="pagination.query" placeholder="Pretraga">
+            </td>
+        </tr>
+        <tr>
+            <th colspan="6">
+                <button class="btn btn-success" ui-sref="admin.lecture_new">Novo predavanje/vezbe</button>
+            </th>
+        </tr>
+        <tr>
+            <th>Tip</th>
+            <th>
+                Kurs
+            </th>
+            <th>
+                Predavac
+            </th>
+            <th>Ucionica</th>
+            <th>Pocetak</th>
+            <th>Kraj</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="lecture in pagination.paginatedEntities" class="repeated-item">
+            <td>{{ ::lecture.type }}</td>
+            <td>
+                {{ ::lecture.course.name }}
+            </td>
+            <td>
+                {{ ::lecture.teacher.title }}
+                {{ ::lecture.teacher.firstName }}
+                {{ ::lecture.teacher.lastName }}
+            </td>
+            <td>
+                {{ ::lecture.classroom.name }}
+            </td>
+            <td>
+                {{ ::lecture.startsAt.format('dddd HH:mm') }}
+            </td>
+            <td>
+                {{ ::lecture.endsAt.format('dddd HH:mm') }}
+            </td>
+            <td>
+                <button
+                        ng-disabled="!canPerformActions"
+                        ng-show="lecture.notifications.length > 0"
+                        ui-sref="admin.notifications({relatedEntityId: lecture.id, type: 'lectureNotifications'})"
+                        type="button" class="btn btn-primary m-r-sm">{{ lecture.notifications.length }}
+                </button>
+
+                <button
+                        ng-disabled="!canPerformActions"
+                        ui-sref="admin.lectureNotification_new({relatedEntityId: event.id, type: 'lecureNotifications'})"
+                        type="button" class="btn btn-success m-r-sm">
+                    <small><i class="fa fa-plus-square"></i></small>
+                </button>
+            </td>
+            <td>
+                <button ng-disabled="!canPerformActions" class="btn btn-info" ui-sref="admin.lecture({id: lecture.id})">
+                    Izmeni
+                </button>
+                <button ng-disabled="!canPerformActions" class="btn btn-danger" ng-click="deleteLecture(lecture)">
+                    Obrisi
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <uib-pagination total-items="pagination.totalItems" items-per-page="pagination.perPage"
+                    ng-model="pagination.currentPage"></uib-pagination>
+</div>

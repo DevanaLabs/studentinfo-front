@@ -21,6 +21,8 @@
             </th>
             <th>Pocetak</th>
             <th>Kraj</th>
+            <td></td>
+            <td></td>
         </tr>
         </thead>
         <tbody>
@@ -42,6 +44,18 @@
             </td>
             <td>
                 {{ event.momentTime.endsAt.format('HH:mm D/MMMM/YYYY') }}
+            </td>
+            <td>
+                <button
+                        ng-show="event.notifications.length > 0"
+                        ui-sref="admin.notifications({relatedEntityId: event.id, type: 'events'})"
+                        type="button" class="btn btn-primary m-r-sm">{{ event.notifications.length }}</button>
+
+                <button
+                        ui-sref="admin.eventNotification_new({relatedEntityId: event.id, type: 'events'})"
+                        type="button" class="btn btn-success m-r-sm">
+                    <small><i class="fa fa-plus-square"></i></small>
+                </button>
             </td>
             <td>
                 <button class="btn btn-info" ui-sref="admin.event_new({type: eventsType.slug, id: event.id})">Izmeni</button>

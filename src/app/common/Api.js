@@ -117,6 +117,9 @@ angular.module('siApp')
         getGroups: function () {
           return $http.get(ApiUrlBuilder.build('groups'));
         },
+        getEvent: function (id) {
+          return $http.get(ApiUrlBuilder.build('event/' + id));
+        },
         makeNewGlobalEvent: function (event) {
           return $http.post(ApiUrlBuilder.build('globalEvent'), {
             type: event.type,
@@ -168,6 +171,68 @@ angular.module('siApp')
             startsAt: event.startsAt,
             endsAt: event.endsAt
           });
+        },
+        getEventNotifications: function (pagination) {
+          return $http.get(ApiUrlBuilder.build('eventNotifications'), {
+            data: {
+              start: pagination.start,
+              end: pagination.end
+            }
+          });
+        },
+        getEventNotificationsForEvent: function (eventId, pagination) {
+          return $http.get(ApiUrlBuilder.build('notificationsForEvent/' + eventId), {
+            data: {
+              start: pagination.start,
+              end: pagination.end
+            }
+          });
+        },
+        getLectureNotifications: function (pagination) {
+          return $http.get(ApiUrlBuilder.build('lectureNotifications'), {
+            data: {
+              start: pagination.start,
+              end: pagination.end
+            }
+          });
+        },
+        getLectureNotificationsForLecture: function (lectureId, pagination) {
+          return $http.get(ApiUrlBuilder.build('notificationsForLecture/' + lectureId), {
+            data: {
+              start: pagination.start,
+              end: pagination.end
+            }
+          });
+        },
+        getEventNotification: function (id) {
+          return $http.get(ApiUrlBuilder.build('eventNotification/' + id));
+        },
+        getLectureNotification: function (id) {
+          return $http.get(ApiUrlBuilder.build('lectureNotification/' + id));
+        },
+        makeNewEventNotification: function (event) {
+          return $http.post(ApiUrlBuilder.build('eventNotification'), {
+            eventId: event.relatedEntity,
+            type: event.type,
+            description: event.description,
+            expiresAt: event.expiresAt
+          });
+        },
+        saveEventNotification: function (notification) {
+          return $http.put(ApiUrlBuilder.build('eventNotification/' + notification.id), {
+            eventId: notification.event.id,
+            description: notification.description,
+            expiresAt: notification.expiresAt
+          });
+        },
+        getLectures: function (pagination) {
+          return $http.get(ApiUrlBuilder.build('lectures'));
+        },
+        removeLecture: function (id) {
+          return $http.delete(ApiUrlBuilder.build('lecture/' + id));
+        },
+        getLecture: function (id) {
+          return $http.get(ApiUrlBuilder.build('lecture/' + id));
         }
       };
     }]);
