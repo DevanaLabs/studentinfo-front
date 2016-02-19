@@ -17,12 +17,10 @@ angular.module('siApp')
       });
 
       $rootScope.$on(EVENTS.UI.SHOW_LOADING_SCREEN, function () {
-        console.log('Show pleaseWait');
         $rootScope.globals.pleaseWait = true;
       });
 
       $rootScope.$on(EVENTS.UI.HIDE_LOADING_SCREEN, function () {
-        console.log('Hide pleaseWait');
         $rootScope.globals.pleaseWait = false;
       });
 

@@ -37,7 +37,6 @@ angular.module('siApp')
       $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         if (!Privilege.check(toState.data.authorizedRoles)) {
           event.preventDefault();
-          console.log('Not authorized');
           $rootScope.$broadcast(EVENTS.AUTH.NOT_AUTHORIZED, fromState, fromParams);
         }
       });

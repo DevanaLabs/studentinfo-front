@@ -21,9 +21,7 @@ angular.module('siApp')
       $scope.onSubmit = function () {
         $scope.canSubmit = false;
         $scope.lecture.time.endsAt.day = $scope.lecture.time.startsAt.day;
-        console.log($scope.lecture);
         Lectures.save($scope.lecture).then(function (response) {
-          console.log(response);
           if (response.data.success) {
             toastr.success('Sacuvano');
             $state.go('admin.lectures');

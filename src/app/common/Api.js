@@ -210,12 +210,12 @@ angular.module('siApp')
         getLectureNotification: function (id) {
           return $http.get(ApiUrlBuilder.build('lectureNotification/' + id));
         },
-        makeNewEventNotification: function (event) {
+        makeNewEventNotification: function (notification) {
           return $http.post(ApiUrlBuilder.build('eventNotification'), {
-            eventId: event.relatedEntity,
-            type: event.type,
-            description: event.description,
-            expiresAt: event.expiresAt
+            eventId: notification.event.id,
+            type: notification.type,
+            description: notification.description,
+            expiresAt: notification.expiresAt
           });
         },
         saveEventNotification: function (notification) {
@@ -256,6 +256,9 @@ angular.module('siApp')
         },
         getClassrooms: function () {
           return $http.get(ApiUrlBuilder.build('classrooms'));
+        },
+        removeNotification: function (id) {
+          return $http.delete(ApiUrlBuilder.build('notification/' + id));
         }
       };
     }]);
