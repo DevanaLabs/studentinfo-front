@@ -37,6 +37,21 @@ angular.module('siApp')
         return lecture;
       };
 
+      lectures.getNewInstance = function () {
+        return {
+          time: {
+            startsAt: {
+              day: 0,
+              time: moment().startOf('isoweek')
+            },
+            endsAt: {
+              day: 0,
+              time: moment().startOf('isoweek')
+            }
+          }
+        };
+      };
+
       lectures.validate = function (event) {
         return true;
       };

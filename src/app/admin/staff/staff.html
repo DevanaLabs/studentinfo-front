@@ -1,62 +1,71 @@
 <div>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <td colspan="6"><input class="form-control" type="text" ng-model="pagination.query" placeholder="Pretraga">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="6">
-                <p>Sa odabranim</p>
-                <button ng-disabled="!pagination.selectedCount && canPerformActions" class="btn btn-success"
-                        ng-click="issueRegisterTokens()">Posalji registracione tokene
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <th></th>
-            <th>
+    <div>
+        <h2>
+            <span ng-if="staffType.slug === 'students'">Studenti</span>
+            <span ng-if="staffType.slug === 'assistants'">Asistenti</span>
+            <span ng-if="staffType.slug === 'professors'">Profesori</span>
+        </h2>
+        <hr>
+        <button ng-disabled="!pagination.selectedCount && canPerformActions" class="btn btn-success"
+                ng-click="issueRegisterTokens()">Posalji registracione tokene
+        </button>
+    </div>
+    <hr>
+    <div ng-if="!pagination.available" class="center-block">
+        <h1 class="text-center">Nema podataka</h1>
+    </div>
+    <div ng-if="pagination.available">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <td colspan="6"><input class="form-control" type="text" ng-model="pagination.query" placeholder="Pretraga">
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <th>
                 <span ng-if="staffType.slug === 'professors' || staffType.slug === 'assistants' ">
                     Titula
                 </span>
                 <span ng-if="staffType.slug === 'students'">
                     Indeks
                 </span>
-            </th>
-            <th>Ime i prezime</th>
-            <th>Email</th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="entity in pagination.paginatedEntities" class="repeated-item">
-            <td>
-                <input type="checkbox" ng-model="entity.selected" ng-change="pagination.entitySelectChanged(entity)">
-            </td>
-            <td>
+                </th>
+                <th>Ime i prezime</th>
+                <th>Email</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="entity in pagination.paginatedEntities" class="repeated-item">
+                <td>
+                    <input type="checkbox" ng-model="entity.selected" ng-change="pagination.entitySelectChanged(entity)">
+                </td>
+                <td>
                 <span ng-if="staffType.slug === 'professors' || staffType.slug === 'assistants' ">
                     {{ ::entity.title }}
                 </span>
                 <span ng-if="staffType.slug === 'students'">
                     {{ ::entity.indexNumber }}
                 </span>
-            </td>
-            <td>{{ ::entity.firstName }} {{ ::entity.lastName }}</td>
-            <td>{{ ::entity.email.email }}</td>
-            <td>
-                <small ng-if="entity.registerTokenExpired" class="text-danger">Registracioni token istekao</small>
-                <small ng-if="!entity.registerTokenExpired && !entity.registered" class="text-info">Registracioni token
-                    aktivan
-                </small>
-            </td>
-            <td>
-                <button ng-disabled="!canPerformActions" class="btn btn-danger" ng-click="deleteEntity(entity)">Obrisi
-                </button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <uib-pagination total-items="pagination.totalItems" items-per-page="pagination.perPage"
-                    ng-model="pagination.currentPage"></uib-pagination>
+                </td>
+                <td>{{ ::entity.firstName }} {{ ::entity.lastName }}</td>
+                <td>{{ ::entity.email.email }}</td>
+                <td>
+                    <small ng-if="entity.registerTokenExpired" class="text-danger">Registracioni token istekao</small>
+                    <small ng-if="!entity.registerTokenExpired && !entity.registered" class="text-info">Registracioni token
+                        aktivan
+                    </small>
+                </td>
+                <td>
+                    <button ng-disabled="!canPerformActions" class="btn btn-danger btn-sm" ng-click="deleteEntity(entity)">Obrisi
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <uib-pagination total-items="pagination.totalItems" items-per-page="pagination.perPage"
+                        ng-model="pagination.currentPage"></uib-pagination>
+    </div>
 </div>

@@ -1,50 +1,55 @@
 <div>
-    <table class="table">
-        <thead>
-        <tr>
-            <td colspan="6"><input class="form-control" type="text" ng-model="pagination.query" placeholder="Pretraga">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="6">
-                <button ng-if="notificationsType.slug === 'lectures'" class="btn btn-success"
-                        ui-sref="admin.notification_new({type: notificationsType.slug})">Novo obavestenje
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <th>Opis</th>
-            <th>
-                <span ng-if="notificationsType.slug === 'lectures'">Termin</span>
-                <span ng-if="notificationsType.slug === 'events'">Dogadjaj</span>
-            </th>
-            <th>Vreme isteka</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="notification in pagination.paginatedEntities" class="repeated-item">
-            <td>{{ ::notification.description }}</td>
-            <td>
-                <span ng-if="notificationsType.slug === 'lectures'">
-                    {{ ::notification.lecture }}
-                </span>
-                <span ng-if="notificationsType.slug === 'events'">
-                    {{ ::notification.event.description }}
-                </span>
-            </td>
-            <td ng-class="notification.expired ? 'text-warning' : ''">
-                {{ ::notification.momentTime.expiresAt.format('HH:mm D/MMMM/YYYY') }}
-            </td>
-            <td>
-                <button class="btn btn-info"
-                        ui-sref="admin.eventNotification_new({relatedEntityId: notification.event.id, id: notification.id})">Izmeni
-                </button>
-                <button class="btn btn-danger" ng-click="deleteNotification(notification)">Obrisi</button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <uib-pagination total-items="pagination.totalItems" items-per-page="pagination.perPage"
-                    ng-model="pagination.currentPage"></uib-pagination>
+    <div>
+        <h2>Obavestenja</h2>
+    </div>
+    <hr>
+    <div ng-if="!pagination.available" class="center-block">
+        <h1 class="text-center">Nema podataka</h1>
+    </div>
+    <div ng-if="pagination.available">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <td colspan="6">
+                    <input class="form-control" type="text" ng-model="pagination.query"
+                           placeholder="Pretraga">
+                </td>
+            </tr>
+            <tr>
+                <th>Opis</th>
+                <th>
+                    <span ng-if="notificationsType.slug === 'lectures'">Termin</span>
+                    <span ng-if="notificationsType.slug === 'events'">Dogadjaj</span>
+                </th>
+                <th>Vreme isteka</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="notification in pagination.paginatedEntities" class="repeated-item">
+                <td>{{ ::notification.description }}</td>
+                <td>
+                    <span ng-if="notificationsType.slug === 'lectures'">
+                        {{ ::notification.l ecture }}
+                    </span>
+                    <span ng-if="notificationsType.slug === 'events'">
+                        {{ ::notification.event.description }}
+                    </span>
+                </td>
+                <td ng-class="notification.expired ? 'text-warning' : ''">
+                    {{ ::notification.momentTime.expiresAt.format('HH:mm D/MMMM/YYYY') }}
+                </td>
+                <td>
+                    <button class="btn btn-info btn-sm"
+                            ui-sref="admin.eventNotification_new({relatedEntityId: notification.event.id, id: notification.id})">
+                        Izmeni
+                    </button>
+                    <button class="btn btn-danger btn-sm" ng-click="deleteNotification(notification)">Obrisi</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <uib-pagination total-items="pagination.totalItems" items-per-page="pagination.perPage"
+                        ng-model="pagination.currentPage"></uib-pagination>
+    </div>
 </div>

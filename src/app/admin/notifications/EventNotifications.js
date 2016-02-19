@@ -63,7 +63,7 @@ angular.module('siApp')
         });
 
         return deferred.promise;
-      }
+      };
 
       eventNotifications.getRelatedEvent = function (id) {
         return Api.getEvent(id);

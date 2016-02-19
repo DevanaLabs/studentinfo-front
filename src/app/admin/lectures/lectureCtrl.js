@@ -37,7 +37,7 @@ angular.module('siApp')
       if (Mode === 'UPDATE') {
         lecturePromise = Lectures.get($stateParams.id);
       } else {
-        lecturePromise = $q.when($scope.lecture);
+        lecturePromise = $q.when({data: { success: { data: { lecture: Lectures.getNewInstance()}}}});
       }
 
       $q.all([

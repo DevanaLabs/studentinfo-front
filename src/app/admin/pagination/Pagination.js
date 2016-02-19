@@ -6,6 +6,7 @@ angular.module('siApp')
 
     pagination.getPaginationHelper = function () {
       return {
+        available: true,
         perPage: 25,
         currentPage: 0,
         totalItems: 0,
@@ -14,13 +15,17 @@ angular.module('siApp')
         query: '',
         selectedCount: 0,
         loadEntities: function (entities) {
-          this.currentPage = 1;
-          this.entities = entities;
-          this.totalItems = entities.length;
-          _.forEach(this.entities, function (e) {
-            e.selected = false;
-          });
-          this.paginateEntities();
+          if (entities.length > 0) {
+            this.currentPage = 1;
+            this.entities = entities;
+            this.totalItems = entities.length;
+            _.forEach(this.entities, function (e) {
+              e.selected = false;
+            });
+            this.paginateEntities();
+          } else {
+            this.available = false;
+          }
         },
         paginateEntities: function (ens) {
           if (ens === undefined) {
@@ -55,7 +60,11 @@ angular.module('siApp')
           _.remove(this.entities, entity);
           entity.selected = false;
           this.entitySelectChanged(entity);
-          this.paginateEntities();
+          if (this.entities > 0) {
+            this.paginateEntities();
+          } else {
+            this.available = false;
+          }
         }
       };
     };

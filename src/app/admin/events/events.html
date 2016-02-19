@@ -1,70 +1,85 @@
 <div>
-    <table class="table">
-        <thead>
-        <tr>
-            <td colspan="6"><input class="form-control" type="text" ng-model="pagination.query" placeholder="Pretraga">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="6">
-                <button class="btn btn-success" ui-sref="admin.event_new({type: eventsType.slug})">Novi dogadjaj</button>
-            </td>
-        </tr>
-        <tr>
-            <th>Opis</th>
-            <th>
-                Tip
-            </th>
-            <th>
-                <span ng-if="eventsType.slug === 'course'">Kurs</span>
-                <span ng-if="eventsType.slug === 'group'">Grupa</span>
-            </th>
-            <th>Pocetak</th>
-            <th>Kraj</th>
-            <td></td>
-            <td></td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="event in pagination.paginatedEntities" class="repeated-item">
-            <td>{{ ::event.description }}</td>
-            <td>
-                {{ ::event.type }}
-            </td>
-            <td>
+    <div>
+        <h2>Dogadjaji</h2>
+        <hr>
+        <button class="btn btn-success" ui-sref="admin.event_new({type: eventsType.slug})">
+            Novi dogadjaj
+        </button>
+    </div>
+    <hr>
+    <div ng-if="!pagination.available" class="center-block">
+        <h1 class="text-center">Nema podataka</h1>
+    </div>
+    <div ng-if="pagination.available">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <td colspan="7">
+                    <input class="form-control" type="text" ng-model="pagination.query"
+                           placeholder="Pretraga">
+                </td>
+            </tr>
+            <tr>
+                <th>Opis</th>
+                <th>
+                    Tip
+                </th>
+                <th>
+                    <span ng-if="eventsType.slug === 'course'">Kurs</span>
+                    <span ng-if="eventsType.slug === 'group'">Grupa</span>
+                </th>
+                <th>Pocetak</th>
+                <th>Kraj</th>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="event in pagination.paginatedEntities" class="repeated-item">
+                <td>{{ ::event.description }}</td>
+                <td>
+                    {{ ::event.type }}
+                </td>
+                <td>
                 <span ng-if="eventsType.slug === 'course'">
                     {{ ::event.course.name }}
                 </span>
                 <span ng-if="eventsType.slug === 'group'">
                     {{ ::event.group.name }}
                 </span>
-            </td>
-            <td ng-class="event.expired ? 'text-warning' : ''">
-                {{ event.momentTime.startsAt.format('HH:mm D/MMMM/YYYY') }}
-            </td>
-            <td ng-class="event.expired ? 'text-warning' : ''">
-                {{ event.momentTime.endsAt.format('HH:mm D/MMMM/YYYY') }}
-            </td>
-            <td>
-                <button
-                        ng-disabled="!canPerformActions"
-                        ng-show="event.notifications.length > 0"
-                        ui-sref="admin.notifications({relatedEntityId: event.id, type: 'events'})"
-                        type="button" class="btn btn-primary m-r-sm">{{ event.notifications.length }}</button>
+                </td>
+                <td ng-class="event.expired ? 'text-warning' : ''">
+                    {{ event.momentTime.startsAt.format('HH:mm D/MMMM/YYYY') }}
+                </td>
+                <td ng-class="event.expired ? 'text-warning' : ''">
+                    {{ event.momentTime.endsAt.format('HH:mm D/MMMM/YYYY') }}
+                </td>
+                <td>
+                    <button
+                            ng-disabled="!canPerformActions"
+                            ng-show="event.notifications.length > 0"
+                            ui-sref="admin.notifications({relatedEntityId: event.id, type: 'events'})"
+                            type="button" class="btn btn-primary btn-sm">{{ event.notifications.length }}
+                    </button>
 
-                <button
-                        ng-disabled="!canPerformActions"
-                        ui-sref="admin.eventNotification_new({relatedEntityId: event.id, type: 'events'})"
-                        type="button" class="btn btn-success m-r-sm">
-                    <small><i class="fa fa-plus-square"></i></small>
-                </button>
-            </td>
-            <td>
-                <button ng-disabled="!canPerformActions" class="btn btn-info" ui-sref="admin.event_new({type: eventsType.slug, id: event.id})">Izmeni</button>
-                <button ng-disabled="!canPerformActions" class="btn btn-danger" ng-click="deleteEvent(event)">Obrisi</button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <uib-pagination total-items="pagination.totalItems" items-per-page="pagination.perPage" ng-model="pagination.currentPage"></uib-pagination>
+                    <button
+                            ng-disabled="!canPerformActions"
+                            ui-sref="admin.eventNotification_new({relatedEntityId: event.id, type: 'events'})"
+                            type="button" class="btn btn-success btn-sm">
+                        <small><i class="fa fa-plus-square"></i></small>
+                    </button>
+                </td>
+                <td>
+                    <button ng-disabled="!canPerformActions" class="btn btn-info btn-sm"
+                            ui-sref="admin.event_new({type: eventsType.slug, id: event.id})">Izmeni
+                    </button>
+                    <button ng-disabled="!canPerformActions" class="btn btn-danger btn-sm" ng-click="deleteEvent(event)">Obrisi
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <uib-pagination total-items="pagination.totalItems" items-per-page="pagination.perPage"
+                        ng-model="pagination.currentPage"></uib-pagination>
+    </div>
 </div>
