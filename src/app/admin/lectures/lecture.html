@@ -1,74 +1,53 @@
 <div>
     <div>
-        <h2>Dogadjaj</h2>
+        <h2>Predavanja/vezbe</h2>
         <hr>
         <form ng-submit="onSubmit()">
             <div class="form-group">
-                <label for="relatedEntity"></label>
-                <input ng-disabled="true" type="text" id="relatedEntity" class="form-control" ng-model="lecture.relatedEntityName">
-            </div>
-            <div class="form-group">
-                <label for="inputType">Tip (Ispitni rok, kolokvijum...)</label>
-                <input id="inputType" type="text" ng-model="event.type" class="form-control" ng-required="true"/>
-            </div>
-            <div class="form-group">
-                <label for="inputDescription">Opis</label>
-                <textarea ng-required="true" id="inputDescription" name="description" ng-model="event.description" class="form-control">
-                </textarea>
-            </div>
-            <div class="form-group" ng-if="eventType.slug === 'course'">
-                <label for="inputCourse">Kurs</label>
-                <select name="inputCourse" id="inputCourse" class="form-control" ng-required="true">
-                    <option ng-repeat="c in courses" value="{{ c.id }}">{{ ::c.name }}</option>
-                </select>
-            </div>
-            <div class="form-group" ng-if="eventType.slug === 'group'">
-                <label for="inputGroup">Grupa</label>
-                <select name="inputCourse" id="inputGroup" class="form-control" ng-required="true">
-                    <option ng-repeat="g in groups" value="{{ g.id }}">{{ ::g.name }}</option>
+                <label for="type">Tip</label>
+                <select id="type" class="form-control" ng-model="lecture.type" ng-required="true"
+                        ng-options="t.id as t.name | translate for t in types">
                 </select>
             </div>
             <div class="form-group">
-                <label for="inputStartsAt">Pocetak</label>
-                <div class="row">
-                    <div class="col-md-6">
-                        <p class="input-group">
-                            <input type="text" class="form-control" id="inputStartsAt"
-                                   uib-datepicker-popup="dd-MMMM-yyyy"
-                                   ng-model="event.startsAt.date" is-open="datePickersStatus.startsAt.opened"
-                                   ng-required="true" close-text="Close" />
-							<span class="input-group-btn">
-								<button type="button" class="btn btn-default" ng-click="openStartsAt($event)">
-                                    <i class="glyphicon glyphicon-calendar"></i>
-                                </button>
-							</span>
-                        </p>
-                    </div>
-                    <div class="col-md-6">
-                        <uib-timepicker show-spinners="false" ng-model="event.startsAt.time" hour-step="1" minute-step="5" show-meridian="ismeridian"></uib-timepicker>
-                    </div>
-                </div>
+                <label for="course">Kurs</label>
+                <select id="course" class="form-control" ng-model="lecture.course.id" ng-required="true"
+                        ng-options="c.id as c.name for c in courses">
+                </select>
             </div>
             <div class="form-group">
-                <label for="inputEndsAt">Kraj</label>
-                <div class="row">
-                    <div class="col-md-6">
-                        <p class="input-group">
-                            <input type="text" class="form-control" id="inputEndsAt"
-                                   uib-datepicker-popup="dd-MMMM-yyyy"
-                                   ng-model="event.endsAt.date" is-open="datePickersStatus.endsAt.opened"
-                                   ng-required="true" close-text="Close" />
-							<span class="input-group-btn">
-								<button type="button" class="btn btn-default" ng-click="openEndsAt($event)">
-                                    <i class="glyphicon glyphicon-calendar"></i>
-                                </button>
-							</span>
-                        </p>
-                    </div>
-                    <div class="col-md-6">
-                        <uib-timepicker show-spinners="false" ng-model="event.endsAt.time" hour-step="1" minute-step="1" show-meridian="ismeridian"></uib-timepicker>
-                    </div>
-                </div>
+                <label for="teacher">Predavac</label>
+                <select id="teacher" class="form-control" ng-model="lecture.teacher.id" ng-required="true"
+                        ng-options="t.id as t.title + ' ' + t.firstName + ' ' + t.lastName for t in teachers">
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="classroom">Ucionica</label>
+                <select id="classroom" class="form-control" ng-model="lecture.classroom.id" ng-requred="true"
+                        ng-options="c.id as c.name for c in classrooms">
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inputDay">Dan</label>
+                <select id="inputDay" class="form-control" ng-model="lecture.time.startsAt.day"
+                        ng-required="true"
+                        ng-options="d.id as d.name | translate for d in days">
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inputStart">Vreme pocetka</label>
+                <uib-timepicker id="inputStart" show-spinners="false" ng-model="lecture.time.startsAt.time"
+                                hour-step="1"
+                                minute-step="5"
+                                show-meridian="false"
+                                ng-required="true"></uib-timepicker>
+            </div>
+            <div class="form-group">
+                <label for="inputEnd">Vreme kraja</label>
+                <uib-timepicker id="inputEnd" show-spinners="false" ng-required="true"
+                                ng-model="lecture.time.endsAt.time"
+                                show-meridian="false"
+                                hour-step="1" minute-step="5"></uib-timepicker>
             </div>
             <div class="form-group">
                 <button type="button" ui-sref="admin.overview" class="btn btn-alert">Odustani</button>

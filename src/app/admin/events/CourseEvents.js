@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('siApp')
-  .factory('CourseEvents', ['$q', 'Api', 'DateTimeConverter',
-    function ($q, Api, DateTimeConverter) {
+  .factory('CourseEvents', ['$q', 'Api', 'DateTimeConverter', 'CommonEvent',
+    function ($q, Api, DateTimeConverter, CommonEvent) {
       var courseEvents = {};
 
       courseEvents.validate = function (event) {
@@ -13,11 +13,7 @@ angular.module('siApp')
         var deferred = $q.defer();
 
         Api.getCourseEvent(id).then(function (response) {
-          response.data.success.data.event.startsAt =
-            DateTimeConverter.separateDateAndTime(response.data.success.data.event.datetime.startsAt);
-          response.data.success.data.event.endsAt =
-            DateTimeConverter.separateDateAndTime(response.data.success.data.event.datetime.endsAt);
-
+          response.data.success.data.event = CommonEvent.transformIncomingEvent(response.data.success.data.event);
           deferred.resolve(response);
         }, function (response) {
           deferred.reject(response);
@@ -27,8 +23,7 @@ angular.module('siApp')
       };
 
       courseEvents.save = function (event) {
-        event.startsAt = DateTimeConverter.combineDateAndTime(event.startsAt);
-        event.endsAt = DateTimeConverter.combineDateAndTime(event.endsAt);
+        event = CommonEvent.transformOutgoingEvent(event);
         if (event.id) {
           return Api.saveCourseEvent(event);
         }
@@ -36,15 +31,14 @@ angular.module('siApp')
       };
 
       courseEvents.getAll = function (pagination) {
+        if (pagination === undefined) {
+          pagination = {};
+        }
         var deferred = $q.defer();
 
         Api.getCourseEvents(pagination).then(function (response) {
           response.data.success.data = _.forEach(response.data.success.data, function (e) {
-            e.momentTime = {
-              startsAt: DateTimeConverter.toMoment(e.datetime.startsAt),
-              endsAt: DateTimeConverter.toMoment(e.datetime.endsAt)
-            };
-            e.expired = moment().isAfter(e.momentTime.endsAt);
+            e = CommonEvent.attachRequiredProps(e);
           });
           deferred.resolve(response);
         }, function (response) {

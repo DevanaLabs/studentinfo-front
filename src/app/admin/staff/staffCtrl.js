@@ -14,6 +14,7 @@ angular.module('siApp')
     function ($scope, $state, $stateParams, toastr, $filter, Entities, RegisterToken, Pagination, EVENTS) {
       var self = this;
 
+      $scope.canPerformActions = true;
       $scope.pagination = Pagination.getPaginationHelper();
 
       $scope.staffType = Entities.staffType;
@@ -22,7 +23,6 @@ angular.module('siApp')
         Entities.getAll({}).then(function (response) {
           if (response.data.success) {
             var entities = _.forEach(response.data.success.data, function (e) {
-              e.selected = false;
               e.registered = e.registerToken === '0';
             });
             $scope.pagination.loadEntities(entities);
@@ -31,10 +31,11 @@ angular.module('siApp')
           toastr.error('Greska prilikom ucitavanja entiteta');
         }).finally(function () {
           $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
-        })
+        });
       };
 
       $scope.issueRegisterTokens = function () {
+        $scope.canPerformActions = false;
         var selectedEntities = _.filter($scope.pagination.entities, function (e) {
           return e.selected && !e.registered;
         });
@@ -56,21 +57,23 @@ angular.module('siApp')
             }
           }, function (response) {
             toastr.success('Doslo je do greske, tokeni nisu izdati');
+          }).finally(function () {
+            $scope.canPerformActions = true;
           });
         }
       };
 
       $scope.deleteEntity = function (entity) {
+        $scope.canPerformActions = false;
         Entities.remove(entity.id).then(function (response) {
           if (response.data.success) {
             toastr.success('Uspesno obrisano');
-            _.remove($scope.pagination.entities, entity);
-            entity.selected = false;
-            $scope.pagination.entitySelectChanged(entity);
-            $scope.pagination.paginateEntities();
+            $scope.pagination.removeEntity(entity);
           }
         }, function () {
           toastr.error('Greska prilikom brisanja!');
+        }).finally(function () {
+          $scope.canPerformActions = true;
         });
       };
 

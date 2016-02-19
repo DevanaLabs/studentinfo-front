@@ -1,4 +1,4 @@
-$sk-color: $brand-info;
+$sk-color: #2c3e50;
 
 .sk-folding-cube {
   margin: 20px auto;
@@ -6,8 +6,8 @@ $sk-color: $brand-info;
   height: 40px;
   top: calc(50% - 20px);
   position: relative;
-  -webkit-transform: rotateZ(45deg);
-  transform: rotateZ(45deg);
+  -webkit-transform: rotateZ(45deg) scale(2, 2);
+  transform: rotateZ(45deg) scale(2, 2);
 }
 
 .sk-folding-cube .sk-cube {

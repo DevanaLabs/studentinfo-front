@@ -11,7 +11,7 @@ angular.module('siApp')
         $scope.canSubmit = false;
         Feedback.sendAdminPanelFeedback($scope.feedback).then(function (response) {
           toastr.success('Hvala Vam na povratim informacijama');
-        }, function (response) {
+        }, function () {
           toastr.error('Greska!');
         }).finally(function () {
           $scope.canSubmit = true;

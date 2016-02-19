@@ -28,7 +28,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="lecture in pagination.paginatedEntities" class="repeated-item">
-            <td>{{ ::lecture.type }}</td>
+            <td>{{ ::lecture.typeName | translate }}</td>
             <td>
                 {{ ::lecture.course.name }}
             </td>
@@ -62,7 +62,7 @@
                 </button>
             </td>
             <td>
-                <button ng-disabled="!canPerformActions" class="btn btn-info" ui-sref="admin.lecture({id: lecture.id})">
+                <button ng-disabled="!canPerformActions" class="btn btn-info" ui-sref="admin.lecture_new({id: lecture.id})">
                     Izmeni
                 </button>
                 <button ng-disabled="!canPerformActions" class="btn btn-danger" ng-click="deleteLecture(lecture)">

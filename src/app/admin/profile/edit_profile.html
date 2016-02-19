@@ -5,11 +5,12 @@
         <form ng-submit="onSubmit()">
             <div class="form-group">
                 <label for="password">Nova lozinka</label>
-                <input id="password" type="password" ng-model="password.password" class="form-control"/>
+                <input id="password" type="password" ng-model="password.password" class="form-control"
+                       ng-required="true"/>
             </div>
             <div class="form-group">
                 <label for="password_confirmation">Potvrda nove lozinke</label>
-                <input id="password_confirmation" type="password" ng-model="password.confirmation"
+                <input id="password_confirmation" type="password" ng-model="password.confirmation" ng-required="true"
                        class="form-control"/>
             </div>
             <div class="form-group">

@@ -31,8 +31,21 @@ angular.module('siApp')
         .format(dateTimeConverter.toServerFormat);
     };
 
-    dateTimeConverter.fromBegginingOfTheWeek = function (offset) {
+    dateTimeConverter.fromBeginningOfTheWeek = function (offset) {
       return moment().startOf('isoweek').add(offset, 'seconds');
+    };
+
+    dateTimeConverter.fromBeginningOfTheWeekSeparated = function (offset) {
+      var momentDate = dateTimeConverter.fromBeginningOfTheWeek(offset);
+      return {
+        day: momentDate.weekday(),
+        time: moment().startOf('isoweek').add(offset, 'seconds').toDate()
+      };
+    };
+
+    dateTimeConverter.toBeginningOfTheWeek = function (data) {
+      return moment().startOf('isoweek').weekday(data.day).hour(data.time.getHours())
+        .minute(data.time.getMinutes()).unix() - moment().startOf('isoweek').unix();
     };
 
     return dateTimeConverter;

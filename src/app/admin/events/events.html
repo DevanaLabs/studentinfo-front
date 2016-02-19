@@ -26,7 +26,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="event in pagination.paginatedEntities" class="repeated-item" ng-class="event.expired ? 'warning' : ''">
+        <tr ng-repeat="event in pagination.paginatedEntities" class="repeated-item">
             <td>{{ ::event.description }}</td>
             <td>
                 {{ ::event.type }}
@@ -39,27 +39,29 @@
                     {{ ::event.group.name }}
                 </span>
             </td>
-            <td>
+            <td ng-class="event.expired ? 'text-warning' : ''">
                 {{ event.momentTime.startsAt.format('HH:mm D/MMMM/YYYY') }}
             </td>
-            <td>
+            <td ng-class="event.expired ? 'text-warning' : ''">
                 {{ event.momentTime.endsAt.format('HH:mm D/MMMM/YYYY') }}
             </td>
             <td>
                 <button
+                        ng-disabled="!canPerformActions"
                         ng-show="event.notifications.length > 0"
                         ui-sref="admin.notifications({relatedEntityId: event.id, type: 'events'})"
                         type="button" class="btn btn-primary m-r-sm">{{ event.notifications.length }}</button>
 
                 <button
+                        ng-disabled="!canPerformActions"
                         ui-sref="admin.eventNotification_new({relatedEntityId: event.id, type: 'events'})"
                         type="button" class="btn btn-success m-r-sm">
                     <small><i class="fa fa-plus-square"></i></small>
                 </button>
             </td>
             <td>
-                <button class="btn btn-info" ui-sref="admin.event_new({type: eventsType.slug, id: event.id})">Izmeni</button>
-                <button class="btn btn-danger" ng-click="deleteEvent(event)">Obrisi</button>
+                <button ng-disabled="!canPerformActions" class="btn btn-info" ui-sref="admin.event_new({type: eventsType.slug, id: event.id})">Izmeni</button>
+                <button ng-disabled="!canPerformActions" class="btn btn-danger" ng-click="deleteEvent(event)">Obrisi</button>
             </td>
         </tr>
         </tbody>

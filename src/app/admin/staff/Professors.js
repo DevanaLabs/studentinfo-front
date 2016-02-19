@@ -1,16 +1,20 @@
 'use strict';
 
 angular.module('siApp')
-  .factory('Professors', ['$rootScope', 'Api', function ($rootScope, Api) {
-    var professors = {};
+  .factory('Professors', ['Api',
+    function (Api) {
+      var professors = {};
 
-    professors.getAll = function (pagination) {
-      return Api.getProfessors(pagination);
-    };
+      professors.getAll = function (pagination) {
+        if (pagination === undefined) {
+          pagination = {};
+        }
+        return Api.getProfessors(pagination);
+      };
 
-    professors.remove = function (id) {
-      return Api.removeProfessor(id);
-    };
+      professors.remove = function (id) {
+        return Api.removeProfessor(id);
+      };
 
-    return professors;
-  }]);
+      return professors;
+    }]);

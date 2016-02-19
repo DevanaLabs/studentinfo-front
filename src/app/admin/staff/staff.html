@@ -1,5 +1,5 @@
 <div>
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
         <tr>
             <td colspan="6"><input class="form-control" type="text" ng-model="pagination.query" placeholder="Pretraga">
@@ -8,7 +8,9 @@
         <tr>
             <td colspan="6">
                 <p>Sa odabranim</p>
-                <button ng-disabled="!pagination.selectedCount" class="btn btn-success" ng-click="issueRegisterTokens()">Posalji registracione tokene</button>
+                <button ng-disabled="!pagination.selectedCount && canPerformActions" class="btn btn-success"
+                        ng-click="issueRegisterTokens()">Posalji registracione tokene
+                </button>
             </td>
         </tr>
         <tr>
@@ -28,8 +30,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="entity in pagination.paginatedEntities" class="repeated-item"
-            ng-class="event.registered ? '' : 'warning'">
+        <tr ng-repeat="entity in pagination.paginatedEntities" class="repeated-item">
             <td>
                 <input type="checkbox" ng-model="entity.selected" ng-change="pagination.entitySelectChanged(entity)">
             </td>
@@ -44,14 +45,18 @@
             <td>{{ ::entity.firstName }} {{ ::entity.lastName }}</td>
             <td>{{ ::entity.email.email }}</td>
             <td>
-                <small ng-if="entity.registerTokenExpired" class="alert-danger">Registracioni token istekao</small>
-                <small ng-if="!entity.registerTokenExpired && !entity.registered" class="alert-info">Registracioni token aktivan</small>
+                <small ng-if="entity.registerTokenExpired" class="text-danger">Registracioni token istekao</small>
+                <small ng-if="!entity.registerTokenExpired && !entity.registered" class="text-info">Registracioni token
+                    aktivan
+                </small>
             </td>
             <td>
-                <button class="btn btn-danger" ng-click="deleteEntity(entity)">Obrisi</button>
+                <button ng-disabled="!canPerformActions" class="btn btn-danger" ng-click="deleteEntity(entity)">Obrisi
+                </button>
             </td>
         </tr>
         </tbody>
     </table>
-    <uib-pagination total-items="pagination.totalItems" items-per-page="pagination.perPage" ng-model="pagination.currentPage"></uib-pagination>
+    <uib-pagination total-items="pagination.totalItems" items-per-page="pagination.perPage"
+                    ng-model="pagination.currentPage"></uib-pagination>
 </div>

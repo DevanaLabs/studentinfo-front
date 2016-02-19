@@ -9,11 +9,11 @@ angular.module('siApp')
       $scope.pagination = Pagination.getPaginationHelper();
 
       $scope.loadLectures = function () {
-        Lectures.getAll({}).then(function (response) {
+        Lectures.getAll().then(function (response) {
           if (response.data.success) {
             $scope.pagination.loadEntities(response.data.success.data);
           }
-        }, function (response) {
+        }, function () {
           toastr.error('Greska prilikom ucitavanja!');
         }).finally(function () {
           $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
@@ -25,8 +25,7 @@ angular.module('siApp')
         Lectures.remove(lecture.id).then(function (response) {
           if (response.data.success) {
             toastr.success('Uspesno obrisano');
-            _.remove($scope.pagination.entities, lecture);
-            $scope.pagination.paginateEntities();
+            $scope.pagination.removeEntity(lecture);
           }
         }, function () {
           toastr.error('Greska prilikom brisanja!');

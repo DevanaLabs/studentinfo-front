@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('siApp')
-  .controller('EventCtrl', ['$scope', '$state', '$stateParams', 'toastr', 'Event', 'DateTimeConverter', 'Mode', 'EVENTS',
-    function ($scope, $state, $stateParams, toastr, Event, DateTimeConverter, Mode, EVENTS) {
+  .controller('EventCtrl', ['$scope', '$state', '$stateParams', 'toastr', 'Event', 'Mode', 'EVENTS',
+    function ($scope, $state, $stateParams, toastr, Event, Mode, EVENTS) {
+      var self = this;
 
       $scope.canSubmit = true;
       $scope.event = null;
@@ -15,11 +16,10 @@ angular.module('siApp')
       if (Event.eventsType.slug !== 'global' && Mode === 'CREATE') {
         Event.getRelatedEntities().then(function (response) {
           if (response.data.success) {
-            console.log(_.values(response.data.success));
             $scope.relatedEntities = response.data.success.data;
           }
-        }, function (response) {
-
+        }, function () {
+          toastr.error('Greska!');
         }).finally(function () {
           $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
         });
@@ -46,11 +46,12 @@ angular.module('siApp')
         Event.get($stateParams.id)
           .then(function (response) {
             if (response.data.success) {
+              // TODO : Refactor next 3 lines, relatedEntity and relatedEntityName is awful
               $scope.event = response.data.success.data.event;
               $scope.event.relatedEntity = $scope.event[Event.eventsType.slug].id;
               $scope.event.relatedEntityName = $scope.event[Event.eventsType.slug].name;
             }
-          }, function (response) {
+          }, function () {
             toastr.error('Greska pri ucitavanju dogadjaja');
           }).finally(function () {
             $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);

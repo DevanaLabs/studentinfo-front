@@ -17,11 +17,19 @@ angular.module('siApp')
           this.currentPage = 1;
           this.entities = entities;
           this.totalItems = entities.length;
+          _.forEach(this.entities, function (e) {
+            e.selected = false;
+          });
           this.paginateEntities();
         },
         paginateEntities: function (ens) {
           if (ens === undefined) {
-            ens = this.entities;
+            if (this.query === '') {
+              ens = this.entities;
+            } else {
+              this.applySearchFilter(this.query);
+              return;
+            }
           }
           var begin = ((this.currentPage - 1) * this.perPage),
             end = begin + this.perPage;
@@ -42,6 +50,12 @@ angular.module('siApp')
           } else if (this.selectedCount > 0) {
             this.selectedCount--;
           }
+        },
+        removeEntity: function (entity) {
+          _.remove(this.entities, entity);
+          entity.selected = false;
+          this.entitySelectChanged(entity);
+          this.paginateEntities();
         }
       };
     };

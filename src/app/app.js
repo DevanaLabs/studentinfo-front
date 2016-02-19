@@ -43,3 +43,34 @@ angular.module('siApp')
       });
 
     }]);
+
+angular.module('siApp')
+  .constant('WEEKDAYS', [
+    {
+      id: 0,
+      name: 'DAY_1'
+    },
+    {
+      id: 1,
+      name: 'DAY_2'
+    },
+    {
+      id: 2,
+      name: 'DAY_3'
+    },
+    {
+      id: 3,
+      name: 'DAY_4'
+    },
+    {
+      id: 4,
+      name: 'DAY_5'
+    },
+    {
+      id: 5,
+      name: 'DAY_6'
+    },
+    {
+      id: 6,
+      name: 'DAY_7'
+    }]);

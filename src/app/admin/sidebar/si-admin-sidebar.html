@@ -4,60 +4,60 @@
     </div>
     <hr>
     <ul class="nav nav-pills nav-stacked">
-        <li role="presentation" class="active">
-            <a href="#">
+        <li role="presentation">
+            <a ui-sref="admin.overview" ui-sref-active="active">
                 <i class="fa fa-home" aria-hidden="true"></i>
                 {{ 'OVERVIEW' | translate }}
             </a>
         </li>
         <li role="presentation">
-            <a ui-sref="admin.profile">
+            <a ui-sref="admin.profile" ui-sref-active="active">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 {{ 'PROFILE' | translate }}
             </a>
         </li>
         <li role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-               aria-expanded="false">
+            <a role="button" data-toggle="collapse" data-target="#collapseEventsSubmenu"
+               aria-controls="collapseEventsSubmenu" aria-expanded="false">
                 <i class="fa fa-calendar" aria-hidden="true"></i>
                 {{ 'EVENTS' | translate }} <span class="caret"></span>
             </a>
-            <ul class="dropdown-menu nav">
-                <li role="presentation">
-                    <a ui-sref="admin.events({type: 'global'})">
-                        {{ 'GLOBAL_EVENTS' | translate }}
-                    </a>
-                </li>
-                <li>
-                    <a ui-sref="admin.events({type: 'course'})">
-                        {{ 'COURSE_EVENTS' | translate }}
-                    </a>
-                </li>
-                <li>
-                    <a ui-sref="admin.events({type: 'group'})">
-                        {{ 'GROUP_EVENTS' | translate }}
-                    </a>
-                </li>
-            </ul>
         </li>
+        <ul id="collapseEventsSubmenu" class="collapse nav">
+            <li>
+                <a ui-sref="admin.events({type: 'global'})">
+                    {{ 'GLOBAL_EVENTS' | translate }}
+                </a>
+            </li>
+            <li>
+                <a ui-sref="admin.events({type: 'course'})">
+                    {{ 'COURSE_EVENTS' | translate }}
+                </a>
+            </li>
+            <li>
+                <a ui-sref="admin.events({type: 'group'})">
+                    {{ 'GROUP_EVENTS' | translate }}
+                </a>
+            </li>
+        </ul>
         <!--<li role="presentation" class="dropdown">-->
-            <!--<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"-->
-               <!--aria-expanded="false">-->
-                <!--<i class="fa fa-bell" aria-hidden="true"></i>-->
-                <!--{{ 'NOTIFICATONS' | translate }} <span class="caret"></span>-->
-            <!--</a>-->
-            <!--<ul class="dropdown-menu nav">-->
-                <!--<li role="presentation">-->
-                    <!--<a ui-sref="admin.notifications({type: 'events'})">-->
-                        <!--{{ 'EVENT_NOTIFICATIONS' | translate }}-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a ui-sref="admin.notifications({type: 'lectures'})">-->
-                        <!--{{ 'LECTURE_NOTIFICATIONS' | translate }}-->
-                    <!--</a>-->
-                <!--</li>-->
-            <!--</ul>-->
+        <!--<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"-->
+        <!--aria-expanded="false">-->
+        <!--<i class="fa fa-bell" aria-hidden="true"></i>-->
+        <!--{{ 'NOTIFICATONS' | translate }} <span class="caret"></span>-->
+        <!--</a>-->
+        <!--<ul class="dropdown-menu nav">-->
+        <!--<li role="presentation">-->
+        <!--<a ui-sref="admin.notifications({type: 'events'})">-->
+        <!--{{ 'EVENT_NOTIFICATIONS' | translate }}-->
+        <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+        <!--<a ui-sref="admin.notifications({type: 'lectures'})">-->
+        <!--{{ 'LECTURE_NOTIFICATIONS' | translate }}-->
+        <!--</a>-->
+        <!--</li>-->
+        <!--</ul>-->
         <!--</li>-->
         <li role="presentation">
             <a ui-sref="admin.lectures">

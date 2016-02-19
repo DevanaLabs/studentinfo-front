@@ -3,6 +3,7 @@
 angular.module('siApp')
   .config(['$stateProvider', '$httpProvider', 'ROLES', function ($stateProvider, $httpProvider, ROLES) {
     $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
+    $httpProvider.defaults.cache = true;
 
     $stateProvider
       .state('admin.logout', {

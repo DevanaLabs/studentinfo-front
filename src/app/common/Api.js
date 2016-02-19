@@ -231,8 +231,31 @@ angular.module('siApp')
         removeLecture: function (id) {
           return $http.delete(ApiUrlBuilder.build('lecture/' + id));
         },
+        makeNewLecture: function (lecture) {
+          return $http.post(ApiUrlBuilder.build('lecture'), {
+            courseId: lecture.course.id,
+            classroomId: lecture.classroom.id,
+            teacherId: lecture.teacher.id,
+            type: lecture.type,
+            startsAt: lecture.startsAt,
+            endsAt: lecture.endsAt
+          });
+        },
+        saveLecture: function (lecture) {
+          return $http.put(ApiUrlBuilder.build('lecture/' + lecture.id), {
+            courseId: lecture.course.id,
+            classroomId: lecture.classroom.id,
+            teacherId: lecture.teacher.id,
+            type: lecture.type,
+            startsAt: lecture.startsAt,
+            endsAt: lecture.endsAt
+          });
+        },
         getLecture: function (id) {
           return $http.get(ApiUrlBuilder.build('lecture/' + id));
+        },
+        getClassrooms: function () {
+          return $http.get(ApiUrlBuilder.build('classrooms'));
         }
       };
     }]);

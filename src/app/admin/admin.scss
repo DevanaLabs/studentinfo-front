@@ -1,4 +1,4 @@
-$bg: #f5f5f5;
+$bg: #fff;
 
 @import "bootstrap";
 @import "admin_theme";
@@ -36,7 +36,8 @@ $bg: #f5f5f5;
 }
 
 #main-ui-view {
-  background-color: $bg;
+  min-height: 100%;
+  height: auto !important;
 }
 
 #please-wait {

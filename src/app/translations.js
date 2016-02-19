@@ -50,7 +50,9 @@ angular.module('siApp')
       'GROUP_EVENTS': 'Dogadjaji za grupu',
       'LECTURES': 'Predavanja i vežbe',
       'COURSES': 'Kursevi',
-      'IMPORT': 'Import'
+      'IMPORT': 'Import',
+      'EXERCISES': 'Vežbe',
+      'DISCOURSE': 'Predavanje'
     });
 
     $translateProvider.preferredLanguage('sr-lat');

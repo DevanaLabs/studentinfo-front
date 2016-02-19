@@ -1,22 +1,20 @@
 'use strict';
 
 angular.module('siApp')
-  .controller('EventsCtrl', ['$scope', 'toastr', 'DateTimeConverter', 'Events', 'Pagination', 'EVENTS',
-    function ($scope, toastr, DateTimeConverter, Events, Pagination, EVENTS) {
+  .controller('EventsCtrl', ['$scope', 'toastr', 'Events', 'Pagination', 'EVENTS',
+    function ($scope, toastr, Events, Pagination, EVENTS) {
       var self = this;
 
+      $scope.canPerformActions = true;
       $scope.pagination = Pagination.getPaginationHelper();
       $scope.eventsType = Events.eventsType;
 
       $scope.loadEvents = function () {
-        Events.getAll({}).then(function (response) {
+        Events.getAll().then(function (response) {
           if (response.data.success) {
-            var events = _.forEach(response.data.success.data, function (e) {
-              e.selected = false;
-            });
-            $scope.pagination.loadEntities(events);
+            $scope.pagination.loadEntities(response.data.success.data);
           }
-        }, function (response) {
+        }, function () {
           toastr.error('Greska prilikom ucitavanja dogadjaja!');
         }).finally(function () {
           $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
@@ -24,16 +22,16 @@ angular.module('siApp')
       };
 
       $scope.deleteEvent = function (event) {
+        $scope.canPerformActions = false;
         Events.remove(event.id).then(function (response) {
           if (response.data.success) {
             toastr.success('Uspesno obrisano');
-            _.remove($scope.pagination.entities, event);
-            event.selected = false;
-            $scope.pagination.entitySelectChanged(event);
-            $scope.pagination.paginateEntities();
+            $scope.pagination.removeEntity(event);
           }
         }, function () {
           toastr.error('Greska prilikom brisanja!');
+        }).finally(function () {
+          $scope.canPerformActions = true;
         });
       };
 
