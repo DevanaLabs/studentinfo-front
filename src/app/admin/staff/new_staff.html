@@ -1,0 +1,38 @@
+<div>
+    <div>
+        <h2>Predavanja i vezbe</h2>
+    </div>
+    <hr>
+    <div>
+        <form ng-submit="onSubmit()">
+            <div class="form-group">
+                <label for="inputFirstName">Ime</label>
+                <input class="form-control" type="text" ng-model="user.firstName" id="inputFirstName"/>
+            </div>
+            <div class="form-group">
+                <label for="inputLastName">Prezime</label>
+                <input class="form-control" type="text" ng-model="user.lastName" id="inputLastName"/>
+            </div>
+            <div ng-if="staffType.slug !== 'students'" class="form-group">
+                <label for="inputTitle">Titula</label>
+                <input class="form-control" type="text" ng-model="user.title" id="inputTitle"/>
+            </div>
+            <div ng-if="staffType.slug === 'students'" class="form-group">
+                <label for="inputIndexNumber">Broj indeksa</label>
+                <input class="form-control" type="text" ng-model="user.indexNumber" id="inputIndexNumber"/>
+            </div>
+            <div ng-if="staffType.slug === 'students'" class="form-group">
+                <label for="inputYear">Godina</label>
+                <input class="form-control" type="number" ng-model="user.year" id="inputYear"/>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail">Email</label>
+                <input class="form-control" type="text" ng-model="user.email" id="inputEmail"/>
+            </div>
+            <div class="form-group">
+                <button type="button" ui-sref="admin.overview" class="btn btn-alert">Odustani</button>
+                <button type="submit" class="btn btn-primary" ng-disabled="!canSubmit">Sacuvaj</button>
+            </div>
+        </form>
+    </div>
+</div>

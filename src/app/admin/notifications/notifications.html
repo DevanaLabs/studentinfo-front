@@ -30,7 +30,8 @@
                 <td>{{ ::notification.description }}</td>
                 <td>
                     <span ng-if="notificationsType.slug === 'lectures'">
-                        {{ ::notification.l ecture }}
+                        {{ ::notification.lecture.course.name }},
+                        {{ ::notification.lecture.classroom.name }}
                     </span>
                     <span ng-if="notificationsType.slug === 'events'">
                         {{ ::notification.event.description }}
@@ -41,7 +42,7 @@
                 </td>
                 <td>
                     <button class="btn btn-info btn-sm"
-                            ui-sref="admin.eventNotification_new({relatedEntityId: notification.event.id, id: notification.id})">
+                            ui-sref="admin.lectureNotification_new({relatedEntityId: notification.lecture.id, id: notification.id})">
                         Izmeni
                     </button>
                     <button class="btn btn-danger btn-sm" ng-click="deleteNotification(notification)">Obrisi</button>

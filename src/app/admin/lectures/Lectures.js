@@ -68,11 +68,7 @@ angular.module('siApp')
         var deferred = $q.defer();
 
         Api.getLecture(id).then(function (response) {
-          response.data.success.data.lecture.time.startsAt =
-            DateTimeConverter.fromBeginningOfTheWeekSeparated(response.data.success.data.lecture.time.startsAt);
-          response.data.success.data.lecture.time.endsAt =
-            DateTimeConverter.fromBeginningOfTheWeekSeparated(response.data.success.data.lecture.time.endsAt);
-
+          response.data.success.data.lecture = transformIncomingLecture(response.data.success.data.lecture);
           deferred.resolve(response);
         }, function (response) {
           deferred.reject(response);

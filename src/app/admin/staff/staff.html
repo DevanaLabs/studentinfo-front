@@ -6,8 +6,20 @@
             <span ng-if="staffType.slug === 'professors'">Profesori</span>
         </h2>
         <hr>
-        <button ng-disabled="!pagination.selectedCount && canPerformActions" class="btn btn-success"
+        <button ng-disabled="!pagination.selectedCount && !canPerformActions" class="btn btn-success"
                 ng-click="issueRegisterTokens()">Posalji registracione tokene
+        </button>
+        <button ng-if="staffType.slug === 'students'" ng-disabled="!canPerformActions" class="btn btn-info"
+                ui-sref="admin.staff_new({type: 'students'})">
+            Dodaj novog studenta
+        </button>
+        <button ng-if="staffType.slug === 'assistants'" ng-disabled="!canPerformActions" class="btn btn-info"
+                ui-sref="admin.staff_new({type: 'assistants'})">
+            Dodaj novog asistenta
+        </button>
+        <button ng-if="staffType.slug === 'professors'" ng-disabled="!canPerformActions" class="btn btn-info"
+                ui-sref="admin.staff_new({type: 'professors'})">
+            Dodaj novog profesora
         </button>
     </div>
     <hr>
@@ -18,7 +30,8 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <td colspan="6"><input class="form-control" type="text" ng-model="pagination.query" placeholder="Pretraga">
+                <td colspan="6"><input class="form-control" type="text" ng-model="pagination.query"
+                                       placeholder="Pretraga">
                 </td>
             </tr>
             <tr>
@@ -40,7 +53,8 @@
             <tbody>
             <tr ng-repeat="entity in pagination.paginatedEntities" class="repeated-item">
                 <td>
-                    <input type="checkbox" ng-model="entity.selected" ng-change="pagination.entitySelectChanged(entity)">
+                    <input type="checkbox" ng-model="entity.selected"
+                           ng-change="pagination.entitySelectChanged(entity)">
                 </td>
                 <td>
                 <span ng-if="staffType.slug === 'professors' || staffType.slug === 'assistants' ">
@@ -54,13 +68,18 @@
                 <td>{{ ::entity.email.email }}</td>
                 <td>
                     <small ng-if="entity.registerTokenExpired" class="text-danger">Registracioni token istekao</small>
-                    <small ng-if="!entity.registerTokenExpired && !entity.registered" class="text-info">Registracioni token
+                    <small ng-if="!entity.registerTokenExpired && !entity.registered" class="text-info">Registracioni
+                        token
                         aktivan
                     </small>
                 </td>
                 <td>
-                    <button ng-disabled="!canPerformActions" class="btn btn-danger btn-sm" ng-click="deleteEntity(entity)">Obrisi
+                    <button ng-disabled="!canPerformActions" class="btn btn-danger btn-sm"
+                            ng-click="deleteEntity(entity)">Obrisi
                     </button>
+                    <a ui-sref="admin.staff_new({type: staffType.slug, id: entity.id})" ng-disabled="!canPerformActions"
+                       class="btn btn-info btn-sm">Izmeni
+                    </a>
                 </td>
             </tr>
             </tbody>

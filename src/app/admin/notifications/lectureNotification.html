@@ -1,0 +1,46 @@
+<div>
+    <div>
+        <h2>Obavestenje</h2>
+        <hr>
+        <form ng-submit="onSubmit()">
+            <div class="form-group">
+                <label for="relatedEntity">{{ notification.lecture.typeName | translate }}</label>
+                <input ng-disabled="true" type="text" id="relatedEntity" class="form-control"
+                       value="{{(notification.lecture.typeName | translate) + ': ' + notification.lecture.course.name + ', ' + notification.lecture.classroom.name}}">
+            </div>
+            <div class="form-group">
+                <label for="inputDescription">Opis</label>
+                <textarea ng-required="true" id="inputDescription" name="description"
+                          ng-model="notification.description" class="form-control">
+                </textarea>
+            </div>
+            <div class="form-group">
+                <label for="inputExpiresAt">Datum isteka</label>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="input-group">
+                            <input type="text" class="form-control" id="inputExpiresAt"
+                                   uib-datepicker-popup="dd-MMMM-yyyy"
+                                   ng-model="notification.expiresAt.date" is-open="datePickersStatus.expiresAt.opened"
+                                   ng-required="true" close-text="Close"/>
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" ng-click="openExpiresAt(notification)">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+							</span>
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <uib-timepicker show-spinners="false" ng-model="notification.expiresAt.time" hour-step="1"
+                                        minute-step="5" show-meridian="ismeridian"></uib-timepicker>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" ui-sref="admin.overview" class="btn btn-alert">Odustani</button>
+                <button type="submit" class="btn btn-primary" ng-disabled="!canSubmit">Sacuvaj</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -61,16 +61,18 @@
 
                     <button
                             ng-disabled="!canPerformActions"
-                            ui-sref="admin.lectureNotification_new({relatedEntityId: event.id, type: 'lecureNotifications'})"
+                            ui-sref="admin.lectureNotification_new({relatedEntityId: lecture.id, type: 'lecureNotifications'})"
                             type="button" class="btn btn-success btn-sm">
                         <small><i class="fa fa-plus-square"></i></small>
                     </button>
                 </td>
                 <td>
-                    <button ng-disabled="!canPerformActions" class="btn btn-info btn-sm" ui-sref="admin.lecture_new({id: lecture.id})">
+                    <button ng-disabled="!canPerformActions" class="btn btn-info btn-sm"
+                            ui-sref="admin.notificationLecture_new({relatedEntityId: lecture.id})">
                         Izmeni
                     </button>
-                    <button ng-disabled="!canPerformActions" class="btn btn-danger btn-sm" ng-click="deleteLecture(lecture)">
+                    <button ng-disabled="!canPerformActions" class="btn btn-danger btn-sm"
+                            ng-click="deleteLecture(lecture)">
                         Obrisi
                     </button>
                 </td>

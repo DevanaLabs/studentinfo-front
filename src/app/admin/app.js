@@ -126,8 +126,8 @@ angular.module('siApp')
         })
         .state('admin.lectureNotification_new', {
           url: '/notifications/lectures/{relatedEntityId}/{id}',
-          templateUrl: 'admin/notifications/notification.html',
-          controller: 'NotificationCtrl',
+          templateUrl: 'admin/notifications/lectureNotification.html',
+          controller: 'LectureNotificationCtrl',
           resolve: {
             Mode: ['$stateParams', function ($stateParams) {
               return $stateParams.id !== '' ? 'UPDATE' : 'CREATE';
@@ -149,6 +149,26 @@ angular.module('siApp')
                   return angular.extend(AssistantService, {staffType: {slug: 'assistants'}});
                 }
               }]
+          }
+        })
+        .state('admin.staff_new', {
+          url: '/staff/{type:string}/{id}',
+          templateUrl: 'admin/staff/new_staff.html',
+          controller: 'NewStaffCtrl',
+          resolve: {
+            Entities: ['$stateParams', 'Students', 'Assistants', 'Professors',
+              function ($stateParams, StudentService, AssistantService, ProfessorService) {
+                if ($stateParams.type === 'students') {
+                  return angular.extend(StudentService, {staffType: {slug: 'students'}});
+                } else if ($stateParams.type === 'professors') {
+                  return angular.extend(ProfessorService, {staffType: {slug: 'professors'}});
+                } else if ($stateParams.type === 'assistants') {
+                  return angular.extend(AssistantService, {staffType: {slug: 'assistants'}});
+                }
+              }],
+            Mode: ['$stateParams', function ($stateParams) {
+              return $stateParams.id !== '' ? 'UPDATE' : 'CREATE';
+            }]
           }
         });
     }])

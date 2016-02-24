@@ -60,7 +60,7 @@ angular.module('siApp')
           _.remove(this.entities, entity);
           entity.selected = false;
           this.entitySelectChanged(entity);
-          if (this.entities > 0) {
+          if (this.entities.length > 0) {
             this.paginateEntities();
           } else {
             this.available = false;

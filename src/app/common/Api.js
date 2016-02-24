@@ -259,6 +259,82 @@ angular.module('siApp')
         },
         removeNotification: function (id) {
           return $http.delete(ApiUrlBuilder.build('notification/' + id));
+        },
+        makeNewLectureNotification: function (notification) {
+          return $http.post(ApiUrlBuilder.build('lectureNotification'), {
+            lectureId: notification.lecture.id,
+            type: notification.type,
+            description: notification.description,
+            expiresAt: notification.expiresAt
+          });
+        },
+        saveLectureNotification: function (notification) {
+          return $http.put(ApiUrlBuilder.build('lectureNotification/' + notification.id), {
+            lectureId: notification.lecture.id,
+            description: notification.description,
+            expiresAt: notification.expiresAt
+          });
+        },
+        makeNewStudent: function (student) {
+          return $http.post(ApiUrlBuilder.build('student'), {
+            firstName: student.firstName,
+            lastName: student.lastName,
+            indexNumber: student.indexNumber,
+            email: student.email,
+            lectures: student.lectures,
+            courses: student.courses,
+            year: student.year
+          });
+        },
+        saveStudent: function (student) {
+          return $http.put(ApiUrlBuilder.build('student/' + student.id), {
+            firstName: student.firstName,
+            lastName: student.lastName,
+            indexNumber: student.indexNumber,
+            email: student.email,
+            year: student.year
+          });
+        },
+        getStudent: function (id) {
+          return $http.get(ApiUrlBuilder.build('student/' + id));
+        },
+        makeNewAssistant: function (assistant) {
+          return $http.post(ApiUrlBuilder.build('assistant'), {
+            firstName: assistant.firstName,
+            lastName: assistant.lastName,
+            title: assistant.title,
+            email: assistant.email
+          });
+        },
+        saveAssistant: function (assistant) {
+          return $http.put(ApiUrlBuilder.build('assistant/' + assistant.id), {
+            firstName: assistant.firstName,
+            lastName: assistant.lastName,
+            title: assistant.title,
+            email: assistant.email,
+          });
+        },
+        getAssistant: function (id) {
+          return $http.get(ApiUrlBuilder.build('assistant/' + id));
+        },
+        makeNewProfessor: function (professor) {
+          return $http.post(ApiUrlBuilder.build('professor'), {
+            firstName: professor.firstName,
+            lastName: professor.lastName,
+            title: professor.title,
+            email: professor.email
+          });
+        },
+        saveProfessor: function (professor) {
+          return $http.put(ApiUrlBuilder.build('professor/' + professor.id), {
+            firstName: professor.firstName,
+            lastName: professor.lastName,
+            title: professor.title,
+            email: professor.email,
+          });
+        },
+        getProfessor: function (id) {
+          return $http.get(ApiUrlBuilder.build('professor/' + id));
         }
       };
     }]);

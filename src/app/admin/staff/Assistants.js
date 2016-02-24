@@ -5,6 +5,10 @@ angular.module('siApp')
     function (Api) {
       var assistants = {};
 
+      assistants.get = function (id) {
+        return Api.getAssistant(id);
+      };
+
       assistants.getAll = function (pagination) {
         if (pagination === undefined) {
           pagination = {};
@@ -14,6 +18,13 @@ angular.module('siApp')
 
       assistants.remove = function (id) {
         return Api.removeAssistant(id);
+      };
+
+      assistants.save = function (assistant) {
+        if (assistant.id) {
+          return Api.saveAssistant(assistant);
+        }
+        return Api.makeNewAssistant(assistant);
       };
 
       return assistants;
