@@ -5,14 +5,20 @@ angular.module('siApp.dashboard')
     function ($rootScope, Dashboard, LANGUAGE_CONSTANTS, EVENTS) {
       var teachersService = {};
 
-      var teachers = Dashboard.getTeachers();
+      teachersService.sort = function () {
+        teachers.sort(function (a, b) {
+          return (new Intl.Collator('rs').compare(a.lastName, b.lastName));
+        });
+      };
+
+      var teachers = [];
+      teachers = Dashboard.getTeachers();
+      teachersService.sort();
 
       $rootScope.$on(EVENTS.API.REFRESH_SUCCESS, function () {
+        // update data and sort it; 
         teachers = Dashboard.getTeachers();
-      });
-
-      teachers.sort(function (a, b) {
-        return (new Intl.Collator('rs').compare(a.lastName, b.lastName));
+        teachersService.sort();
       });
 
       teachersService.getById = function (id) {
@@ -34,6 +40,38 @@ angular.module('siApp.dashboard')
           return allTeachers.hasOwnProperty(o);
         }));
       };
+
+      teachersService.getLecture = function (teacherId, lectureId) {
+        var pickedTeacher = _.find(teachers, function(teacher) {
+          return teacher.id == teacherId;
+        });
+        return _.find(pickedTeacher.lectures, function(lecture){
+          return lecture.id == lectureId;
+        })
+      }
+
+      teachersService.getNotifications = function (teacherId, lectureId) {
+        var notifications = [];
+        var pickedTeacher = _.find(teachers, function(teacher) {
+          return teacher.id == teacherId;
+        });
+        if(lectureId === undefined) {
+          _.forEach(pickedTeacher.lectures, function(lecture){
+            _.forEach(lecture.notifications, function(notification){
+              notifications.push(notification);
+            });
+          });
+        }
+        else {
+          var pickedLecture = _.find(pickedTeacher.lectures, function(lecture){
+            return lecture.id == lectureId;
+          })
+          _.forEach(pickedLecture.notifications, function(notification){
+            notifications.push(notification);
+        });
+      }
+      return notifications;
+    }
 
       return teachersService;
     }]);

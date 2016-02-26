@@ -22,7 +22,7 @@ angular.module('siApp')
           templateUrl: 'register/register.html'
         })
         .state('dashboard', {
-          url: '/dashboard',
+          url: '/app',
           abstract: true,
           data: {
             authorizedRoles: ROLES.any

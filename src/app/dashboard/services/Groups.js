@@ -22,5 +22,37 @@ angular.module('siApp.dashboard')
       return _.uniq(_.map(groups, 'year'));
     };
 
+    groupsService.getLecture = function (groupId, lectureId) {
+      var pickedGroup = _.find(groups, function(group) {
+        return group.id == groupId;
+      });
+      return _.find(pickedGroup.lectures, function(lecture){
+        return lecture.id == lectureId;
+      })
+    }
+
+    groupsService.getNotifications = function (groupId, lectureId) {
+      var notifications = [];
+      var pickedGroup = _.find(groups, function(group) {
+        return group.id == groupId;
+      });
+      if(lectureId === undefined) {
+        _.forEach(pickedGroup.lectures, function(lecture){
+          _.forEach(lecture.notifications, function(notification){
+            notifications.push(notification);
+          });
+        });
+      }
+      else {
+        var pickedLecture = _.find(pickedGroup.lectures, function(lecture){
+          return lecture.id == lectureId;
+        })
+        _.forEach(pickedLecture.notifications, function(notification){
+          notifications.push(notification);
+        });
+      }
+      return notifications;
+    }
+
     return groupsService;
   }]);

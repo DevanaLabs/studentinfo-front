@@ -6,7 +6,6 @@ angular.module('siApp.dashboard')
     $scope.subfilters = Teachers.getFilters();
 
     $scope.allTeachers = Teachers.getShown();
-    console.log($scope.allTeachers);
 
     $scope.scrollToLetter = function (letter) {
       angular.element(".pickers-wrapper")[0].scrollTop = angular.element("#teacherLetter"+letter)[0].offsetTop;
@@ -14,6 +13,10 @@ angular.module('siApp.dashboard')
 
     // mark letters as active on scroll
     angular.element(".pickers-wrapper")[0].onscroll = function () {
+      MarkActiveLetter();
+    };
+
+    function MarkActiveLetter () {
       var letters = angular.element(".teacher-header");
       var pos = angular.element(".pickers-wrapper")[0].scrollTop;
       for (var i = 0; i < letters.length; i++) {
@@ -23,7 +26,10 @@ angular.module('siApp.dashboard')
           break;
         }
       }
-    };
+    }
+
+    //MarkActiveLetter();
+    setTimeout(function(){ MarkActiveLetter(); }, 0);
 
   }]);
  

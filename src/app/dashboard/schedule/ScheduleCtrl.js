@@ -8,7 +8,7 @@ angular.module('siApp.dashboard')
 
     // get group/classroom/teacher object with lectures
     $scope.timetableObject = EntityService.getById($stateParams.id);
-    console.log('All data for timetable', $scope.timetableObject);
+    //console.log('All data for timetable', $scope.timetableObject);
 
     $scope.notifs = 0;
     // count total notificatins in all lectures displayed
@@ -23,10 +23,14 @@ angular.module('siApp.dashboard')
     // mark column as today 
     angular.element(".day" + moment().isoWeekday()).addClass("today");
 
-    //$scope.timeMarker = (moment().hours() - 9 + moment().minutes()/60) * 100;
-    $scope.timeMarker = (19 - 9 + 10/60) * 100;
-    console.log($scope.timeMarker);
-    console.log(moment().hours());
+    $scope.timeMarker = (moment().hours() - 9 + moment().minutes()/60) * 100;
+    //$scope.timeMarker = (19 - 9 + 10/60) * 100;
 
-  }]);
+  }])
+  .filter('startFrom', function() {
+      return function(input, start) {
+          start = +start; //parse to int
+          return input.slice(start);
+      }
+  });
  

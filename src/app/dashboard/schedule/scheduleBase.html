@@ -5,6 +5,9 @@
       <span ng-if="params.type == 'classroom'">{{timetableObject.name}}</span>
       <span ng-if="params.type == 'teacher'">{{timetableObject.firstName}} {{timetableObject.lastName}}</span>
     </span>
+    <div class="close-but" onclick="window.history.back()">
+      <div class="close-but-icon"></div>
+    </div>
   </div>
   <div id="schedule-wrapper">
   	<div id="schedule-table-wrapper">

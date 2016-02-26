@@ -52,7 +52,8 @@ angular.module('siApp')
       'COURSES': 'Kursevi',
       'IMPORT': 'Import',
       'EXERCISES': 'Vežbe',
-      'DISCOURSE': 'Predavanje'
+      'DISCOURSE': 'Predavanje', 
+      'NO_EVENTS_FOR_DAY': 'Nema dešavanja na ovaj dan.'
     });
 
     $translateProvider.preferredLanguage('sr-lat');

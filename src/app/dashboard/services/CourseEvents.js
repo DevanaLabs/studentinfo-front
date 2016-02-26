@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('siApp.dashboard')
-  .factory('CourseEvents', ['$rootScope', 'Dashboard', 'EVENTS', function ($rootScope, Dashboard, EVENTS) {
+  .factory('CourseEventsD', ['$rootScope', 'Dashboard', 'EVENTS', 'DateTimeConverter', 
+    function ($rootScope, Dashboard, EVENTS, DateTimeConverter) {
     var courseEventsService = {};
 
     var courseEvents = Dashboard.getCourseEvents();
@@ -16,11 +17,13 @@ angular.module('siApp.dashboard')
 
     courseEventsService.getForDay = function (day) {
       // Moment.js: http://momentjs.com/docs/#/parsing/object/
-      day.month--;
-      var date = moment(day);
-      return _.values(_.pickBy(courseEvents, function (event) {
-        return moment(event.datetime.startsAt, 'YYYY-MM-DD').isSame(date);
+      var events = _.values(_.pickBy(courseEvents, function (event) {
+        return DateTimeConverter.compareDates(day, moment(event.datetime.startsAt, 'YYYY-MM-DD'));
       }));
+      events.sort(function(a,b){
+        return a.datetime.startsAt.substr(11, 2)*1 - b.datetime.startsAt.substr(11, 2)*1;
+      })
+      return events;
     };
 
     return courseEventsService;

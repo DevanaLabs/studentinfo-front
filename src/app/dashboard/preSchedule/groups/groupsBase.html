@@ -8,9 +8,9 @@
   </div>
   <div class="pickers-wrapper">
 	  <div class="group-picker" 
-         ng-repeat="group in groupsForYear()" 
-         ng-attr-id="{{'group'+group.id}}"
+         ng-repeat="group in ::groupsForYear() track by group.id" 
+         ng-attr-id="{{'group'+ group.id}}"
          ui-sref="dashboard.schedule({type:'group', id: {{group.id}}})"
-         >{{group.name}}</div>
+         >{{ ::group.name }}</div>
   </div>
 </div>

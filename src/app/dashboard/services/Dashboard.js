@@ -68,4 +68,4 @@ angular.module('siApp.dashboard')
   .run(['Dashboard', function (Dashboard) {
     Dashboard.loadFromCache();
   }])
-  .constant('API_REFRESH_TIMEOUT', 30000);
+  .constant('API_REFRESH_TIMEOUT', 36000000); // 10 minutes

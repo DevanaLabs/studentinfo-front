@@ -3,6 +3,9 @@
 angular.module('siApp.dashboard', ['ui.router', 'LocalStorageModule', 'siApp.config', 'siApp', 'ui.bootstrap', 'pascalprecht.translate', 'toastr'])
   .config(['$stateProvider', function ($stateProvider) {
     $stateProvider
+      .state('dashboard.home', {
+        url: '/'
+      })
       .state('dashboard.preSchedule', {
         url: '/preSchedule',
         templateUrl: 'dashboard/preSchedule/preScheduleBase.html'
@@ -43,6 +46,58 @@ angular.module('siApp.dashboard', ['ui.router', 'LocalStorageModule', 'siApp.con
             }
           }]
         }
+      })
+      .state('dashboard.yearly', {
+        url: '/yearly/',
+        templateUrl: 'dashboard/calendar/yearly/yearlyBase.html', 
+        controller: 'YearlyCtrl'
+      })
+      .state('dashboard.monthly', {
+        url: '/monthly/{year}/{month}/',
+        templateUrl: 'dashboard/calendar/monthly/monthlyBase.html', 
+        controller: 'MonthlyCtrl'
+      })
+      .state('dashboard.day', {
+        url: '/day/{year}/{month}/{date}/', 
+        templateUrl: 'dashboard/modal/day/modalDay.html',
+        controller: 'DayModalCtrl'
+      })
+      .state('dashboard.lecture', {
+        url: '/lecture/{type}/{sourceId}/{lectureId}/', 
+        templateUrl: 'dashboard/modal/lecture/modalLecture.html',
+        controller: 'LectureModalCtrl',
+        resolve: {
+          EntityService: ['$stateParams', 'Groups', 'Classrooms', 'Teachers', function ($stateParams, Groups, Classrooms, Teachers) {
+            if ($stateParams.type === 'group') {
+              return Groups;
+            } else if ($stateParams.type === 'teacher') {
+              return Teachers;
+            } else if ($stateParams.type === 'classroom') {
+              return Classrooms;
+            }
+          }]
+        }
+      })
+      .state('dashboard.notifications', {
+        url: '/notifications/{type}/{sourceId}/', 
+        templateUrl: 'dashboard/modal/notifications/modalNotifications.html',
+        controller: 'NotificationsModalCtrl',
+        resolve: {
+          EntityService: ['$stateParams', 'Groups', 'Classrooms', 'Teachers', function ($stateParams, Groups, Classrooms, Teachers) {
+            if ($stateParams.type === 'group') {
+              return Groups;
+            } else if ($stateParams.type === 'teacher') {
+              return Teachers;
+            } else if ($stateParams.type === 'classroom') {
+              return Classrooms;
+            }
+          }]
+        }
+      })
+      .state('dashboard.about', {
+        url: '/about/', 
+        templateUrl: 'dashboard/about/aboutBase.html',
+        controller: 'AboutCtrl'
       })
       ;
   }])

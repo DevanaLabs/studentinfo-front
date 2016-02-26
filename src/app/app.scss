@@ -1,13 +1,19 @@
 @import "bootstrap";
+@import "admin/admin_theme";
 
-//@import "common/colors";
-//
-//@import "common/base";
-//@import "dashboard/commonElements";
-//@import "login/login";
-//@import "register/register";
-//@import "dashboard/sidebar/sidebar";
-//@import "dashboard/preSchedule/preScheduleBase";
-//@import "dashboard/schedule/schedule";
+@import "common/colors";
+
+@import "common/base";
+@import "dashboard/commonElements";
+@import "login/login";
+@import "register/register";
+@import "dashboard/sidebar/sidebar";
+@import "dashboard/calendar/yearly/yearly";
+@import "dashboard/calendar/monthly/monthly";
+@import "dashboard/preSchedule/preScheduleBase";
+@import "dashboard/schedule/schedule";
+@import "dashboard/modal/modal";
+@import "dashboard/about/about";
+@import "dashboard/about/keyboard/keyboard";
 
 @import "admin/admin";

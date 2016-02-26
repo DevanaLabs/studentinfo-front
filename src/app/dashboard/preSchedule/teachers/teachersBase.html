@@ -6,18 +6,17 @@
          ng-attr-id="{{'letter-filter-' + letter}}"
          ng-click="scrollToLetter(letter)"
          >
-      <span class="subfilter-text">{{ letter }}</span>
+      <span class="subfilter-text">{{::letter}}</span>
     </div>
   </div>
   <div class="pickers-wrapper teachers">
-    <div ng-repeat-start="(letter, teachers) in allTeachers" ng-attr-id="{{'teacherLetter'+letter}}" class="teacher-header">{{letter}}</div>
+    <div ng-repeat-start="(letter, teachers) in allTeachers" ng-attr-id="{{'teacherLetter'+letter}}" class="teacher-header">{{::letter}}</div>
 	  <div ng-repeat-end class="teacher-picker" 
-         ng-repeat="teacher in teachers" 
-         ng-attr-id="{{'teacher'+teacher.id}}"
+         ng-repeat="teacher in ::teachers" 
          ng-class="{ 'disabled' : teacher.lectures.length == 0 }"
          ui-sref="dashboard.schedule({type:'teacher', id: {{teacher.id}}})"
          >
-	    {{teacher.firstName}} {{teacher.lastName}} 
+	    {{::teacher.firstName}} {{::teacher.lastName}} 
 	  </div>
 	  <hr>
   </div>
