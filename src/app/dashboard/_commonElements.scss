@@ -11,8 +11,25 @@
   	line-height: 100px;
   	font-weight: 700;
   	color: $textgray;
-  	padding: 0 0 0 50px;
+  	padding: 0 0 0 50px !important;
   	overflow: hidden;
+  }
+  .caption.capitalize {
+    text-transform: capitalize;
+  }
+  .close-but {
+    height: 100px;
+    width: 100px;
+    padding: 29px !important;
+    float: right;
+    .close-but-icon {
+      height: 42px;
+      width: 42px;
+      background: url(/assets/svg/iconExit42x42g.svg);
+    }
+  }
+  .close-but:hover {
+    background: #eee;
   }
 }
 .titlebar.shadow {
