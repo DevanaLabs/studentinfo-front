@@ -1,0 +1,70 @@
+<div id="about-wrapper">
+    <div id="top-about-wrapper">
+
+        <div class="about-column">
+        <div class="about-wrapper">
+            <img src="/assets/svg/AboutFacultyLogo.svg" alt="" id="big-logo-faks">
+            <br>
+            <div class="info-wrapper">
+                <span class="info-item"><img src="/assets/svg/aboutIconWeb.svg" alt="" class="info-icon">raf.edu.rs</span>
+                <span class="info-item"><img src="/assets/svg/aboutIconPhone.svg" alt="" class="info-icon">(011) 26 - 27 - 613</span>
+                <span class="info-item"><span class="info-icon"> </span>(011) 26 - 33 - 321</span>
+                <span class="info-item"><img src="/assets/svg/aboutIconMail.svg" alt="" class="info-icon">raf@raf.edu.rs</span>
+                <span class="info-item"><span class="info-icon"> </span>sekretarijat@raf.edu.rs</span>
+                <span class="info-item"><span class="info-icon"> </span>marketing@raf.edu.rs</span>
+            </div>
+        </div>
+        </div>
+
+        <div class="about-column">
+        <div class="about-wrapper">
+            <!-- <span class="miniCaption">Пројекат изведен у сарадњи са: </span> -->
+            <img src="/assets/svg/AboutDevanaLogo.svg" alt="" id="big-logo-labs">
+            <br>
+            <div class="info-wrapper">
+               <span class="info-item"><img src="/assets/svg/aboutIconWeb.svg" alt="" class="info-icon">devana.rs</span>
+            </div>
+        </div>
+        </div>
+
+        <div class="about-column people">
+        <div class="about-wrapper">
+            <div id="people-wrapper">
+                <div class="people-sub-wrapper">
+                    <div class="people-sub-sub-wrapper"> 
+                    <span class="people-head">Учесници пројекта: </span>
+                    <span class="people-item">Никола Вуковић</span>
+                    <span class="people-item">Милан Вучић</span>
+                    <span class="people-item">Никола Нинковић</span>
+                    <span class="people-item">Небојша Урошевић</span>
+                    </div>
+                </div>
+                <div class="people-sub-wrapper right">
+                    <div class="people-sub-sub-wrapper">
+                    <span class="people-head">Ментори: </span>
+                    <span class="people-item">Антун Дебак</span>
+                    <span class="people-item">Владимир Преловац</span>
+                    <span class="people-item">Миљан Текић</span>
+                    <span class="people-item">Богдан Хабић</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div id="feedback-notif" class="feedback-notif">Хвала!</div>
+    </div>
+
+    <div id="feedback-wrapper" class="titlebar bottom shadow noflex" ng-class="{'active' : showKeyboard}">
+        <h2 ng-click="showKeyboard = true" id="show-feedback" class="textblue">Пошаљите нам сугестије и предлоге</h2>
+
+        <div id="input-wrapper">
+            <textarea name="" id="write" placeholder="Додирните за тастатуру" ng-focus="showKeyboard = true" 
+            onclick="$('#about-wrapper').animate({scrollTop: 1500}, 100);"></textarea>
+            <button id="send-feedback" ng-click="sendFeedback()">Пошаљи</button>
+            <si-keyboard></si-keyboard>
+        </div>
+        <hr>
+    </div>
+
+</div>
