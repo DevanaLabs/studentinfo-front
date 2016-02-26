@@ -1,0 +1,172 @@
+#month-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	background: white;
+	.titlebar {
+		flex: 0 0 auto;
+		text-transform: capitalize;
+	}
+	#month-wrapper {
+		flex: 1 1 0;
+		height: calc(100% - 140px);
+		display: flex;
+		flex-direction: row;
+		.left-arrow, .right-arrow {
+			width: 100px;
+			display: block;
+			background: white;
+			flex: 0 0 auto;
+			.arrow-container {
+				height: 50px;
+				width: 30px;
+				background: url(/assets/svg/iconArrowBack30x50.svg);
+				margin: calc(50vh - 75px) auto;
+			}
+		}
+		.right-arrow {
+			.arrow-container {
+				background: url(/assets/svg/iconArrowFwd30x50.svg);
+			}
+		}
+		.left-arrow:hover, .right-arrow:hover {
+			background: #eee;
+		}
+		#month-inner-wrapper {
+			display: flex;
+			flex-direction: column;
+			padding: 40px;
+			width: calc(100% - 200px);
+			height: 100%;
+			flex: 1 1 0;
+			.week-wrapper {
+				display: flex;
+				justify-content: space-around;
+				height: 20%;
+				.day-wrapper {
+					height: 100%;
+					width: 500px;
+					border: solid 1px #eee;
+					font-size: 18px;
+					.event-wrapper {
+						display: block;
+						padding: 5px 8px;
+						color: white;
+					}
+					.bottom-date {
+						position: absolute;
+						bottom: 5px;
+						right: 8px;
+					}
+				}
+				.day-wrapper:hover {
+					background: darken(white, 10%);
+					.event-wrapper.blue {
+						background: darken($blue, 10%);
+					}
+					.event-wrapper.orange {
+						background: darken($orange, 10%);
+					}
+					.event-wrapper.gray {
+						background: darken($gray, 10%);
+					}
+					.event-wrapper.green {
+						background: darken($green, 10%);
+					}
+					.event-wrapper.yellow {
+						background: darken($yellow, 10%);
+						color: $textgray;
+					}
+				}
+				.event-wrapper.multi {
+					background: #999999;
+				}
+				.day-wrapper.multi {
+					background: #999999;
+					.bottom-date {
+						color: white;
+					}
+				}
+				.day-wrapper.multi:hover {
+					background: darken(#999999, 10%);
+				}
+				.event-wrapper.blue {
+					background: $blue;
+				}
+				.day-wrapper.blue {
+					background: $blue;
+					.bottom-date {
+						color: white;
+					}
+				}
+				.day-wrapper.blue:hover {
+					background: darken($blue, 10%);
+				}
+				.event-wrapper.orange {
+					background: $orange;
+				}
+				.day-wrapper.orange {
+					background: $orange;
+					.bottom-date {
+						color: white;
+					}
+				}
+				.day-wrapper.orange:hover {
+					background: darken($orange, 10%);
+				}
+				.event-wrapper.gray {
+					background: $gray;
+				}
+				.day-wrapper.gray {
+					background: $gray;
+					.bottom-date {
+						color: white;
+					}
+				}
+				.day-wrapper.gray:hover {
+					background: darken($gray, 10%);
+				}
+				.event-wrapper.green {
+					background: $green;
+				}
+				.day-wrapper.green {
+					background: $green;
+					.bottom-date {
+						color: white;
+					}
+				}
+				.day-wrapper.green:hover {
+					background: darken($green, 10%);
+				}
+				.event-wrapper.yellow {
+					background: $yellow;
+					color: $textgray;
+				}
+				.day-wrapper.yellow {
+					background: $yellow;
+					color: $textgray;
+				}
+				.day-wrapper.yellow:hover {
+					background: darken($yellow, 10%);
+				}
+				.day-wrapper.today {
+					.bottom-date {
+						background: #F72424;
+						border-radius: 50%;
+						height: 34px;
+						width: 34px;
+						text-align: center;
+						line-height: 32px;
+						border: 1px solid white;
+					}
+				}
+			}
+		}
+		#month-inner-wrapper.six-row {
+			.week-wrapper {
+				height: 16.66%;
+			}
+		}
+	}
+	
+}
