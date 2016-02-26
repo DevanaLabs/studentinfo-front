@@ -1,0 +1,20 @@
+<div class="modal-wrapper">
+	<div class="titlebar shadow">
+		<span class="caption capitalize">{{::title}}</span>
+	</div>
+
+	<div id="modal-inner-wrapper">
+		<div class="modal-info-container" id="lecture-container">
+			<h2 class="teacher-name">{{::lectureData.teacher.firstName}} {{::lectureData.teacher.lastName}}</h2>
+			<h3 class="lecture-type">{{::lectureData.type}}</h3>
+			<hr>
+			<h3 class="lecture-time">{{::lectureTime}}</h3>
+			<h3 class="lecture-time">{{::lectureData.classroom.name}}</h3>
+		</div>
+		
+		<div class="modal-info-container" id="notifs-container" ng-if="notifications.length>0">
+			Notifications: <br>
+			{{notifications}}
+		</div>
+	</div>
+</div>
