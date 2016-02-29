@@ -5,7 +5,7 @@
       <span ng-if="params.type == 'classroom'">{{timetableObject.name}}</span>
       <span ng-if="params.type == 'teacher'">{{timetableObject.firstName}} {{timetableObject.lastName}}</span>
     </span>
-    <div class="close-but" onclick="window.history.back()">
+    <div class="close-but" ng-click="exit()">
       <div class="close-but-icon"></div>
     </div>
   </div>
@@ -33,6 +33,7 @@
             <div class="lectures-container">
               <div class="time-marker" style="top: calc({{timeMarker}}% + {{timeMarker/100}}px)"></div>
               <div class="lecture-wrapper" ng-repeat="lecture in timetableData[0]"
+                ui-sref="dashboard.lecture({type: params.type, sourceId: params.id, lectureId: lecture.id})"
                 style="
                   top: calc({{ (lecture.time.startsAt % 86400 - 900) / 3600 * 100 - 900 }}% + {{ (lecture.time.startsAt % 86400 - 900) / 3600 - 9 }}px);
                   height: calc({{ ((lecture.time.endsAt % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 * 100}}% + {{ ((lecture.time.endsAt  % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 -1 }}px);
@@ -60,6 +61,7 @@
             <div class="lectures-container">
               <div class="time-marker" style="top: calc({{timeMarker}}% + {{timeMarker/100}}px)"></div>
               <div class="lecture-wrapper" ng-repeat="lecture in timetableData[1]"
+                ui-sref="dashboard.lecture({type: params.type, sourceId: params.id, lectureId: lecture.id})"
                 style="
                   top: calc({{ (lecture.time.startsAt % 86400 - 900) / 3600 * 100 - 900 }}% + {{ (lecture.time.startsAt % 86400 - 900) / 3600 - 9 }}px);
                   height: calc({{ ((lecture.time.endsAt % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 * 100}}% + {{ ((lecture.time.endsAt  % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 -1 }}px);
@@ -88,6 +90,7 @@
             <div class="lectures-container">
               <div class="time-marker" style="top: calc({{timeMarker}}% + {{timeMarker/100}}px)"></div>
               <div class="lecture-wrapper" ng-repeat="lecture in timetableData[2]"
+                ui-sref="dashboard.lecture({type: params.type, sourceId: params.id, lectureId: lecture.id})"
                 style="
                   top: calc({{ (lecture.time.startsAt % 86400 - 900) / 3600 * 100 - 900 }}% + {{ (lecture.time.startsAt % 86400 - 900) / 3600 - 9 }}px);
                   height: calc({{ ((lecture.time.endsAt % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 * 100}}% + {{ ((lecture.time.endsAt  % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 -1 }}px);
@@ -116,6 +119,7 @@
             <div class="lectures-container">
               <div class="time-marker" style="top: calc({{timeMarker}}% + {{timeMarker/100}}px)"></div>
               <div class="lecture-wrapper" ng-repeat="lecture in timetableData[3]"
+                ui-sref="dashboard.lecture({type: params.type, sourceId: params.id, lectureId: lecture.id})"
                 style="
                   top: calc({{ (lecture.time.startsAt % 86400 - 900) / 3600 * 100 - 900 }}% + {{ (lecture.time.startsAt % 86400 - 900) / 3600 - 9 }}px);
                   height: calc({{ ((lecture.time.endsAt % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 * 100}}% + {{ ((lecture.time.endsAt  % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 -1 }}px);
@@ -144,6 +148,7 @@
             <div class="lectures-container">
               <div class="time-marker" style="top: calc({{timeMarker}}% + {{timeMarker/100}}px)"></div>
               <div class="lecture-wrapper" ng-repeat="lecture in timetableData[4]"
+                ui-sref="dashboard.lecture({type: params.type, sourceId: params.id, lectureId: lecture.id})"
                 style="
                   top: calc({{ (lecture.time.startsAt % 86400 - 900) / 3600 * 100 - 900 }}% + {{ (lecture.time.startsAt % 86400 - 900) / 3600 - 9 }}px);
                   height: calc({{ ((lecture.time.endsAt % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 * 100}}% + {{ ((lecture.time.endsAt  % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 -1 }}px);
@@ -172,6 +177,7 @@
             <div class="lectures-container">
               <div class="time-marker" style="top: calc({{timeMarker}}% + {{timeMarker/100}}px)"></div>
               <div class="lecture-wrapper" ng-repeat="lecture in timetableData[5]"
+                ui-sref="dashboard.lecture({type: params.type, sourceId: params.id, lectureId: lecture.id})"
                 style="
                   top: calc({{ (lecture.time.startsAt % 86400 - 900) / 3600 * 100 - 900 }}% + {{ (lecture.time.startsAt % 86400 - 900) / 3600 - 9 }}px);
                   height: calc({{ ((lecture.time.endsAt % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 * 100}}% + {{ ((lecture.time.endsAt  % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 -1 }}px);

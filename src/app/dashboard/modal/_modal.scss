@@ -9,4 +9,33 @@
 	.event-description {
 		font-size: 18px;
 	}
+	#modal-inner-wrapper.arrows {
+		display: flex;
+		flex-direction: row;
+		height: calc(100% - 100px);
+		#modal-info-container {
+			flex: 1 1 0;
+			overflow-y: auto;
+		}
+		.left-arrow, .right-arrow {
+			width: 100px;
+			display: block;
+			background: white;
+			flex: 0 0 auto;
+			.arrow-container {
+				height: 50px;
+				width: 30px;
+				background: url(/assets/svg/iconArrowBack30x50.svg);
+				margin: calc(50vh - 75px) auto;
+			}
+		}
+		.right-arrow {
+			.arrow-container {
+				background: url(/assets/svg/iconArrowFwd30x50.svg);
+			}
+		}
+		.left-arrow:hover, .right-arrow:hover {
+			background: #eee;
+		}
+	}
 }

@@ -1,6 +1,7 @@
 <div class="modal-wrapper">
-	<div class="titlebar shadow">
+	<div class="titlebar shadow blue" ng-class="{'orange' : lectureData.type != 'Предавања'}">
 		<span class="caption capitalize">{{::title}}</span>
+		<div class="close-but" ui-sref="dashboard.schedule({type: $stateParams.type, id: $stateParams.sourceId})"><div class="close-but-icon"></div></div>
 	</div>
 
 	<div id="modal-inner-wrapper">

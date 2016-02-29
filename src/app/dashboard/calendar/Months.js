@@ -21,7 +21,7 @@ angular.module('siApp.dashboard')
 
     function makeFinalClass(day) {
       day.finalClass = day.type + ' ' + day.background + ' ' + day.past;
-      if(DateTimeConverter.compareDates(today, moment().year(day.year).month(day.month-1).date(day.date))) {
+      if(DateTimeConverter.compareDates(today, moment().year(day.year).month(day.month-1).date(day.date)) && day.type == 'current-month') {
         day.finalClass += " today";
       }
       day.id = 'y'+day.year+'m'+day.month+'d'+day.date;

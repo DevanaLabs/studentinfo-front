@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('siApp.dashboard')
-  .controller('MainDashboardCtrl', ['$rootScope', '$scope', 'Dashboard', 'EVENTS', '$state', 
-    function ($rootScope, $scope, Dashboard, EVENTS, $state) {
+  .controller('MainDashboardCtrl', ['$rootScope', '$scope', 'Dashboard', 'EVENTS', '$state', '$http', '$timeout', 'ScreensaverTimer', 'BACKGROUNDS', 
+    function ($rootScope, $scope, Dashboard, EVENTS, $state, $http, $timeout, ScreensaverTimer, BACKGROUNDS) {
 
       $rootScope.$on(EVENTS.API.REFRESH_START, function () {
         console.log('Dashboard refresh start');
@@ -17,5 +17,33 @@ angular.module('siApp.dashboard')
       };
 
       Dashboard.initialLoad();
+
+      $scope.baseClick = function () {
+        ScreensaverTimer.resetTimer();
+        //console.log('This should reset the timer');
+      }
+
+      function getRevision () {
+        $http({
+          method: 'GET',
+          url: '/revision.txt'
+        }).then(function successCallback (response) {
+          console.log(response.data);
+          if (currentRevision == "") {
+            currentRevision = response.data;
+          }
+          else if (currentRevision != response.data) {
+            localStorage.clear();
+            $location.url("")
+            $window.location.reload();
+          }
+        });
+        $timeout(function () {
+          getRevision()
+        }, 5 * 60 * 1000);
+      }
+
+      var currentRevision = "";
+      getRevision()
 
     }]);

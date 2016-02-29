@@ -48,6 +48,7 @@
 					width: 500px;
 					border: solid 1px #eee;
 					font-size: 18px;
+					max-width: 14.2857143%;
 					.event-wrapper {
 						display: block;
 						padding: 5px 8px;
@@ -58,6 +59,9 @@
 						bottom: 5px;
 						right: 8px;
 					}
+				}
+				.day-wrapper.next-month, .day-wrapper.prev-month {
+					opacity: .4;
 				}
 				.day-wrapper:hover {
 					background: darken(white, 10%);
@@ -152,6 +156,7 @@
 				.day-wrapper.today {
 					.bottom-date {
 						background: #F72424;
+						color: white;
 						border-radius: 50%;
 						height: 34px;
 						width: 34px;

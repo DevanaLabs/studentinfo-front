@@ -29,7 +29,7 @@
     }
   }
   .close-but:hover {
-    background: #eee;
+    background: rgba(0, 0, 0, .1);
   }
 }
 .titlebar.shadow {
@@ -39,4 +39,65 @@
   margin-top: -80px;
   overflow: hidden;
   z-index: 0;
+}
+
+
+.titlebar.blue {
+  background: $blue;
+  .caption {
+    color: white !important;
+  }
+  .close-but-icon {
+    background: url(/assets/svg/iconExit42x42.svg);
+  }
+}
+
+.titlebar.orange {
+  background: $orange;
+  .caption {
+    color: white !important;
+  }
+  .close-but-icon {
+    background: url(/assets/svg/iconExit42x42.svg);
+  }
+}
+
+.titlebar.yellow {
+  background: $yellow;
+  .caption {
+    color: $textgray !important;
+  }
+  .close-but-icon {
+    background: url(/assets/svg/iconExit42x42.svg);
+  }
+}
+
+.titlebar.green {
+  background: $green;
+  .caption {
+    color: white !important;
+  }
+  .close-but-icon {
+    background: url(/assets/svg/iconExit42x42.svg);
+  }
+}
+
+.titlebar.gray {
+  background: #808080;
+  .caption {
+    color: white !important;
+  }
+  .close-but-icon {
+    background: url(/assets/svg/iconExit42x42.svg);
+  }
+}
+
+.titlebar.multi {
+  background: #999999;
+  .caption {
+    color: white !important;
+  }
+  .close-but-icon {
+    background: url(/assets/svg/iconExit42x42.svg);
+  }
 }

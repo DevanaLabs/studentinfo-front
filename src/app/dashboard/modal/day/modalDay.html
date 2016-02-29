@@ -1,22 +1,31 @@
 <div class="modal-wrapper">
-	<div class="titlebar shadow">
+	<div class="titlebar shadow" ng-class="day.background">
 		<span class="caption capitalize">{{::title}}</span>
+		<div class="close-but" ui-sref="dashboard.monthly({year: day.year, month: day.month})"><div class="close-but-icon"></div></div>
 	</div>
 
-	<div id="modal-inner-wrapper">
-		<div class="modal-info-container" id="events-container" ng-if="::day.events.length>0">
-			<h1 class="event-title" ng-repeat-start="event in ::day.events">{{::event.type}}</h1>
-			<h2 class="event-description" ng-repeat-end>{{::event.description}}</h2>
+	<div id="modal-inner-wrapper" class="arrows">
+		<div class="left-arrow" ng-click="goToDay(-1)">
+			<div class="arrow-container"></div>
 		</div>
-		<div class="modal-info-container" id="no-events-container" ng-if="::day.events.length == 0">
-			<span>{{'NO_EVENTS_FOR_DAY' | translate}}</span>
+		<div id="modal-info-container">
+			<div class="modal-info-subcontainer" id="events-container" ng-if="::day.events.length>0">
+				<h1 class="event-title" ng-repeat-start="event in ::day.events">{{::event.type}}</h1>
+				<h2 class="event-description" ng-repeat-end>{{::event.description}}</h2>
+			</div>
+			<div class="modal-info-subcontainer" id="no-events-container" ng-if="::day.events.length == 0">
+				<span>{{'NO_EVENTS_FOR_DAY' | translate}}</span>
+			</div>
+			<div class="modal-info-container" id="course-events-container" ng-if="::courseEvents.length>0">
+				<h1 class="event-title" ng-repeat-start="event in ::courseEvents">{{::event.description}}</h1>
+				<h2 class="event-description" ng-repeat-end>
+					{{::event.datetime.startsAt | limitTo:5:11 }}h ({{::event.type}}) - {{event.classrooms[0].name}}
+					<span ng-repeat="classroom in event.classrooms" ng-if="$index != '0'">, {{classroom.name}}</span>
+				</h2>
+			</div>
 		</div>
-		<div class="modal-info-container" id="course-events-container" ng-if="::courseEvents.length>0">
-			<h1 class="event-title" ng-repeat-start="event in ::courseEvents">{{::event.description}}</h1>
-			<h2 class="event-description" ng-repeat-end>
-				{{::event.datetime.startsAt | limitTo:5:11 }}h ({{::event.type}}) - {{event.classrooms[0].name}}
-				<span ng-repeat="classroom in event.classrooms" ng-if="$index != '0'">, {{classroom.name}}</span>
-			</h2>
+		<div class="right-arrow" ng-click="goToDay(1)">
+			<div class="arrow-container"></div>
 		</div>
 	</div>
 </div>

@@ -26,6 +26,15 @@ angular.module('siApp.dashboard')
     $scope.timeMarker = (moment().hours() - 9 + moment().minutes()/60) * 100;
     //$scope.timeMarker = (19 - 9 + 10/60) * 100;
 
+    $scope.exit = function () {
+      if($stateParams.type == 'group')
+        $state.go('dashboard.preSchedule.groups', {year: $scope.timetableObject.year});
+      else if($stateParams.type == 'classroom')
+        $state.go('dashboard.preSchedule.classroom', {floor: $scope.timetableObject.floor});
+      else if($stateParams.type == 'teacher')
+        $state.go('dashboard.preSchedule.teachers');
+    }
+
   }])
   .filter('startFrom', function() {
       return function(input, start) {

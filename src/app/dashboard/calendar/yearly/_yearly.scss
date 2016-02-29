@@ -70,6 +70,7 @@
 				}
 				td.today {
 					background: #D41B1B;
+					color: white;
 					-webkit-animation-name: pulseToday; /* Chrome, Safari, Opera */
 					-webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
 					animation-name: pulseToday;
@@ -81,7 +82,7 @@
 						opacity: 1;
 					}
 					50% {
-						opacity: .5;
+						opacity: .7;
 					}
 					100% {
 						opacity: 1;
@@ -92,7 +93,7 @@
 						opacity: 1;
 					}
 					50% {
-						opacity: .5;
+						opacity: .7;
 					}
 					100% {
 						opacity: 1;
