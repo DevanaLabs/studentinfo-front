@@ -6,7 +6,8 @@ angular.module('siApp')
 
     error.httpError = function (response) {
       if (response.data && response.data.error) {
-        error.error(SERVER_ERRORS[response.data.error.errorCode]);
+        var data = (response.data.error.data) ? response.data.error.data : '';
+        error.error(SERVER_ERRORS[response.data.error.errorCode] + '\n' + data);
       } else {
         error.error($translate.instant('SOMETHING_HAPPENED'));
       }
