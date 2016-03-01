@@ -10,7 +10,7 @@ angular.module('siApp')
       };
 
       globalEvents.save = function (event) {
-        event = CommonEvent.transformOutgoingEvent(event);
+        CommonEvent.transformOutgoingEvent(event);
         if (event.id) {
           return Api.saveGlobalEvent(event);
         }
@@ -21,7 +21,7 @@ angular.module('siApp')
         var deferred = $q.defer();
 
         Api.getGlobalEvent(id).then(function (response) {
-          response.data.success.data.event = CommonEvent.transformIncomingEvent(response.data.success.data.event);
+          CommonEvent.transformIncomingEvent(response.data.success.data.event);
           deferred.resolve(response);
         }, function (response) {
           deferred.reject(response);
@@ -38,7 +38,7 @@ angular.module('siApp')
 
         Api.getGlobalEvents(pagination).then(function (response) {
           response.data.success.data = _.forEach(response.data.success.data, function (e) {
-            e = CommonEvent.attachRequiredProps(e);
+            CommonEvent.attachRequiredProps(e);
           });
           deferred.resolve(response);
         }, function (response) {

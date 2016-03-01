@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('siApp')
-  .controller('LogoutCtrl', ['$scope', '$state', 'toastr', 'Auth', 'EVENTS',
-    function ($scope, $state, toastr, Auth, EVENTS) {
+  .controller('LogoutCtrl', ['$scope', '$state', 'Error', 'Auth', 'EVENTS',
+    function ($scope, $state, Error, Auth, EVENTS) {
+
       $scope.$on(EVENTS.AUTH.LOGOUT_SUCCESS, function (event, data) {
-        toastr.success('Pozdrav');
+        Error.success('GOODBYE');
         $state.go('login');
       });
+
       Auth.logout();
     }]);

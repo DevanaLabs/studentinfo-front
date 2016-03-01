@@ -13,7 +13,7 @@ angular.module('siApp')
         var deferred = $q.defer();
 
         Api.getCourseEvent(id).then(function (response) {
-          response.data.success.data.event = CommonEvent.transformIncomingEvent(response.data.success.data.event);
+          CommonEvent.transformIncomingEvent(response.data.success.data.event);
           deferred.resolve(response);
         }, function (response) {
           deferred.reject(response);
@@ -23,7 +23,7 @@ angular.module('siApp')
       };
 
       courseEvents.save = function (event) {
-        event = CommonEvent.transformOutgoingEvent(event);
+        CommonEvent.transformOutgoingEvent(event);
         if (event.id) {
           return Api.saveCourseEvent(event);
         }
@@ -38,7 +38,7 @@ angular.module('siApp')
 
         Api.getCourseEvents(pagination).then(function (response) {
           response.data.success.data = _.forEach(response.data.success.data, function (e) {
-            e = CommonEvent.attachRequiredProps(e);
+            CommonEvent.attachRequiredProps(e);
           });
           deferred.resolve(response);
         }, function (response) {

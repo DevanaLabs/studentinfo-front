@@ -6,9 +6,7 @@ angular.module('siApp')
       var lectureNotifications = {};
 
       var transformIncomingLectureNotification = function (notification) {
-        notification = CommonNotification.transformIncomingNotification(notification);
-        notification = CommonNotification.attachRequiredProps(notification);
-        return notification;
+        CommonNotification.attachRequiredProps(notification);
       };
 
       lectureNotifications.validate = function (notification) {
@@ -16,7 +14,7 @@ angular.module('siApp')
       };
 
       lectureNotifications.save = function (notification) {
-        notification = CommonNotification.transformOutgoingNotification(notification);
+        CommonNotification.transformOutgoingNotification(notification);
         if (notification.id) {
           return Api.saveLectureNotification(notification);
         }
@@ -27,8 +25,8 @@ angular.module('siApp')
         var deferred = $q.defer();
 
         Api.getLectureNotification(id).then(function (response) {
-          response.data.success.data.notification =
-            transformIncomingLectureNotification(response.data.success.data.notification);
+          transformIncomingLectureNotification(response.data.success.data.notification);
+          CommonNotification.transformIncomingNotification(response.data.success.data.notification);
           deferred.resolve(response);
         }, function (response) {
           deferred.reject(response);
@@ -42,7 +40,7 @@ angular.module('siApp')
 
         Api.getLectureNotifications(pagination).then(function (response) {
           response.data.success.data = _.forEach(response.data.success.data, function (n) {
-            n = transformIncomingLectureNotification(n);
+            transformIncomingLectureNotification(n);
           });
           deferred.resolve(response);
         }, function (response) {
@@ -53,7 +51,7 @@ angular.module('siApp')
       };
 
       lectureNotifications.remove = function (id) {
-        return Api.removeLectureNotification(id);
+        return Api.removeNotification(id);
       };
 
       lectureNotifications.getRelatedLecture = function (id) {
@@ -65,11 +63,11 @@ angular.module('siApp')
 
         Api.getLectureNotifications(id).then(function (response) {
           response.data.success.data = _.forEach(response.data.success.data, function (n) {
-            n = transformIncomingLectureNotification(n);
+            transformIncomingLectureNotification(n);
           });
           deferred.resolve(response);
-        }, function () {
-          deferred.reject();
+        }, function (response) {
+          deferred.reject(response);
         });
 
         return deferred.promise;

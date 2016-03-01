@@ -8,13 +8,11 @@ angular.module('siApp')
       commonEvent.transformIncomingEvent = function (event) {
         event.startsAt = DateTimeConverter.separateDateAndTime(event.datetime.startsAt);
         event.endsAt = DateTimeConverter.separateDateAndTime(event.datetime.endsAt);
-        return event;
       };
 
       commonEvent.transformOutgoingEvent = function (event) {
         event.startsAt = DateTimeConverter.combineDateAndTime(event.startsAt);
         event.endsAt = DateTimeConverter.combineDateAndTime(event.endsAt);
-        return event;
       };
 
       commonEvent.attachRequiredProps = function (event) {
@@ -23,7 +21,6 @@ angular.module('siApp')
           endsAt: DateTimeConverter.toMoment(event.datetime.endsAt)
         };
         event.expired = moment().isAfter(event.momentTime.endsAt);
-        return event;
       };
 
       return commonEvent;

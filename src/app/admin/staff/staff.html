@@ -6,7 +6,7 @@
             <span ng-if="staffType.slug === 'professors'">Profesori</span>
         </h2>
         <hr>
-        <button ng-disabled="!pagination.selectedCount && !canPerformActions" class="btn btn-success"
+        <button ng-disabled="pagination.selectedCount <= 0 || !canPerformActions" class="btn btn-success"
                 ng-click="issueRegisterTokens()">Posalji registracione tokene
         </button>
         <button ng-if="staffType.slug === 'students'" ng-disabled="!canPerformActions" class="btn btn-info"

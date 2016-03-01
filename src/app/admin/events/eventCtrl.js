@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('siApp')
-  .controller('EventCtrl', ['$scope', '$state', '$stateParams', 'toastr', 'Event', 'Mode', 'EVENTS',
-    function ($scope, $state, $stateParams, toastr, Event, Mode, EVENTS) {
+  .controller('EventCtrl', ['$scope', '$state', '$stateParams', 'Error', 'Event', 'Mode', 'EVENTS',
+    function ($scope, $state, $stateParams, Error, Event, Mode, EVENTS) {
       var self = this;
 
       $scope.canSubmit = true;
@@ -18,8 +18,8 @@ angular.module('siApp')
           if (response.data.success) {
             $scope.relatedEntities = response.data.success.data;
           }
-        }, function () {
-          toastr.error('Greska!');
+        }, function (response) {
+          Error.httpError(response);
         }).finally(function () {
           $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
         });
@@ -27,18 +27,18 @@ angular.module('siApp')
 
       $scope.onSubmit = function () {
         if (!Event.validate($scope.event)) {
-          toastr.error('Podaci nisu validni, molimo pokusajte ponovo');
+          Error.error('INVALID_INPUT_DATA');
           return;
         }
         Event.save($scope.event).then(function (response) {
           if (response.data.success) {
-            toastr.success('Sacuvano');
+            Error.success('CHANGES_SAVED');
             $state.go('admin.events', {
               type: Event.eventsType.slug
             });
           }
-        }, function () {
-          toastr.error('Greska!');
+        }, function (response) {
+          Error.httpError(response);
         });
       };
 
@@ -51,8 +51,8 @@ angular.module('siApp')
               $scope.event.relatedEntity = $scope.event[Event.eventsType.slug].id;
               $scope.event.relatedEntityName = $scope.event[Event.eventsType.slug].name;
             }
-          }, function () {
-            toastr.error('Greska pri ucitavanju dogadjaja');
+          }, function (response) {
+            Error.httpError(response);
           }).finally(function () {
             $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
           });

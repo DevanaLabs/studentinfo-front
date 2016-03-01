@@ -10,7 +10,7 @@ angular.module('siApp')
       };
 
       eventNotifications.save = function (notification) {
-        notification = CommonNotification.transformOutgoingNotification(notification);
+        CommonNotification.transformOutgoingNotification(notification);
         if (notification.id) {
           return Api.saveEventNotification(notification);
         }
@@ -21,8 +21,7 @@ angular.module('siApp')
         var deferred = $q.defer();
 
         Api.getEventNotification(id).then(function (response) {
-          response.data.success.data.notification =
-            CommonNotification.transformIncomingNotification(response.data.success.data.notification);
+          CommonNotification.transformIncomingNotification(response.data.success.data.notification);
           deferred.resolve(response);
         }, function (response) {
           deferred.reject(response);
@@ -39,7 +38,7 @@ angular.module('siApp')
 
         Api.getEventNotifications(pagination).then(function (response) {
           response.data.success.data = _.forEach(response.data.success.data, function (n) {
-            n = CommonNotification.attachRequiredProps(n);
+            CommonNotification.attachRequiredProps(n);
           });
           deferred.resolve(response);
         }, function (response) {
@@ -53,9 +52,8 @@ angular.module('siApp')
         var deferred = $q.defer();
 
         Api.getEventNotificationsForEvent(eventId, pagination).then(function (response) {
-          var now = moment();
           response.data.success.data = _.forEach(response.data.success.data, function (n) {
-            n = CommonNotification.attachRequiredProps(n);
+            CommonNotification.attachRequiredProps(n);
           });
           deferred.resolve(response);
         }, function (response) {

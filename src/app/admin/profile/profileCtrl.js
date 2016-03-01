@@ -4,11 +4,11 @@ angular.module('siApp')
   .controller('ProfileCtrl', [
     '$scope',
     '$state',
-    'toastr',
+    'Error',
     'Profile',
     'Auth',
     'EVENTS',
-    function ($scope, $state, toastr, Profile, Auth, EVENTS) {
+    function ($scope, $state, Error, Profile, Auth, EVENTS) {
 
       var self = this;
       $scope.password = {
@@ -18,15 +18,15 @@ angular.module('siApp')
 
       $scope.onSubmit = function () {
         if ($scope.password.password !== $scope.password.confirmation) {
-          toastr.error('Lozinke se ne poklapaju');
+          Error.error('INVALID_INPUT_DATA');
         }
 
         Profile.changePassword(Auth.user().id, $scope.password).then(function (response) {
           if (response.data.success) {
-            toastr.success('Promena lozinke je uspela');
+            Error.success('CHANGES_SAVED');
           }
         }, function (response) {
-          toastr.error('Promena lozinke nije uspela');
+          Error.httpError(response);
         });
       };
 

@@ -5,11 +5,11 @@ angular.module('siApp')
     '$scope',
     '$state',
     '$stateParams',
-    'toastr',
+    'Error',
     'Entities',
     'EVENTS',
     'Mode',
-    function ($scope, $state, $stateParams, toastr, Entities, EVENTS, Mode) {
+    function ($scope, $state, $stateParams, Error, Entities, EVENTS, Mode) {
       var self = this;
 
       $scope.canSubmit = true;
@@ -18,11 +18,11 @@ angular.module('siApp')
       $scope.onSubmit = function () {
         Entities.save($scope.user).then(function (response) {
           if (response.data.success) {
-            toastr.success('Sacuvano');
+            Error.success('CHANGES_SAVED');
             $state.go('admin.staff', {type: $stateParams.type});
           }
-        }, function () {
-
+        }, function (response) {
+          Error.httpError(response);
         });
       };
 
@@ -33,7 +33,7 @@ angular.module('siApp')
             $scope.user.email = $scope.user.email.email;
           }
         }, function (response) {
-
+          Error.httpError(response);
         }).finally(function () {
           $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
         });

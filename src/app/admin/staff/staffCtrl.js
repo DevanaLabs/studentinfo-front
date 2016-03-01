@@ -5,13 +5,13 @@ angular.module('siApp')
     '$scope',
     '$state',
     '$stateParams',
-    'toastr',
+    'Error',
     '$filter',
     'Entities',
     'RegisterToken',
     'Pagination',
     'EVENTS',
-    function ($scope, $state, $stateParams, toastr, $filter, Entities, RegisterToken, Pagination, EVENTS) {
+    function ($scope, $state, $stateParams, Error, $filter, Entities, RegisterToken, Pagination, EVENTS) {
       var self = this;
 
       $scope.canPerformActions = true;
@@ -20,7 +20,7 @@ angular.module('siApp')
       $scope.staffType = Entities.staffType;
 
       $scope.loadEntities = function () {
-        Entities.getAll({}).then(function (response) {
+        Entities.getAll().then(function (response) {
           if (response.data.success) {
             var entities = _.forEach(response.data.success.data, function (e) {
               e.registered = e.registerToken === '0';
@@ -28,7 +28,7 @@ angular.module('siApp')
             $scope.pagination.loadEntities(entities);
           }
         }, function (response) {
-          toastr.error('Greska prilikom ucitavanja entiteta');
+          Error.httpError(response);
         }).finally(function () {
           $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
         });
@@ -48,15 +48,15 @@ angular.module('siApp')
         if (emails.length) {
           RegisterToken.issue(emails).then(function (response) {
             if (response.data.success) {
-              toastr.success('Tokeni su izdati');
+              Error.success('REGISTER_TOKENS_ISSUED');
               _.forEach(selectedEntities, function (e) {
                 e.registerTokenExpired = false;
               });
             } else {
-              toastr.error('Doslo je do greske, tokeni nisu izdati');
+              Error.error('UNDEFINED_ERROR');
             }
           }, function (response) {
-            toastr.success('Doslo je do greske, tokeni nisu izdati');
+            Error.error(response);
           }).finally(function () {
             $scope.canPerformActions = true;
           });
@@ -67,11 +67,11 @@ angular.module('siApp')
         $scope.canPerformActions = false;
         Entities.remove(entity.id).then(function (response) {
           if (response.data.success) {
-            toastr.success('Uspesno obrisano');
+            Error.success('CHANGES_SAVED');
             $scope.pagination.removeEntity(entity);
           }
-        }, function () {
-          toastr.error('Greska prilikom brisanja!');
+        }, function (response) {
+          Error.error(response);
         }).finally(function () {
           $scope.canPerformActions = true;
         });

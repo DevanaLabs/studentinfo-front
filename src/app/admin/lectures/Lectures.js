@@ -28,13 +28,11 @@ angular.module('siApp')
         lecture.startsAt = DateTimeConverter.fromBeginningOfTheWeek(lecture.time.startsAt);
         lecture.endsAt = DateTimeConverter.fromBeginningOfTheWeek(lecture.time.endsAt);
         lecture.typeName = lectures.types[lecture.type].name;
-        return lecture;
       };
 
       var transformOutgoingLecture = function (lecture) {
         lecture.startsAt = DateTimeConverter.toBeginningOfTheWeek(lecture.time.startsAt);
         lecture.endsAt = DateTimeConverter.toBeginningOfTheWeek(lecture.time.endsAt);
-        return lecture;
       };
 
       lectures.getNewInstance = function () {
@@ -57,7 +55,7 @@ angular.module('siApp')
       };
 
       lectures.save = function (lecture) {
-        lecture = transformOutgoingLecture(lecture);
+        transformOutgoingLecture(lecture);
         if (lecture.id) {
           return Api.saveLecture(lecture);
         }
@@ -68,7 +66,7 @@ angular.module('siApp')
         var deferred = $q.defer();
 
         Api.getLecture(id).then(function (response) {
-          response.data.success.data.lecture = transformIncomingLecture(response.data.success.data.lecture);
+          transformIncomingLecture(response.data.success.data.lecture);
           deferred.resolve(response);
         }, function (response) {
           deferred.reject(response);
@@ -82,7 +80,7 @@ angular.module('siApp')
 
         Api.getLectures(pagination).then(function (response) {
           response.data.success.data = _.forEach(response.data.success.data, function (l) {
-            l = transformIncomingLecture(l);
+            transformIncomingLecture(l);
           });
           deferred.resolve(response);
         }, function (response) {

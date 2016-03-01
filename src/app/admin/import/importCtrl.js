@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('siApp')
-  .controller('ImportCtrl', ['$scope', 'toastr', 'Import', 'EVENTS',
-    function ($scope, toastr, Import, EVENTS) {
+  .controller('ImportCtrl', ['$scope', 'Error', 'Import', 'EVENTS',
+    function ($scope, Error, Import, EVENTS) {
 
       $scope.canSubmit = true;
 
@@ -17,9 +17,9 @@ angular.module('siApp')
         var type = $scope.types[$scope.importTypeIndex];
 
         Import.uploadFile(type, $scope.file).then(function (response) {
-          toastr.success('Podaci su importovani!');
+          Error.success('DATA_IMPORT_SUCCESS');
         }, function (response) {
-          toastr.error(response.data.error.message, 'Greska!');
+          Error.httpError(response);
         }).finally(function () {
           $scope.canSubmit = true;
         });

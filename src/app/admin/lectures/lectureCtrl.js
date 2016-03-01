@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('siApp')
-  .controller('LectureCtrl', ['$q', '$scope', '$state', '$stateParams', 'toastr', 'Lectures', 'Professors', 'Assistants',
+  .controller('LectureCtrl', ['$q', '$scope', '$state', '$stateParams', 'Error', 'Lectures', 'Professors', 'Assistants',
     'Courses', 'Classrooms', 'DateTimeConverter', 'Mode', 'EVENTS', 'WEEKDAYS',
-    function ($q, $scope, $state, $stateParams, toastr, Lectures, Professors, Assistants,
+    function ($q, $scope, $state, $stateParams, Error, Lectures, Professors, Assistants,
               Courses, Classrooms, DateTimeConverter, Mode, EVENTS, WEEKDAYS) {
 
       $scope.canSubmit = true;
@@ -23,11 +23,11 @@ angular.module('siApp')
         $scope.lecture.time.endsAt.day = $scope.lecture.time.startsAt.day;
         Lectures.save($scope.lecture).then(function (response) {
           if (response.data.success) {
-            toastr.success('Sacuvano');
+            Error.success('CHANGES_SAVED');
             $state.go('admin.lectures');
           }
-        }, function () {
-          toastr.error('Greska');
+        }, function (response) {
+          Error.httpError(response);
         }).finally(function () {
           $scope.canSubmit = true;
         });
@@ -51,8 +51,8 @@ angular.module('siApp')
         $scope.teachers = responses[1].data.success.data.concat(responses[2].data.success.data);
         $scope.classrooms = responses[3].data.success.data;
         $scope.lecture = responses[4].data.success.data.lecture;
-      }, function () {
-        toastr.error('Greska!');
+      }, function (response) {
+        Error.httpError(response);
       }).finally(function () {
         $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
       });

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('siApp')
-  .controller('LecturesCtrl', ['$scope', 'toastr', 'DateTimeConverter', 'Lectures', 'Pagination', 'EVENTS',
-    function ($scope, toastr, DateTimeConverter, Lectures, Pagination, EVENTS) {
+  .controller('LecturesCtrl', ['$scope', 'Error', 'DateTimeConverter', 'Lectures', 'Pagination', 'EVENTS',
+    function ($scope, Error, DateTimeConverter, Lectures, Pagination, EVENTS) {
       var self = this;
 
       $scope.canPerformActions = true;
@@ -13,8 +13,8 @@ angular.module('siApp')
           if (response.data.success) {
             $scope.pagination.loadEntities(response.data.success.data);
           }
-        }, function () {
-          toastr.error('Greska prilikom ucitavanja!');
+        }, function (response) {
+          Error.httpError(response);
         }).finally(function () {
           $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
         });
@@ -24,11 +24,11 @@ angular.module('siApp')
         $scope.canPerformActions = false;
         Lectures.remove(lecture.id).then(function (response) {
           if (response.data.success) {
-            toastr.success('Uspesno obrisano');
+            Error.success('CHANGES_SAVED');
             $scope.pagination.removeEntity(lecture);
           }
-        }, function () {
-          toastr.error('Greska prilikom brisanja!');
+        }, function (response) {
+          Error.httpError(response);
         }).finally(function () {
           $scope.canPerformActions = true;
         });

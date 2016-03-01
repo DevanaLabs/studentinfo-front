@@ -41,10 +41,17 @@
                     {{ ::notification.momentTime.expiresAt.format('HH:mm D/MMMM/YYYY') }}
                 </td>
                 <td>
-                    <button class="btn btn-info btn-sm"
+                    <button ng-if="notificationsType.slug === 'lectures'"
+                            class="btn btn-info btn-sm"
                             ui-sref="admin.lectureNotification_new({relatedEntityId: notification.lecture.id, id: notification.id})">
                         Izmeni
                     </button>
+                    <button ng-if="notificationsType.slug === 'events'"
+                            class="btn btn-info btn-sm"
+                            ui-sref="admin.eventNotification_new({relatedEntityId: notification.event.id, id: notification.id})">
+                        Izmeni
+                    </button>
+
                     <button class="btn btn-danger btn-sm" ng-click="deleteNotification(notification)">Obrisi</button>
                 </td>
             </tr>
