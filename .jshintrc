@@ -11,6 +11,7 @@
     "inject": false,
     "console": true,
     "_": true,
-    "moment": true
+    "moment": true, 
+    "$": true
   }
 }

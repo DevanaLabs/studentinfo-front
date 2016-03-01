@@ -3,6 +3,62 @@
 angular.module('siApp')
   .config(['$translateProvider', function ($translateProvider) {
 
+    $translateProvider.translations('sr-cyr', {
+      'FACULTY_NAME': 'Рачунарски факултет',
+      'APP_NAME': 'Студент инфо',
+      'OVERVIEW': 'Преглед',
+      'PROFILE': 'Профил',
+      'EVENTS': 'Догађаји',
+      'NOTIFICATIONS': 'Обавештења',
+      'STUDENTS': 'Студенти',
+      'PROFESSORS': 'Професори',
+      'ASSISTANTS': 'Асистенти',
+      'GROUPS': 'Групе', 
+      'GROUP': 'Група',
+      'CLASSROOMS': 'Учионице',
+      'TEACHERS': 'Предавачи',
+      'LOGOUT': 'Крај рада', 
+      'LOGIN.WELCOME': 'Добродошли на Студент инфо',
+      'LOGIN.EMAIL': 'Ваша адреса',
+      'LOGIN.ERROR.INVALID_INPUT': 'Непотпуно унети подаци',
+      'LOGIN.SIGNIN': 'Приајвите се',
+      'LOGIN.ERROR.INVALID_CREDENTIALS': 'Нетачна адреса или лозинка',
+      'LOGIN.PASSWORD': "Ваша лозинка", 
+      'REGISTER.WELCOME': "Добродошли на Студент инфо", 
+      'REGISTER.EMAIL': "Ваша адреса", 
+      'REGISTER.PASSWORD': "Унесите лозинку",
+      'REGISTER.PASSWORD_CONFIRM': "Поновите лозинку",
+      'REGISTER.SIGNUP': "Приајвите се",
+      'TIMETABLE': "Распоред часова", 
+      'CALENDAR': "Календар активности",
+      'FEEDBACK': 'Повратне информације',
+      'GODINE_1': 'Прва година',
+      'GODINE_2': 'Друга година',
+      'GODINE_3': 'Трећа година',
+      'GODINE_4': 'Четврта година',
+      'GODINE_0': 'Остало',
+      'SPRATOVI_6': 'Шести спрат',
+      'DAY_1': 'Понедељак',
+      'DAY_2': 'Уторак',
+      'DAY_3': 'Среда',
+      'DAY_4': 'Четвртак',
+      'DAY_5': 'Петак',
+      'DAY_6': 'Субота',
+      'DAY_7': 'Недеља',
+      'GLOBAL_EVENTS': 'Општи догађаји',
+      'COURSE_EVENTS': 'Догађаји за курс',
+      'GROUP_EVENTS': 'Догађаји за групу',
+      'LECTURES': 'Предавања и вежбе',
+      'COURSES': 'Курсеви',
+      'IMPORT': 'Увоз',
+      'EXERCISES': 'Вежбе',
+      'DISCOURSE': 'Предавање', 
+      'NO_EVENTS_FOR_DAY': 'Нема дешавања на овај дан.',
+      'SEND_FEEDBACK': 'Пошаљите нам сугестије и предлоге',  
+      'THANKYOU': 'Хвала!'
+    });
+
+
     $translateProvider.translations('sr-lat', {
       'FACULTY_NAME': 'Računarski fakultet',
       'APP_NAME': 'Student info',
@@ -53,8 +109,10 @@ angular.module('siApp')
       'IMPORT': 'Import',
       'EXERCISES': 'Vežbe',
       'DISCOURSE': 'Predavanje', 
-      'NO_EVENTS_FOR_DAY': 'Nema dešavanja na ovaj dan.'
+      'NO_EVENTS_FOR_DAY': 'Nema dešavanja na ovaj dan.',
+      'SEND_FEEDBACK': 'Pošaljite nam sugestije i predloge',  
+      'THANKYOU': 'Hvala!'
     });
 
-    $translateProvider.preferredLanguage('sr-lat');
+    $translateProvider.preferredLanguage('sr-cyr');
   }]);

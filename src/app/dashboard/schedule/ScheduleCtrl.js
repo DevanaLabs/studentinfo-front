@@ -33,13 +33,13 @@ angular.module('siApp.dashboard')
         $state.go('dashboard.preSchedule.classroom', {floor: $scope.timetableObject.floor});
       else if($stateParams.type == 'teacher')
         $state.go('dashboard.preSchedule.teachers');
-    }
+    };
 
   }])
   .filter('startFrom', function() {
       return function(input, start) {
           start = +start; //parse to int
           return input.slice(start);
-      }
+      };
   });
  

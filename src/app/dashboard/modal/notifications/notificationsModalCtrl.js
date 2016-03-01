@@ -6,7 +6,6 @@ angular.module('siApp.dashboard')
     $scope.$stateParams = $stateParams;
     $scope.notifications = EntityService.getNotifications($stateParams.sourceId);
     $scope.objectData = EntityService.getById($stateParams.sourceId);
-    console.log($scope.objectData);
     if($stateParams.type == 'group') {
       $scope.title = $translate.instant('GROUP') + ' ' + $scope.objectData.name;
     } else if ($stateParams.type == 'teacher') {

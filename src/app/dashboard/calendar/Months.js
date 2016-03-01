@@ -62,19 +62,19 @@ angular.module('siApp.dashboard')
       }
     }
 
-    MonthsService.months = []
+    MonthsService.months = [];
 
     // generate array of months, containing weeks, containing day objects
     for(var monthCounter = 0; monthCounter < 13; monthCounter++) { // for each month
       var currentMonthSet = [];
 
-      var d = moment().year(year).month(month-1).date(1) // displayed month
+      var d = moment().year(year).month(month-1).date(1); // displayed month
 
       var prevMonthDate = moment(d.format()).subtract(1, 'months');
       var nextMonthDate = moment(d.format()).add(1, 'months');
 
-      var lastDayPrev = prevMonthDate.daysInMonth() // last day of previous month
-      var firstWeekDay = d.isoWeekday() // weekday od first day of displayed month
+      var lastDayPrev = prevMonthDate.daysInMonth(); // last day of previous month
+      var firstWeekDay = d.isoWeekday(); // weekday od first day of displayed month
 
 
       // write days of previous month
@@ -87,13 +87,13 @@ angular.module('siApp.dashboard')
           events: [],
           background: 'white',
           past: ""
-        })
+        });
       }
 
       var lastDayCur = d.daysInMonth(); // last day of displayed month
 
       // write days of displayed month
-      for (var i = 1; i <= lastDayCur; i++) {
+      for (i = 1; i <= lastDayCur; i++) {
         if (DateTimeConverter.compareDates(today, moment(d).add(i-1, 'days'))) {
           inPast = false;
         }
@@ -105,13 +105,14 @@ angular.module('siApp.dashboard')
           events: [],
           background: 'white',
           past: (inPast ? "past":"") 
-        })
+        });
       }
 
-      var lastWeekDay = moment(lastDayCur + " " + month + " " + year, "DD MM YYYY").isoWeekday() // weekday of last day of displayed month
+      var lastWeekDay = moment(lastDayCur + " " + month + " " + year, "DD MM YYYY").isoWeekday(); 
+      // weekday of last day of displayed month
 
       // write days of next month
-      for (var i = 1; i <= 7 - lastWeekDay; i++) {
+      for (i = 1; i <= 7 - lastWeekDay; i++) {
         currentMonthSet.push({
           date: i,
           month: nextMonthDate.month() + 1,
@@ -120,7 +121,7 @@ angular.module('siApp.dashboard')
           events: [],
           background: 'white',
           past: ""
-        })
+        });
       }
 
       // 
@@ -146,7 +147,7 @@ angular.module('siApp.dashboard')
 
 
     // add events to days
-    for (var i = 0; i < events.length; i++) {
+    for (i = 0; i < events.length; i++) {
       var currentDate = moment(events[i].datetime.startsAt);
       var stopDate = moment(events[i].datetime.endsAt);
       while (currentDate <= stopDate) {
@@ -177,8 +178,8 @@ angular.module('siApp.dashboard')
 
 
     return {
-      getAll: function () { return MonthsService.months },
-      getSchoolYear: function () { return MonthsService.currentSchoolYear },
+      getAll: function () { return MonthsService.months; },
+      getSchoolYear: function () { return MonthsService.currentSchoolYear; },
       getMonth: function (month, year) { 
         if (year == MonthsService.currentSchoolYear) {
           return MonthsService.months[month - 9];
@@ -201,10 +202,10 @@ angular.module('siApp.dashboard')
         }
         return _.find(_.find(tmpMonth.days, function(week){
           return _.find(week, function(day){
-            return day.date == date && day.month == month
-          })
+            return day.date == date && day.month == month;
+          });
         }), function(day){
-          return day.date == date && day.month == month
+          return day.date == date && day.month == month;
         });
       }
     };

@@ -42,7 +42,7 @@ angular.module('siApp.dashboard')
       };
 
       dashboard.initialLoad = function () {
-        console.log('Initial load');
+        //console.log('Initial load');
 
         var refresh = function () {
           $rootScope.$broadcast(EVENTS.API.REFRESH_START);

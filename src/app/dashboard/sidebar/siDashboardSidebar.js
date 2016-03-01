@@ -5,18 +5,25 @@ angular.module('siApp.dashboard')
     return {
       scope: '',
       replace: true,
-      controller: ['BACKGROUNDS', function(BACKGROUNDS){
+      controller: ['$scope', '$timeout', 'BACKGROUNDS', function($scope, $timeout, BACKGROUNDS){
               function nextImg () {
-                console.log('asdf');
                 var num = Math.floor((moment().valueOf()) / 86400000 % BACKGROUNDS.length);
 
                 //var num = BACKGROUNDS[Math.floor(Math.random() * BACKGROUNDS.length)];
                 angular.element('body').css('background-image', "url('assets/img/bgs/" + BACKGROUNDS[num] + "')");
                 angular.element('#sidebar-blur-background').css('background-image', "url('assets/img/bgs/" + BACKGROUNDS[num] + "')");
-                setTimeout(function () {
-                  nextImg()
+                $timeout(function () {
+                  nextImg();
                 }, 1000 * 60 * 60 * 1);
               }
+
+              function tick () {
+                $scope.currentTime = moment().format('HH:mm - D. MMMM, dddd');
+                $timeout(function () {
+                  tick();
+                }, 1000);
+              }
+              tick();
 
               nextImg();
             }], 

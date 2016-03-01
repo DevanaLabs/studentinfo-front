@@ -12,7 +12,7 @@ angular.module('siApp.dashboard')
       if (tmp > range.start && tmp < range.end) {
         $state.go('dashboard.monthly', {'month': tmp.month()+1, 'year': tmp.year()});
       }
-    }
+    };
   }])
   .filter('typeToClass', function() { 
     return function(type) {
@@ -28,5 +28,5 @@ angular.module('siApp.dashboard')
       else {
         return classMap[type];
       }
-    }
+    };
   });

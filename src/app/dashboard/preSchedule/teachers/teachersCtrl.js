@@ -28,8 +28,7 @@ angular.module('siApp.dashboard')
       }
     }
 
-    //MarkActiveLetter();
-    setTimeout(function(){ MarkActiveLetter(); }, 0);
+    $timeout(function(){ MarkActiveLetter(); }, 0);
 
   }]);
  

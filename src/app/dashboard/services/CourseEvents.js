@@ -22,7 +22,7 @@ angular.module('siApp.dashboard')
       }));
       events.sort(function(a,b){
         return a.datetime.startsAt.substr(11, 2)*1 - b.datetime.startsAt.substr(11, 2)*1;
-      })
+      });
       return events;
     };
 

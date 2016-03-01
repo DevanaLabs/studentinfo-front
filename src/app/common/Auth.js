@@ -16,7 +16,7 @@ angular.module('siApp')
 
       auth.login = function (credentials) {
         Api.login(angular.extend(credentials, oauth2Params)).then(function (response) {
-            console.log(response);
+            // console.log(response);
             if (response.data.success) {
               var oauth2Token = response.data.success.data.oauth;
 

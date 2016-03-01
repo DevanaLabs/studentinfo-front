@@ -1,5 +1,6 @@
-#main-ui-view {
+#main-ui-view, #dashboard-ui-view {
 	height: 100%;
+  overflow-x: hidden;
 }
 
 .titlebar {
@@ -13,6 +14,10 @@
   	color: $textgray;
   	padding: 0 0 0 50px !important;
   	overflow: hidden;
+    max-width: calc(100% - 200px);
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .caption.capitalize {
     text-transform: capitalize;
@@ -100,4 +105,34 @@
   .close-but-icon {
     background: url(/assets/svg/iconExit42x42.svg);
   }
+}
+
+
+
+
+#dashboard-ui-view.ng-enter, #dashboard-ui-view.ng-leave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  transition: all .3s ease;
+}
+
+#dashboard-ui-view.ng-enter {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+
+#dashboard-ui-view.ng-enter-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+#dashboard-ui-view.ng-leave {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+#dashboard-ui-view.ng-leave-active {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
 }

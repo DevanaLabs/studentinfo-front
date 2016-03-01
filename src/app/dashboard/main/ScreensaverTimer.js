@@ -26,5 +26,5 @@ angular.module("siApp.dashboard")
     return {
       timer: timer,
       resetTimer: resetTimer
-    }
+    };
   }]);

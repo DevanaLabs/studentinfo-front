@@ -33,7 +33,7 @@ angular.module('siApp')
         LectureNotifications.get($stateParams.id)
           .then(function (response) {
             if (response.data.success) {
-              console.log(response.data.success);
+              // console.log(response.data.success);
               $scope.notification = response.data.success.data.notification;
             }
           }, function () {

@@ -12,6 +12,6 @@ angular.module('siApp.dashboard')
       else {
         return {'year':($scope.currentSchoolYear+1), 'month': (index - 3)};
       }
-    }
+    };
 
   }]);

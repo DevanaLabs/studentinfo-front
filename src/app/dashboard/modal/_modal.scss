@@ -9,6 +9,31 @@
 	.event-description {
 		font-size: 18px;
 	}
+	#modal-inner-wrapper.lecture {
+		padding: 30px 100px;
+		.teacher-name {
+			font-weight: 600;
+			margin: .3em 0;
+			color: $textgray;
+		}
+		.lecture-type {
+			font-style: italic;
+			margin: .5em 0;
+			color: $textgray;
+		}
+		.lecture-time {
+			margin: .5em 0;
+			color: $blue;
+			text-transform: capitalize;
+		}
+		.lecture-time.orange {
+			color: $orange;
+		}
+		.lecture-location {
+			margin: .5em 0;
+			color: $textgray;
+		}
+	}
 	#modal-inner-wrapper.arrows {
 		display: flex;
 		flex-direction: row;

@@ -28,8 +28,8 @@ angular.module('siApp.dashboard')
       });
       return _.find(pickedClassroom.lectures, function(lecture){
         return lecture.id == lectureId;
-      })
-    }
+      });
+    };
     
     classroomsService.getNotifications = function (classroomId, lectureId) {
       var notifications = [];
@@ -46,13 +46,13 @@ angular.module('siApp.dashboard')
       else {
         var pickedLecture = _.find(pickedClassroom.lectures, function(lecture){
           return lecture.id == lectureId;
-        })
+        });
         _.forEach(pickedLecture.notifications, function(notification){
           notifications.push(notification);
         });
       }
       return notifications;
-    }
+    };
 
     return classroomsService;
   }]);
