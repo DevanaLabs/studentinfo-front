@@ -7,22 +7,22 @@ angular.module('siApp')
     error.httpError = function (response) {
       if (response.data && response.data.error) {
         var data = (response.data.error.data) ? response.data.error.data : '';
-        error.error(SERVER_ERRORS[response.data.error.errorCode] + '\n' + data);
+        error.error($translate.instant(SERVER_ERRORS[response.data.error.errorCode]) + '\n' + data);
       } else {
-        error.error($translate.instant('SOMETHING_HAPPENED'));
+        error.error($translate.instant('UNDEFINED_ERROR'));
       }
     };
 
     error.error = function (reason) {
-      toastr.error(reason, $translate.instant('ERROR'));
+      toastr.error($translate.instant(reason), $translate.instant('ERROR'));
     };
 
     error.warning = function (reason) {
-      toastr.warning(reason, $translate.instant('ERROR'));
+      toastr.warning($translate.instant(reason), $translate.instant('ERROR'));
     };
 
     error.success = function (what) {
-      toastr.success(what, $translate.instant('SUCCESS'));
+      toastr.success($translate.instant(what), $translate.instant('SUCCESS'));
     };
 
     error.report = function (reason) {

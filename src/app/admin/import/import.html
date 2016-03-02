@@ -1,12 +1,12 @@
 <div>
     <div>
-        <h2>Import podataka</h2>
+        <h2>{{ 'IMPORT_DATA' | translate }}</h2>
     </div>
     <hr>
     <div>
         <form ng-submit="onSubmit()">
             <div class="form-group">
-                <label for="import-type">Tip podataka</label>
+                <label for="import-type">{{ 'DATA_TYPE' | translate }}</label>
                 <select name="import-type" id="import-type" ng-model="importType" class="form-control">
                     <option ng-repeat="type in types" value="{{ $index }}">{{ ::type.name | translate }}</option>
                 </select>
@@ -14,14 +14,15 @@
             <div class="form-group">
                 <div class="well" ngf-drop ngf-select ng-model="file" name="import"
                      ngf-accept="'text/csv'"
-                     gf-max-size="50MB">Kliknite da odaberete fajl
+                     gf-max-size="50MB">
+                    {{ 'CLICK_TO_CHOOSE_FILE' | translate }}
                 </div>
                 <b>{{ file.name }}</b>
             </div>
             <div class="form-group">
-                <button type="button" ui-sref="admin.overview" class="btn btn-alert">Odustani</button>
+                <button type="button" ui-sref="admin.overview" class="btn btn-alert">{{ 'CANCEL' | translate }}</button>
                 <button type="submit" ng-disabled="!canSubmit" class="btn btn-primary">
-                    Sacuvaj
+                    {{ 'SAVE' | translate }}
                 </button>
             </div>
         </form>

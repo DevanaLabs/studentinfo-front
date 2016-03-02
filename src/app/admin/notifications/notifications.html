@@ -1,10 +1,10 @@
 <div>
     <div>
-        <h2>Obavestenja</h2>
+        <h2>{{ 'NOTIFICATIONS' | translate }}</h2>
     </div>
     <hr>
     <div ng-if="!pagination.available" class="center-block">
-        <h1 class="text-center">Nema podataka</h1>
+        <h1 class="text-center">{{ 'NO_DATA' | translate }}</h1>
     </div>
     <div ng-if="pagination.available">
         <table class="table table-bordered">
@@ -12,16 +12,16 @@
             <tr>
                 <td colspan="6">
                     <input class="form-control" type="text" ng-model="pagination.query"
-                           placeholder="Pretraga">
+                           placeholder="{{ 'SEARCH' | translate }}">
                 </td>
             </tr>
             <tr>
-                <th>Opis</th>
+                <th>{{ 'DESCRIPTION' | translate }}</th>
                 <th>
-                    <span ng-if="notificationsType.slug === 'lectures'">Termin</span>
-                    <span ng-if="notificationsType.slug === 'events'">Dogadjaj</span>
+                    <span ng-if="notificationsType.slug === 'lectures'">{{ 'TERM' | translate }}</span>
+                    <span ng-if="notificationsType.slug === 'events'">{{ 'EVENT' | translate }}</span>
                 </th>
-                <th>Vreme isteka</th>
+                <th>{{ 'EXPIRATION_DATE' | translate }}</th>
                 <th></th>
             </tr>
             </thead>
@@ -44,15 +44,17 @@
                     <button ng-if="notificationsType.slug === 'lectures'"
                             class="btn btn-info btn-sm"
                             ui-sref="admin.lectureNotification_new({relatedEntityId: notification.lecture.id, id: notification.id})">
-                        Izmeni
+                        {{ 'EDIT' | translate }}
                     </button>
                     <button ng-if="notificationsType.slug === 'events'"
                             class="btn btn-info btn-sm"
                             ui-sref="admin.eventNotification_new({relatedEntityId: notification.event.id, id: notification.id})">
-                        Izmeni
+                        {{ 'EDIT' | translate }}
                     </button>
 
-                    <button class="btn btn-danger btn-sm" ng-click="deleteNotification(notification)">Obrisi</button>
+                    <button class="btn btn-danger btn-sm" ng-click="deleteNotification(notification)">
+                        {{ 'DELETE' | translate }}
+                    </button>
                 </td>
             </tr>
             </tbody>

@@ -1,6 +1,6 @@
 <div>
     <div>
-        <h2>Dogadjaj</h2>
+        <h2>{{ 'EVENT' | translate }}</h2>
     </div>
     <hr>
     <div>
@@ -16,28 +16,28 @@
                 <input ng-disabled="true" type="text" id="relatedEntity" class="form-control" ng-model="event.relatedEntityName">
             </div>
             <div class="form-group">
-                <label for="inputType">Tip (Ispitni rok, kolokvijum...)</label>
+                <label for="inputType">{{ 'TYPE' | translate }}</label>
                 <input id="inputType" type="text" ng-model="event.type" class="form-control" ng-required="true"/>
             </div>
             <div class="form-group">
-                <label for="inputDescription">Opis</label>
+                <label for="inputDescription">{{ 'DESCRIPTION' | translate }}</label>
                 <textarea ng-required="true" id="inputDescription" name="description" ng-model="event.description" class="form-control">
                 </textarea>
             </div>
             <div class="form-group" ng-if="eventType.slug === 'course'">
-                <label for="inputCourse">Kurs</label>
+                <label for="inputCourse">{{ 'COURSE' | translate }}</label>
                 <select name="inputCourse" id="inputCourse" class="form-control" ng-required="true">
                     <option ng-repeat="c in courses" value="{{ c.id }}">{{ ::c.name }}</option>
                 </select>
             </div>
             <div class="form-group" ng-if="eventType.slug === 'group'">
-                <label for="inputGroup">Grupa</label>
+                <label for="inputGroup">{{ 'GROUP' | translate}}</label>
                 <select name="inputCourse" id="inputGroup" class="form-control" ng-required="true">
                     <option ng-repeat="g in groups" value="{{ g.id }}">{{ ::g.name }}</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="inputStartsAt">Pocetak</label>
+                <label for="inputStartsAt">{{ 'START' | translate }}</label>
                 <div class="row">
                     <div class="col-md-6">
                         <p class="input-group">
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputEndsAt">Kraj</label>
+                <label for="inputEndsAt">{{ 'END' | translate }}</label>
                 <div class="row">
                     <div class="col-md-6">
                         <p class="input-group">
@@ -79,8 +79,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <button type="button" ui-sref="admin.overview" class="btn btn-alert">Odustani</button>
-                <button type="submit" class="btn btn-primary" ng-disabled="!canSubmit">Sacuvaj</button>
+                <button type="button" ui-sref="admin.overview" class="btn btn-alert">{{ 'CANCEL' | translate }}</button>
+                <button type="submit" class="btn btn-primary" ng-disabled="!canSubmit">{{ 'SAVE' | translate }}</button>
             </div>
         </form>
     </div>

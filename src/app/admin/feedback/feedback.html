@@ -1,17 +1,17 @@
 <div>
     <div>
-        <h2>Povratne informacije</h2>
+        <h2>{{ 'FEEDBACK' | translate }}</h2>
     </div>
     <hr>
     <div>
         <form ng-submit="onSubmit()">
             <div class="form-group">
-                <label for="inputFeedback">Sta zelite da nam kazete</label>
+                <label for="inputFeedback">{{ 'FEEDBACK_DESCRIPTION' | translate }}</label>
                 <textarea id="inputFeedback" cols="30" rows="10" class="form-control" ng-model="feedback"></textarea>
             </div>
             <div class="form-group">
-                <button type="button" ui-sref="admin.overview" class="btn btn-alert">Odustani</button>
-                <button type="submit" class="btn btn-primary" ng-disabled="!canSubmit">Posalji</button>
+                <button type="button" ui-sref="admin.overview" class="btn btn-alert">{{ 'CANCEL' | translate }}</button>
+                <button type="submit" class="btn btn-primary" ng-disabled="!canSubmit">{{ 'SEND' | translate }}</button>
             </div>
         </form>
     </div>

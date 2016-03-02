@@ -1,6 +1,6 @@
 <div>
     <div>
-        <h2>Obavestenje</h2>
+        <h2>{{ 'NOTIFICATION' | translate }}</h2>
         <hr>
         <form ng-submit="onSubmit()">
             <div class="form-group">
@@ -9,13 +9,13 @@
                        value="{{(notification.lecture.typeName | translate) + ': ' + notification.lecture.course.name + ', ' + notification.lecture.classroom.name}}">
             </div>
             <div class="form-group">
-                <label for="inputDescription">Opis</label>
+                <label for="inputDescription">{{ 'DESCRIPTION' | translate }}</label>
                 <textarea ng-required="true" id="inputDescription" name="description"
                           ng-model="notification.description" class="form-control">
                 </textarea>
             </div>
             <div class="form-group">
-                <label for="inputExpiresAt">Datum isteka</label>
+                <label for="inputExpiresAt">{{ 'EXPIRATION_DATE' | translate }}</label>
 
                 <div class="row">
                     <div class="col-md-6">
@@ -38,8 +38,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <button type="button" ui-sref="admin.overview" class="btn btn-alert">Odustani</button>
-                <button type="submit" class="btn btn-primary" ng-disabled="!canSubmit">Sacuvaj</button>
+                <button type="button" ui-sref="admin.overview" class="btn btn-alert">{{ 'CANCEL' | translate }}</button>
+                <button type="submit" class="btn btn-primary" ng-disabled="!canSubmit">{{ 'SAVE' | translate }}</button>
             </div>
         </form>
     </div>

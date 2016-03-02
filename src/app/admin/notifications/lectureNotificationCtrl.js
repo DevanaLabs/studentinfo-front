@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('siApp')
-  .controller('LectureNotificationCtrl', ['$scope', '$state', '$stateParams', 'toastr', 'LectureNotifications',
+  .controller('LectureNotificationCtrl', ['$scope', '$state', '$stateParams', 'Error', 'LectureNotifications',
     'DateTimeConverter', 'Mode', 'EVENTS',
-    function ($scope, $state, $stateParams, toastr, LectureNotifications, DateTimeConverter, Mode, EVENTS) {
+    function ($scope, $state, $stateParams, Error, LectureNotifications, DateTimeConverter, Mode, EVENTS) {
 
       $scope.canSubmit = true;
       $scope.notification = null;
@@ -12,20 +12,20 @@ angular.module('siApp')
 
       $scope.onSubmit = function () {
         if (!LectureNotifications.validate($scope.notification)) {
-          toastr.error('Podaci nisu validni, molimo pokusajte ponovo');
+          Error.error('INVALID_INPUT_DATA');
           return;
         }
 
         LectureNotifications.save($scope.notification).then(function (response) {
           if (response.data.success) {
-            toastr.success('Sacuvano');
+            Error.success('CHANGES_SAVED');
             $state.go('admin.notifications', {
               type: 'lectures',
               relatedEntityId: $stateParams.relatedEntityId
             });
           }
-        }, function () {
-          toastr.error('Greska!');
+        }, function (response) {
+          Error.httpError(response);
         });
       };
 
@@ -33,11 +33,10 @@ angular.module('siApp')
         LectureNotifications.get($stateParams.id)
           .then(function (response) {
             if (response.data.success) {
-              // console.log(response.data.success);
               $scope.notification = response.data.success.data.notification;
             }
-          }, function () {
-            toastr.error('Greska pri ucitavanju obavestenja!');
+          }, function (response) {
+            Error.httpError(response);
           }).finally(function () {
             $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
           });
@@ -47,8 +46,8 @@ angular.module('siApp')
           if (response.data.success) {
             $scope.notification.lecture = response.data.success.data.lecture;
           }
-        }, function () {
-          toastr.error('Greska!');
+        }, function (response) {
+          Error.httpError(response);
         }).finally(function () {
           $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
         });

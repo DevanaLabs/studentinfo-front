@@ -1,51 +1,52 @@
 <div>
     <div>
         <h2>
-            <span ng-if="staffType.slug === 'students'">Studenti</span>
-            <span ng-if="staffType.slug === 'assistants'">Asistenti</span>
-            <span ng-if="staffType.slug === 'professors'">Profesori</span>
+            <span ng-if="staffType.slug === 'students'">{{ 'STUDENTS' | translate }} </span>
+            <span ng-if="staffType.slug === 'assistants'">{{ 'ASSISTANTS' | translate }}</span>
+            <span ng-if="staffType.slug === 'professors'">{{ 'PROFESSORS' | translate }}</span>
         </h2>
         <hr>
         <button ng-disabled="pagination.selectedCount <= 0 || !canPerformActions" class="btn btn-success"
-                ng-click="issueRegisterTokens()">Posalji registracione tokene
+                ng-click="issueRegisterTokens()">
+            {{ 'ISSUE_REGISTER_TOKENS' | translate }}
         </button>
         <button ng-if="staffType.slug === 'students'" ng-disabled="!canPerformActions" class="btn btn-info"
                 ui-sref="admin.staff_new({type: 'students'})">
-            Dodaj novog studenta
+            {{ 'ADD_NEW_STUDENT' | translate }}
         </button>
         <button ng-if="staffType.slug === 'assistants'" ng-disabled="!canPerformActions" class="btn btn-info"
                 ui-sref="admin.staff_new({type: 'assistants'})">
-            Dodaj novog asistenta
+            {{ 'ADD_NEW_ASSISTANT' | translate }}
         </button>
         <button ng-if="staffType.slug === 'professors'" ng-disabled="!canPerformActions" class="btn btn-info"
                 ui-sref="admin.staff_new({type: 'professors'})">
-            Dodaj novog profesora
+            {{ 'ADD_NEW_PROFESSOR' | translate }}
         </button>
     </div>
     <hr>
     <div ng-if="!pagination.available" class="center-block">
-        <h1 class="text-center">Nema podataka</h1>
+        <h1 class="text-center">{{ 'NO_DATA' | translate }}</h1>
     </div>
     <div ng-if="pagination.available">
         <table class="table table-bordered">
             <thead>
             <tr>
                 <td colspan="6"><input class="form-control" type="text" ng-model="pagination.query"
-                                       placeholder="Pretraga">
+                                       placeholder="{{ 'SEARCH' | translate }}">
                 </td>
             </tr>
             <tr>
                 <th></th>
                 <th>
                 <span ng-if="staffType.slug === 'professors' || staffType.slug === 'assistants' ">
-                    Titula
+                    {{ 'TITLE' | translate }}
                 </span>
                 <span ng-if="staffType.slug === 'students'">
-                    Indeks
+                    {{ 'INDEX_NUMBER' | translate }}
                 </span>
                 </th>
-                <th>Ime i prezime</th>
-                <th>Email</th>
+                <th>{{ 'FIRST_AND_LAST_NAME' | translate }}</th>
+                <th>{{ 'EMAIL' | translate }}</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -67,24 +68,29 @@
                 <td>{{ ::entity.firstName }} {{ ::entity.lastName }}</td>
                 <td>{{ ::entity.email.email }}</td>
                 <td>
-                    <small ng-if="entity.registerTokenExpired" class="text-danger">Registracioni token istekao</small>
-                    <small ng-if="!entity.registerTokenExpired && !entity.registered" class="text-info">Registracioni
-                        token
-                        aktivan
+                    <small ng-if="entity.registerTokenExpired" class="text-danger">
+                        {{ 'REGISTER_TOKEN_EXPIRED' | translate }}
+                    </small>
+                    <small ng-if="!entity.registerTokenExpired && !entity.registered" class="text-info">
+                        {{ 'REGISTER_TOKEN_ACTIVE' | translate }}
                     </small>
                 </td>
                 <td>
                     <button ng-disabled="!canPerformActions" class="btn btn-danger btn-sm"
-                            ng-click="deleteEntity(entity)">Obrisi
+                            ng-click="deleteEntity(entity)">
+                        {{ 'DELETE' | translate }}
                     </button>
                     <a ui-sref="admin.staff_new({type: staffType.slug, id: entity.id})" ng-disabled="!canPerformActions"
-                       class="btn btn-info btn-sm">Izmeni
+                       class="btn btn-info btn-sm">
+                        {{ 'EDIT' | translate }}
                     </a>
                 </td>
             </tr>
             </tbody>
         </table>
-        <uib-pagination total-items="pagination.totalItems" items-per-page="pagination.perPage"
+        <uib-pagination previous-text="{{ 'PREV' | translate }}"
+                        next-text="{{ 'NEXT' | translate}}" total-items="pagination.totalItems"
+                        items-per-page="pagination.perPage"
                         ng-model="pagination.currentPage"></uib-pagination>
     </div>
 </div>

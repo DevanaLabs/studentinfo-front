@@ -4,7 +4,6 @@ angular.module('siApp')
   .config(['$stateProvider', '$httpProvider', 'toastrConfig', 'ROLES',
     function ($stateProvider, $httpProvider, toastrConfig, ROLES) {
       $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
-      $httpProvider.defaults.cache = true;
 
       angular.extend(toastrConfig, {
         autoDismiss: true,
@@ -15,7 +14,7 @@ angular.module('siApp')
         preventDuplicates: false,
         preventOpenDuplicates: false,
         target: 'body',
-        timeOut: 5000,
+        timeOut: 10000,
         closeButton: true,
         progressBar: true
       });

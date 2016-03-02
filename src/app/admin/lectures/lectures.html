@@ -1,32 +1,29 @@
 <div>
     <div>
-        <h2>Predavanja i vezbe</h2>
+        <h2>{{ 'LECTURES' | translate }}</h2>
         <hr>
-        <button class="btn btn-success" ui-sref="admin.lecture_new">Novo predavanje/vezbe</button>
+        <button class="btn btn-success" ui-sref="admin.lecture_new">{{ 'NEW_LECTURE' | translate }}</button>
     </div>
     <hr>
     <div ng-if="!pagination.available" class="center-block">
-        <h1 class="text-center">Nema podataka</h1>
+        <h1 class="text-center">{{ 'NO_DATA' | translate }}</h1>
     </div>
     <div ng-if="pagination.available">
         <table class="table table-bordered">
             <thead>
             <tr>
                 <td colspan="8">
-                    <input class="form-control" type="text" ng-model="pagination.query" placeholder="Pretraga">
+                    <input class="form-control" type="text" ng-model="pagination.query"
+                           placeholder="{{ 'SEARCH' | translate }}">
                 </td>
             </tr>
             <tr>
-                <th>Tip</th>
-                <th>
-                    Kurs
-                </th>
-                <th>
-                    Predavac
-                </th>
-                <th>Ucionica</th>
-                <th>Pocetak</th>
-                <th>Kraj</th>
+                <th>{{ 'TYPE' | translate }}</th>
+                <th>{{ 'COURSE' | translate }}</th>
+                <th>{{ 'TEACHER' | translate }}</th>
+                <th>{{ 'CLASSROOM' | translate }}</th>
+                <th>{{ 'START' | translate }}</th>
+                <th>{{ 'END' | translate }}</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -69,11 +66,11 @@
                 <td>
                     <button ng-disabled="!canPerformActions" class="btn btn-info btn-sm"
                             ui-sref="admin.notificationLecture_new({relatedEntityId: lecture.id})">
-                        Izmeni
+                        {{ 'EDIT' | translate }}
                     </button>
                     <button ng-disabled="!canPerformActions" class="btn btn-danger btn-sm"
                             ng-click="deleteLecture(lecture)">
-                        Obrisi
+                        {{ 'DELETE' | translate }}
                     </button>
                 </td>
             </tr>

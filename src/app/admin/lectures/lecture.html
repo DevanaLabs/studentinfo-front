@@ -1,43 +1,43 @@
 <div>
     <div>
-        <h2>Predavanja/vezbe</h2>
+        <h2>{{ 'DISCOURSE' | translate }}/{{ 'EXERCISES' | translate }}</h2>
         <hr>
     </div>
     <div>
         <form ng-submit="onSubmit()">
             <div class="form-group">
-                <label for="type">Tip</label>
+                <label for="type">{{ 'TYPE' | translate }} }}</label>
                 <select id="type" class="form-control" ng-model="lecture.type" ng-required="true"
                         ng-options="t.id as t.name | translate for t in types">
                 </select>
             </div>
             <div class="form-group">
-                <label for="course">Kurs</label>
+                <label for="course">{{ 'COURSE' | translate }} }}</label>
                 <select id="course" class="form-control" ng-model="lecture.course.id" ng-required="true"
                         ng-options="c.id as c.name for c in courses">
                 </select>
             </div>
             <div class="form-group">
-                <label for="teacher">Predavac</label>
+                <label for="teacher">{{ 'TEACHER' | translate }}</label>
                 <select id="teacher" class="form-control" ng-model="lecture.teacher.id" ng-required="true"
                         ng-options="t.id as t.title + ' ' + t.firstName + ' ' + t.lastName for t in teachers">
                 </select>
             </div>
             <div class="form-group">
-                <label for="classroom">Ucionica</label>
+                <label for="classroom">{{ 'CLASSROOM' | translate }}</label>
                 <select id="classroom" class="form-control" ng-model="lecture.classroom.id" ng-requred="true"
                         ng-options="c.id as c.name for c in classrooms">
                 </select>
             </div>
             <div class="form-group">
-                <label for="inputDay">Dan</label>
+                <label for="inputDay">{{ 'DAY' | translate }}</label>
                 <select id="inputDay" class="form-control" ng-model="lecture.time.startsAt.day"
                         ng-required="true"
                         ng-options="d.id as d.name | translate for d in days">
                 </select>
             </div>
             <div class="form-group">
-                <label for="inputStart">Vreme pocetka</label>
+                <label for="inputStart">{{ 'START_TIME' | translate }}</label>
                 <uib-timepicker id="inputStart" show-spinners="false" ng-model="lecture.time.startsAt.time"
                                 hour-step="1"
                                 minute-step="5"
@@ -45,15 +45,15 @@
                                 ng-required="true"></uib-timepicker>
             </div>
             <div class="form-group">
-                <label for="inputEnd">Vreme kraja</label>
+                <label for="inputEnd">{{ 'END_TIME' | translate }}</label>
                 <uib-timepicker id="inputEnd" show-spinners="false" ng-required="true"
                                 ng-model="lecture.time.endsAt.time"
                                 show-meridian="false"
                                 hour-step="1" minute-step="5"></uib-timepicker>
             </div>
             <div class="form-group">
-                <button type="button" ui-sref="admin.overview" class="btn btn-alert">Odustani</button>
-                <button type="submit" class="btn btn-primary" ng-disabled="!canSubmit">Sacuvaj</button>
+                <button type="button" ui-sref="admin.overview" class="btn btn-alert">{{ 'CANCEL' | translate }}</button>
+                <button type="submit" class="btn btn-primary" ng-disabled="!canSubmit">{{ 'SAVE' | translate }}</button>
             </div>
         </form>
     </div>
