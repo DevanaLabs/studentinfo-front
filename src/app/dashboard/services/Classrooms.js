@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('siApp.dashboard')
-  .factory('Classrooms', ['$rootScope', 'Dashboard', 'EVENTS', function ($rootScope, Dashboard, EVENTS) {
+  .factory('ClassroomsD', ['$rootScope', 'Dashboard', 'EVENTS', function ($rootScope, Dashboard, EVENTS) {
     var classroomsService = {};
 
     var classrooms = Dashboard.getClassrooms();

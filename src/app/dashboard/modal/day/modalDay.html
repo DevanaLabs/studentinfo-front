@@ -14,13 +14,12 @@
 				<h2 class="event-description" ng-repeat-end>{{::event.description}}</h2>
 			</div>
 			<div class="modal-info-subcontainer" id="no-events-container" ng-if="::day.events.length == 0">
-				<span>{{'NO_EVENTS_FOR_DAY' | translate}}</span>
+				<span class="event-description">{{'NO_EVENTS_FOR_DAY' | translate}}</span>
 			</div>
 			<div class="modal-info-container" id="course-events-container" ng-if="::courseEvents.length>0">
 				<h1 class="event-title" ng-repeat-start="event in ::courseEvents">{{::event.description}}</h1>
 				<h2 class="event-description" ng-repeat-end>
-					{{::event.datetime.startsAt | limitTo:5:11 }}h ({{::event.type}}) - {{event.classrooms[0].name}}
-					<span ng-repeat="classroom in event.classrooms" ng-if="$index != '0'">, {{classroom.name}}</span>
+					{{::event.datetime.startsAt | limitTo:5:11 }}h ({{::event.type}}) - {{event.classrooms[0].name}}<span ng-repeat="classroom in event.classrooms" ng-if="$index != '0'">, {{classroom.name}}</span>
 				</h2>
 			</div>
 		</div>

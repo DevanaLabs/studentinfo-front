@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('siApp.dashboard')
-  .controller('ClassroomsCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$translate', 'Classrooms', 
+  .controller('ClassroomsCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$translate', 'ClassroomsD', 
   function ($rootScope, $scope, $state, $stateParams, $translate, Classrooms) {
   	// subfilters shown in the filterbar 
     $scope.subfilters = Classrooms.getFilters();

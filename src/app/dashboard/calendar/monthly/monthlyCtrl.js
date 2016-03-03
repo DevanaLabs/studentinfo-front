@@ -14,14 +14,9 @@ angular.module('siApp.dashboard')
       }
     };
   }])
-  .filter('typeToClass', function() { 
+  .filter('typeToClass', ['CLASS_COLOR_MAP', function(CLASS_COLOR_MAP) { 
     return function(type) {
-      var classMap = {
-        "Испитни рок": "blue",
-        "Колоквијумска недеља": "orange",
-        "Нерадни дани": "gray",
-        "Плаћање школарине": "green"
-      };
+      var classMap = CLASS_COLOR_MAP;
       if (classMap[type] === -1) {
         return "yellow";
       }
@@ -29,4 +24,4 @@ angular.module('siApp.dashboard')
         return classMap[type];
       }
     };
-  });
+  }]);

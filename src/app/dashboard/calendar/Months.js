@@ -1,7 +1,13 @@
 'use strict';
 
 angular.module('siApp.dashboard')
-  .service('Months', ['GlobalEventsD', 'DateTimeConverter', function (GlobalEventsD, DateTimeConverter) {
+  .constant('CLASS_COLOR_MAP', {
+        "Испитни рок": "blue",
+        "Колоквијумска недеља": "orange",
+        "Нерадни дани": "gray",
+        "Плаћање школарине": "green"
+  })
+  .service('Months', ['GlobalEventsD', 'DateTimeConverter', 'CLASS_COLOR_MAP', function (GlobalEventsD, DateTimeConverter, CLASS_COLOR_MAP) {
     var MonthsService = {};
 
     var today = moment().hour(0).minute(0);
@@ -29,12 +35,7 @@ angular.module('siApp.dashboard')
     }
 
     function eventTypeToClass (type) { // converts event type to css class
-      var classMap = {
-        "Испитни рок": "blue",
-        "Колоквијумска недеља": "orange",
-        "Нерадни дани": "gray",
-        "Плаћање школарине": "green"
-      };
+      var classMap = CLASS_COLOR_MAP;
 
       if (classMap[type] === -1) {
         return "yellow";

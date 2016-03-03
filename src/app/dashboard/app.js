@@ -36,13 +36,13 @@ angular.module('siApp.dashboard', ['ui.router', 'LocalStorageModule', 'siApp.con
         templateUrl: 'dashboard/schedule/scheduleBase.html', 
         controller: 'ScheduleCtrl',
         resolve: {
-          EntityService: ['$stateParams', 'Groups', 'Classrooms', 'Teachers', function ($stateParams, Groups, Classrooms, Teachers) {
+          EntityService: ['$stateParams', 'Groups', 'ClassroomsD', 'Teachers', function ($stateParams, Groups, ClassroomsD, Teachers) {
             if ($stateParams.type === 'group') {
               return Groups;
             } else if ($stateParams.type === 'teacher') {
               return Teachers;
             } else if ($stateParams.type === 'classroom') {
-              return Classrooms;
+              return ClassroomsD;
             }
           }]
         }
@@ -67,13 +67,13 @@ angular.module('siApp.dashboard', ['ui.router', 'LocalStorageModule', 'siApp.con
         templateUrl: 'dashboard/modal/lecture/modalLecture.html',
         controller: 'LectureModalCtrl',
         resolve: {
-          EntityService: ['$stateParams', 'Groups', 'Classrooms', 'Teachers', function ($stateParams, Groups, Classrooms, Teachers) {
+          EntityService: ['$stateParams', 'Groups', 'ClassroomsD', 'Teachers', function ($stateParams, Groups, ClassroomsD, Teachers) {
             if ($stateParams.type === 'group') {
               return Groups;
             } else if ($stateParams.type === 'teacher') {
               return Teachers;
             } else if ($stateParams.type === 'classroom') {
-              return Classrooms;
+              return ClassroomsD;
             }
           }]
         }
@@ -83,13 +83,13 @@ angular.module('siApp.dashboard', ['ui.router', 'LocalStorageModule', 'siApp.con
         templateUrl: 'dashboard/modal/notifications/modalNotifications.html',
         controller: 'NotificationsModalCtrl',
         resolve: {
-          EntityService: ['$stateParams', 'Groups', 'Classrooms', 'Teachers', function ($stateParams, Groups, Classrooms, Teachers) {
+          EntityService: ['$stateParams', 'Groups', 'ClassroomsD', 'Teachers', function ($stateParams, Groups, ClassroomsD, Teachers) {
             if ($stateParams.type === 'group') {
               return Groups;
             } else if ($stateParams.type === 'teacher') {
               return Teachers;
             } else if ($stateParams.type === 'classroom') {
-              return Classrooms;
+              return ClassroomsD;
             }
           }]
         }

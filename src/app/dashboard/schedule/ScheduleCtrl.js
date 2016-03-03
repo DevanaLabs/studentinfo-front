@@ -30,7 +30,7 @@ angular.module('siApp.dashboard')
       if($stateParams.type == 'group')
         $state.go('dashboard.preSchedule.groups', {year: $scope.timetableObject.year});
       else if($stateParams.type == 'classroom')
-        $state.go('dashboard.preSchedule.classroom', {floor: $scope.timetableObject.floor});
+        $state.go('dashboard.preSchedule.classrooms', {floor: $scope.timetableObject.floor});
       else if($stateParams.type == 'teacher')
         $state.go('dashboard.preSchedule.teachers');
     };

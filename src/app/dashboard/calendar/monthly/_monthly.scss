@@ -17,6 +17,7 @@
 			display: block;
 			background: white;
 			flex: 0 0 auto;
+			cursor: pointer;
 			.arrow-container {
 				height: 50px;
 				width: 30px;
@@ -49,6 +50,7 @@
 					border: solid 1px #eee;
 					font-size: 18px;
 					max-width: 14.2857143%;
+					cursor: pointer;
 					.event-wrapper {
 						display: block;
 						padding: 5px 8px;

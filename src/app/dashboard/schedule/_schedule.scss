@@ -51,6 +51,7 @@
 									border-left: 5px solid rgba(0, 0, 0, .2);
 									box-sizing: border-box;
 									z-index: 100;
+									cursor: pointer;
 									.lecture-caption, .lecture-sub-caption {
 										color: white;
 										display: block;
@@ -68,6 +69,12 @@
 								}
 								.lecture-wrapper.orange {
 									background: $orange
+								}
+								.lecture-wrapper:hover {
+									background: darken($blue, 10%);
+								}
+								.lecture-wrapper.orange:hover {
+									background: darken($orange, 10%);
 								}
 								.lecture-wrapper.smaller-text * {
 									font-size: 18px;

@@ -27,6 +27,7 @@
 			display: table;
 			padding: 5px 5px;
 			border: 1px solid transparent;
+			cursor: pointer;
 			table {
 				margin: auto;
 				th, td {
@@ -104,5 +105,43 @@
 	}
 	.month-table-wrapper:hover {
 		border-color: #999
+	}
+
+	#legend-wrapper {
+		min-width: 75%;
+		margin-top: 40px;
+		float: right;
+		.legend-sub-wrapper {
+			float: right;
+			position: relative;
+			width: 30%;
+			.legend-icon {
+				display: inline-block;
+				height: 30px;
+				width: 30px;
+				background: $blue;
+				vertical-align: middle;
+				margin-right: 10px;
+			}
+			.legend-icon.orange {
+				background: $orange;
+			}
+			.legend-icon.gray {
+				background: $gray;
+			}
+			.legend-icon.green {
+				background: $green;
+			}
+			.legend-icon.yellow {
+				background: $yellow;
+			}
+			.legentCaption {
+				display: inline-block;
+				vertical-align: middle;
+				line-height: 40px;
+				font-size: 18px;
+				font-weight: 600;
+			}
+		}
 	}
 }
