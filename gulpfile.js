@@ -53,7 +53,8 @@ var paths = {
   distAssetsSvgDev: './dist/assets/svg',
   distAssetsSvgProd: './dist/assets/svg',
   config: './config.json',
-  distConfig: './dist/scripts'
+  distConfig: './dist/scripts',
+  distPartials: './dist/scripts'
 };
 
 /**
@@ -108,8 +109,9 @@ functions.scriptedPartials = function () {
       removeComments: true
     }))
     .pipe(ngHtml2js({
-      moduleName: "student-info-frontend"
-    }));
+      moduleName: 'siApp.partials'
+    }))
+    .pipe(gulp.dest(paths.distPartials));
 };
 
 functions.buildVendorScripts = function () {
@@ -121,8 +123,8 @@ functions.buildVendorScripts = function () {
 };
 
 functions.buildAppScripts = function () {
-  var scriptedPartials = functions.scriptedPartials(paths);
-  var validatedAppScripts = functions.validatedAppScripts(paths);
+  var scriptedPartials = functions.scriptedPartials();
+  var validatedAppScripts = functions.validatedAppScripts();
   var config = functions.buildConfig();
 
   return es.merge(scriptedPartials, validatedAppScripts, config)
@@ -192,9 +194,10 @@ functions.buildIndex = function () {
   var appScripts = functions.buildAppScripts();
   var vendorStyles = functions.buildVendorStyles();
   var appStyles = functions.buildAppStyles();
+  var config = functions.buildConfig();
 
   var vendor = mergeStream(vendorScripts, vendorStyles);
-  var app = mergeStream(appScripts, appStyles);
+  var app = mergeStream(appScripts, appStyles, config);
 
   return gulp.src(paths.index)
     .pipe(gulpif(util.isProduction(), gulp.dest(paths.distProd), gulp.dest(paths.distDev)))
