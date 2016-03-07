@@ -71,7 +71,7 @@ angular.module('siApp').factory('oauthInterceptor', ['$q', '$cookies', function 
       if (config.url.indexOf('api') === -1) {
         deferred.resolve(config);
       } else if (config.method === 'GET') {
-        config.url += '?access_token=' + $cookies.get('access_token');
+        config.url += '&access_token=' + $cookies.get('access_token');
         deferred.resolve(config);
       } else if (config.method === 'POST' || config.method === 'PUT' || config.method === 'DELETE') {
         config.data.access_token = $cookies.get('access_token');

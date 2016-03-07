@@ -7,7 +7,8 @@ angular.module("siApp")
       var cachedjson = JSON.parse(localStorage.getItem("cachedResource://data")).value;
       if (typeof cachedjson.success != 'undefined') {
         if (typeof cachedjson.success.data != 'undefined') {
-          json = cachedjson;
+          json = cachedjson.success.data;
+          console.log(json);
         }
       }
     }
@@ -15,17 +16,46 @@ angular.module("siApp")
     refreshData();
 
     function refreshData () {
-      //console.log("Refreshing data...");
-      var jsonPromise = $cachedResource('data', (API_BASE_URL + 'data/'));
+      console.log("Refreshing data...");
+      var jsonPromise = $cachedResource('data', (API_BASE_URL + 'data/?semester=2'));
       jsonPromise.get().$promise.then(function (data) {
         //console.log(data);
         json = data.success.data;
+        //console.log(json);
         //console.log("Done refreshing data...");
+        tempReplaceLectureType();
       });
       $timeout(function () {
         refreshData()
       }, 5 * 60 * 1000);
     }
+
+    function tempReplaceLectureType () {
+      var t = [
+        "Предавања",
+        "Вежбе",
+        "Предавање и Вежбе",
+        "Практикум"
+      ];
+      json.groups = _.forEach(json.groups, function(group) {
+        console.log(group);
+        group.lectures = _.forEach(group.lectures, function(lecture){
+          lecture.type = t[lecture.type*1];
+        })
+      });
+      json.classrooms = _.forEach(json.classrooms, function(classroom) {
+        classroom.lectures = _.forEach(classroom.lectures, function(lecture){
+          lecture.type = t[lecture.type*1];
+        })
+      });
+      json.teachers = _.forEach(json.teachers, function(teacher) {
+        teacher.lectures = _.forEach(teacher.lectures, function(lecture){
+          lecture.type = t[lecture.type*1];
+        })
+      });
+      console.log(json);
+    }
+
 
     function getAll () {
       return json;
@@ -155,7 +185,7 @@ angular.module("siApp")
       });
       for (var i = 0; i < json.teachers.length; i++) {
         //if(json.teachers[i].lectures.length > 0) {}
-        abc[json.teachers[i].lastName.substr(0, 1)].push(json.teachers[i]);
+        abc[json.teachers[i].lastName.substr(0, 1).toUpperCase()].push(json.teachers[i]);
       }
       fD.teachers = abc;
       //console.log(fD);
