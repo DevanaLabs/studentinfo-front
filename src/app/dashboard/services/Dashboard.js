@@ -46,7 +46,7 @@ angular.module('siApp.dashboard')
 
         var refresh = function () {
           $rootScope.$broadcast(EVENTS.API.REFRESH_START);
-          Api.fetchDashboardData().then(function (response) {
+          Api.fetchDashboardData(2).then(function (response) {
             if (response.data.success) {
               dashboard.setData(response.data.success.data);
               $rootScope.$broadcast(EVENTS.API.REFRESH_SUCCESS);
