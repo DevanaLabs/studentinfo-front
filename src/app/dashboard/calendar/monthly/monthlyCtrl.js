@@ -13,15 +13,4 @@ angular.module('siApp.dashboard')
         $state.go('dashboard.monthly', {'month': tmp.month()+1, 'year': tmp.year()});
       }
     };
-  }])
-  .filter('typeToClass', ['CLASS_COLOR_MAP', function(CLASS_COLOR_MAP) { 
-    return function(type) {
-      var classMap = CLASS_COLOR_MAP;
-      if (classMap[type] === -1) {
-        return "yellow";
-      }
-      else {
-        return classMap[type];
-      }
-    };
   }]);

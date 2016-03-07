@@ -25,7 +25,7 @@
 		.month-table-wrapper {
 			margin: auto;
 			display: table;
-			padding: 5px 5px;
+			padding: 5px 10px 10px;
 			border: 1px solid transparent;
 			cursor: pointer;
 			table {
@@ -104,7 +104,9 @@
 		}
 	}
 	.month-table-wrapper:hover {
-		border-color: #999
+		border-color: #999;
+		border-radius: 5px;
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2)
 	}
 
 	#legend-wrapper {

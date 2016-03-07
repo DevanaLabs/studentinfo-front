@@ -19,7 +19,7 @@
 			<div class="modal-info-container" id="course-events-container" ng-if="::courseEvents.length>0">
 				<h1 class="event-title" ng-repeat-start="event in ::courseEvents">{{::event.description}}</h1>
 				<h2 class="event-description" ng-repeat-end>
-					{{::event.datetime.startsAt | limitTo:5:11 }}h ({{::event.type}}) - {{event.classrooms[0].name}}<span ng-repeat="classroom in event.classrooms" ng-if="$index != '0'">, {{classroom.name}}</span>
+					<span ng-class="event.type | typeToClass">{{::event.datetime.startsAt | limitTo:5:11 }}h</span> ({{::event.type}}) - {{event.classrooms[0].name}}<span ng-repeat="classroom in event.classrooms" ng-if="$index != '0'">, {{classroom.name}}</span>
 				</h2>
 			</div>
 		</div>

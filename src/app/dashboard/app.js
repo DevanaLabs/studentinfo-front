@@ -107,4 +107,23 @@ angular.module('siApp.dashboard', ['ui.router', 'LocalStorageModule', 'siApp.con
   .constant('LECTURE_TYPES', {
     LECTURE: ['Предавања', 'Предавање', 'Predavanja', 'Predavanje']
   })
+  .constant('CLASS_COLOR_MAP', {
+    "Испитни рок": "blue",
+    "Испит": "blue",
+    "Колоквијумска недеља": "orange",
+    "Колоквијум": "orange",
+    "Нерадни дани": "gray",
+    "Плаћање школарине": "green"
+  })
+  .filter('typeToClass', ['CLASS_COLOR_MAP', function(CLASS_COLOR_MAP) { 
+    return function(type) {
+      var classMap = CLASS_COLOR_MAP;
+      if (classMap[type] === -1) {
+        return "yellow";
+      }
+      else {
+        return classMap[type];
+      }
+    };
+  }])
   ;

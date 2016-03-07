@@ -1,12 +1,6 @@
 'use strict';
 
 angular.module('siApp.dashboard')
-  .constant('CLASS_COLOR_MAP', {
-        "Испитни рок": "blue",
-        "Колоквијумска недеља": "orange",
-        "Нерадни дани": "gray",
-        "Плаћање школарине": "green"
-  })
   .service('Months', ['GlobalEventsD', 'DateTimeConverter', 'CLASS_COLOR_MAP', function (GlobalEventsD, DateTimeConverter, CLASS_COLOR_MAP) {
     var MonthsService = {};
 
