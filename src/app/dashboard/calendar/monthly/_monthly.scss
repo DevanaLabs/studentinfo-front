@@ -38,6 +38,7 @@
 			flex-direction: column;
 			padding: 40px;
 			width: calc(100% - 200px);
+			max-width: calc(100% - 200px);
 			height: 100%;
 			flex: 1 1 0;
 			.week-wrapper {

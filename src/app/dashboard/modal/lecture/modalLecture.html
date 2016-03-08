@@ -1,5 +1,5 @@
 <div class="modal-wrapper">
-	<div class="titlebar shadow blue" ng-class="{'orange' : lectureData.type != 'Предавања'}">
+	<div class="titlebar shadow blue" ng-class="{'orange' : lectureData.type !== 0}">
 		<span class="caption">{{::title}}</span>
 		<div class="close-but" ui-sref="dashboard.schedule({type: $stateParams.type, id: $stateParams.sourceId})"><div class="close-but-icon"></div></div>
 	</div>
@@ -7,9 +7,9 @@
 	<div id="modal-inner-wrapper" class="lecture">
 		<div class="modal-info-container" id="lecture-container">
 			<h2 class="teacher-name">{{::lectureData.teacher.firstName}} {{::lectureData.teacher.lastName}}</h2>
-			<h3 class="lecture-type">{{::lectureData.type}}</h3>
+			<h3 class="lecture-type">{{::lectureData.type | lectureTypeTranslate}}</h3>
 			<hr>
-			<h3 class="lecture-time" ng-class="{'orange' : lectureData.type != 'Предавања'}">{{::lectureTime}}</h3>
+			<h3 class="lecture-time" ng-class="{'orange' : lectureData.type !== 0}">{{::lectureTime}}</h3>
 			<h3 class="lecture-location">{{::lectureData.classroom.name}}</h3>
 		</div>
 		

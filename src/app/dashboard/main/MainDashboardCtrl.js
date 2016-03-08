@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('siApp.dashboard')
-  .controller('MainDashboardCtrl', ['$rootScope', '$scope', 'Dashboard', 'EVENTS', '$state', '$http', '$timeout', 'ScreensaverTimer', 'BACKGROUNDS', '$location', '$window', 
-    function ($rootScope, $scope, Dashboard, EVENTS, $state, $http, $timeout, ScreensaverTimer, BACKGROUNDS, $location, $window) {
+  .controller('MainDashboardCtrl', ['$rootScope', '$scope', 'Dashboard', 'EVENTS', '$state', '$http', 
+    '$timeout', 'ScreensaverTimer', 'BACKGROUNDS', '$location', '$window', 'toastr', '$translate',
+    function ($rootScope, $scope, Dashboard, EVENTS, $state, $http, 
+      $timeout, ScreensaverTimer, BACKGROUNDS, $location, $window, toastr, $translate) {
 
       // $rootScope.$on(EVENTS.API.REFRESH_START, function () {
       //   console.log('Dashboard refresh start');
@@ -11,6 +13,11 @@ angular.module('siApp.dashboard')
       // $rootScope.$on(EVENTS.API.REFRESH_SUCCESS, function () {
       //   console.log('Dashboard refresh success');
       // });
+
+      $rootScope.$on(EVENTS.API.REFRESH_ERROR, function (errorEvent, response) {
+        console.log(response);
+        toastr.error($translate.instant(response.data.error.toUpperCase()) + " (" + response.status + ")", $translate.instant('DATA_FETCH_ERROR'));
+      });
 
       $scope.state = function (state) {
         return $state.is(state);

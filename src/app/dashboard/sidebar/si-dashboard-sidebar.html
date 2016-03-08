@@ -1,5 +1,5 @@
 <div id="sidebar">
-  <div id="sidebar-wrapper">
+  <div id="sidebar-wrapper" ng-class="{'active': !$state.is('dashboard.home')}">
     <div id="sidebar-logo" ui-sref="dashboard.home">{{ 'APP_NAME' | translate }}</div>
   
     <ul class="sidebar-list">

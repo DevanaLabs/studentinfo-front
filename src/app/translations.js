@@ -53,6 +53,8 @@ angular.module('siApp')
       'IMPORT': 'Увоз',
       'EXERCISES': 'Вежбе',
       'DISCOURSE': 'Предавање', 
+      'DISCOURSE_AND_EXERCISES': 'Предавање и вежбе', 
+      'PRACTICUM': 'Практикум', 
       'NO_EVENTS_FOR_DAY': 'Нема дешавања на овај дан.',
       'SEND_FEEDBACK': 'Пошаљите нам сугестије и предлоге',
       'THANKYOU': 'Хвала!',
@@ -64,6 +66,8 @@ angular.module('siApp')
       'REGISTER_TOKENS_ISSUED': 'Регистрациони токени су издати',
       'SUCCESS': 'Успех',
       'ERROR': 'Грешка',
+      'DATA_FETCH_ERROR': 'Грешка при дохватању података',
+      'ACCESS_DENIED': 'Сервер је одбио приступ',
       'FIRST_NAME': 'Име',
       'LAST_NAME': 'Презиме',
       'EMAIL': 'Е пошта',
@@ -108,6 +112,9 @@ angular.module('siApp')
       'ADD_NEW_PROFESSOR': 'Додај новог професора',
       'NEW_USER': 'Нови корисник'
     });
+
+
+
 
 
     $translateProvider.translations('sr-lat', {

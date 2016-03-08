@@ -5,7 +5,7 @@ angular.module('siApp.dashboard')
     return {
       scope: '',
       replace: true,
-      controller: ['$scope', '$timeout', 'BACKGROUNDS', function($scope, $timeout, BACKGROUNDS){
+      controller: ['$scope', '$timeout', 'BACKGROUNDS', '$state', function($scope, $timeout, BACKGROUNDS, $state){
               function nextImg () {
                 var num = Math.floor((moment().valueOf()) / 86400000 % BACKGROUNDS.length);
 
@@ -26,6 +26,8 @@ angular.module('siApp.dashboard')
               tick();
 
               nextImg();
+
+              $scope.$state = $state;
             }], 
       templateUrl: 'dashboard/sidebar/si-dashboard-sidebar.html'
     };

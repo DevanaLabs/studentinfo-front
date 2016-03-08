@@ -39,7 +39,7 @@
                   height: calc({{ ((lecture.time.endsAt % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 * 100}}% + {{ ((lecture.time.endsAt  % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 -1 }}px);
                 " 
                 ng-class="{
-                  'orange' : LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1, 
+                  'orange' : lecture.type !== 0, 
                   'has-notif' : lecture.notifications.length > 0, 
                   'smaller-text' : ((lecture.time.endsAt - lecture.time.startsAt) <= 7200) && (lecture.course.name.length > 25)
                 }"
@@ -47,11 +47,10 @@
                 <span class="lecture-caption">{{lecture.course.name}}</span>
 
                 <span class="lecture-sub-caption" ng-if="params.type=='group' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) !== -1">{{lecture.classroom.name}}</span>
-                <span class="lecture-sub-caption" ng-if="params.type=='group' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1">{{lecture.classroom.name}} ({{lecture.type}})</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='group' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1">{{lecture.classroom.name}} ({{lecture.type | lectureTypeTranslate}})</span>
                 <span class="lecture-sub-caption" ng-if="params.type=='classroom'">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
                 <span class="lecture-sub-caption" ng-if="params.type=='teacher'">
-                  <span>{{lecture.groups[0].name}}</span>
-                  <span ng-repeat="group in lecture.groups" ng-if="$index > 0">, {{group.name}}</span>
+                  <span>{{lecture.groups[0].name}}</span><span ng-repeat="group in lecture.groups" ng-if="$index > 0">, {{group.name}}</span>
                 </span>
 
               </div>
@@ -67,7 +66,7 @@
                   height: calc({{ ((lecture.time.endsAt % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 * 100}}% + {{ ((lecture.time.endsAt  % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 -1 }}px);
                 " 
                 ng-class="{
-                  'orange' : LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1, 
+                  'orange' : lecture.type !== 0, 
                   'has-notif' : lecture.notifications.length > 0, 
                   'smaller-text' : ((lecture.time.endsAt - lecture.time.startsAt) <= 7200) && (lecture.course.name.length > 25)
                 }"
@@ -75,11 +74,10 @@
                 <span class="lecture-caption">{{lecture.course.name}}</span>
 
                 <span class="lecture-sub-caption" ng-if="params.type=='group' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) !== -1">{{lecture.classroom.name}}</span>
-                <span class="lecture-sub-caption" ng-if="params.type=='group' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1">{{lecture.classroom.name}} ({{lecture.type}})</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='group' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1">{{lecture.classroom.name}} ({{lecture.type | lectureTypeTranslate}})</span>
                 <span class="lecture-sub-caption" ng-if="params.type=='classroom'">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
                 <span class="lecture-sub-caption" ng-if="params.type=='teacher'">
-                  <span>{{lecture.groups[0].name}}</span>
-                  <span ng-repeat="group in lecture.groups" ng-if="$index > 0">, {{group.name}}</span>
+                  <span>{{lecture.groups[0].name}}</span><span ng-repeat="group in lecture.groups" ng-if="$index > 0">, {{group.name}}</span>
                 </span>
 
               </div>
@@ -96,7 +94,7 @@
                   height: calc({{ ((lecture.time.endsAt % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 * 100}}% + {{ ((lecture.time.endsAt  % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 -1 }}px);
                 " 
                 ng-class="{
-                  'orange' : LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1, 
+                  'orange' : lecture.type !== 0, 
                   'has-notif' : lecture.notifications.length > 0, 
                   'smaller-text' : ((lecture.time.endsAt - lecture.time.startsAt) <= 7200) && (lecture.course.name.length > 25)
                 }"
@@ -104,11 +102,10 @@
                 <span class="lecture-caption">{{lecture.course.name}}</span>
 
                 <span class="lecture-sub-caption" ng-if="params.type=='group' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) !== -1">{{lecture.classroom.name}}</span>
-                <span class="lecture-sub-caption" ng-if="params.type=='group' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1">{{lecture.classroom.name}} ({{lecture.type}})</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='group' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1">{{lecture.classroom.name}} ({{lecture.type | lectureTypeTranslate}})</span>
                 <span class="lecture-sub-caption" ng-if="params.type=='classroom'">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
                 <span class="lecture-sub-caption" ng-if="params.type=='teacher'">
-                  <span>{{lecture.groups[0].name}}</span>
-                  <span ng-repeat="group in lecture.groups" ng-if="$index > 0">, {{group.name}}</span>
+                  <span>{{lecture.groups[0].name}}</span><span ng-repeat="group in lecture.groups" ng-if="$index > 0">, {{group.name}}</span>
                 </span>
 
               </div>
@@ -125,7 +122,7 @@
                   height: calc({{ ((lecture.time.endsAt % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 * 100}}% + {{ ((lecture.time.endsAt  % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 -1 }}px);
                 " 
                 ng-class="{
-                  'orange' : LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1, 
+                  'orange' : lecture.type !== 0, 
                   'has-notif' : lecture.notifications.length > 0, 
                   'smaller-text' : ((lecture.time.endsAt - lecture.time.startsAt) <= 7200) && (lecture.course.name.length > 25)
                 }"
@@ -133,11 +130,10 @@
                 <span class="lecture-caption">{{lecture.course.name}}</span>
 
                 <span class="lecture-sub-caption" ng-if="params.type=='group' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) !== -1">{{lecture.classroom.name}}</span>
-                <span class="lecture-sub-caption" ng-if="params.type=='group' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1">{{lecture.classroom.name}} ({{lecture.type}})</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='group' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1">{{lecture.classroom.name}} ({{lecture.type | lectureTypeTranslate}})</span>
                 <span class="lecture-sub-caption" ng-if="params.type=='classroom'">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
                 <span class="lecture-sub-caption" ng-if="params.type=='teacher'">
-                  <span>{{lecture.groups[0].name}}</span>
-                  <span ng-repeat="group in lecture.groups" ng-if="$index > 0">, {{group.name}}</span>
+                  <span>{{lecture.groups[0].name}}</span><span ng-repeat="group in lecture.groups" ng-if="$index > 0">, {{group.name}}</span>
                 </span>
 
               </div>
@@ -154,7 +150,7 @@
                   height: calc({{ ((lecture.time.endsAt % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 * 100}}% + {{ ((lecture.time.endsAt  % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 -1 }}px);
                 " 
                 ng-class="{
-                  'orange' : LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1, 
+                  'orange' : lecture.type !== 0, 
                   'has-notif' : lecture.notifications.length > 0, 
                   'smaller-text' : ((lecture.time.endsAt - lecture.time.startsAt) <= 7200) && (lecture.course.name.length > 25)
                 }"
@@ -162,11 +158,10 @@
                 <span class="lecture-caption">{{lecture.course.name}}</span>
 
                 <span class="lecture-sub-caption" ng-if="params.type=='group' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) !== -1">{{lecture.classroom.name}}</span>
-                <span class="lecture-sub-caption" ng-if="params.type=='group' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1">{{lecture.classroom.name}} ({{lecture.type}})</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='group' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1">{{lecture.classroom.name}} ({{lecture.type | lectureTypeTranslate}})</span>
                 <span class="lecture-sub-caption" ng-if="params.type=='classroom'">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
                 <span class="lecture-sub-caption" ng-if="params.type=='teacher'">
-                  <span>{{lecture.groups[0].name}}</span>
-                  <span ng-repeat="group in lecture.groups" ng-if="$index > 0">, {{group.name}}</span>
+                  <span>{{lecture.groups[0].name}}</span><span ng-repeat="group in lecture.groups" ng-if="$index > 0">, {{group.name}}</span>
                 </span>
 
               </div>
@@ -183,7 +178,7 @@
                   height: calc({{ ((lecture.time.endsAt % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 * 100}}% + {{ ((lecture.time.endsAt  % 86400 + 900) - lecture.time.startsAt % 86400) / 3600 -1 }}px);
                 " 
                 ng-class="{
-                  'orange' : LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1, 
+                  'orange' : lecture.type !== 0, 
                   'has-notif' : lecture.notifications.length > 0, 
                   'smaller-text' : ((lecture.time.endsAt - lecture.time.startsAt) <= 7200) && (lecture.course.name.length > 25)
                 }"
@@ -191,11 +186,10 @@
                 <span class="lecture-caption">{{lecture.course.name}}</span>
 
                 <span class="lecture-sub-caption" ng-if="params.type=='group' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) !== -1">{{lecture.classroom.name}}</span>
-                <span class="lecture-sub-caption" ng-if="params.type=='group' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1">{{lecture.classroom.name}} ({{lecture.type}})</span>
+                <span class="lecture-sub-caption" ng-if="params.type=='group' && LECTURE_TYPES.LECTURE.indexOf(lecture.type) === -1">{{lecture.classroom.name}} ({{lecture.type | lectureTypeTranslate}})</span>
                 <span class="lecture-sub-caption" ng-if="params.type=='classroom'">{{lecture.teacher.firstName}} {{lecture.teacher.lastName}}</span>
                 <span class="lecture-sub-caption" ng-if="params.type=='teacher'">
-                  <span>{{lecture.groups[0].name}}</span>
-                  <span ng-repeat="group in lecture.groups" ng-if="$index > 0">, {{group.name}}</span>
+                  <span>{{lecture.groups[0].name}}</span><span ng-repeat="group in lecture.groups" ng-if="$index > 0">, {{group.name}}</span>
                 </span>
 
               </div>

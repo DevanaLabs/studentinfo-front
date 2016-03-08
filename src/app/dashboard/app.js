@@ -115,6 +115,12 @@ angular.module('siApp.dashboard', ['ui.router', 'LocalStorageModule', 'siApp', '
     "Нерадни дани": "gray",
     "Плаћање школарине": "green"
   })
+  .constant('LECTURE_TYPE_MAP', [
+    "DISCOURSE",//"Предавање",
+    "EXERCISES",//"Вежбе",
+    "DISCOURSE_AND_EXERCISES",//"Предавање и Вежбе",
+    "PRACTICUM"//"Практикум"
+  ])
   .filter('typeToClass', ['CLASS_COLOR_MAP', function(CLASS_COLOR_MAP) { 
     return function(type) {
       var classMap = CLASS_COLOR_MAP;
@@ -124,6 +130,12 @@ angular.module('siApp.dashboard', ['ui.router', 'LocalStorageModule', 'siApp', '
       else {
         return classMap[type];
       }
+    };
+  }])
+  .filter('lectureTypeTranslate', ['LECTURE_TYPE_MAP', '$translate', function(LECTURE_TYPE_MAP, $translate) { 
+    return function(type) {
+      var lectureTypeMap = LECTURE_TYPE_MAP;
+      return $translate.instant(lectureTypeMap[type]);
     };
   }])
   ;

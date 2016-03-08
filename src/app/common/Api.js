@@ -26,7 +26,8 @@ angular.module('siApp')
         fetchDashboardData: function (semester) {
           return $http.get(ApiUrlBuilder.build('data'), {
             data: {
-              semester: semester
+              semester: semester, 
+              year: moment().year()
             }
           });
         },

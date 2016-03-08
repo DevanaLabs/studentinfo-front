@@ -14,18 +14,22 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.9",
+    "angular": "~1.5.0",
     "angular-ui-router": "~0.2.17",
     "angular-animate": "~1.4.9",
     "angular-moment": "~0.10.3",
     "bootstrap-sass": "~3.3.6",
     "angular-toastr": "~1.7.0",
     "lodash": "~4.2.0",
-    "moment": "momentjs#~2.11.1",
+    "moment": "~2.11.2",
     "angular-local-storage": "~0.2.3",
     "angular-translate": "~2.9.0",
     "angular-bootstrap": "~1.1.2",
     "ng-file-upload": "~12.0.1",
     "please-wait": "~0.0.5"
+  },
+  "resolutions": {
+    "angular": "1.5.0",
+    "moment": "2.11.2"
   }
 }
