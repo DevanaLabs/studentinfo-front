@@ -178,7 +178,7 @@ functions.buildConfig = function () {
 
     if (util.isDevelopment()) {
         env = 'dev';
-    } else if (util.isProduction()) {
+    } else if (util.isProduction()){
         env = 'prod';
     }
 
@@ -242,29 +242,31 @@ gulp.task('build', ['build-app'], function () {
             port: 3314,
             start: true
         });
+
+        // watch index
+        gulp.watch(paths.index, function () {
+            return functions.buildIndex()
+                .pipe(livereload());
+        });
+
+        // watch app scripts
+        gulp.watch(paths.scripts, function () {
+            return functions.buildAppScripts()
+                .pipe(livereload());
+        });
+
+        // watch html partials
+        gulp.watch(paths.partials, function () {
+            return functions.buildPartials()
+                .pipe(livereload());
+        });
+
+        // watch styles
+        gulp.watch(paths.styles, function () {
+            return functions.buildAppStyles()
+                .pipe(livereload());
+        });
+    } else {
+        return functions.buildIndex();
     }
-
-    // watch index
-    gulp.watch(paths.index, function () {
-        return functions.buildIndex()
-            .pipe(livereload());
-    });
-
-    // watch app scripts
-    gulp.watch(paths.scripts, function () {
-        return functions.buildAppScripts()
-            .pipe(livereload());
-    });
-
-    // watch html partials
-    gulp.watch(paths.partials, function () {
-        return functions.buildPartials()
-            .pipe(livereload());
-    });
-
-    // watch styles
-    gulp.watch(paths.styles, function () {
-        return functions.buildAppStyles()
-            .pipe(livereload());
-    });
 });
