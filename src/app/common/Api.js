@@ -23,6 +23,12 @@ angular.module('siApp')
         logout: function () {
           return $http.delete(ApiUrlBuilder.build('auth'));
         },
+        registerGet: function (token) {
+          return $http.get(ApiUrlBuilder.build('register/' + token));
+        },
+        registerPost: function (token, password) {
+          return $http.post(ApiUrlBuilder.build('register/' + token), password);
+        },
         fetchDashboardData: function (semester) {
           return $http.get(ApiUrlBuilder.build('data'), {
             data: {

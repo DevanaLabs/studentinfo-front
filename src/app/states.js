@@ -15,11 +15,12 @@ angular.module('siApp')
           controller: 'LoginCtrl'
         })
         .state('register', {
-          url: '/register',
+          url: '/register/{registerToken}',
           data: {
             authorizedRoles: ROLES.none
           },
-          templateUrl: 'register/register.html'
+          templateUrl: 'register/register.html',
+          controller: 'RegisterCtrl'
         })
         .state('dashboard', {
           url: '/app',

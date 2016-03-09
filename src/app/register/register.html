@@ -1,6 +1,6 @@
 <div id="form-wrapper">
   <div id="inner-form-wrapper" class="register-inner-form-wrapper">
-    <form action="">
+    <form action="" ng-submit="onSubmit()">
       <h1>{{ 'REGISTER.WELCOME' | translate }}</h1>
     
       <div class="input-wrapper disabled">
@@ -11,20 +11,20 @@
       </div>
     
       <div class="input-wrapper">
-        <input class="form-input" ng-model="credentials.password" type="password" id="password-field" placeholder="{{ 'REGISTER.PASSWORD' | translate }}">
+        <input class="form-input" ng-model="credentials.password.password" type="password" id="password-field" placeholder="{{ 'REGISTER.PASSWORD' | translate }}">
         <div class="img-wrapper">
           <img class="icon" src="assets/svg/registerIconLockOutline.svg" alt="">
         </div>
       </div>
     
       <div class="input-wrapper">
-        <input class="form-input" ng-model="credentials.password" type="password" id="password-confirmation-field" placeholder="{{ 'REGISTER.PASSWORD_CONFIRM' | translate }}">
+        <input class="form-input" ng-model="credentials.password.passwordConfirmation" type="password" id="password-confirmation-field" placeholder="{{ 'REGISTER.PASSWORD_CONFIRM' | translate }}">
         <div class="img-wrapper">
           <img class="icon" src="assets/svg/registerIconLockFull.svg" alt="">
         </div>
       </div>
     
-      <button id="send-button" ng-submit="onSubmit()">{{ 'REGISTER.SIGNUP' | translate }}</button>
+      <button id="send-button">{{ 'REGISTER.SIGNUP' | translate }}</button>
     </form>
   </div>
 </div>
