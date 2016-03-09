@@ -11,6 +11,7 @@
          ng-repeat="group in ::groupsForYear() track by group.id" 
          ng-attr-id="{{'group'+ group.id}}"
          ui-sref="dashboard.schedule({type:'group', id: {{group.id}}})"
+         ng-if="group.lectures.length>0"
          >{{ ::group.name }}</div>
   </div>
 </div>
