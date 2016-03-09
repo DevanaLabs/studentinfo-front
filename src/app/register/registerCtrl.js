@@ -20,7 +20,7 @@ angular.module('siApp')
       });
 
       $scope.onSubmit = function () {
-        if (Register.validatePassword($scope.credentials.password, $scope.credentials.passwordConfirmation)) {
+        if (Register.validatePassword($scope.credentials.password.password, $scope.credentials.password.passwordConfirmation)) {
           Register.registerUser($stateParams.registerToken, $scope.credentials.password).then(function (response) {
             if (response.data.success) {
               Error.success('REGISTER.SUCCESS');
