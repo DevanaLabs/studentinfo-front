@@ -21,7 +21,7 @@ angular.module('siApp')
       'LOGIN.WELCOME': 'Добродошли на Студент инфо',
       'LOGIN.EMAIL': 'Ваша адреса',
       'LOGIN.ERROR.INVALID_INPUT': 'Непотпуно унети подаци',
-      'LOGIN.SIGNIN': 'Приајвите се',
+      'LOGIN.SIGNIN': 'Пријавите се',
       'LOGIN.ERROR.INVALID_CREDENTIALS': 'Нетачна адреса или лозинка',
       'LOGIN.PASSWORD': "Ваша лозинка", 
       'REGISTER.WELCOME': "Добродошли на Студент инфо", 
