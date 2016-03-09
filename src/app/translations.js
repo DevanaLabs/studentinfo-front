@@ -29,6 +29,7 @@ angular.module('siApp')
       'REGISTER.PASSWORD': "Унесите лозинку",
       'REGISTER.PASSWORD_CONFIRM': "Поновите лозинку",
       'REGISTER.SIGNUP': "Приајвите се",
+      'REGISTER.SUCCESS': "Успешно сте се регистровали",
       'TIMETABLE': "Распоред часова", 
       'CALENDAR': "Календар активности",
       'FEEDBACK': 'Повратне информације',
