@@ -51,7 +51,7 @@ angular.module('siApp.dashboard')
       }
 
       var currentRevision = "";
-      getRevision();
+      //getRevision();
 
       document.addEventListener('contextmenu', function (event) {
         event.preventDefault();
