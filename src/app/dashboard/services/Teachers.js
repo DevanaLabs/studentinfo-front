@@ -27,7 +27,7 @@ angular.module('siApp.dashboard')
 
       teachersService.getShown = function () {
         return _.groupBy(teachers, function (teacher) {
-          return teacher.lastName[0];
+          return teacher.lastName[0].toUpperCase();
         });
       };
 

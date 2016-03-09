@@ -20,9 +20,9 @@ angular.module('siApp.dashboard')
       var letters = angular.element(".teacher-header");
       var pos = angular.element(".pickers-wrapper")[0].scrollTop;
       for (var i = 0; i < letters.length; i++) {
-        if (letters[i].offsetTop >= pos) {
+        if (letters[i].offsetTop+100 >= pos) {
           angular.element(".subfilter-wrapper.letter.active").removeClass('active');
-          angular.element("#letter-filter-" + letters[i].id.substr(13,1)).addClass('active');
+          angular.element("#letter-filter-" + letters[i].id.substr(13,1).toUpperCase()).addClass('active');
           break;
         }
       }

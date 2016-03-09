@@ -11,6 +11,7 @@
          ng-repeat="classroom in classroomsForFloor()" 
          ng-attr-id="{{'classroom'+classroom.id}}"
          ui-sref="dashboard.schedule({type:'classroom', id: {{classroom.id}}})"
+         ng-if="classroom.lectures.length>0"
          >{{::classroom.name}}</div>
   </div>
 </div>

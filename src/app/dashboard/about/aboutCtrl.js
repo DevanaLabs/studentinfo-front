@@ -18,11 +18,11 @@ angular.module('siApp.dashboard')
 
 	$scope.sendFeedback = function() {
 		var feedbackValue = angular.element("#write");
-		if(feedbackValue !== "") {
-			Feedback.sendDashboardFeedback(feedbackValue.val());
-			showThanks();
-			feedbackValue.val('');
+    if (Feedback.validate(feedbackValue.val())) {
+      Feedback.sendDashboardFeedback(feedbackValue.val())
+      showThanks();
 		}
+    feedbackValue.val('');
 	};
   }]);
  
