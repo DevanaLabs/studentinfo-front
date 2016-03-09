@@ -46,6 +46,8 @@
 			padding: 0 50px;
 			//text-decoration: none;
 			cursor: pointer;
+			//transition: border .3s;
+			//border: solid 0px;
 			.sidebar-item-icon {
 				width: 50px;
 				height: 38px;
@@ -57,6 +59,10 @@
 				margin-left: 30px;
 				vertical-align: middle;
 			}
+		}
+		.sidebar-item-wrapper.active {
+			//border-left: 10px solid white;
+			background: #111;
 		}
 		#sidebar-bottom {
 			position: absolute;
@@ -79,6 +85,6 @@
 		}
 	}
 	#sidebar-wrapper.active {
-		background: black;
+		background: #222;
 	}
 }

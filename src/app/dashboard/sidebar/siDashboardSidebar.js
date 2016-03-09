@@ -28,6 +28,28 @@ angular.module('siApp.dashboard')
               nextImg();
 
               $scope.$state = $state;
+
+              $scope.isActive = function(state) {
+                if(state==='calendar') {
+                  return (
+                    $state.is('dashboard.yearly') || 
+                    $state.is('dashboard.monthly') ||
+                    $state.is('dashboard.day')
+                  );
+                }
+                else if(state==='schedule') {
+                  return (
+                    $state.is('dashboard.preSchedule.groups') || 
+                    $state.is('dashboard.preSchedule.classrooms') ||
+                    $state.is('dashboard.preSchedule.teachers') ||
+                    $state.is('dashboard.schedule') ||
+                    $state.is('dashboard.lecture')
+                  );
+                }
+                else if(state==='about') {
+                  return ( $state.is('dashboard.about') );
+                }
+              }
             }], 
       templateUrl: 'dashboard/sidebar/si-dashboard-sidebar.html'
     };

@@ -5,6 +5,10 @@ angular.module('siApp')
     function (Api) {
       var feedback = {};
 
+      feedback.validate = function (content) {
+        return content !== '';
+      };
+
       feedback.sendAdminPanelFeedback = function (content) {
         content = 'Admin : ' + content + ' ' + moment().format('HH:mm:ss, DD/MM/YYYY');
         return Api.sendFeedback(content);
