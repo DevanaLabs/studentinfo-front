@@ -5,6 +5,10 @@ $bg: #fff;
 @import "spinner";
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
 
+#collapseEventsSubmenu {
+  margin-left: 20px;
+}
+
 #please-wait.ng-hide-add {
   animation: 0.3s hideAnimation ease;
 }

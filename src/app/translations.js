@@ -111,12 +111,9 @@ angular.module('siApp')
       'ADD_NEW_STUDENT': 'Додај новог студента',
       'ADD_NEW_ASSISTANT': 'Додај новог асистента',
       'ADD_NEW_PROFESSOR': 'Додај новог професора',
-      'NEW_USER': 'Нови корисник'
+      'NEW_USER': 'Нови корисник',
+      'APP': 'Апликација'
     });
-
-
-
-
 
     $translateProvider.translations('sr-lat', {
       'FACULTY_NAME': 'Računarski fakultet',
