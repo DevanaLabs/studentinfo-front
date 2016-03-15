@@ -24,7 +24,7 @@
 						.dayCell {
 							height: 4%;
 							text-align: center;
-							font-size: 18px;
+							@include font-size-text-normal();
 							color: #666666;
 							font-weight: 400;
 							//padding-bottom: 9px;
@@ -56,16 +56,24 @@
 									.lecture-caption, .lecture-sub-caption {
 										color: white;
 										display: block;
-										font-size: 24px;
-										line-height: 26px;
+										@include font-size-text-big();
+										line-height: 1.1em;
 										font-weight: 600;
 										z-index: 120;
 									}
 									.lecture-sub-caption {
-										font-size: 21px;
-										line-height: 24px;
+										@include font-size-text-bigger();
+										line-height: 1.1em;
 										margin-top: 5px;
 										opacity: .7;
+									}
+								}
+								@media screen and (max-width: 1919px) {
+									.lecture-wrapper {
+										padding: 5px;
+										.lecture-sub-caption {
+											margin-top: 2px;
+										}
 									}
 								}
 								.lecture-wrapper.orange {
@@ -78,8 +86,8 @@
 									background: darken($orange, 10%);
 								}
 								.lecture-wrapper.smaller-text * {
-									font-size: 18px;
-									line-height: 21px;
+									@include font-size-text-normal();
+									line-height: 1.1em;
 								}
 								.lecture-wrapper.has-notif::after {
 									display: block;
@@ -92,6 +100,28 @@
 									background: white;
 									background: url(/assets/svg/iconNotif40x40.svg);
 									line-height: 40px;
+								}
+								.lecture-wrapper::after {
+								    display: inline-block;
+								    height: 10px;
+								    z-index: 1000;
+								    width: 100%;
+								    content: '';
+								    bottom: 0;
+								    position: absolute;
+								    right: 0;
+								}
+								.lecture-wrapper::after {
+									background: linear-gradient(to top, rgba(16,128,204,1) 0%,rgba(16,128,204,0) 100%);
+								}
+								.lecture-wrapper.orange::after {
+								    background: linear-gradient(to top, rgba(240,125,82,1) 0%,rgba(240,125,82,0) 100%);									
+								}
+								.lecture-wrapper:hover::after {
+									background: linear-gradient(to top, rgba(12,98,157,1) 0%,rgba(12,98,157,0) 100%);
+								}
+								.lecture-wrapper.orange:hover::after {
+								    background: linear-gradient(to top, rgba(236,90,35,1) 0%,rgba(236,90,35,0) 100%);									
 								}
 							}
 						}

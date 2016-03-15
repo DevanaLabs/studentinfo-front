@@ -2,12 +2,12 @@
 	background: white;
 	height: 100%;
 	.event-title {
-		font-size: 28px;
+		@include font-size-heading();
 		margin: 12px 0 6px !important;
 		font-weight: 600;
 	}
 	.event-description {
-		font-size: 18px;
+		@include font-size-text-normal();
 	}
 	#modal-inner-wrapper.lecture {
 		padding: 30px 100px;
@@ -15,16 +15,19 @@
 			font-weight: 600;
 			margin: .3em 0;
 			color: $textgray;
+			@include font-size-heading();
 		}
 		.lecture-type {
 			font-style: italic;
 			margin: .5em 0;
 			color: $textgray;
+			@include font-size-heading-second();
 		}
 		.lecture-time {
 			margin: .5em 0;
 			color: $blue;
 			text-transform: capitalize;
+			@include font-size-heading-second();
 		}
 		.lecture-time.orange {
 			color: $orange;
@@ -32,6 +35,7 @@
 		.lecture-location {
 			margin: .5em 0;
 			color: $textgray;
+			@include font-size-heading-second();
 		}
 	}
 	#modal-inner-wrapper.arrows {

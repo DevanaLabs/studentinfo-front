@@ -1,8 +1,8 @@
 <div id="dashboard-container" class="container-fluid" ng-click="baseClick()">
-  <div class="col-md-3">
+  <div id="sidebar-container">
     <si-dashboard-sidebar></si-dashboard-sidebar>
   </div>
-  <div class="col-md-9">
-    <div ui-view id="dashboard-ui-view"></div>
+  <div id="dashboard-inner-container">
+    <div ui-view id="dashboard-ui-view" ng-class="currentState()"></div>
   </div>
 </div>

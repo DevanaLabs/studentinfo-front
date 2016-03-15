@@ -19,7 +19,8 @@
 	}
 	.month-wrapper {
 		max-width: 25%;
-		min-width: 328px;
+		min-width: 220px;
+		width: 25%;
 		float: left;
 		min-height: 220px;
 		.month-table-wrapper {
@@ -31,7 +32,7 @@
 			table {
 				margin: auto;
 				th, td {
-					font-size: 18px;
+					@include font-size-text-normal();
 					text-transform: capitalize;
 				}
 				td {
@@ -141,8 +142,27 @@
 				display: inline-block;
 				vertical-align: middle;
 				line-height: 40px;
-				font-size: 18px;
+				@include font-size-text-normal();
 				font-weight: 600;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1919px) {
+	#yearly-wrapper {
+		.month-wrapper {
+			min-width: 270px;
+			width: 33%;
+			max-width: 33%;
+			.month-table-wrapper table td {
+				width: 34px;
+			}
+		}
+		#legend-wrapper {
+			width: 100%;
+			.legend-sub-wrapper {
+				width: 50%;
 			}
 		}
 	}

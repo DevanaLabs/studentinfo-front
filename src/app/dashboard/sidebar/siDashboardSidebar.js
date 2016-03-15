@@ -19,6 +19,8 @@ angular.module('siApp.dashboard')
 
               function tick () {
                 $scope.currentTime = moment().format('HH:mm - D. MMMM, dddd');
+                $scope.currentTimeShortA = moment().format('HH:mm');
+                $scope.currentTimeShortB = moment().format('D. MMM');
                 $timeout(function () {
                   tick();
                 }, 1000);

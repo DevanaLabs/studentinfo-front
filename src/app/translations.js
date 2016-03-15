@@ -6,6 +6,7 @@ angular.module('siApp')
     $translateProvider.translations('sr-cyr', {
       'FACULTY_NAME': 'Рачунарски факултет',
       'APP_NAME': 'Студент инфо',
+      'APP_NAME_SHORT': 'Си',
       'OVERVIEW': 'Преглед',
       'PROFILE': 'Профил',
       'EVENTS': 'Догађаји',

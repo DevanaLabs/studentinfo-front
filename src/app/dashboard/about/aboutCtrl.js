@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('siApp.dashboard')
-  .controller('AboutCtrl', ['$scope', 'Feedback', '$timeout', 
-  function ($scope, Feedback, $timeout) {
+  .controller('AboutCtrl', ['$scope', 'Feedback', '$timeout', 'localStorageService', 
+  function ($scope, Feedback, $timeout, localStorageService) {
     function showThanks () {
       angular.element('#about-wrapper').animate({
       	scrollTop: 0
@@ -24,5 +24,7 @@ angular.module('siApp.dashboard')
 		}
     feedbackValue.val('');
 	};
+
+  $scope.displayKeyboard = localStorageService.get('auth').user.id == 718;
   }]);
  

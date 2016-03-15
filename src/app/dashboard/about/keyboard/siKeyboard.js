@@ -37,9 +37,20 @@ angular.module('siApp.dashboard')
 
             // Delete
             if ($this.hasClass('delete')) {
-              var val = $write.val();
-
-              $write.val(val.substr(0, val.length - 1));
+              // if text not selected
+              if($write[0].selectionStart === $write[0].selectionEnd){
+                var s = $write[0].selectionStart;
+                $write[0].value = $write[0].value.substr(0, s-1) + $write[0].value.substr(s);
+                $write[0].selectionStart = s-1;
+                $write[0].selectionEnd = s-1;
+              }
+              else { // if text selected
+                var s = $write[0].selectionStart;
+                var e = $write[0].selectionEnd;
+                $write[0].value = $write[0].value.substr(0, s) + $write[0].value.substr(e);
+                $write[0].selectionStart = s;
+                $write[0].selectionEnd = s; 
+              }
               return false;
             }
 

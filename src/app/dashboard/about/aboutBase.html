@@ -58,11 +58,11 @@
     <div id="feedback-wrapper" class="titlebar bottom shadow noflex" ng-class="{'active' : showKeyboard}">
         <h2 ng-click="showKeyboard = true" id="show-feedback" class="textblue">{{'SEND_FEEDBACK' | translate}}</h2>
 
-        <div id="input-wrapper">
+        <div id="input-wrapper" ng-class="{'hiddenKeyboard': !displayKeyboard}">
             <textarea name="" id="write" placeholder="Додирните за тастатуру" ng-focus="showKeyboard = true" 
             onclick="$('#about-wrapper').animate({scrollTop: 1500}, 100);"></textarea>
             <button id="send-feedback" ng-click="sendFeedback()">Пошаљи</button>
-            <si-keyboard></si-keyboard>
+            <si-keyboard ng-if="displayKeyboard"></si-keyboard>
         </div>
         <hr>
     </div>

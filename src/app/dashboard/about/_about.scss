@@ -34,8 +34,8 @@
           text-align: left;
           .info-item {
             display: block;
-            line-height: 44px;
-            font-size: 24px;
+            line-height: 2.3em;
+            @include font-size-text-normal();
             .info-icon {
               display: inline-block;
               height: 30px;
@@ -46,7 +46,7 @@
           }
         }
         .mini-caption {
-          font-size: 18px;
+          @include font-size-text-normal();
           font-weight: 600;
         }
         #people-wrapper {
@@ -54,8 +54,8 @@
           margin-top: 20px;
           .people-sub-wrapper {
             width: 100%;
-            font-size: 24px;
-            line-height: 30px;
+            @include font-size-text-normal();
+            line-height: 2.3em;
             margin-top: 30px;
             .people-head {
               font-weight: 600;
@@ -63,7 +63,6 @@
             }
             .people-item {
               display: block;
-              margin: 10px 0;
             }
           }
         }
@@ -97,6 +96,7 @@
     	text-align: center;
     	line-height: 70px;
       margin: 0 0 30px;
+      @include font-size-heading();
     }
     #input-wrapper {
       height: auto;
@@ -112,7 +112,7 @@
         box-sizing: border-box;
         padding: 20px;
         resize: none;
-        font-size: 21px;
+        @include font-size-text-bigger();
       }
       #write:focus {
         box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
@@ -124,7 +124,7 @@
         border-radius: 5px;
         outline: none;
         color: white;
-        font-size: 21px;
+        @include font-size-text-bigger();
         font-weight: 600;
         margin: 50px 0;
         transition: all .3s;
@@ -139,8 +139,79 @@
         background: darken($green, 20%);
       }
     }
+    #input-wrapper.hiddenKeyboard {
+      ::-webkit-input-placeholder {
+        color: white;
+      }
+      :-moz-placeholder {
+        color: white;
+      }
+      ::-moz-placeholder {
+        color: white;
+      }
+      :-ms-input-placeholder {
+        color: white;
+      }
+      #keyboard-container {
+        display: none;
+      }
+    }
+
     hr {
       clear: both;
+    }
+  }
+}
+
+@media screen and (max-width: 1919px) {
+  #about-wrapper #top-about-wrapper .about-column {
+    width: 49%;
+  }
+  #about-wrapper #top-about-wrapper .about-column.people {
+    width: 100%;
+    .about-wrapper {
+      width: 100%;
+      #people-wrapper {
+        .people-sub-wrapper {
+          width: 50%; 
+          float: left;
+          text-align: center;
+          .people-sub-sub-wrapper {
+            text-align: left;
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+  #about-wrapper #top-about-wrapper 
+  .about-column .about-wrapper .info-wrapper .info-item .info-icon {
+    height: 20px;
+    width: 20px;
+  }
+  #about-wrapper #feedback-wrapper #show-feedback {
+    margin: 0;
+    line-height: 32px;
+  }
+  #about-wrapper #feedback-wrapper #input-wrapper {
+    ::-webkit-input-placeholder {
+      color: white;
+    }
+    :-moz-placeholder {
+      color: white;
+    }
+    ::-moz-placeholder {
+      color: white;
+    }
+    :-ms-input-placeholder {
+      color: white;
+    }
+    #send-feedback {
+      margin: 20px 0;
+      height: 60px;
+    }
+    #keyboard-container {
+      display: none;
     }
   }
 }

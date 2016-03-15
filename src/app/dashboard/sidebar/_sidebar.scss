@@ -40,6 +40,9 @@
 			border-bottom: 1px solid rgba(255, 255, 255, .2);
 			cursor: pointer;
 		}
+		#sidebar-logo-mini {
+			display: none;
+		}
 		.sidebar-item-wrapper {
 			display: block;
 			height: 120px;
@@ -55,7 +58,7 @@
 			}
 			.sidebar-item-text {
 				line-height: 120px;
-				font-size: 24px;
+				@include font-size-text-big();
 				margin-left: 30px;
 				vertical-align: middle;
 			}
@@ -63,6 +66,31 @@
 		.sidebar-item-wrapper.active {
 			//border-left: 10px solid white;
 			background: #111;
+		}
+		@media screen and (max-width: 1919px) {
+			#sidebar-logo {
+				height: 120px;
+				padding: 30px 0;
+			}
+			.sidebar-item-wrapper {
+				height: 110px;
+				.sidebar-item-text {
+					line-height: 110px;
+				}
+			}
+		}
+		@media screen and (max-width: 1439px) {
+			#sidebar-logo {
+				height: 100px;
+				padding: 20px 0;
+				font-size: 42px;
+			}
+			.sidebar-item-wrapper {
+				height: 100px;
+				.sidebar-item-text {
+					line-height: 100px;
+				}
+			}
 		}
 		#sidebar-bottom {
 			position: absolute;
@@ -72,10 +100,13 @@
 			border-top: 1px solid rgba(255, 255, 255, .2);
 			#time-container {
 				display: block;
-				font-size: 18px;
+				@include font-size-text-normal();
 				line-height: 40px;
 				text-align: center;
 				height: auto;
+			}
+			#time-container-short {
+				display: none;
 			}
 		}
 		hr {
@@ -86,5 +117,44 @@
 	}
 	#sidebar-wrapper.active {
 		background: #222;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	#dashboard-container #sidebar-container {
+		min-width: 0;
+		width: 120px;
+	}
+	#dashboard-container #dashboard-inner-container {
+		max-width: calc(100% - 120px);
+	}
+	#sidebar #sidebar-wrapper .sidebar-item-wrapper .sidebar-item-text,
+	#sidebar #sidebar-wrapper #sidebar-logo {
+		display: none;
+	}
+	#sidebar #sidebar-wrapper .sidebar-item-wrapper {
+		padding: 30px 36px;
+	}
+	#sidebar #sidebar-wrapper #sidebar-logo-mini {
+		display: block;
+		height: 100px;
+		padding: 20px 0;
+		font-size: 42px;
+		font-weight: 300;
+		line-height: 60px;
+		text-align: center;
+		border-bottom: 1px solid rgba(255, 255, 255, .2);
+		cursor: pointer;
+	}
+	#sidebar #sidebar-wrapper #sidebar-bottom #time-container {
+		display: none;
+	}
+	#sidebar #sidebar-wrapper #sidebar-bottom #time-container-short {
+		display: block;
+		@include font-size-text-normal();
+		line-height: 22px;
+		margin: 10px 0;
+		text-align: center;
+		height: auto;
 	}
 }

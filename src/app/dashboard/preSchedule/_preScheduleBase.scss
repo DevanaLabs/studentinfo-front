@@ -18,7 +18,7 @@
         margin-right: 10px;
       }
       .filter-item-text {
-        font-size: 21px;
+        @include font-size-text-bigger();
         //font-weight: 600;
         color: white;
         vertical-align: middle;
@@ -52,7 +52,7 @@
           text-align: center;
           cursor: pointer;
           .subfilter-text {
-            font-size: 18px;
+            @include font-size-text-normal();
             font-weight: 600;
             line-height: 80px;
             padding: 10px 30px;
@@ -74,6 +74,7 @@
           }
         }
         .subfilter-wrapper.letter {
+          max-width: 3.33%;
           .subfilter-text {
             height: 40px;
             width: 40px;
@@ -153,4 +154,73 @@
       }
     }
   }
+}
+
+@media screen and (max-width: 1919px) {
+  #preschedule-wrapper #preschedule-filter-wrapper 
+  .filter-item-wrapper .filter-item-text {
+    line-height: 80px;
+  }
+  #preschedule-wrapper #preschedule-ui-view #preschedule-ui-view-subcontainer
+  .titlebar.subfilter .subfilter-wrapper .subfilter-text {
+    padding: 10px 20px;
+  }
+  #preschedule-wrapper #preschedule-ui-view #preschedule-ui-view-subcontainer
+  .pickers-wrapper .group-picker {
+    height: 100px;
+    line-height: 100px;
+    font-size: 32px;
+  }
+  #preschedule-wrapper #preschedule-ui-view #preschedule-ui-view-subcontainer 
+  .pickers-wrapper .teacher-picker, 
+  #preschedule-wrapper #preschedule-ui-view #preschedule-ui-view-subcontainer 
+  .pickers-wrapper .classrooom-picker {
+    height: 70px;
+    line-height: 70px;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 1439px) {
+  #preschedule-wrapper #preschedule-ui-view #preschedule-ui-view-subcontainer 
+  .titlebar.subfilter {
+    height: 70px;
+  }
+  #preschedule-wrapper #preschedule-ui-view #preschedule-ui-view-subcontainer 
+  .titlebar.subfilter .subfilter-wrapper .subfilter-text {
+    line-height: 70px;
+    padding: 10px 15px;
+  }
+  #preschedule-wrapper #preschedule-ui-view #preschedule-ui-view-subcontainer 
+  .titlebar.subfilter .subfilter-wrapper.letter .subfilter-text {
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+  }
+  #preschedule-wrapper #preschedule-ui-view #preschedule-ui-view-subcontainer 
+  .pickers-wrapper .group-picker {
+    height: 90px;
+    line-height: 90px;
+    font-size: 28px;
+    border-radius: 7px;
+  }
+  #preschedule-wrapper #preschedule-ui-view #preschedule-ui-view-subcontainer 
+  .pickers-wrapper .teacher-picker, 
+  #preschedule-wrapper #preschedule-ui-view #preschedule-ui-view-subcontainer 
+  .pickers-wrapper .classrooom-picker {
+    height: 60px;
+    line-height: 60px;
+    font-size: 16px;
+    border-radius: 7px;
+  }
+  
+}
+
+
+@media screen and (max-width: 1365px) {
+  #preschedule-wrapper #preschedule-ui-view #preschedule-ui-view-subcontainer 
+  .pickers-wrapper .group-picker {
+    width: 23%;
+  }
+ 
 }

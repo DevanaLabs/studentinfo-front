@@ -97,7 +97,8 @@ angular.module('siApp.dashboard', ['ui.router', 'LocalStorageModule', 'siApp', '
       .state('dashboard.about', {
         url: '/about/', 
         templateUrl: 'dashboard/about/aboutBase.html',
-        controller: 'AboutCtrl'
+        controller: 'AboutCtrl',
+        data: { transition: 'asdf'}
       })
       ;
   }])
