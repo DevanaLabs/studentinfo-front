@@ -29,12 +29,29 @@ li:active {
     background: $blue;
 }
 
+.icon {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    margin: 18px auto;
+}
+
 .capslock, .tab, .left-shift {
     clear: left;
 }
 
 .tab, .delete {
     width: 71px;
+    #delete-icon, #tab-icon {
+        display: block;
+        margin: 18px auto;
+    }
+    #delete-icon {
+        background: url(/assets/svg/backspace.svg);
+    }
+    #tab-icon {
+        background: url(/assets/svg/tab.svg);
+    }
 }
 
 .capslock {
@@ -43,14 +60,31 @@ li:active {
 
 .return {
     width: 138px;
+    #return-icon {
+        margin: 18px 20px;
+        float: right;
+        background: url(/assets/svg/return.svg);
+    }
 }
 
 .left-shift {
     width: 180px;
+    text-align: left;
+    .shift-icon {
+        margin: 18px 20px;
+        float: left;
+        background: url(/assets/svg/shift.svg);
+    }
 }
 
 .right-shift {
     width: 171px;
+    text-align: right;
+    .shift-icon {
+        margin: 18px 20px;
+        float: right;
+        background: url(/assets/svg/shift.svg);
+    }
 }
 
 .lastitem {

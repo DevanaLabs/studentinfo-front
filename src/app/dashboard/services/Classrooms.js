@@ -15,7 +15,7 @@ angular.module('siApp.dashboard')
     };
 
     classroomsService.getForFloor = function (floor) {
-      return _.values(_.pickBy(classrooms, {'floor': floor*1}));
+      return _.sortBy(_.values(_.pickBy(classrooms, {'floor': floor*1})), function(classroom) { return classroom.name; });
     };
 
     classroomsService.getFilters = function () {

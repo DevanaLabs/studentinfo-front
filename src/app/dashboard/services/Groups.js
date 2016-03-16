@@ -15,7 +15,8 @@ angular.module('siApp.dashboard')
     };
 
     groupsService.getForYear = function (year) {
-      return _.values(_.pickBy(groups, {'year': year*1}));
+      return _.sortBy(_.values(_.pickBy(groups, {'year': year*1})), function(group) { return group.name; });
+
     };
 
     groupsService.getFilters = function () {

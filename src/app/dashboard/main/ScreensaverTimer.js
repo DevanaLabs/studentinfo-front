@@ -8,7 +8,7 @@ angular.module("siApp.dashboard")
 
     var startTimer = function () {
       timer = $timeout(function () {
-        $state.go('dashboard.home');
+        $state.go('dashboard.screensaver');
         //console.log("Timer fired!");
       }, 5 * 60 * 1000);
     };
@@ -16,9 +16,7 @@ angular.module("siApp.dashboard")
     var resetTimer = function () {
       $timeout.cancel(timer);
       //console.log("Timer reset!");
-      timer = $timeout(function () {
-        startTimer();
-      }, 5 * 60 * 1000);
+      startTimer();
     };
 
     startTimer();

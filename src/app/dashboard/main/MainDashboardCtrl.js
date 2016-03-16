@@ -59,4 +59,7 @@ angular.module('siApp.dashboard')
 
 
       $scope.currentState = function() { return $state.current.name.substr(10); }
+
+
+
     }]);

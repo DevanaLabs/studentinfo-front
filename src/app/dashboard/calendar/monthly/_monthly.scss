@@ -57,6 +57,12 @@
 						padding: 5px 8px;
 						color: white;
 					}
+
+					@media screen and (max-width: 1919px) {
+						.event-wrapper {
+							padding: 2px 5px;
+						}
+					}
 					.bottom-date {
 						position: absolute;
 						bottom: 5px;
@@ -120,6 +126,19 @@
 				}
 				.day-wrapper.orange:hover {
 					background: darken($orange, 10%);
+				}
+				.day-wrapper.orange::after {
+					height: 100%;
+					width: 10px;
+					background: linear-gradient(270deg, $orange 0,rgba(240, 125, 82, 0));
+					display: inline-block;
+					content: '';
+					bottom: 0;
+					right: 0;
+					position: absolute;
+				}
+				.day-wrapper.orange:hover::after {
+					background: linear-gradient(270deg, darken($orange, 10%) 0,rgba(240, 125, 82, 0));
 				}
 				.event-wrapper.gray {
 					background: $gray;

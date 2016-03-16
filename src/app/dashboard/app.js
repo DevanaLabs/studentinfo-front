@@ -6,6 +6,12 @@ angular.module('siApp.dashboard', ['ui.router', 'LocalStorageModule', 'siApp', '
       .state('dashboard.home', {
         url: '/'
       })
+      .state('dashboard.screensaver', {
+        url: '/', 
+        controller: ['$state', function($state) {
+          $state.go('dashboard.home');
+        }]
+      })
       .state('dashboard.preSchedule', {
         url: '/preSchedule',
         templateUrl: 'dashboard/preSchedule/preScheduleBase.html'
