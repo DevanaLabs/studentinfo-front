@@ -29,6 +29,9 @@ angular.module('siApp')
         registerPost: function (token, password) {
           return $http.post(ApiUrlBuilder.build('register/' + token), password);
         },
+        recoverPost: function (token, password) {
+          return $http.post(ApiUrlBuilder.build('register/recoverPasswordConfirmation/' + token), password);
+        },
         fetchDashboardData: function (semester) {
           return $http.get(ApiUrlBuilder.build('data'), {
             data: {

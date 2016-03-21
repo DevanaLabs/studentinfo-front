@@ -4,7 +4,7 @@ angular.module('siApp')
   .factory('ApiUrlBuilder', ['$rootScope', 'API_URL', 'EVENTS',
     function ($rootScope, API_URL, EVENTS) {
       var urlBuilder = {
-        baseEndpoints: ['auth', 'oauth/access_token', 'register', 'user'],
+        baseEndpoints: ['auth', 'oauth/access_token', 'register', 'user', 'register/recoverPasswordConfirmation/'],
         slug: ''
       };
 
@@ -18,7 +18,10 @@ angular.module('siApp')
           getParams = urlBuilder.makeGetParams(params);
         }
 
-        if (_.includes(urlBuilder.baseEndpoints, resource)) {
+        if (
+          _.includes(urlBuilder.baseEndpoints, resource) || 
+          _.includes(urlBuilder.baseEndpoints, resource.substr(0, resource.indexOf('/'))) 
+          ) {
           return API_URL + '/' + resource + getParams;
         }
         return API_URL + '/' + urlBuilder.slug + '/' + resource + getParams;

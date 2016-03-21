@@ -61,5 +61,22 @@ angular.module('siApp.dashboard')
       $scope.currentState = function() { return $state.current.name.substr(10); }
 
 
-
+      //$rootScope.$on('$stateChangeStart',
+      //function(event, toState, toParams, fromState, fromParams, options){
+      //  if(fromState.name === 'dashboard.screensaver') {
+      //    return;
+      //  }
+      //  var change = {
+      //    time: moment().format(),
+      //    from: {
+      //      name: fromState.name,
+      //      params: fromParams
+      //    },
+      //    to: {
+      //      name: toState.name,
+      //      params: toParams
+      //    }
+      //  }
+      //  console.log(JSON.stringify(change));
+      //});
     }]);

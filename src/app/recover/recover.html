@@ -1,0 +1,23 @@
+<div id="form-wrapper">
+  <div id="inner-form-wrapper">
+    <form action="" ng-submit="onSubmit()">
+      <h1>{{ 'RECOVER_WELCOME' | translate }}</h1>
+    
+      <div class="input-wrapper">
+        <input class="form-input" ng-model="credentials.password.password" type="password" id="password-field" placeholder="{{ 'RECOVER_PASSWORD' | translate }}">
+        <div class="img-wrapper">
+          <img class="icon" src="assets/svg/registerIconLockOutline.svg" alt="">
+        </div>
+      </div>
+    
+      <div class="input-wrapper">
+        <input class="form-input" ng-model="credentials.password.passwordConfirmation" type="password" id="password-confirmation-field" placeholder="{{ 'REGISTER_PASSWORD_CONFIRM' | translate }}">
+        <div class="img-wrapper">
+          <img class="icon" src="assets/svg/registerIconLockFull.svg" alt="">
+        </div>
+      </div>
+    
+      <button id="send-button">{{ 'RECOVER_SEND' | translate }}</button>
+    </form>
+  </div>
+</div>

@@ -22,6 +22,14 @@ angular.module('siApp')
           templateUrl: 'register/register.html',
           controller: 'RegisterCtrl'
         })
+        .state('recover', {
+          url: '/recover/{recoverToken}',
+          data: {
+            authorizedRoles: ROLES.none
+          },
+          templateUrl: 'recover/recover.html',
+          controller: 'RecoverCtrl'
+        })
         .state('dashboard', {
           url: '/app',
           abstract: true,
