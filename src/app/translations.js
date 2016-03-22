@@ -116,7 +116,8 @@ angular.module('siApp')
       'ADD_NEW_ASSISTANT': 'Додај новог асистента',
       'ADD_NEW_PROFESSOR': 'Додај новог професора',
       'NEW_USER': 'Нови корисник',
-      'APP': 'Апликација'
+      'APP': 'Апликација',
+      'RECOVERY_SUCCESS': "Успешно сте променили шифру"
     });
 
     $translateProvider.translations('sr-lat', {

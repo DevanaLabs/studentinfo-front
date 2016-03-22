@@ -14,7 +14,7 @@ angular.module('siApp')
          if (Recover.validatePassword($scope.credentials.password.password, $scope.credentials.password.passwordConfirmation)) {
            Recover.setPassword($stateParams.recoverToken, $scope.credentials.password).then(function (response) {
              if (response.data.success) {
-               Error.success('REGISTER_SUCCESS');
+               Error.success('RECOVERY_SUCCESS');
                $state.go('login');
              }
            }, function (response) {
