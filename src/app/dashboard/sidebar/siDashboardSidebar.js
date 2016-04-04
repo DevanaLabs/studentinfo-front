@@ -5,7 +5,7 @@ angular.module('siApp.dashboard')
     return {
       scope: '',
       replace: true,
-      controller: ['$scope', '$timeout', 'BACKGROUNDS', '$state', function($scope, $timeout, BACKGROUNDS, $state){
+      controller: ['$scope', '$timeout', 'BACKGROUNDS', '$state', 'localStorageService', function($scope, $timeout, BACKGROUNDS, $state, localStorageService){
               function nextImg () {
                 var num = Math.floor((moment().valueOf()) / 86400000 % BACKGROUNDS.length);
 
@@ -51,7 +51,12 @@ angular.module('siApp.dashboard')
                 else if(state==='about') {
                   return ( $state.is('dashboard.about') );
                 }
+                else if(state==='android') {
+                  return ( $state.is('dashboard.android') );
+                }
               }
+
+              //$scope.displayAndroid = localStorageService.get('auth').user.id == 718;
             }], 
       templateUrl: 'dashboard/sidebar/si-dashboard-sidebar.html'
     };

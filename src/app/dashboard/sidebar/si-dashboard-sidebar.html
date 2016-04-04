@@ -1,7 +1,7 @@
 <div id="sidebar">
   <div id="sidebar-wrapper" ng-class="{'active': !$state.is('dashboard.home')}">
     <div id="sidebar-logo" ui-sref="dashboard.home">{{ 'APP_NAME' | translate }}</div>
-    <div id="sidebar-logo-mini" ui-sref="dashboard.home">{{ 'APP_NAME_SHORT' | translate }}</div>
+    <div id="sidebar-logo-mini" ui-sref="dashboard.home"><img src="assets/svg/logo-icon-outline_white.svg" alt=""></div>
   
     <ul class="sidebar-list">
       <li class="sidebar-item-wrapper" ui-sref="dashboard.preSchedule.groups" ng-class="{'active': isActive('schedule')}">
@@ -12,6 +12,11 @@
       <li class="sidebar-item-wrapper" ui-sref="dashboard.yearly" ng-class="{'active': isActive('calendar')}">
         <img src="assets/svg/iconSbKalAkt.svg" alt="" class="sidebar-item-icon">
         <span class="sidebar-item-text">{{ 'CALENDAR' | translate }}</span>
+      </li>
+      <hr>
+      <li class="sidebar-item-wrapper" ui-sref="dashboard.android" ng-class="{'active': isActive('android')}">
+        <img src="assets/svg/iconSbAndroid.svg" alt="" class="sidebar-item-icon">
+        <span class="sidebar-item-text">{{ 'ANDROID_SIDEBAR' | translate }}</span>
       </li>
       <hr>
     </ul>

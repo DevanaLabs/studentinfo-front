@@ -10,6 +10,7 @@ angular.module('siApp.dashboard', ['ui.router', 'LocalStorageModule', 'siApp', '
         url: '/', 
         controller: ['$state', function($state) {
           $state.go('dashboard.home');
+          // $state.go('dashboard.android');
         }]
       })
       .state('dashboard.preSchedule', {
@@ -105,6 +106,10 @@ angular.module('siApp.dashboard', ['ui.router', 'LocalStorageModule', 'siApp', '
         templateUrl: 'dashboard/about/aboutBase.html',
         controller: 'AboutCtrl',
         data: { transition: 'asdf'}
+      })
+      .state('dashboard.android', {
+        url: '/android/',
+        templateUrl: 'dashboard/android/androidBase.html'
       })
       ;
   }])

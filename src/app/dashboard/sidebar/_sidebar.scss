@@ -43,6 +43,10 @@
 		}
 		#sidebar-logo-mini {
 			display: none;
+			img {
+				width: 70px;
+				margin-top: -8px;
+			}
 		}
 		.sidebar-item-wrapper {
 			display: block;
@@ -67,6 +71,18 @@
 		.sidebar-item-wrapper.active {
 			//border-left: 10px solid white;
 			background: #111;
+		}
+		.sidebar-item-wrapper[ui-sref="dashboard.android"]:after {
+			display: block;
+			height: 40px;
+			width: 40px;
+			content: '';
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			background: #fff;
+			background: url(/assets/svg/iconNotif40x40.svg)!important;
+			line-height: 40px;
 		}
 		@media screen and (max-width: 1919px) {
 			#sidebar-logo {
@@ -119,6 +135,7 @@
 	#sidebar-wrapper.active {
 		background: #222;
 	}
+
 }
 
 @media screen and (max-width: 1200px) {

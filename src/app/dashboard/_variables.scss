@@ -37,6 +37,16 @@ $heading-second:	26px;
 	}
 };
 
+@mixin font-size-text-verybig {
+	font-size: 36px;
+	@media screen and (max-width: 1919px) {
+		font-size: 32px;
+	}
+	@media screen and (max-width: 1439px) {
+		font-size: 28px;
+	}
+};
+
 @mixin font-size-text-caption {
 	font-size: 48px;
 	@media screen and (max-width: 1919px) {

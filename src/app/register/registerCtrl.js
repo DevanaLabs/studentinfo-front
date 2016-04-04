@@ -23,7 +23,7 @@ angular.module('siApp')
         if (Register.validatePassword($scope.credentials.password.password, $scope.credentials.password.passwordConfirmation)) {
           Register.registerUser($stateParams.registerToken, $scope.credentials.password).then(function (response) {
             if (response.data.success) {
-              Error.success('REGISTER.SUCCESS');
+              Error.success('REGISTER_SUCCESS');
               $state.go('login');
             }
           }, function (response) {

@@ -1,39 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 19.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 52 40" style="enable-background:new 0 0 52 40;" xml:space="preserve">
+	 viewBox="-453 261 52 40" style="enable-background:new -453 261 52 40;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#FFFFFF;}
 </style>
+<path class="st0" d="M-407,261h-40c-3.3,0-6,2.7-6,6v28c0,3.3,2.7,6,6,6h40c3.3,0,6-2.7,6-6v-28C-401,263.7-403.7,261-407,261z
+	 M-447,263h40c2.2,0,4,1.8,4,4v2h-48v-2C-451,264.8-449.2,263-447,263z M-407,299h-40c-2.2,0-4-1.8-4-4v-24h48v24
+	C-403,297.2-404.8,299-407,299z"/>
 <g>
-	<path class="st0" d="M46,40H6c-3.3,0-6-2.7-6-6V6c0-3.3,2.7-6,6-6h40c3.3,0,6,2.7,6,6v28C52,37.3,49.3,40,46,40z M6,2
-		C3.8,2,2,3.8,2,6v28c0,2.2,1.8,4,4,4h40c2.2,0,4-1.8,4-4V6c0-2.2-1.8-4-4-4H6z"/>
+	<rect x="-448" y="274" class="st0" width="6" height="6"/>
 </g>
 <g>
-	<rect x="1" y="7" class="st0" width="50" height="2"/>
+	<rect x="-439" y="274" class="st0" width="6" height="12"/>
 </g>
 <g>
-	<path class="st0" d="M12,23H4v-8h8V23z M6,21h4v-4H6V21z"/>
+	<rect x="-439" y="289" class="st0" width="6" height="6"/>
 </g>
 <g>
-	<path class="st0" d="M21,19h-8v-8h8V19z M15,17h4v-4h-4V17z"/>
+	<rect x="-421" y="274" class="st0" width="6" height="6"/>
 </g>
 <g>
-	<path class="st0" d="M21,36h-8V25h8V36z M15,34h4v-7h-4V34z"/>
+	<rect x="-430" y="280" class="st0" width="6" height="6"/>
 </g>
 <g>
-	<path class="st0" d="M30,25h-8v-8h8V25z M24,23h4v-4h-4V23z"/>
+	<rect x="-421" y="283" class="st0" width="6" height="12"/>
 </g>
 <g>
-	<path class="st0" d="M30,34h-8v-8h8V34z M24,32h4v-4h-4V32z"/>
-</g>
-<g>
-	<path class="st0" d="M39,19h-8v-8h8V19z M33,17h4v-4h-4V17z"/>
-</g>
-<g>
-	<path class="st0" d="M39,34h-8V20h8V34z M33,32h4V22h-4V32z"/>
-</g>
-<g>
-	<path class="st0" d="M48,22h-8v-8h8V22z M42,20h4v-4h-4V20z"/>
+	<rect x="-412" y="274" class="st0" width="6" height="6"/>
 </g>
 </svg>
