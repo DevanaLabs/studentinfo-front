@@ -116,10 +116,12 @@ angular.module('siApp')
       'ADD_NEW_ASSISTANT': 'Додај новог асистента',
       'ADD_NEW_PROFESSOR': 'Додај новог професора',
       'NEW_USER': 'Нови корисник',
-      'APP': 'Апликација', 
-      'ANDROID_DOWNLOAD': 'Од сада и на Вашем Андроиду!', 
+      'APP': 'Апликација',
+      'ANDROID_DOWNLOAD': 'Од сада и на Вашем Андроиду!',
       'ANDROID_DESCRIPTION': 'Потражите “Student info” апликацију да бисте имали све битне информације за Ваш студентски живот на Вашем телефону!',
-      'ANDROID_SIDEBAR': 'Андроид апликација', 
+      'ANDROID_SIDEBAR': 'Андроид апликација',
+      'APP': 'Апликација',
+      'RECOVERY_SUCCESS': "Успешно сте променили шифру"
     });
 
     $translateProvider.translations('sr-lat', {
