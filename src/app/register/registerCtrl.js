@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('siApp')
-  .controller('RegisterCtrl', ['$scope', '$stateParams', '$state', 'Error', 'Register',
-    function ($scope, $stateParams, $state, Error, Register) {
+  .controller('RegisterCtrl', ['$scope', '$stateParams', '$state', 'Error', 'Register', 'toastr', '$translate', 
+    function ($scope, $stateParams, $state, Error, Register, toastr, $translate) {
       $scope.credentials = {
         username: '',
         password: {
@@ -16,7 +16,17 @@ angular.module('siApp')
           $scope.credentials.username = response.data.success.data.user.email.email;
         }
       }, function (response) {
-        Error.httpError(response);
+        console.log(response);
+        console.log(response.data == null);
+        
+        if(response.data == null) { 
+          // if the registration token is invalid 
+          // API returns 'Access-Control-Allow-Origin' header
+          // with no response
+          toastr.error($translate.instant('REGISTER_BAD_TOKEN'), $translate.instant('ERROR'));
+        } else {
+          Error.httpError(response);
+        }
       });
 
       $scope.onSubmit = function () {
