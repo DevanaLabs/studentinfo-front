@@ -154,9 +154,9 @@ functions.buildImages = function () {
         //}))
         .pipe(gulpif(util.isProduction(), gulp.dest(paths.distAssetsImgDev), gulp.dest(paths.distAssetsImgProd)));
     var svgs = gulp.src(paths.assets.svg)
-        .pipe(imagemin({
-            progressive: true
-        }))
+        //.pipe(imagemin({
+        //    progressive: true
+        //}))
         .pipe(gulpif(util.isProduction(), gulp.dest(paths.distAssetsSvgDev), gulp.dest(paths.distAssetsSvgProd)));
     return es.merge(imgs, svgs);
 };
