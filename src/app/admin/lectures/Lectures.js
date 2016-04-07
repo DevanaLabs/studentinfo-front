@@ -15,11 +15,11 @@ angular.module('siApp')
           },
           {
             id: 2,
-            name: 'OMG'
+            name: 'DISCOURSE_AND_EXERCISES'
           },
           {
             id: 3,
-            name: 'OMGG'
+            name: 'PRACTICUM'
           }
         ]
       };
