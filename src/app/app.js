@@ -6,6 +6,7 @@ angular.module('siApp', ['ui.router', 'LocalStorageModule', 'siApp.config', 'siA
     any: '*',
     none: '!',
     student: 'student',
+    panel: 'panel',
     admin: 'admin',
     superAdmin: 'super_admin'
   });

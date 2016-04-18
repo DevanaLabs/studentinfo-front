@@ -34,7 +34,7 @@ angular.module('siApp')
           url: '/app',
           abstract: true,
           data: {
-            authorizedRoles: [ROLES.admin, ROLES.superAdmin, ROLES.student]
+            authorizedRoles: [ROLES.admin, ROLES.superAdmin, ROLES.student, ROLES.panel]
           },
           templateUrl: 'dashboard/index.html',
           controller: 'MainDashboardCtrl'
