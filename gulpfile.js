@@ -167,7 +167,14 @@ functions.buildAppStyles = function () {
         .pipe(sass({
             includePaths: paths.bootstrapScss
         }))
-        .pipe(gulpif(util.isProduction(), cssnano()))
+        .pipe(gulpif(util.isProduction(), cssnano({
+            reduceIdents: {
+                keyframes: false
+            },
+            discardUnused: {
+                keyframes: false
+            }
+        })))
         .pipe(gulpif(util.isProduction(), sourcemaps.write()))
         .pipe(gulpif(util.isProduction(), functions.minifiedFileName()))
         .pipe(gulpif(util.isProduction(), gulp.dest(paths.distAppStylesProd), gulp.dest(paths.distAppStylesDev)));
