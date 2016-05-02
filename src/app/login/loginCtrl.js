@@ -10,11 +10,15 @@ angular.module('siApp')
         password: ''
       };
 
+      $scope.loading = 'idle';
+
       $scope.$on(EVENTS.AUTH.LOGIN_SUCCESS, function (event, data) {
+        $scope.loading = 'idle';
         $state.go(Privilege.redirectStateBasedOnRole());
       });
 
       $scope.$on(EVENTS.AUTH.LOGIN_FAILED, function (event, data) {
+        $scope.loading = 'idle';
         if (data.data.error == 'invalid_credentials') {
           toastr.error($translate.instant('LOGIN.ERROR.INVALID_CREDENTIALS'));
         }
@@ -26,6 +30,7 @@ angular.module('siApp')
 
       $scope.onSubmit = function () {
         if (self.validateCredentials($scope.credentials)) {
+          $scope.loading = 'loading';
           Auth.login($scope.credentials);
         } else {
           toastr.error($translate.instant('LOGIN.ERROR.INVALID_INPUT'));

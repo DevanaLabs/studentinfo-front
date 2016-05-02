@@ -5,10 +5,13 @@ html, body {
 
 #form-wrapper {
   background: url("/assets/img/bgBlurred.jpg") !important;
+  background-size: cover !important;
   height: 100%;
+  padding: 0 20px;
   #inner-form-wrapper {
-    padding: 10px 0;
+    padding: 10px;
     width: 500px;
+    max-width: 100%;
     margin: 0 auto;
     text-align: center;
     background: white;
@@ -81,6 +84,16 @@ html, body {
       font-size: 16px;
       transition: background .2s;
       cursor: pointer;
+      vertical-align: middle;
+      line-height: 40px;
+      &::before {
+        content: '';
+        width: 0px;
+        margin: 10px 0;
+        opacity: 0;
+        transition: all .2s;
+        transform: scale(0);
+      }
     }
 
     button:hover {
@@ -91,8 +104,51 @@ html, body {
       background: darken($highlightGreen, 10%);
       cursor: normal;
     }
-    button.sending {
+    button.loading {
       pointer-events: none;
+      &::before {
+        content: '';
+        width: 20px;
+        height: 20px;
+        opacity: 1;
+        border-top: 3px solid rgba(255, 255, 255, 0.2);
+        border-right: 3px solid rgba(255, 255, 255, 0.2);
+        border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+        border-left: 3px solid white;
+        border-radius: 50%;
+        display: inline-block;
+        margin: 10px;
+        vertical-align: top;
+        transform: scale(1);
+        animation: spinner 1s infinite linear;
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 390px) {
+  #form-wrapper {
+    padding: 0 20px;
+    #inner-form-wrapper {
+      padding: 10px;
+      .input-wrapper {
+        width: 100%;
+        .img-wrapper {
+          display: none;
+        }
+        .form-input {
+          width: 100%;
+          border-radius: 5px;
+          border: 1px solid #B3B3B3 !important;
+          &:focus{
+            border: 1px solid $highlightGreen !important;
+          }
+        }
+      }
+      #send-button {
+        width: 100%;
+      }
     }
   }
 }

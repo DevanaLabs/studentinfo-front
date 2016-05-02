@@ -144,6 +144,42 @@
     background: url(/assets/svg/iconExit42x42.svg);
   }
 }
+ #loading-container {
+   position: absolute;
+   top: 0;
+   right: 0;
+   transition: transform .3s ease;
+   width: 100%;
+   height: 90px;
+   background: $orange;
+   z-index: 1000;
+   color: white;
+   text-align: center;
+   line-height: 90px;
+   font-size: 2em;
+   font-weight: 600;
+   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+   transform: translateY(-100px);
+ }
+ #loading-container.active {
+   transform: translateY(0px);
+   &::before {
+     content: '';
+     width: 25px;
+     height: 25px;
+     opacity: 1;
+     border-top: 4px solid rgba(255, 255, 255, 0.2);
+     border-right: 4px solid rgba(255, 255, 255, 0.2);
+     border-bottom: 4px solid rgba(255, 255, 255, 0.2);
+     border-left: 4px solid white;
+     border-radius: 50%;
+     display: inline-block;
+     margin: 32px 10px 0 0;
+     vertical-align: top;
+     transform: scale(1);
+     animation: spinner .3s infinite linear;
+   }
+ }
 
 
 

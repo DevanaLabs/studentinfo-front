@@ -4,5 +4,6 @@
   </div>
   <div id="dashboard-inner-container">
     <div ui-view id="dashboard-ui-view" ng-class="currentState()"></div>
+    <div id="loading-container" ng-class="{'active': showLoader}">{{ 'INITIAL_LOADING' | translate }}</div>
   </div>
 </div>

@@ -4,7 +4,7 @@
       <h1>{{ 'LOGIN.WELCOME' | translate }}</h1>
     
       <div class="input-wrapper">
-        <input class="form-input" ng-model="credentials.username" type="text" id="email-field" placeholder="{{ 'LOGIN.EMAIL' | translate }}">
+        <input class="form-input" ng-model="credentials.username" type="email" id="email-field" placeholder="{{ 'LOGIN.EMAIL' | translate }}">
         <div class="img-wrapper">
           <img class="icon" src="assets/svg/aboutIconMail.svg" alt="">
         </div>
@@ -17,7 +17,7 @@
         </div>
       </div>
     
-      <button id="send-button" type="submit">{{ 'LOGIN.SIGNIN' | translate }}</button>
+      <button id="send-button" type="submit" ng-class="{'loading': loading=='loading'}">{{ 'LOGIN.SIGNIN' | translate }}</button>
     </form>
   </div>
 </div>

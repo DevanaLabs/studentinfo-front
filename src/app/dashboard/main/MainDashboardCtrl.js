@@ -2,20 +2,29 @@
 
 angular.module('siApp.dashboard')
   .controller('MainDashboardCtrl', ['$rootScope', '$scope', 'Dashboard', 'EVENTS', '$state', '$http', 
-    '$timeout', 'ScreensaverTimer', 'BACKGROUNDS', '$location', '$window', 'toastr', '$translate',
+    '$timeout', 'ScreensaverTimer', 'BACKGROUNDS', '$location', '$window', 'toastr', '$translate', 'localStorageService',
     function ($rootScope, $scope, Dashboard, EVENTS, $state, $http, 
-      $timeout, ScreensaverTimer, BACKGROUNDS, $location, $window, toastr, $translate) {
+      $timeout, ScreensaverTimer, BACKGROUNDS, $location, $window, toastr, $translate, localStorageService) {
 
-      // $rootScope.$on(EVENTS.API.REFRESH_START, function () {
-      //   console.log('Dashboard refresh start');
-      // });
+      $rootScope.$on(EVENTS.API.REFRESH_START, function () {
+        //console.log('Dashboard refresh start');
+        if (!(localStorageService.get('dashboard-data'))) {
+          $scope.showLoader = true;
+        }
+      });
 
-      // $rootScope.$on(EVENTS.API.REFRESH_SUCCESS, function () {
-      //   console.log('Dashboard refresh success');
-      // });
+      $rootScope.$on(EVENTS.API.REFRESH_SUCCESS, function () {
+        //console.log('Dashboard refresh success');
+        if($scope.showLoader) {
+          console.log($state.current);
+          $state.reload();
+        }
+        $scope.showLoader = false;
+      });
 
       $rootScope.$on(EVENTS.API.REFRESH_ERROR, function (errorEvent, response) {
-        console.log(response);
+        $scope.showLoader = false;
+        //console.log(response);
         toastr.error($translate.instant(response.data.error.toUpperCase()) + " (" + response.status + ")", $translate.instant('DATA_FETCH_ERROR'));
       });
 

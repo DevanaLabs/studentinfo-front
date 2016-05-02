@@ -1,45 +1,47 @@
-<div id="yearly-wrapper">
-	<div class="month-header-wrapper">
-		<h1 class="month-header">{{::currentSchoolYear}}</h1>
-	</div>
-	<div class="month-wrapper" ng-repeat="month in ::months | limitTo: 4" ui-sref="dashboard.monthly(openMonth($index))">
-		<div class="month-table-wrapper">
-			<table>
-				<tr>
-					<th colspan="7">{{::month.name}}</th>
-				</tr>
-				<tr ng-repeat="week in ::month.days">
-					<td ng-repeat="day in ::week" ng-class="::day.finalClass">{{::day.date}} </td>
-				</tr>
-			</table>
+<div id="yearly-outer-wrapper">
+	<div id="yearly-wrapper" ng-if="currentSchoolYear">
+		<div class="month-header-wrapper">
+			<h1 class="month-header">{{::currentSchoolYear}}</h1>
 		</div>
-	</div>
+		<div class="month-wrapper" ng-repeat="month in ::months | limitTo: 4" ui-sref="dashboard.monthly(openMonth($index))">
+			<div class="month-table-wrapper">
+				<table>
+					<tr>
+						<th colspan="7">{{::month.name}}</th>
+					</tr>
+					<tr ng-repeat="week in ::month.days">
+						<td ng-repeat="day in ::week" ng-class="::day.finalClass">{{::day.date}} </td>
+					</tr>
+				</table>
+			</div>
+		</div>
 
-	<div class="month-header-wrapper">
-		<h1 class="month-header">{{::currentSchoolYear+1}}</h1>
-	</div>
-	<div class="month-wrapper" ng-repeat="month in ::months | startFrom: 4" ui-sref="dashboard.monthly(openMonth($index+4))">
-		<div class="month-table-wrapper">
-			<table>
-				<tr>
-					<th colspan="7">{{::month.name}}</th>
-				</tr>
-				<tr ng-repeat="week in ::month.days">
-					<td ng-repeat="day in ::week" ng-class="::day.finalClass">{{::day.date}} </td>
-				</tr>
-			</table>
+		<div class="month-header-wrapper">
+			<h1 class="month-header">{{::currentSchoolYear+1}}</h1>
 		</div>
-	</div>
+		<div class="month-wrapper" ng-repeat="month in ::months | startFrom: 4" ui-sref="dashboard.monthly(openMonth($index+4))">
+			<div class="month-table-wrapper">
+				<table>
+					<tr>
+						<th colspan="7">{{::month.name}}</th>
+					</tr>
+					<tr ng-repeat="week in ::month.days">
+						<td ng-repeat="day in ::week" ng-class="::day.finalClass">{{::day.date}} </td>
+					</tr>
+				</table>
+			</div>
+		</div>
 
-	<div id="legend-wrapper">
-		<div class="legend-sub-wrapper">
-			<span class="legend-icon green"></span> <span class="legentCaption">Плаћање школарине</span><br>
-			<span class="legend-icon yellow"></span> <span class="legentCaption">Специјални догађаји</span><br>
-		</div>
-		<div class="legend-sub-wrapper">
-			<span class="legend-icon blue"></span> <span class="legentCaption">Испитни рокови</span><br>
-			<span class="legend-icon orange"></span> <span class="legentCaption">Колоквијумске недеље</span><br>
-			<span class="legend-icon gray"></span> <span class="legentCaption">Нерадни дани</span><br>
+		<div id="legend-wrapper">
+			<div class="legend-sub-wrapper">
+				<span class="legend-icon green"></span> <span class="legentCaption">Плаћање школарине</span><br>
+				<span class="legend-icon yellow"></span> <span class="legentCaption">Специјални догађаји</span><br>
+			</div>
+			<div class="legend-sub-wrapper">
+				<span class="legend-icon blue"></span> <span class="legentCaption">Испитни рокови</span><br>
+				<span class="legend-icon orange"></span> <span class="legentCaption">Колоквијумске недеље</span><br>
+				<span class="legend-icon gray"></span> <span class="legentCaption">Нерадни дани</span><br>
+			</div>
 		</div>
 	</div>
 </div>

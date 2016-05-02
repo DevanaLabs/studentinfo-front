@@ -11,6 +11,8 @@ angular.module('siApp')
         }
       };
 
+      $scope.loading = 'idle';
+
       Register.getUser($stateParams.registerToken).then(function (response) {
         if (response.data.success) {
           $scope.credentials.username = response.data.success.data.user.email.email;
@@ -31,12 +33,15 @@ angular.module('siApp')
 
       $scope.onSubmit = function () {
         if (Register.validatePassword($scope.credentials.password.password, $scope.credentials.password.passwordConfirmation)) {
+          $scope.loading = 'loading';
           Register.registerUser($stateParams.registerToken, $scope.credentials.password).then(function (response) {
+            $scope.loading = 'idle';
             if (response.data.success) {
               Error.success('REGISTER_SUCCESS');
               $state.go('login');
             }
           }, function (response) {
+            $scope.loading = 'idle';
             Error.error(response);
           });
         } else {
