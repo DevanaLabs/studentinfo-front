@@ -23,8 +23,8 @@
   
     <div id="sidebar-bottom">
       <div class="sidebar-item-wrapper" ui-sref="dashboard.about" ng-class="{'active': isActive('about')}">
-        <img src="assets/svg/imgBgLogoFaks.svg" alt="" class="sidebar-item-icon">
-        <span class="sidebar-item-text">{{ 'FACULTY_NAME' | translate }}</span>
+        <img ng-attr-src="{{'assets/svg/logo-small/'+userSlug+'.svg'}}" src="assets/svg/imgBgLogoFaks.svg" alt="" class="sidebar-item-icon">
+        <span class="sidebar-item-text">{{facultyName}} </span>
       </div>
       <hr>
       <span id="time-container">{{currentTime}}</span>

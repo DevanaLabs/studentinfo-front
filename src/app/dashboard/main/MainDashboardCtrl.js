@@ -69,6 +69,8 @@ angular.module('siApp.dashboard')
 
       $scope.currentState = function() { return $state.current.name.substr(10); }
 
+      $scope.userSlug = localStorageService.get('auth').user.faculty.slug;
+
 
       //$rootScope.$on('$stateChangeStart',
       //function(event, toState, toParams, fromState, fromParams, options){

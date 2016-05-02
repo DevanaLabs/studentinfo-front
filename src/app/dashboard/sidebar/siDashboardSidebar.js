@@ -56,7 +56,9 @@ angular.module('siApp.dashboard')
                 }
               }
 
-              //$scope.displayAndroid = localStorageService.get('auth').user.id == 718;
+              $scope.facultyName = localStorageService.get('auth').user.faculty.name;
+
+              //$scope.displayAndroid = localStorageService.get('auth').user.userType == 'Panel';
             }], 
       templateUrl: 'dashboard/sidebar/si-dashboard-sidebar.html'
     };

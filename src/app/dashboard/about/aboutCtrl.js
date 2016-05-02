@@ -25,6 +25,7 @@ angular.module('siApp.dashboard')
     feedbackValue.val('');
 	};
 
-  $scope.displayKeyboard = localStorageService.get('auth').user.id == 718;
+  //$scope.displayKeyboard = localStorageService.get('auth').user.id == 718;
+  $scope.displayKeyboard = localStorageService.get('auth').user.userType == 'Panel';
   }]);
  
