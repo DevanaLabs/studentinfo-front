@@ -116,6 +116,8 @@ angular.module('siApp')
       'NEW_COURSE': 'Нови курс',
       'CURRENT_YEAR': 'Тренутна година',
       'CURRENT_SEMESTER': 'Тренутни семестар',
+      'WINTER': 'Зимски',
+      'SUMMER': 'Летњи',
       'FEEDBACK_DESCRIPTION': 'Шта желите да нам кажете?',
       'SEND': 'Пошаљи',
       'IMPORT_DATA': 'Импорт података',

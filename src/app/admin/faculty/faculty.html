@@ -12,8 +12,8 @@
             <div class="form-group">
                 <label for="current_semester">{{ 'CURRENT_SEMESTER' | translate }}: </label>
                 <select id="current_semester" ng-model="faculty.semester" ng-required="true" required>
-                    <option value="1">Zimski</option>
-                    <option value="2">Letnji</option>
+                    <option value="1">{{ 'WINTER' | translate }}</option>
+                    <option value="2">{{ 'SUMMER' | translate }}</option>
                 </select>
             </div>
             <div class="form-group">
