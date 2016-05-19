@@ -27,6 +27,7 @@ angular.module('siApp')
       var transformIncomingLecture = function (lecture) {
         lecture.startsAt = DateTimeConverter.fromBeginningOfTheWeek(lecture.time.startsAt);
         lecture.endsAt = DateTimeConverter.fromBeginningOfTheWeek(lecture.time.endsAt);
+        lecture.day = Math.floor(lecture.time.startsAt / 86400);
         lecture.typeName = lectures.types[lecture.type].name;
       };
 
@@ -55,6 +56,7 @@ angular.module('siApp')
       };
 
       lectures.save = function (lecture) {
+        console.log(lecture);
         transformOutgoingLecture(lecture);
         if (lecture.id) {
           return Api.saveLecture(lecture);

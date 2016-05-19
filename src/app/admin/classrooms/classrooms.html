@@ -1,0 +1,55 @@
+<div>
+    <div>
+        <h2>{{ 'CLASSROOMS' | translate }}</h2>
+        <hr>
+        <button class="btn btn-success" ui-sref="admin.classroom_new">{{ 'NEW_CLASSROOM' | translate }}</button>
+    </div>
+    <hr>
+    <div ng-if="!pagination.available" class="center-block">
+        <h1 class="text-center">{{ 'NO_DATA' | translate }}</h1>
+    </div>
+    <div ng-if="pagination.available">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <td colspan="8">
+                    <input class="form-control" type="text" ng-model="pagination.query"
+                           placeholder="{{ 'SEARCH' | translate }}">
+                </td>
+            </tr>
+            <tr>
+                <th>{{ 'NAME' | translate }}</th>
+                <th>{{ 'FLOOR' | translate }}</th>
+                <th>{{ 'DIRECTION' | translate }}</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="classroom in pagination.paginatedEntities" class="repeated-item">
+                <td>
+                    {{ ::classroom.name }}
+                </td>
+                <td>
+                    {{ ::classroom.floor }}
+                </td>
+                <td>
+                    {{ ::classroom.direction }}
+                </td>
+                <td>
+                    <button ng-disabled="!canPerformActions" class="btn btn-info btn-sm"
+                            ui-sref="admin.classroom_new({id: classroom.id})">
+                        {{ 'EDIT' | translate }}
+                    </button>
+                    <button ng-disabled="!canPerformActions" class="btn btn-danger btn-sm"
+                            ng-click="deleteClassroom(classroom)">
+                        {{ 'DELETE' | translate }}
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <uib-pagination total-items="pagination.totalItems" items-per-page="pagination.perPage"
+                        ng-model="pagination.currentPage"></uib-pagination>
+    </div>
+</div>

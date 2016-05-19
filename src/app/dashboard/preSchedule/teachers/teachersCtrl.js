@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('siApp.dashboard')
-  .controller('TeachersCtrl', ['$rootScope', '$scope', '$state', '$translate', 'Teachers', '$timeout', 
-  function ($rootScope, $scope, $state, $translate, Teachers, $timeout) {
-    $scope.subfilters = Teachers.getFilters();
+  .controller('TeachersCtrl', ['$rootScope', '$scope', '$state', '$translate', 'TeachersD', '$timeout',
+  function ($rootScope, $scope, $state, $translate, TeachersD, $timeout) {
+    $scope.subfilters = TeachersD.getFilters();
 
-    $scope.allTeachers = Teachers.getShown();
+    $scope.allTeachers = TeachersD.getShown();
 
     $scope.scrollToLetter = function (letter) {
       angular.element(".pickers-wrapper")[0].scrollTop = angular.element("#teacherLetter"+letter)[0].offsetTop;

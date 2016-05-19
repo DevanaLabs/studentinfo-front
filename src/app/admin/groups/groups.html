@@ -1,0 +1,51 @@
+<div>
+    <div>
+        <h2>{{ 'GROUPS' | translate }}</h2>
+        <hr>
+        <button class="btn btn-success" ui-sref="admin.group_new">{{ 'NEW_GROUP' | translate }}</button>
+    </div>
+    <hr>
+    <div ng-if="!pagination.available" class="center-block">
+        <h1 class="text-center">{{ 'NO_DATA' | translate }}</h1>
+    </div>
+    <div ng-if="pagination.available">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <td colspan="8">
+                    <input class="form-control" type="text" ng-model="pagination.query"
+                           placeholder="{{ 'SEARCH' | translate }}">
+                </td>
+            </tr>
+            <tr>
+                <th>{{ 'NAME' | translate }}</th>
+                <th>{{ 'YEAR' | translate }}</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="group in pagination.paginatedEntities" class="repeated-item">
+                <td>
+                    {{ ::group.name }}
+                </td>
+                <td>
+                    {{ ::group.year }}
+                </td>
+                <td>
+                    <button ng-disabled="!canPerformActions" class="btn btn-info btn-sm"
+                            ui-sref="admin.group_new({id: group.id})">
+                        {{ 'EDIT' | translate }}
+                    </button>
+                    <button ng-disabled="!canPerformActions" class="btn btn-danger btn-sm"
+                            ng-click="deleteGroup(group)">
+                        {{ 'DELETE' | translate }}
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <uib-pagination total-items="pagination.totalItems" items-per-page="pagination.perPage"
+                        ng-model="pagination.currentPage"></uib-pagination>
+    </div>
+</div>

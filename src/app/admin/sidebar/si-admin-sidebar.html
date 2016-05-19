@@ -17,6 +17,12 @@
                 {{ 'PROFILE' | translate }}
             </a>
         </li>
+        <li role="presentation">
+            <a ui-sref="admin.faculty">
+                <i class="fa fa-book" aria-hidden="true"></i>
+                {{ 'FACULTY' | translate }}
+            </a>
+        </li>
         <li role="presentation" class="dropdown">
             <a role="button" data-toggle="collapse" data-target="#collapseEventsSubmenu"
                aria-controls="collapseEventsSubmenu" aria-expanded="false">
@@ -48,20 +54,38 @@
             </a>
         </li>
         <li role="presentation">
-            <a ui-sref="admin.staff({type: 'professors'})">
+            <a ui-sref="admin.courses">
+                <i class="fa fa-book" aria-hidden="true"></i>
+                {{ 'COURSES' | translate }}
+            </a>
+        </li>
+        <li role="presentation">
+            <a ui-sref="admin.groups">
                 <i class="fa fa-users" aria-hidden="true"></i>
+                {{ 'GROUPS' | translate }}
+            </a>
+        </li>
+        <li role="presentation">
+            <a ui-sref="admin.classrooms">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                {{ 'CLASSROOMS' | translate }}
+            </a>
+        </li>
+        <li role="presentation">
+            <a ui-sref="admin.staff({type: 'professors'})">
+                <i class="fa fa-user" aria-hidden="true"></i>
                 {{ 'PROFESSORS' | translate }}
             </a>
         </li>
         <li role="presentation">
             <a ui-sref="admin.staff({type: 'assistants'})">
-                <i class="fa fa-users" aria-hidden="true"></i>
+                <i class="fa fa-user" aria-hidden="true"></i>
                 {{ 'ASSISTANTS' | translate }}
             </a>
         </li>
         <li role="presentation">
             <a ui-sref="admin.staff({type: 'students'})">
-                <i class="fa fa-users" aria-hidden="true"></i>
+                <i class="fa fa-user" aria-hidden="true"></i>
                 {{ 'STUDENTS' | translate }}
             </a>
         </li>
@@ -83,11 +107,6 @@
                 {{ 'FEEDBACK' | translate }}
             </a>
         </li>
-        <li role="presentation">
-            <a ui-sref="admin.logout">
-                <i class="fa fa-sign-out" aria-hidden="true"></i>
-                {{ 'LOGOUT' | translate }}
-            </a>
-        </li>
+
     </ul>
 </div>

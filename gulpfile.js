@@ -130,10 +130,10 @@ functions.buildAppScripts = function () {
     return es.merge(scriptedPartials, validatedAppScripts, config)
         .pipe(order(['jquery.js', 'angular.js']))
         .pipe(angularFilesort())
-        .pipe(gulpif(util.isProduction(), sourcemaps.init()))
-        .pipe(gulpif(util.isProduction(), concat('app.min.js')))
+        .pipe(sourcemaps.init())
+        .pipe(concat('app.min.js'))
         .pipe(gulpif(util.isProduction(), uglify()))
-        .pipe(gulpif(util.isProduction(), sourcemaps.write()))
+        .pipe(sourcemaps.write())
         .pipe(gulpif(util.isProduction(), gulp.dest(paths.distAppScriptsProd), gulp.dest(paths.distAppScriptsDev)));
 };
 

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('siApp')
-  .controller('EventCtrl', ['$scope', '$state', '$stateParams', 'Error', 'Event', 'Mode', 'EVENTS',
-    function ($scope, $state, $stateParams, Error, Event, Mode, EVENTS) {
+  .controller('EventCtrl', ['$q', '$timeout', '$scope', '$state', '$stateParams', 'Error', 'Event', 'Classrooms', 'Mode', 'EVENTS',
+    function ($q, $timeout, $scope, $state, $stateParams, Error, Event, Classrooms, Mode, EVENTS) {
       var self = this;
 
       $scope.canSubmit = true;
@@ -13,15 +13,29 @@ angular.module('siApp')
 
       $scope.eventsType = Event.eventsType;
 
+      var eventPromise = null;
       if (Event.eventsType.slug !== 'global' && Mode === 'CREATE') {
-        Event.getRelatedEntities().then(function (response) {
-          if (response.data.success) {
-            $scope.relatedEntities = response.data.success.data;
-          }
-        }, function (response) {
+        eventPromise = $q.when({data: { success: { data: { event: {}}}}});
+      } else {
+        $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
+      }
+
+      if (Event.eventsType.slug !== 'global' && Mode === 'CREATE') {
+        $q.all([
+          Event.getRelatedEntities(),
+          Classrooms.getAll(),
+          eventPromise
+        ]).then(function (responses) {
+          $scope.relatedEntities = responses[0].data.success.data;
+          $scope.classrooms = responses[1].data.success.data;
+         }, function (response) {
           Error.httpError(response);
         }).finally(function () {
           $scope.$emit(EVENTS.UI.HIDE_LOADING_SCREEN);
+          $('#inputClassrooms').select2();
+          $timeout(function() {
+            $("#inputClassrooms").val(_.values(_.map($scope.event.classrooms, function(classroom){return classroom.id+''}))).trigger('change');
+          }, 100);
         });
       }
 

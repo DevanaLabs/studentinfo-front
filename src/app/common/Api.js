@@ -84,6 +84,15 @@ angular.module('siApp')
             password_confirmation: password.confirmation
           });
         },
+        getSettings: function() {
+          return $http.get(ApiUrlBuilder.build('settings'));
+        },
+        setSettings: function (semester, year) {
+          return $http.post(ApiUrlBuilder.build('settings'), {
+            semester: semester,
+            year: year
+          })
+        },
         sendFeedback: function (content) {
           return $http.post(ApiUrlBuilder.build('feedback'), {
             text: content
@@ -125,11 +134,78 @@ angular.module('siApp')
         removeEvent: function (id) {
           return $http.delete(ApiUrlBuilder.build('event/' + id));
         },
+        makeNewCourse: function (course) {
+          return $http.post(ApiUrlBuilder.build('course'), {
+            name: course.name,
+            espb: course.espb,
+            code: course.code,
+            semester: course.semester
+          });
+        },
+        saveCourse: function (course) {
+          return $http.put(ApiUrlBuilder.build('course/' + course.id), {
+            name: course.name,
+            espb: course.espb,
+            code: course.code,
+            semester: course.semester
+          });
+        },
+        getCourse: function (id) {
+          return $http.get(ApiUrlBuilder.build('course/'+ id));
+        },
         getCourses: function () {
           return $http.get(ApiUrlBuilder.build('courses'));
         },
+        removeCourse: function (id) {
+          return $http.delete(ApiUrlBuilder.build('course/' + id));
+        },
+        makeNewGroup: function (group) {
+          return $http.post(ApiUrlBuilder.build('group'), {
+            name: group.name,
+            year: group.year
+          });
+        },
+        saveGroup: function (group) {
+          return $http.put(ApiUrlBuilder.build('group/' + group.id), {
+            name: group.name,
+            year: group.year
+          });
+        },
+        getGroup: function (id) {
+          return $http.get(ApiUrlBuilder.build('group/'+ id));
+        },
         getGroups: function () {
           return $http.get(ApiUrlBuilder.build('groups'));
+        },
+        removeGroup: function (id) {
+          return $http.delete(ApiUrlBuilder.build('group/' + id));
+        },
+        makeNewClassroom: function (classroom) {
+          console.log('a');
+          console.log(classroom);
+          return $http.post(ApiUrlBuilder.build('classroom'), {
+            name: classroom.name,
+            floor: classroom.floor,
+            directions: classroom.directions
+          });
+        },
+        saveClassroom: function (classroom) {
+          console.log('b');
+          console.log(classroom);
+          return $http.put(ApiUrlBuilder.build('classroom/' + classroom.id), {
+            name: classroom.name,
+            floor: classroom.floor,
+            directions: classroom.directions
+          });
+        },
+        getClassrooms: function () {
+          return $http.get(ApiUrlBuilder.build('classrooms'));
+        },
+        getClassroom: function (id) {
+          return $http.get(ApiUrlBuilder.build('classroom/'+ id));
+        },
+        removeClassroom: function (id) {
+          return $http.delete(ApiUrlBuilder.build('classroom/' + id));
         },
         getEvent: function (id) {
           return $http.get(ApiUrlBuilder.build('event/' + id));
@@ -138,52 +214,56 @@ angular.module('siApp')
           return $http.post(ApiUrlBuilder.build('globalEvent'), {
             type: event.type,
             description: event.description,
-            startsAt: event.startsAt,
-            endsAt: event.endsAt
+            startsAt: event.startsAtOutgoing,
+            endsAt: event.endsAtOutgoing
           });
         },
         saveGlobalEvent: function (event) {
           return $http.put(ApiUrlBuilder.build('globalEvent/' + event.id), {
             type: event.type,
             description: event.description,
-            startsAt: event.startsAt,
-            endsAt: event.endsAt
+            startsAt: event.startsAtOutgoing,
+            endsAt: event.endsAtOutgoing
           });
         },
         makeNewGroupEvent: function (event) {
           return $http.post(ApiUrlBuilder.build('groupEvent'), {
             groupId: event.relatedEntity,
             type: event.type,
+            classrooms: event.classrooms,
             description: event.description,
-            startsAt: event.startsAt,
-            endsAt: event.endsAt
+            startsAt: event.startsAtOutgoing,
+            endsAt: event.endsAtOutgoing
           });
         },
         saveGroupEvent: function (event) {
           return $http.put(ApiUrlBuilder.build('globalEvent/' + event.id), {
             groupId: event.group.id,
             type: event.type,
+            classrooms: event.classrooms,
             description: event.description,
-            startsAt: event.startsAt,
-            endsAt: event.endsAt
+            startsAt: event.startsAtOutgoing,
+            endsAt: event.endsAtOutgoing
           });
         },
         makeNewCourseEvent: function (event) {
           return $http.post(ApiUrlBuilder.build('courseEvent'), {
             courseId: event.relatedEntity,
             type: event.type,
+            classrooms: event.classrooms,
             description: event.description,
-            startsAt: event.startsAt,
-            endsAt: event.endsAt
+            startsAt: event.startsAtOutgoing,
+            endsAt: event.endsAtOutgoing
           });
         },
         saveCourseEvent: function (event) {
           return $http.put(ApiUrlBuilder.build('courseEvent/' + event.id), {
             courseId: event.course.id,
             type: event.type,
+            classrooms: event.classrooms,
             description: event.description,
-            startsAt: event.startsAt,
-            endsAt: event.endsAt
+            startsAt: event.startsAtOutgoing,
+            endsAt: event.endsAtOutgoing
           });
         },
         getEventNotifications: function (pagination) {
@@ -252,7 +332,8 @@ angular.module('siApp')
             teacherId: lecture.teacher.id,
             type: lecture.type,
             startsAt: lecture.startsAt,
-            endsAt: lecture.endsAt
+            endsAt: lecture.endsAt,
+            year: lecture.year
           });
         },
         saveLecture: function (lecture) {
@@ -262,14 +343,12 @@ angular.module('siApp')
             teacherId: lecture.teacher.id,
             type: lecture.type,
             startsAt: lecture.startsAt,
-            endsAt: lecture.endsAt
+            endsAt: lecture.endsAt,
+            year: lecture.year
           });
         },
         getLecture: function (id) {
           return $http.get(ApiUrlBuilder.build('lecture/' + id));
-        },
-        getClassrooms: function () {
-          return $http.get(ApiUrlBuilder.build('classrooms'));
         },
         removeNotification: function (id) {
           return $http.delete(ApiUrlBuilder.build('notification/' + id));

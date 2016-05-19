@@ -20,7 +20,14 @@ angular.module('siApp')
 
       $scope.onSubmit = function () {
         $scope.canSubmit = false;
-        $scope.lecture.time.endsAt.day = $scope.lecture.time.startsAt.day;
+        console.log($scope);
+        $scope.lecture.time.startsAt = {};
+        $scope.lecture.time.endsAt = {};
+        console.log($scope);
+        $scope.lecture.time.startsAt.time = $scope.lecture.startsAt;
+        $scope.lecture.time.endsAt.time = $scope.lecture.endsAt;
+        $scope.lecture.time.startsAt.day = $scope.lecture.day;
+        $scope.lecture.time.endsAt.day = $scope.lecture.day;
         Lectures.save($scope.lecture).then(function (response) {
           if (response.data.success) {
             Error.success('CHANGES_SAVED');

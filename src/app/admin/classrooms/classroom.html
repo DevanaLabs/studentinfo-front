@@ -1,0 +1,26 @@
+<div>
+    <div>
+        <h2>{{ 'NEW_CLASSROOM' | translate }}</h2>
+        <hr>
+    </div>
+    <div>
+        <form ng-submit="onSubmit()">
+            <div class="form-group">
+                <label for="inputName">{{ 'NAME' | translate }}</label>
+                <input class="form-control" type="text" ng-model="classroom.name" id="inputName"/>
+            </div>
+            <div class="form-group">
+                <label for="inputCode">{{ 'FLOOR' | translate }}</label>
+                <input class="form-control" type="text" ng-model="classroom.floor" id="inputCode"/>
+            </div>
+            <div class="form-group">
+                <label for="inputEspb">{{ 'DIRECTION' | translate }}</label>
+                <input class="form-control" type="text" ng-model="classroom.directions" id="inputEspb"/>
+            </div>
+            <div class="form-group">
+                <button type="button" ui-sref="admin.overview" class="btn btn-alert">{{ 'CANCEL' | translate }}</button>
+                <button type="submit" class="btn btn-primary" ng-disabled="!canSubmit">{{ 'SAVE' | translate }}</button>
+            </div>
+        </form>
+    </div>
+</div>

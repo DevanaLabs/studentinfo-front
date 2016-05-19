@@ -1,6 +1,6 @@
 <div id="preschedule-ui-view-subcontainer">
   <div class="titlebar subfilter" ng-class="{'titlebar-hidden' : subfilters.length < 2}">
-    <div class="subfilter-wrapper"  ng-repeat="subfilter in subfilters" ng-class="{'active':displayedSubfilter === subfilter}">
+    <div class="subfilter-wrapper"  ng-repeat="subfilter in subfilters" ng-click="setSubfilter(subfilter)" ng-class="{'active':displayedSubfilter == subfilter}">
       <span class="subfilter-text">
       	{{ 'SPRATOVI_'+subfilter | translate }}
       </span>

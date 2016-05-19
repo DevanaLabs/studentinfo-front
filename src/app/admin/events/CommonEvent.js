@@ -11,8 +11,8 @@ angular.module('siApp')
       };
 
       commonEvent.transformOutgoingEvent = function (event) {
-        event.startsAt = DateTimeConverter.combineDateAndTime(event.startsAt);
-        event.endsAt = DateTimeConverter.combineDateAndTime(event.endsAt);
+        event.startsAtOutgoing = DateTimeConverter.combineDateAndTime(event.startsAt);
+        event.endsAtOutgoing = DateTimeConverter.combineDateAndTime(event.endsAt);
       };
 
       commonEvent.attachRequiredProps = function (event) {

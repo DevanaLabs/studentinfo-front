@@ -44,8 +44,9 @@ angular.module('siApp')
     };
 
     dateTimeConverter.toBeginningOfTheWeek = function (data) {
-      return moment().startOf('isoweek').weekday(data.day).hour(data.time.getHours())
-        .minute(data.time.getMinutes()).unix() - moment().startOf('isoweek').unix();
+      data.time = moment(data.time);
+      return moment().startOf('isoweek').weekday(data.day).hour(data.time.hours())
+          .minute(data.time.minutes()).unix() - moment().startOf('isoweek').unix();
     };
 
     dateTimeConverter.compareDates = function(date1, date2) {

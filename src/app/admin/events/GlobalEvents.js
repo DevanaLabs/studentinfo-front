@@ -9,14 +9,6 @@ angular.module('siApp')
         return true;
       };
 
-      globalEvents.save = function (event) {
-        CommonEvent.transformOutgoingEvent(event);
-        if (event.id) {
-          return Api.saveGlobalEvent(event);
-        }
-        return Api.makeNewGlobalEvent(event);
-      };
-
       globalEvents.get = function (id) {
         var deferred = $q.defer();
 
@@ -28,6 +20,14 @@ angular.module('siApp')
         });
 
         return deferred.promise;
+      };
+
+      globalEvents.save = function (event) {
+        CommonEvent.transformOutgoingEvent(event);
+        if (event.id) {
+          return Api.saveGlobalEvent(event);
+        }
+        return Api.makeNewGlobalEvent(event);
       };
 
       globalEvents.getAll = function (pagination) {

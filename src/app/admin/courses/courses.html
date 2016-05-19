@@ -1,0 +1,59 @@
+<div>
+    <div>
+        <h2>{{ 'COURSES' | translate }}</h2>
+        <hr>
+        <button class="btn btn-success" ui-sref="admin.course_new">{{ 'NEW_COURSE' | translate }}</button>
+    </div>
+    <hr>
+    <div ng-if="!pagination.available" class="center-block">
+        <h1 class="text-center">{{ 'NO_DATA' | translate }}</h1>
+    </div>
+    <div ng-if="pagination.available">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <td colspan="8">
+                    <input class="form-control" type="text" ng-model="pagination.query"
+                           placeholder="{{ 'SEARCH' | translate }}">
+                </td>
+            </tr>
+            <tr>
+                <th>{{ 'NAME' | translate }}</th>
+                <th>{{ 'CODE' | translate }}</th>
+                <th>{{ 'ESPB' | translate }}</th>
+                <th>{{ 'SEMESTER' | translate }}</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="course in pagination.paginatedEntities" class="repeated-item">
+                <td>
+                    {{ ::course.name }}
+                </td>
+                <td>
+                    {{ ::course.code }}
+                </td>
+                <td>
+                    {{ ::course.espb }}
+                </td>
+                <td>
+                    {{ ::course.semester }}
+                </td>
+                <td>
+                    <button ng-disabled="!canPerformActions" class="btn btn-info btn-sm"
+                            ui-sref="admin.course_new({id: course.id})">
+                        {{ 'EDIT' | translate }}
+                    </button>
+                    <button ng-disabled="!canPerformActions" class="btn btn-danger btn-sm"
+                            ng-click="deleteCourse(course)">
+                        {{ 'DELETE' | translate }}
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <uib-pagination total-items="pagination.totalItems" items-per-page="pagination.perPage"
+                        ng-model="pagination.currentPage"></uib-pagination>
+    </div>
+</div>

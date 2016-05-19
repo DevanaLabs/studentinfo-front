@@ -1,0 +1,25 @@
+<div>
+    <div>
+        <h2>{{ 'CURRENT_YEAR' | translate }}</h2>
+        <hr>
+        <form ng-submit="onSubmit()">
+            <div class="form-group">
+                <label for="current_year">{{ 'CURRENT_YEAR' | translate }}: </label>
+                <input id="current_year" type="number" ng-model="faculty.year" class="" size="4"
+                       ng-required="true" required/>
+                <span>/{{faculty.year+1}}</span>
+            </div>
+            <div class="form-group">
+                <label for="current_semester">{{ 'CURRENT_SEMESTER' | translate }}: </label>
+                <select id="current_semester" ng-model="faculty.semester" ng-required="true" required>
+                    <option value="1">Zimski</option>
+                    <option value="2">Letnji</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="button" ui-sref="home" class="btn btn-alert">{{ 'CANCEL' | translate }}</button>
+                <button type="submit" class="btn btn-primary">{{ 'SAVE' | translate }}</button>
+            </div>
+        </form>
+    </div>
+</div>

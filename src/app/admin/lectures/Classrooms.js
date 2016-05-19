@@ -8,6 +8,5 @@ angular.module('siApp')
       classrooms.getAll = function () {
         return Api.getClassrooms();
       };
-
       return classrooms;
     }]);

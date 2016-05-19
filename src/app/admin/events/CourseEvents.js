@@ -13,6 +13,7 @@ angular.module('siApp')
         var deferred = $q.defer();
 
         Api.getCourseEvent(id).then(function (response) {
+          console.log(response);
           CommonEvent.transformIncomingEvent(response.data.success.data.event);
           deferred.resolve(response);
         }, function (response) {

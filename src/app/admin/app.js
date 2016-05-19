@@ -33,10 +33,60 @@ angular.module('siApp')
           templateUrl: 'admin/profile/edit_profile.html',
           controller: 'ProfileCtrl'
         })
+        .state('admin.faculty', {
+          url: '/faculty',
+          templateUrl: 'admin/faculty/faculty.html',
+          controller: 'FacultyCtrl'
+        })
         .state('admin.feedback', {
           url: '/feedback',
           templateUrl: 'admin/feedback/feedback.html',
           controller: 'FeedbackCtrl'
+        })
+        .state('admin.courses', {
+          url: '/courses',
+          templateUrl: 'admin/courses/courses.html',
+          controller: 'CoursesCtrlAdmin'
+        })
+        .state('admin.course_new', {
+          url: '/courses/{id}',
+          templateUrl: 'admin/courses/course.html',
+          controller: 'CourseCtrlAdmin',
+          resolve: {
+            Mode: ['$stateParams', function ($stateParams) {
+              return $stateParams.id !== '' ? 'UPDATE' : 'CREATE';
+            }]
+          }
+        })
+        .state('admin.groups', {
+          url: '/groups',
+          templateUrl: 'admin/groups/groups.html',
+          controller: 'GroupsCtrlAdmin'
+        })
+        .state('admin.group_new', {
+          url: '/groups/{id}',
+          templateUrl: 'admin/groups/group.html',
+          controller: 'GroupCtrlAdmin',
+          resolve: {
+            Mode: ['$stateParams', function ($stateParams) {
+              return $stateParams.id !== '' ? 'UPDATE' : 'CREATE';
+            }]
+          }
+        })
+        .state('admin.classrooms', {
+          url: '/classrooms',
+          templateUrl: 'admin/classrooms/classrooms.html',
+          controller: 'ClassroomsCtrlAdmin'
+        })
+        .state('admin.classroom_new', {
+          url: '/classrooms/{id}',
+          templateUrl: 'admin/classrooms/classroom.html',
+          controller: 'ClassroomCtrlAdmin',
+          resolve: {
+            Mode: ['$stateParams', function ($stateParams) {
+              return $stateParams.id !== '' ? 'UPDATE' : 'CREATE';
+            }]
+          }
         })
         .state('admin.import', {
           url: '/import',
