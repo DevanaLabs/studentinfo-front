@@ -31,7 +31,7 @@ angular.module('siApp.dashboard')
     function eventTypeToClass (type) { // converts event type to css class
       var classMap = CLASS_COLOR_MAP;
 
-      if (classMap.indexOf(type) === -1) {
+      if (classMap[type] === undefined) {
         return "yellow";
       }
       else {
