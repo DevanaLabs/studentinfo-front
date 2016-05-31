@@ -136,7 +136,7 @@ angular.module('siApp.dashboard', ['ui.router', 'LocalStorageModule', 'siApp', '
   .filter('typeToClass', ['CLASS_COLOR_MAP', function(CLASS_COLOR_MAP) { 
     return function(type) {
       var classMap = CLASS_COLOR_MAP;
-      if (classMap[type] === -1) {
+      if (classMap[type] === undefined) {
         return "yellow";
       }
       else {
