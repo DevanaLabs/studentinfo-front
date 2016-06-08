@@ -7,7 +7,7 @@ angular.module('siApp.dashboard')
       $timeout, ScreensaverTimer, BACKGROUNDS, $location, $window, toastr, $translate, localStorageService, $interval, Api) {
 
 
-      var interval = 3 * 1000;
+      var interval = 15 * 60 * 1000;
       $interval(function () {
         Api.pingHome();
       }, interval);
