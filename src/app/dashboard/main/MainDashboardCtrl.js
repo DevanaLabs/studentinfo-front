@@ -2,9 +2,15 @@
 
 angular.module('siApp.dashboard')
   .controller('MainDashboardCtrl', ['$rootScope', '$scope', 'Dashboard', 'EVENTS', '$state', '$http', 
-    '$timeout', 'ScreensaverTimer', 'BACKGROUNDS', '$location', '$window', 'toastr', '$translate', 'localStorageService',
+    '$timeout', 'ScreensaverTimer', 'BACKGROUNDS', '$location', '$window', 'toastr', '$translate', 'localStorageService', '$interval', 'Api',
     function ($rootScope, $scope, Dashboard, EVENTS, $state, $http, 
-      $timeout, ScreensaverTimer, BACKGROUNDS, $location, $window, toastr, $translate, localStorageService) {
+      $timeout, ScreensaverTimer, BACKGROUNDS, $location, $window, toastr, $translate, localStorageService, $interval, Api) {
+
+
+      var interval = 3 * 1000;
+      $interval(function () {
+        Api.pingHome();
+      }, interval);
 
       $rootScope.$on(EVENTS.API.REFRESH_START, function () {
         //console.log('Dashboard refresh start');

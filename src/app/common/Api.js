@@ -428,6 +428,9 @@ angular.module('siApp')
         },
         getProfessor: function (id) {
           return $http.get(ApiUrlBuilder.build('professor/' + id));
+        },
+        pingHome: function(){
+          return $http.get(ApiUrlBuilder.build('ping/'));
         }
       };
     }]);
