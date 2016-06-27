@@ -41,6 +41,17 @@ angular.module('siApp.dashboard')
         return data.teachers;
       };
 
+      dashboard.getQuestions = function () {
+        //data.question =  {
+        //  question: "Testing?",
+        //  answers: [
+        //    {text:'A1', id:1},
+        //    {text:'A2', id:2}
+        //  ]
+        //};
+        return data.questions;
+      };
+
       dashboard.initialLoad = function () {
         //console.log('Initial load');
 

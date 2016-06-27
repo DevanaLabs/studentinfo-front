@@ -1,0 +1,28 @@
+#poll-wrapper {
+  background: white;
+  min-height: 100%;
+  padding: 100px;
+  #poll-question {
+    @include font-size-text-caption();
+    line-height: 100px;
+    font-weight: 700;
+    color: $textgray;
+  }
+  .poll-answer-button {
+    padding: 30px 20px;
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    outline: none;
+    color: white;
+    @include font-size-text-bigger();
+    font-weight: 600;
+    margin: 10px 0;
+    transition: all .3s;
+    background: $blue;
+    &:hover {
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+      background: darken($blue, 10%);
+    }
+  }
+}

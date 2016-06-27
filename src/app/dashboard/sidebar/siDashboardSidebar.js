@@ -5,7 +5,8 @@ angular.module('siApp.dashboard')
     return {
       scope: '',
       replace: true,
-      controller: ['$scope', '$timeout', 'BACKGROUNDS', '$state', 'localStorageService', function($scope, $timeout, BACKGROUNDS, $state, localStorageService){
+      controller: ['$scope', '$timeout', 'BACKGROUNDS', '$state', 'localStorageService', 'Poll',
+          function($scope, $timeout, BACKGROUNDS, $state, localStorageService, Poll){
               function nextImg () {
                 var num = Math.floor((moment().valueOf()) / 86400000 % BACKGROUNDS.length);
 
@@ -54,7 +55,12 @@ angular.module('siApp.dashboard')
                 else if(state==='android') {
                   return ( $state.is('dashboard.android') );
                 }
+                else if(state==='poll') {
+                  return ( $state.is('dashboard.poll') );
+                }
               }
+
+              $scope.showPoll = Poll.exists;
 
               $scope.facultyName = localStorageService.get('auth').user.faculty.name;
 

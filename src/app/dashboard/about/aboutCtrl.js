@@ -1,18 +1,15 @@
 'use strict';
 
 angular.module('siApp.dashboard')
-  .controller('AboutCtrl', ['$scope', 'Feedback', '$timeout', 'localStorageService', 
-  function ($scope, Feedback, $timeout, localStorageService) {
+  .controller('AboutCtrl', ['$scope', 'Feedback', '$timeout', 'localStorageService', 'Thanks',
+  function ($scope, Feedback, $timeout, localStorageService, Thanks) {
     function showThanks () {
       angular.element('#about-wrapper').animate({
       	scrollTop: 0
       }, 100);
       $timeout(function () {
-        angular.element("#feedback-notif").addClass("active");
+        Thanks.show()
       }, 100);
-      $timeout(function () {
-        angular.element("#feedback-notif").removeClass("active");
-      }, 5000);
     }
 
 

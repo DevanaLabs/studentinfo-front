@@ -3,6 +3,9 @@
     <si-dashboard-sidebar></si-dashboard-sidebar>
   </div>
   <div id="dashboard-inner-container">
+    <div id="thanks-wrapper" ng-controller="ThanksCtrl">
+      <div id="thanks-notif" class="thanks-notif" ng-class="{'active': Thanks.displayed}">{{'THANKYOU' | translate}}</div>
+    </div>
     <div ui-view id="dashboard-ui-view" ng-class="currentState()"></div>
     <div id="loading-container" ng-class="{'active': showLoader}">{{ 'INITIAL_LOADING' | translate }}</div>
   </div>

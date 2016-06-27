@@ -431,6 +431,12 @@ angular.module('siApp')
         },
         pingHome: function(){
           return $http.get(ApiUrlBuilder.build('ping/'));
+        },
+        sendPollAnswer: function (answerId) {
+          return $http.post(ApiUrlBuilder.build('vote/'), {
+            answer: answerId
+          });
         }
+
       };
     }]);

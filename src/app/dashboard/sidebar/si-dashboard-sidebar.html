@@ -13,6 +13,11 @@
         <img src="assets/svg/iconSbKalAkt.svg" alt="" class="sidebar-item-icon">
         <span class="sidebar-item-text">{{ 'CALENDAR' | translate }}</span>
       </li>
+      <hr ng-if="showPoll()">
+      <li class="sidebar-item-wrapper" ui-sref="dashboard.poll" ng-class="{'active': isActive('poll')}" ng-if="showPoll()">
+        <img src="assets/svg/iconSbAnketa.svg" alt="" class="sidebar-item-icon">
+        <span class="sidebar-item-text">{{ 'POLL' | translate }}</span>
+      </li>
       <hr>
       <li class="sidebar-item-wrapper" ui-sref="dashboard.android" ng-class="{'active': isActive('android')}">
         <img src="assets/svg/iconSbAndroid.svg" alt="" class="sidebar-item-icon">

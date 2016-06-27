@@ -2,7 +2,6 @@
 
 angular.module('siApp.dashboard')
   .factory('GroupsD', ['$rootScope', 'Dashboard', 'EVENTS', function ($rootScope, Dashboard, EVENTS) {
-      console.log('good groups service loaded');
     var groupsService = {};
 
     var groups = Dashboard.getGroups();

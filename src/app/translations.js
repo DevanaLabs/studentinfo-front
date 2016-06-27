@@ -145,7 +145,8 @@ angular.module('siApp')
       'ANDROID_DESCRIPTION': 'Потражите “Student info” апликацију да бисте имали све битне информације за Ваш студентски живот на Вашем телефону!',
       'ANDROID_SIDEBAR': 'Андроид апликација',
       'RECOVERY_SUCCESS': "Успешно сте променили шифру",
-      'INITIAL_LOADING': 'Учитавање'
+      'INITIAL_LOADING': 'Учитавање',
+      'POLL': 'Анкета'
     });
 
     $translateProvider.translations('sr-lat', {

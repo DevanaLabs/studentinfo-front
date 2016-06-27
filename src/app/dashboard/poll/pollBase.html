@@ -1,0 +1,4 @@
+<div id="poll-wrapper">
+    <h1 id="poll-question">{{question}}</h1>
+    <button class="poll-answer-button" ng-repeat="answer in answers" ng-click="sendAnswer(answer.id)">{{answer.text}}</button>
+</div>

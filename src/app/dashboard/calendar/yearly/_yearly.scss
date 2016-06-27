@@ -1,153 +1,153 @@
 #yearly-outer-wrapper {
 	height: 100%;
 	background: white;
-}
-#yearly-wrapper {
-	padding: 50px 50px 0;
-	display: flex;
-	flex-wrap: wrap;
-	overflow-y: auto;
-	height: 100%;
-	background: white;
-	.month-header-wrapper {
-		max-width: 25%;
-		min-width: 328px;
-		float: left;
-		margin-right: 5000px;
-		.month-header {
-			margin: 0 auto 20px;
-			width: 280px;
-			font-size: 36px;
-			color: $blue;
+	#yearly-wrapper {
+		padding: 50px 50px 0;
+		display: flex;
+		flex-wrap: wrap;
+		overflow-y: auto;
+		height: 100%;
+		background: white;
+		.month-header-wrapper {
+			max-width: 25%;
+			min-width: 328px;
+			float: left;
+			margin-right: 5000px;
+			.month-header {
+				margin: 0 auto 20px;
+				width: 280px;
+				font-size: 36px;
+				color: $blue;
+			}
 		}
-	}
-	.month-wrapper {
-		max-width: 25%;
-		min-width: 220px;
-		width: 25%;
-		float: left;
-		min-height: 220px;
-		.month-table-wrapper {
-			margin: auto;
-			display: table;
-			padding: 5px 10px 10px;
-			border: 1px solid transparent;
-			cursor: pointer;
-			table {
+		.month-wrapper {
+			max-width: 25%;
+			min-width: 220px;
+			width: 25%;
+			float: left;
+			min-height: 220px;
+			.month-table-wrapper {
 				margin: auto;
-				th, td {
-					@include font-size-text-normal();
-					text-transform: capitalize;
-				}
-				td {
-					height: 30px;
-					width: 40px;
-					text-align: center;
-				}
-				td.past {
-					opacity: .5;
-				}
-				td.next-month, td.prev-month {
-					opacity: .1;
-				}
-				td.multi {
-					background: $multi !important;
-					color: white;
-				}
-				td.blue {
-					background: $blue;
-					color: white;
-				}
-				td.orange {
-					background: $orange;
-					color: white;
-				}
-				td.gray {
-					background: $gray;
-					color: white;
-				}
-				td.green {
-					background: $green;
-					color: white;
-				}
-				td.yellow {
-					background: $yellow;
-					color: $textgray;
-				}
-				td.today {
-					background: #D41B1B;
-					color: white;
-					-webkit-animation-name: pulseToday; /* Chrome, Safari, Opera */
-					-webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
-					animation-name: pulseToday;
-					animation-duration: 2s;
-					animation-iteration-count: infinite;
-				}
-				@-webkit-keyframes pulseToday {
-					0% {
-						opacity: 1;
+				display: table;
+				padding: 5px 10px 10px;
+				border: 1px solid transparent;
+				cursor: pointer;
+				table {
+					margin: auto;
+					th, td {
+						@include font-size-text-normal();
+						text-transform: capitalize;
 					}
-					50% {
-						opacity: .7;
+					td {
+						height: 30px;
+						width: 40px;
+						text-align: center;
 					}
-					100% {
-						opacity: 1;
+					td.past {
+						opacity: .5;
 					}
-				}
-				@keyframes pulseToday {
-					0% {
-						opacity: 1;
+					td.next-month, td.prev-month {
+						opacity: .1;
 					}
-					50% {
-						opacity: .7;
+					td.multi {
+						background: $multi !important;
+						color: white;
 					}
-					100% {
-						opacity: 1;
+					td.blue {
+						background: $blue;
+						color: white;
+					}
+					td.orange {
+						background: $orange;
+						color: white;
+					}
+					td.gray {
+						background: $gray;
+						color: white;
+					}
+					td.green {
+						background: $green;
+						color: white;
+					}
+					td.yellow {
+						background: $yellow;
+						color: $textgray;
+					}
+					td.today {
+						background: #D41B1B;
+						color: white;
+						-webkit-animation-name: pulseToday; /* Chrome, Safari, Opera */
+						-webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
+						animation-name: pulseToday;
+						animation-duration: 2s;
+						animation-iteration-count: infinite;
+					}
+					@-webkit-keyframes pulseToday {
+						0% {
+							opacity: 1;
+						}
+						50% {
+							opacity: .7;
+						}
+						100% {
+							opacity: 1;
+						}
+					}
+					@keyframes pulseToday {
+						0% {
+							opacity: 1;
+						}
+						50% {
+							opacity: .7;
+						}
+						100% {
+							opacity: 1;
+						}
 					}
 				}
 			}
 		}
-	}
-	.month-table-wrapper:hover {
-		border-color: #999;
-		border-radius: 5px;
-		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2)
-	}
+		.month-table-wrapper:hover {
+			border-color: #999;
+			border-radius: 5px;
+			box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2)
+		}
 
-	#legend-wrapper {
-		min-width: 75%;
-		margin-top: 40px;
-		float: right;
-		.legend-sub-wrapper {
+		#legend-wrapper {
+			min-width: 75%;
+			margin-top: 40px;
 			float: right;
-			position: relative;
-			width: 30%;
-			.legend-icon {
-				display: inline-block;
-				height: 30px;
-				width: 30px;
-				background: $blue;
-				vertical-align: middle;
-				margin-right: 10px;
-			}
-			.legend-icon.orange {
-				background: $orange;
-			}
-			.legend-icon.gray {
-				background: $gray;
-			}
-			.legend-icon.green {
-				background: $green;
-			}
-			.legend-icon.yellow {
-				background: $yellow;
-			}
-			.legentCaption {
-				display: inline-block;
-				vertical-align: middle;
-				line-height: 40px;
-				@include font-size-text-normal();
-				font-weight: 600;
+			.legend-sub-wrapper {
+				float: right;
+				position: relative;
+				width: 30%;
+				.legend-icon {
+					display: inline-block;
+					height: 30px;
+					width: 30px;
+					background: $blue;
+					vertical-align: middle;
+					margin-right: 10px;
+				}
+				.legend-icon.orange {
+					background: $orange;
+				}
+				.legend-icon.gray {
+					background: $gray;
+				}
+				.legend-icon.green {
+					background: $green;
+				}
+				.legend-icon.yellow {
+					background: $yellow;
+				}
+				.legentCaption {
+					display: inline-block;
+					vertical-align: middle;
+					line-height: 40px;
+					@include font-size-text-normal();
+					font-weight: 600;
+				}
 			}
 		}
 	}

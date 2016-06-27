@@ -111,6 +111,11 @@ angular.module('siApp.dashboard', ['ui.router', 'LocalStorageModule', 'siApp', '
         url: '/android/',
         templateUrl: 'dashboard/android/androidBase.html'
       })
+      .state('dashboard.poll', {
+        url: '/poll/',
+        templateUrl: 'dashboard/poll/pollBase.html',
+        controller: 'PollCtrl'
+      })
       ;
   }])
   .constant('LANGUAGE_CONSTANTS', {
