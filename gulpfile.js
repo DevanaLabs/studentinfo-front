@@ -38,6 +38,8 @@ var paths = {
     index: ['src/index.html'],
     partials: ['src/app/**/*.html'],
     bootstrapScss: 'bower_components/bootstrap-sass/assets/stylesheets',
+    analyticsDev: './analytics-dev.js',
+    analyticsProd: './analytics-prod.js',
     distDev: './dist/',
     distProd: './dist/',
     distAppScriptsDev: './dist/scripts',
@@ -54,7 +56,7 @@ var paths = {
     distAssetsSvgProd: './dist/assets/svg',
     config: './config.json',
     distConfig: './dist/scripts',
-    distPartials: './dist/scripts'
+    distPartials: './dist/scripts',
 };
 
 /**
@@ -180,6 +182,14 @@ functions.buildAppStyles = function () {
         .pipe(gulpif(util.isProduction(), gulp.dest(paths.distAppStylesProd), gulp.dest(paths.distAppStylesDev)));
 };
 
+functions.buildAnalytics = function () {
+    return gulp.src(
+        util.isDevelopment() ? paths.analyticsDev : paths.analyticsProd
+    )
+        .pipe(concat('analytics.js'))
+        .pipe(gulp.dest(paths.distConfig));
+}
+
 functions.buildConfig = function () {
     var env = null;
 
@@ -206,6 +216,8 @@ functions.buildIndex = function () {
     var vendor = mergeStream(vendorScripts, vendorStyles);
     var app = mergeStream(appScripts, appStyles, config);
 
+    var analytics = functions.buildAnalytics();
+
     return gulp.src(paths.index)
         .pipe(gulpif(util.isProduction(), gulp.dest(paths.distProd), gulp.dest(paths.distDev)))
         .pipe(htmlhint())
@@ -217,6 +229,10 @@ functions.buildIndex = function () {
         .pipe(inject(app, {
             relative: true,
             name: 'app'
+        }))
+        .pipe(inject(analytics, {
+            relative: true,
+            name: 'analytics'
         }))
         .pipe(gulpif(util.isProduction(), htmlmin({
             collapseWhitespace: true,

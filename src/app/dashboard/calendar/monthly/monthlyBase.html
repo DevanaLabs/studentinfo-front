@@ -9,7 +9,9 @@
 		</div>
 		<div id="month-inner-wrapper" ng-class="::{'six-row': monthData.days.length == 6}">
 			<div ng-repeat="week in ::monthData.days" class="week-wrapper">
-				<div ng-repeat="day in ::week" class="day-wrapper" ng-class="day.finalClass" ui-sref="dashboard.day({year:day.year, month: day.month, date: day.date})">
+				<div ng-repeat="day in ::week" class="day-wrapper" ng-class="day.finalClass"
+					 analytics-on="click" analytics-event="open-day"
+					 ui-sref="dashboard.day({year:day.year, month: day.month, date: day.date})">
 					<span class="event-wrapper" ng-repeat="event in day.events" ng-class="'{{event.type | typeToClass}}'">{{event.type}}</span>
 					<span class="bottom-date">
 						{{::day.date}}

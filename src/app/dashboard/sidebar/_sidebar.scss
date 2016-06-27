@@ -48,6 +48,10 @@
 				margin-top: -8px;
 			}
 		}
+		#sidebar-list {
+			max-height: calc(100vh - 300px);
+			overflow: auto;
+		}
 		.sidebar-item-wrapper {
 			display: block;
 			height: 120px;

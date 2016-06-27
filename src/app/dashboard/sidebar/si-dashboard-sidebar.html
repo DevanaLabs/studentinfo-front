@@ -3,7 +3,7 @@
     <div id="sidebar-logo" ui-sref="dashboard.home">{{ 'APP_NAME' | translate }}</div>
     <div id="sidebar-logo-mini" ui-sref="dashboard.home"><img src="assets/svg/logo-icon-outline_white.svg" alt=""></div>
   
-    <ul class="sidebar-list">
+    <ul id="sidebar-list">
       <li class="sidebar-item-wrapper" ui-sref="dashboard.preSchedule.groups" ng-class="{'active': isActive('schedule')}">
         <img src="assets/svg/iconSbRaspCas.svg" alt="" class="sidebar-item-icon">
         <span class="sidebar-item-text">{{ 'TIMETABLE' | translate }}</span>

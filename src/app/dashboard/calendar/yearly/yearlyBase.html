@@ -3,7 +3,8 @@
 		<div class="month-header-wrapper">
 			<h1 class="month-header">{{::currentSchoolYear}}</h1>
 		</div>
-		<div class="month-wrapper" ng-repeat="month in ::months | limitTo: 4" ui-sref="dashboard.monthly(openMonth($index))">
+		<div class="month-wrapper" ng-repeat="month in ::months | limitTo: 4" ui-sref="dashboard.monthly(openMonth($index))"
+		 analytics-on="click" analytics-event="open-month">
 			<div class="month-table-wrapper">
 				<table>
 					<tr>
@@ -19,7 +20,8 @@
 		<div class="month-header-wrapper">
 			<h1 class="month-header">{{::currentSchoolYear+1}}</h1>
 		</div>
-		<div class="month-wrapper" ng-repeat="month in ::months | startFrom: 4" ui-sref="dashboard.monthly(openMonth($index+4))">
+		<div class="month-wrapper" ng-repeat="month in ::months | startFrom: 4" ui-sref="dashboard.monthly(openMonth($index+4))"
+		 analytics-on="click" analytics-event="open-month">
 			<div class="month-table-wrapper">
 				<table>
 					<tr>

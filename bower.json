@@ -26,7 +26,8 @@
     "angular-translate": "~2.9.0",
     "angular-bootstrap": "~1.1.2",
     "ng-file-upload": "~12.0.1",
-    "please-wait": "~0.0.5"
+    "please-wait": "~0.0.5",
+    "angulartics-google-analytics": "~0.2.0"
   },
   "resolutions": {
     "angular": "1.5.0",
