@@ -4,9 +4,11 @@
   padding: 100px;
   #poll-question {
     @include font-size-text-caption();
-    line-height: 100px;
+    line-height: 60px;
     font-weight: 700;
     color: $textgray;
+    margin-bottom: 40px;
+    text-align: center;
   }
   .poll-answer-button {
     padding: 30px 20px;
