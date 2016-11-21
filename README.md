@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-This guide will get get the frontend portion of the project up and running on your local machine for development and testing purposes. It is recommended to get the [API part](../student-info-api) set up first. 
+This guide will get get the frontend portion of the project up and running on your local machine for development and testing purposes. It is recommended to get the [API part](https://github.com/DevanaLabs/studentinfo-api) set up first. 
 
 ## Prerequisites
 
