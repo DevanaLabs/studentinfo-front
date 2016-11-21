@@ -15,8 +15,8 @@ Some problems might exist when setting up Vagrant on Windows. [This page](http:/
 If you are installing both Student Info Api and Frontend be sure you put both projects in same directory. 
 Example: 
 
-- C:\Users\User\Projects\\__student-info__\\student-info-api
-- C:\Users\User\Projects\\__student-info__\\student-info-frontend
+- __student-info__\\student-info-api
+- __student-info__\\student-info-frontend
 
 
 ## Installing
@@ -29,7 +29,7 @@ git clone git@codebasehq.com:pmedia/student-info/student-info-frontend.git
 2. Open 'Homestead.yaml' and add folder with your projects in which is your repository cloned 
 ``` yaml
 folders:
-    - map: C:\Users\User\Projects\student-info\
+    - map: ~/Projects/student-info
       to: /home/vagrant/Projects/student-info/
 ```
 
