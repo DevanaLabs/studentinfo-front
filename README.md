@@ -23,7 +23,7 @@ Example:
 
 1. Clone this repository locally:
 ``` bash
-git clone git@codebasehq.com:pmedia/student-info/student-info-frontend.git
+git clone git@github.com:DevanaLabs/studentinfo-front.git
 ``` 
 
 2. Open 'Homestead.yaml' and add folder with your projects in which is your repository cloned 
